@@ -1,0 +1,12 @@
+<form class="form-signin" action="/auth/login" method="post">
+  <? if($this->error){ ?>
+    <div class="alert alert-error fade in">
+      <button type="button" class="close" data-dismiss="alert">x</button>
+      <strong>Ops!</strong> Usuário e/ou senha errados.
+    </div>
+  <? } ?>
+  <h2 class="form-signin-heading">Faça o login</h2>
+  <input type="text" class="input-block-level" placeholder="login" name="username">
+  <input type="password" class="input-block-level" placeholder="senha" name="password">
+  <button class="btn btn-large btn-primary" type="submit">Entrar</button>
+</form>

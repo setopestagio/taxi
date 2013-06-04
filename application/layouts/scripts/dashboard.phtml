@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+  <head>
+    <meta charset="utf-8">
+    <title>SETOP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+    </style>
+    
+    <!-- Production -->
+    <!-- <link rel="stylesheet" type="text/css" href="https://s3.amazonaws.com/prizz/css/app.css"> -->
+  </head>
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+          <div class="navbar-inner">
+            <div class="container">
+              <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="brand" href="/dashboard">Sistema de Controle de Táxi</a>
+                <div class="btn-group pull-right">
+                <a class="btn btn-inverse dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="icon-user icon-white"></i>
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                <li>
+                    <a href="/account">
+                        <i class="icon-wrench"></i> Minha conta
+                    </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a href="/auth/logout">
+                        <i class="icon-signout"></i> Sair
+                    </a>
+                </li>
+                </ul>
+            </div>
+            </div>
+          </div>
+        </div>
+
+    <div class="container">
+  
+      <?php echo $this->layout()->content; ?>
+
+    </div>
+    
+    <script src="/js/jquery-1.8.3.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+  </body>
+</html>
