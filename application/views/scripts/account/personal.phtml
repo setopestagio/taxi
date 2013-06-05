@@ -2,27 +2,32 @@
   <div class="row-fluid">
     <div class="span3">
       <ul class="nav nav-list well">
-        <li><a href="/account/access"><i class="icon-user"></i> Acesso </a></li>
-        <li class="active"><a href="/account/personal"><i class="icon-bullhorn"></i> Pessoais </a></li>
+        <li class="active"><a href="/account/personal"><i class="icon-user"></i> Pessoais </a></li>
         <li><a href="/account/photo"><i class="icon-picture"></i> Foto </a></li>
         <li><a href="/account/password"><i class="icon-wrench"></i> Senha </a></li>
       </ul>
     </div><!--/span-->
     <div class="span9">
     	<div class="page-header">
-        <h1>Dados Pessoais <small>defina aqui seus contatos</small></h1>
+        <h1>Dados Pessoais <small>defina aqui seus dados</small></h1>
         <hr>
-        <form class="form-horizontal">
+        <form class="form-horizontal" action="/account/personal" method="post">
           <div class="control-group">
-              <label class="control-label" for="name">Telefone</label>
+              <label class="control-label" for="name">Nome</label>
               <div class="controls">
-                  <input type="text" name="phone" value="" class="input-large" id="phone" placeholder="telefone">
+                  <input type="text" name="name" value="<?=$this->user->name?>" class="input-large" id="name" placeholder="nome completo">
+              </div><!--/.controls -->
+          </div><!--/.control-group -->
+          <div class="control-group">
+              <label class="control-label" for="phone">Telefone</label>
+              <div class="controls">
+                  <input type="text" name="phone" value="<?=$this->user->phone?>" class="input-large" id="phone" placeholder="telefone">
               </div><!--/.controls -->
           </div><!--/.control-group -->
           <div class="control-group">
               <label class="control-label" for="email">Email</label>
               <div class="controls">
-                  <input type="email" name="email" value="" class="input-large" id="email" placeholder="email">
+                  <input type="email" name="email" value="<?=$this->user->email?>" class="input-large" id="email" placeholder="email">
               </div><!--/.controls -->
           </div><!--/.control-group -->
           <div class="form-actions">
