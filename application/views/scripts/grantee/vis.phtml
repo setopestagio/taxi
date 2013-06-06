@@ -1,0 +1,37 @@
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span3">
+      <ul class="nav nav-list well">
+        <li><a href="/grantee/new"><i class="icon-user"></i> Novo Permissionário </a></li>
+        <li><a href="/grantee/view"><i class="icon-bullhorn"></i> Pesquisar Permissionário </a></li>
+        <li><a href="/grantee/report"><i class="icon-map-marker"></i> Relatórios </a></li>
+        <li class="active"><a href="/grantee/vis"><i class="icon-picture"></i> Visualização </a></li><!-- 
+        <li><a href="#"><i class="icon-picture"></i> Emissão de Carteiras </a></li>
+        <li><a href="#"><i class="icon-wrench"></i> Guias de Recolhimento </a></li> -->
+      </ul>
+    </div><!--/span-->
+    <div class="span9">
+      <div class="well">
+      	<h1>Visualização de permisionários por região</h1>
+        <style type="text/css">
+          circle.node {
+            cursor: pointer;
+            stroke: #000;
+            stroke-width: .5px;
+          }
+
+          line.link {
+            fill: none;
+            stroke: #9ecae1;
+            stroke-width: 1.5px;
+          }
+        </style>
+        <script src="/js/jquery-1.8.3.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/d3.v3.min.js"></script>
+        <script src="/js/grantee.js"></script>
+        <div id="vis_grantee"></div>
+      </div>
+    </div>
+  </div>
+</div>

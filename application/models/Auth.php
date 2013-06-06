@@ -22,6 +22,7 @@ class Application_Model_Auth
 			$authNamespace->email = $info->username;
 			$authNamespace->user_id = $info->id;
 			$authNamespace->username = $info->username;
+			$authNamespace->institution = $info->institution;
 			return true;
 		}
 		else

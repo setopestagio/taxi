@@ -1,0 +1,307 @@
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span3">
+      <ul class="nav nav-list well">
+        <li><a href="/grantee/new"><i class="icon-user"></i> Novo Permissionário </a></li>
+        <li class="active"><a href="/grantee/new"> Edição de Permissionário </a></li>
+        <li><a href="/grantee/view"><i class="icon-bullhorn"></i> Pesquisar Permissionário </a></li>
+        <li><a href="/grantee/report"><i class="icon-map-marker"></i> Relatórios </a></li>
+        <li><a href="/grantee/vis"><i class="icon-picture"></i> Visualização </a></li><!-- 
+        <li><a href="#"><i class="icon-picture"></i> Emissão de Carteiras </a></li>
+        <li><a href="#"><i class="icon-wrench"></i> Guias de Recolhimento </a></li> -->
+      </ul>
+    </div><!--/span-->
+    <div class="span9">
+      <div class="page-header">
+      	<h1>Novo Permissionário <small>defina aqui os dados do permissionário</small></h1>
+        <hr>
+        <form class="form-horizontal" action="/grantee/edit/id/<?=$this->grantee->grantee_id?>" method="post">
+        	<div class="control-group">
+	          <div class="accordion" id="acoordion1">
+	          	<div class="accordion-group">
+	          		<div class="accordion-heading">
+	          			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseMain">Dados Principais</a>
+	          		</div>
+	          		<div id="collapseMain" class="accordion-body collapse in">
+	          			<div class="accordion-inner">
+					          <div class="control-group">
+					              <label class="control-label" for="name">Nome</label>
+					              <div class="controls">
+					                  <input type="text" name="name" value="<?=$this->grantee->name?>" class="input-xlarge" id="name" placeholder="nome completo">
+					              </div><!--/.controls -->
+					          </div><!--/.control-group -->
+					          <div class="control-group">
+					              <label class="control-label" for="permission">Permissão</label>
+					              <div class="controls">
+					                  <input type="text" name="permission" value="<?=$this->grantee->permission?>" class="input-xlarge" id="permission" placeholder="número da permissão">
+					              </div><!--/.controls -->
+					          </div><!--/.control-group -->
+					          <div class="control-group">
+					              <label class="control-label" for="authorization">Autorização</label>
+					              <div class="controls">
+					                  <select name="authorization" id="authorization" class="input-xlarge">
+					                  	<option value="0" <?if($this->grantee->authorization == 0) echo 'selected="selected"'; ?>>-- Escolha o tipo de autorização --</option>
+					                  	<option value="1" <?if($this->grantee->authorization == 1) echo 'selected="selected"'; ?>>Táxi Especial</option>
+					                  </select>
+					              </div><!--/.controls -->
+					            </div><!--/.control-group -->
+					          <div class="control-group">
+					              <label class="control-label" for="city">Cidade</label>
+					              <div class="controls">
+				                  <select name="city" id="city" class="input-xlarge">
+				                  	<option value="0" <?if($this->grantee->city == 0) echo 'selected="selected"'; ?>>-- Escolha o município --</option>
+				                  	<option value="1" <?if($this->grantee->city == 1) echo 'selected="selected"'; ?>>Belo Horizonte</option>
+				                  	<option value="2" <?if($this->grantee->city == 2) echo 'selected="selected"'; ?>>Sete Lagoas</option>
+				                  	<option value="3" <?if($this->grantee->city == 3) echo 'selected="selected"'; ?>>Contagem</option>
+				                  	<option value="4" <?if($this->grantee->city == 4) echo 'selected="selected"'; ?>>Betim</option>
+				                  	<option value="5" <?if($this->grantee->city == 5) echo 'selected="selected"'; ?>>Santa Luzia</option>
+				                  	<option value="6" <?if($this->grantee->city == 6) echo 'selected="selected"'; ?>>Sabará</option>
+				                  </select>
+					              </div><!--/.controls -->
+					          </div><!--/.control-group -->
+					          <div class="control-group">
+					              <label class="control-label" for="start_permission">Início da permissão</label>
+					              <div class="controls">
+					                  <input type="text" name="start_permission" value="<?=Application_Model_General::dateToBr($this->grantee->start_permission)?>" class="input-xlarge" id="start_permission" placeholder="data de início da permissão">
+					              </div><!--/.controls -->
+					          </div><!--/.control-group -->
+					        </div>
+					      </div>
+					    </div>
+	          	<div class="accordion-group">
+	          		<div class="accordion-heading">
+	          			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseAddress">Endereço</a>
+	          		</div>
+	          		<div id="collapseAddress" class="accordion-body collapse">
+	          			<div class="accordion-inner">
+	          				<div class="control-group">
+					              <label class="control-label" for="address">Endereço</label>
+					              <div class="controls">
+					                  <input type="text" name="address" value="<?=$this->grantee->address?>" class="input-xlarge" id="address" placeholder="logradouro">
+					              </div><!--/.controls -->
+					          </div><!--/.control-group -->
+					          <div class="control-group">
+					              <label class="control-label" for="number">Número</label>
+					              <div class="controls">
+					                  <input type="text" name="number" value="<?=$this->grantee->number?>" class="input-xlarge" id="number" placeholder="número">
+					              </div><!--/.controls -->
+					          </div><!--/.control-group -->
+					          <div class="control-group">
+					              <label class="control-label" for="apartament">Complemento</label>
+					              <div class="controls">
+					                  <input type="text" name="apartament" value="<?=$this->grantee->apartament?>" class="input-xlarge" id="apartament" placeholder="complemento">
+					              </div><!--/.controls -->
+					          </div><!--/.control-group -->
+					          <div class="control-group">
+					              <label class="control-label" for="neighborhood">Bairro</label>
+					              <div class="controls">
+					                  <input type="text" name="neighborhood" value="<?=$this->grantee->neighborhood?>" class="input-xlarge" id="neighborhood" placeholder="bairro">
+					              </div><!--/.controls -->
+					          </div><!--/.control-group -->
+					          <div class="control-group">
+					              <label class="control-label" for="address_city">Cidade</label>
+					              <div class="controls">
+					                  <select name="address_city" id="address_city" class="input-xlarge">
+					                  	<option value="0" <?if($this->grantee->address_city == 0) echo 'selected="selected"'; ?>>-- Escolha o município --</option>
+					                  	<option value="1" <?if($this->grantee->address_city == 1) echo 'selected="selected"'; ?>>Belo Horizonte</option>
+					                  	<option value="2" <?if($this->grantee->address_city == 2) echo 'selected="selected"'; ?>>Sete Lagoas</option>
+					                  	<option value="3" <?if($this->grantee->address_city == 3) echo 'selected="selected"'; ?>>Contagem</option>
+					                  	<option value="4" <?if($this->grantee->address_city == 4) echo 'selected="selected"'; ?>>Betim</option>
+					                  	<option value="5" <?if($this->grantee->address_city == 5) echo 'selected="selected"'; ?>>Santa Luzia</option>
+					                  	<option value="6" <?if($this->grantee->address_city == 6) echo 'selected="selected"'; ?>>Sabará</option>
+					                  </select>
+					              </div><!--/.controls -->
+					          </div><!--/.control-group -->
+					          <div class="control-group">
+					              <label class="control-label" for="zipcode">CEP</label>
+					              <div class="controls">
+					                  <input type="text" name="zipcode" value="<?=$this->grantee->zipcode?>" class="input-xlarge" id="zipcode" placeholder="cep">
+					              </div><!--/.controls -->
+					          </div><!--/.control-group -->
+	          			</div>
+	          		</div>
+	          	</div>
+	          	<div class="accordion-group">
+	          		<div class="accordion-heading">
+	          			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseContact">Contato</a>
+	          		</div>
+	          		<div id="collapseContact" class="accordion-body collapse">
+	          			<div class="accordion-inner">
+	          				<div class="control-group">
+					              <label class="control-label" for="phone">Telefone fixo</label>
+					              <div class="controls">
+					                  <input type="text" name="phone" value="<?=$this->grantee->phone?>" class="input-xlarge" id="phone" placeholder="telefone fixo">
+					              </div><!--/.controls -->
+					          </div><!--/.control-group -->
+					          <div class="control-group">
+					              <label class="control-label" for="mobile">Celular</label>
+					              <div class="controls">
+					                  <input type="text" name="mobile" value="<?=$this->grantee->mobile?>" class="input-xlarge" id="mobile" placeholder="celular">
+					              </div><!--/.controls -->
+					          </div><!--/.control-group -->
+					          <div class="control-group">
+					              <label class="control-label" for="email">Email</label>
+					              <div class="controls">
+					                  <input type="text" name="email" value="<?=$this->grantee->email?>" class="input-xlarge" id="email" placeholder="email">
+					              </div><!--/.controls -->
+					          </div><!--/.control-group -->
+	          			</div>
+	          		</div>
+	          	</div>
+		          <div class="accordion-group">
+		        		<div class="accordion-heading">
+		        			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseDocument">Documentos</a>
+		        		</div>
+		        		<div id="collapseDocument" class="accordion-body collapse">
+		        			<div class="accordion-inner">
+					          <div class="control-group">
+					              <label class="control-label" for="rg">Identidade</label>
+					              <div class="controls">
+					                  <input type="text" name="rg" value="<?=$this->grantee->rg?>" class="input-xlarge" id="rg" placeholder="identidade">
+					              </div><!--/.controls -->
+					          </div><!--/.control-group -->
+					          <div class="control-group">
+					              <label class="control-label" for="rg_issuer">Orgão Emissor da Identidade</label>
+					              <div class="controls">
+					                  <input type="text" name="rg_issuer" value="<?=$this->grantee->rg_issuer?>" class="input-xlarge" id="rg_issuer" placeholder="orgão emissor da identidade">
+					              </div><!--/.controls -->
+					          </div><!--/.control-group -->
+					          <div class="control-group">
+					              <label class="control-label" for="cpf">CPF</label>
+					              <div class="controls">
+					                  <input type="text" name="cpf" value="<?=$this->grantee->cpf?>" class="input-xlarge" id="cpf" placeholder="cpf">
+					              </div><!--/.controls -->
+					          </div><!--/.control-group -->
+					          <div class="control-group">
+					              <label class="control-label" for="cnh">Habilitação</label>
+					              <div class="controls">
+					                  <input type="text" name="cnh" value="<?=$this->grantee->cnh?>" class="input-xlarge" id="cnh" placeholder="habilitação">
+					              </div><!--/.controls -->
+					          </div><!--/.control-group -->
+					          <div class="control-group">
+					              <label class="control-label" for="cnh_issuer">Orgão Emissor da Habilitação</label>
+					              <div class="controls">
+					                  <input type="text" name="cnh_issuer" value="<?=$this->grantee->cnh_issuer?>" class="input-xlarge" id="cnh_issuer" placeholder="orgão emissor da habilitação">
+					              </div><!--/.controls -->
+					          </div><!--/.control-group -->
+					          <div class="control-group">
+					              <label class="control-label" for="iapas">IAPAS</label>
+					              <div class="controls">
+					                  <input type="text" name="iapas" value="<?=$this->grantee->iapas?>" class="input-xlarge" id="iapas" placeholder="iapas">
+					              </div><!--/.controls -->
+					          </div><!--/.control-group -->
+					          <div class="control-group">
+					              <label class="control-label" for="voter">Título de Eleitor</label>
+					              <div class="controls">
+					                  <input type="text" name="voter" value="<?=$this->grantee->voter?>" class="input-xlarge" id="voter" placeholder="título de eleitor">
+					              </div><!--/.controls -->
+					          </div><!--/.control-group -->
+					          <div class="control-group">
+					              <label class="control-label" for="voter_zone">Zona Eleitoral</label>
+					              <div class="controls">
+					                  <input type="text" name="voter_zone" value="<?=$this->grantee->voter_zone?>" class="input-xlarge" id="voter_zone" placeholder="zona eleitoral">
+					              </div><!--/.controls -->
+					          </div><!--/.control-group -->
+					          <div class="control-group">
+					              <label class="control-label" for="army">Militar</label>
+					              <div class="controls">
+					                  <input type="text" name="army" value="<?=$this->grantee->army?>" class="input-xlarge" id="army" placeholder="documento militar">
+					              </div><!--/.controls -->
+					          </div><!--/.control-group -->
+					          <div class="control-group">
+					              <label class="control-label" for="army_issuer">Orgão Emissor Militar</label>
+					              <div class="controls">
+					                  <input type="text" name="army_issuer" value="<?=$this->grantee->army_issuer?>" class="input-xlarge" id="army_issuer" placeholder="orgão emissor do documento militar">
+					              </div><!--/.controls -->
+					          </div><!--/.control-group -->
+		        			</div>
+		        		</div>
+		        	</div>
+		        	<div class="accordion-group">
+	          		<div class="accordion-heading">
+	          			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseVehicle">Veículo</a>
+	          		</div>
+	          		<div id="collapseVehicle" class="accordion-body collapse">
+	          			<div class="accordion-inner">
+	          				<div class="control-group">
+					              <label class="control-label" for="plate">Placa</label>
+					              <div class="controls">
+					                  <input type="text" name="plate" value="<?=$this->grantee->plate?>" class="input-xlarge" id="plate" placeholder="placa">
+					              </div><!--/.controls -->
+					          </div><!--/.control-group -->
+	          				<div class="control-group">
+					              <label class="control-label" for="brand">Marca</label>
+					              <div class="controls">
+				                   <select name="brand">
+					                 	 <option value="0" <?if($this->grantee->brand == 0) echo 'selected="selected"'; ?>>-- Selecione uma marca --</option>
+					                 	 <option value="1" <?if($this->grantee->brand == 1) echo 'selected="selected"'; ?>>Citroën</option>
+														 <option value="2" <?if($this->grantee->brand == 2) echo 'selected="selected"'; ?>>GM</option>
+														 <option value="3" <?if($this->grantee->brand == 3) echo 'selected="selected"'; ?>>Fiat</option>
+														 <option value="4" <?if($this->grantee->brand == 4) echo 'selected="selected"'; ?>>Ford</option>
+														 <option value="5" <?if($this->grantee->brand == 5) echo 'selected="selected"'; ?>>Honda</option>
+														 <option value="6" <?if($this->grantee->brand == 6) echo 'selected="selected"'; ?>>Peugeot</option>
+														 <option value="7" <?if($this->grantee->brand == 7) echo 'selected="selected"'; ?>>Renault</option>
+														 <option value="8" <?if($this->grantee->brand == 8) echo 'selected="selected"'; ?>>Toyota</option>
+														 <option value="9" <?if($this->grantee->brand == 9) echo 'selected="selected"'; ?>>Volkswagen</option>
+														 <option value="10" <?if($this->grantee->brand == 10) echo 'selected="selected"'; ?>>Citroën</option>
+					                 </select>
+					              </div><!--/.controls -->
+					          </div><!--/.control-group -->
+	          				<div class="control-group">
+					              <label class="control-label" for="model">Modelo</label>
+					              <div class="controls">
+					                 <select name="model">
+					                 	<option value="0">-- Selecione um modelo --</option>
+					                 </select>
+					              </div><!--/.controls -->
+					          </div><!--/.control-group -->
+	          				<div class="control-group">
+					              <label class="control-label" for="year_fabrication">Ano Fabricação</label>
+					              <div class="controls">
+					                  <input type="text" name="year_fabrication" value="<?=$this->grantee->year_fabrication?>" class="input-xlarge" id="year_fabrication" placeholder="ano de fabricação">
+					              </div><!--/.controls -->
+					          </div><!--/.control-group -->
+	          				<div class="control-group">
+					              <label class="control-label" for="year_model">Ano Modelo</label>
+					              <div class="controls">
+					                  <input type="text" name="year_model" value="<?=$this->grantee->year_model?>" class="input-xlarge" id="year_model" placeholder="ano do modelo">
+					              </div><!--/.controls -->
+					          </div><!--/.control-group -->
+	          				<div class="control-group">
+					              <label class="control-label" for="color">Cor</label>
+					              <div class="controls">
+					                  <input type="text" name="color" value="<?=$this->grantee->color?>" class="input-xlarge" id="color" placeholder="cor">
+					              </div><!--/.controls -->
+					          </div><!--/.control-group -->
+	          				<div class="control-group">
+					              <label class="control-label" for="chassi">Chassi</label>
+					              <div class="controls">
+					                  <input type="text" name="chassi" value="<?=$this->grantee->chassi?>" class="input-xlarge" id="chassi" placeholder="chassi">
+					              </div><!--/.controls -->
+					          </div><!--/.control-group -->
+	          				<div class="control-group">
+					              <label class="control-label" for="fuel">Tipo de Combustivel</label>
+					              <div class="controls">
+				                   <select name="fuel">
+					                 	<option value="0" <?if($this->grantee->fuel == 0) echo 'selected="selected"'; ?>>-- Selecione um combustivel --</option>
+					                 	<option value="1" <?if($this->grantee->fuel == 1) echo 'selected="selected"'; ?>>Gasolina</option>
+					                 	<option value="2" <?if($this->grantee->fuel == 2) echo 'selected="selected"'; ?>>Alcool</option>
+					                 	<option value="3" <?if($this->grantee->fuel == 3) echo 'selected="selected"'; ?>>Gás</option>
+					                 	<option value="4" <?if($this->grantee->fuel == 4) echo 'selected="selected"'; ?>>Flex</option>
+					                 	<option value="5" <?if($this->grantee->fuel == 5) echo 'selected="selected"'; ?>>Diesel</option>
+					                 </select>
+					              </div><!--/.controls -->
+					          </div><!--/.control-group -->
+	          			</div>
+	          		</div>
+	          	</div>
+		        </div>
+		      </div>
+          <div class="form-actions">
+              <button type="submit" class="btn btn-primary">Salvar alterações</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

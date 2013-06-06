@@ -67,7 +67,11 @@ class Application_Acl_Setup
         $this->_acl->addResource( new Zend_Acl_Resource('auth') );
     	$this->_acl->addResource( new Zend_Acl_Resource('index') );
         $this->_acl->addResource( new Zend_Acl_Resource('dashboard') );
+        $this->_acl->addResource( new Zend_Acl_Resource('doesntallow') );
         $this->_acl->addResource( new Zend_Acl_Resource('account') );
+        $this->_acl->addResource( new Zend_Acl_Resource('grantee') );
+        $this->_acl->addResource( new Zend_Acl_Resource('auxiliar') );
+        $this->_acl->addResource( new Zend_Acl_Resource('vehicle') );
     }
 
     /**
@@ -86,7 +90,11 @@ class Application_Acl_Setup
         $this->_acl	->allow( 'user', 'index', 'index' )
         			->allow( 'user', 'auth', array('index', 'login') )
                     ->allow( 'user', 'dashboard', array('index') )
-                    ->allow( 'user', 'account', array('index', 'access', 'personal', 'photo', 'password') );
+                    ->allow( 'user', 'doesntallow', array('index'))
+                    ->allow( 'user', 'account', array('index', 'access', 'personal', 'photo', 'password') )
+                    ->allow( 'user', 'grantee', array('index', 'new', 'edit', 'remove', 'view', 'vis', 'report') )
+                    ->allow( 'user', 'auxiliar', array('index', 'new', 'edit', 'remove', 'view') )
+                    ->allow( 'user', 'vehicle', array('index', 'new', 'edit', 'remove', 'view', 'vis') );
     }
 
     /**

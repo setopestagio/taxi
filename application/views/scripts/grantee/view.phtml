@@ -1,0 +1,57 @@
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span3">
+      <ul class="nav nav-list well">
+        <li><a href="/grantee/new"><i class="icon-user"></i> Novo Permissionário </a></li>
+        <li class="active"><a href="/grantee/view"><i class="icon-bullhorn"></i> Pesquisar Permissionário </a></li>
+        <li><a href="/grantee/report"><i class="icon-map-marker"></i> Relatórios </a></li>
+        <li><a href="/grantee/vis"><i class="icon-picture"></i> Visualização </a></li><!-- 
+        <li><a href="#"><i class="icon-picture"></i> Emissão de Carteiras </a></li>
+        <li><a href="#"><i class="icon-wrench"></i> Guias de Recolhimento </a></li> -->
+      </ul>
+    </div><!--/span-->
+    <div class="span9">
+    	<div class="page-header">
+      	<h1>Pesquisa <small>gerencie aqui os dados do permissionário</small></h1>
+      	<form class="form-search" action="/grantee/view" method="get">
+      		<input type="text" class="input-medium search-query" placeholder="permissão" name="permission" value="<?=$this->permission?>">
+      		<button type="submit" class="btn">Pesquisar</button>
+      	</form>
+      	<table class="table table-hover table-bordered">
+      		<thead>
+      			<th>Nome</th>
+      			<th>Permissão</th>
+      			<th>Início da Permissão</th>
+      			<th>&nbsp;</th>
+      		</thead>
+      		<tbody>
+      			<?if(is_object($this->list) && !isset($this->list->name)){
+      				foreach($this->list as $grantee){?>
+		      			<tr>
+		      				<td><?=$grantee->name?></td>
+		      				<td><?=$grantee->permission?></td>
+		      				<td><?=Application_Model_General::dateToBr($grantee->start_permission)?></td>
+		      				<td><a href="/grantee/edit/id/<?=$grantee->grantee_id?>"><i class="icon-pencil"></i></a></td>
+		      				<td><a href="/grantee/print/id/<?=$grantee->grantee_id?>"><i class="icon-print"></i></a></td>
+		      				<td><a href="#"><i class="icon-trash"></i></a></td>
+		      			</tr>
+      			<?} }else if(is_object($this->list)){?>
+      				<tr>
+	      				<td><?=$this->list->name?></td>
+	      				<td><?=$this->list->permission?></td>
+	      				<td><?=Application_Model_General::dateToBr($this->list->start_permission)?></td>
+	      				<td><a href="/grantee/edit/id/<?=$this->list->grantee_id?>"><i class="icon-pencil"></i></a></td>
+	      				<td><a href="/grantee/print/id/<?=$this->list->grantee_id?>"><i class="icon-print"></i></a></td>
+	      				<td><a href="#"><i class="icon-trash"></i></a></td>
+	      			</tr>
+      			<?}else{?>
+      				<tr>
+      					<td colspan="7">Não encontrado nenhum permissionário na pesquisa.</td>
+      				</tr>
+      			<?}?>
+      		</tbody>
+      	</table>
+      </div>
+    </div>
+  </div>
+</div>
