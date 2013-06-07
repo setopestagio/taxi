@@ -31,9 +31,10 @@
 		      				<td><?=$grantee->name?></td>
 		      				<td><?=$grantee->permission?></td>
 		      				<td><?=Application_Model_General::dateToBr($grantee->start_permission)?></td>
-		      				<td><a href="/grantee/edit/id/<?=$grantee->grantee_id?>"><i class="icon-pencil"></i></a></td>
-		      				<td><a href="/grantee/print/id/<?=$grantee->grantee_id?>"><i class="icon-print"></i></a></td>
-		      				<td><a href="#"><i class="icon-trash"></i></a></td>
+		      				<td><a href="/grantee/edit/id/<?=$grantee->grantee_id?>" class="editGrantee" data-toggle="tooltip" title="Editar permissionário"><i class="icon-pencil"></i></a></td>
+		      				<td><a href="/grantee/print-data/id/<?=$grantee->grantee_id?>" class="printDataGrantee" data-toggle="tooltip" title="Imprimir dados"><i class="icon-print"></i></a></td>
+                  <td><a href="/grantee/print-license/id/<?=$grantee->grantee_id?>" class="printLicenseGrantee" data-toggle="tooltip" title="Imprimir a carteira"><i class="icon-print"></i></a></td>
+		      				<td><a href="#" class="removePermission" data-toggle="tooltip" title="Finalizar permissão"><i class="icon-trash"></i></a></td>
 		      			</tr>
       			<?} }else if(is_object($this->list)){?>
       				<tr>
@@ -41,7 +42,8 @@
 	      				<td><?=$this->list->permission?></td>
 	      				<td><?=Application_Model_General::dateToBr($this->list->start_permission)?></td>
 	      				<td><a href="/grantee/edit/id/<?=$this->list->grantee_id?>"><i class="icon-pencil"></i></a></td>
-	      				<td><a href="/grantee/print/id/<?=$this->list->grantee_id?>"><i class="icon-print"></i></a></td>
+	      				<td><a href="/grantee/print-data/id/<?=$this->list->grantee_id?>"><i class="icon-print"></i></a></td>
+                <td><a href="/grantee/print-license/id/<?=$this->list->grantee_id?>"><i class="icon-print"></i></a></td>
 	      				<td><a href="#"><i class="icon-trash"></i></a></td>
 	      			</tr>
       			<?}else{?>

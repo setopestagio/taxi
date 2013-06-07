@@ -60,7 +60,6 @@ class GranteeController extends Zend_Controller_Action
         $this->view->grantee = $grantee->returnById($granteeId);
       }catch(Zend_Exception $e){
         $this->view->error = true;
-        echo $e->getMessage();
       }
     }
 
@@ -98,8 +97,29 @@ class GranteeController extends Zend_Controller_Action
         // action body
     }
 
+    public function printLicenseAction()
+    {
+      $this->_helper->layout()->setLayout('dashboard');
+    }
+
+    public function printDataAction()
+    {
+      $this->_helper->layout()->setLayout('ajax');
+      $id = $this->getRequest()->getParam('id');
+      $grantee = new Application_Model_Grantee();
+      $print = new Application_Model_PrintData();
+      $granteeRow = $grantee->returnById($id);
+      $pdf = $print->createPdf($granteeRow);
+      header('Content-Type: application/pdf');
+      echo $pdf->render(); 
+    }
+
 
 }
+
+
+
+
 
 
 

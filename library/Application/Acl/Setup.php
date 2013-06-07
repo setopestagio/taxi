@@ -92,7 +92,8 @@ class Application_Acl_Setup
                     ->allow( 'user', 'dashboard', array('index') )
                     ->allow( 'user', 'doesntallow', array('index'))
                     ->allow( 'user', 'account', array('index', 'access', 'personal', 'photo', 'password') )
-                    ->allow( 'user', 'grantee', array('index', 'new', 'edit', 'remove', 'view', 'vis', 'report') )
+                    ->allow( 'user', 'grantee', array('index', 'new', 'edit', 'remove', 'view', 'vis', 'report',
+                                                    'print-data', 'print-license') )
                     ->allow( 'user', 'auxiliar', array('index', 'new', 'edit', 'remove', 'view') )
                     ->allow( 'user', 'vehicle', array('index', 'new', 'edit', 'remove', 'view', 'vis') );
     }
