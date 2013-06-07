@@ -51,7 +51,7 @@
       			<?}?>
       		</tbody>
       	</table>
-        <?=$this->paginationControl($this->list,'Sliding','pagination.phtml'); ?>
+        <?if(is_object($this->list) && !isset($this->list->name)){ echo $this->paginationControl($this->list,'Sliding','pagination.phtml'); }?>
       </div>
     </div>
   </div>
