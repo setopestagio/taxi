@@ -1,9 +1,8 @@
 <div class="container-fluid">
   <div class="row-fluid">
-    <div class="span12 well">
-      <h2>Dashboard</h2>
-    </div>
+    <img src='/img/taxi.jpg'><br><br>
   </div>
+  <?if($this->institution == 1){?>
   <div class="row-fluid">
     <div class="span4 well">
       <h2>Permissionários</h2>
@@ -21,21 +20,23 @@
       <p><a href="/vehicle" class="btn">gerenciar >></a></p>
     </div>
   </div>
-  <div class="row-fluid">
+  <?}else{?>
+    <div class="row-fluid">
     <div class="span4 well">
-      <h2>Taxímetros</h2>
-      <p>ausdhf aiusdhf oaisdhf oiaushf oiausdhf ioashd ioasdh fioadfiadsiofa iosdhfi aosdhf ioashd iuasdhif adhsifa isdhf aiosdhf ioashdf iasdf adhsif aisodfai s</p>
-      <p><a href="#" class="btn">ver mais >></a></p>
+      <h2>Permissionários</h2>
+      <p>Permissionário detém a permissão de transitar por táxi especial na região metropolitana, o serviço podendo ser prestado por terceiros mediante permissão.</p>
+      <p><a href="/grantee" class="btn">relatórios >></a></p>
     </div>
     <div class="span4 well">
-      <h2>Emissão</h2>
-      <p>ausdhf aiusdhf oaisdhf oiaushf oiausdhf ioashd ioasdh fioadfiadsiofa iosdhfi aosdhf ioashd iuasdhif adhsifa isdhf aiosdhf ioashdf iasdf adhsif aisodfai s</p>
-      <p><a href="#" class="btn">ver mais >></a></p>
+      <h2>Auxiliares</h2>
+      <p>Um auxiliar detém a permissão para transitar em táxis com as devidas permissões liberadas por um determinado permissionário.</p>
+      <p><a href="/auxiliar" class="btn">relatórios >></a></p>
     </div>
     <div class="span4 well">
-      <h2>Consultas</h2>
-      <p>ausdhf aiusdhf oaisdhf oiaushf oiausdhf ioashd ioasdh fioadfiadsiofa iosdhfi aosdhf ioashd iuasdhif adhsifa isdhf aiosdhf ioashdf iasdf adhsif aisodfai s</p>
-      <p><a href="#" class="btn">ver mais >></a></p>
+      <h2>Veículos</h2>
+      <p>Gerenciamento de veículos, vinculação a permissionários, relatórios do sistema e visualiação do comportamento dos mesmos no sistema de transporte metropolitano </p>
+      <p><a href="/vehicle" class="btn">relatórios >></a></p>
     </div>
   </div>
+  <?}?>
 </div>

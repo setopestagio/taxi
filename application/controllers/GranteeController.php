@@ -80,7 +80,11 @@ class GranteeController extends Zend_Controller_Action
       }
       else
       {
-        $this->view->list = $grantee->lists();
+        $page = $this->getRequest()->getParam('page');
+        if($page == '') $page = 1;
+        $grantess = $grantee->lists();
+        $pagination = new Application_Model_Pagination();
+        $this->view->list = $pagination->generatePagination($grantess,$page,10);
       }
     }
 
