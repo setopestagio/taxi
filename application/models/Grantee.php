@@ -44,6 +44,7 @@ class Application_Model_Grantee
 						->joinInner(array('a' => 'address'),'a.id = p.address', array('address','number','apartament','neighborhood',
 																																			'address_city' => 'city','zipcode') )
 						->joinInner(array('v' => 'vehicle'), 'v.id=g.vehicle')
+						->joinInner(array('c' => 'city'),'g.city=c.id', array('name_city' => 'name'))
 						->where('g.id = ?', $granteeId);
 		return $grantee->fetchRow($select);
 	}

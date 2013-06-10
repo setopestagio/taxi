@@ -22,12 +22,12 @@ class Application_Model_PrintData
 			$this->address($data);
       $this->pdf->pages[] = $this->page;
       return $this->pdf;
-  }catch(Zend_Pdf_Exception $e){
-      die('PDF error: ' . $e->getMessage());
-  }
-  catch(Zend_Exception $e){
-      die('Error: ' . $e->getMessage());
-  }
+    }catch(Zend_Pdf_Exception $e){
+        die('PDF error: ' . $e->getMessage());
+    }
+    catch(Zend_Exception $e){
+        die('Error: ' . $e->getMessage());
+    }
 	}
 
 	protected function header()
@@ -80,10 +80,10 @@ class Application_Model_PrintData
         ->drawLine(50, 735, 457, 735);
 
     $this->page->setLineWidth(1.5)
-        ->drawLine(50, 720, 457, 720);
+        ->drawLine(51, 720, 457, 720);
 
     $this->page->setLineWidth(1.5)
-        ->drawLine(50, 690, 546, 690);
+        ->drawLine(51, 690, 546, 690);
 
     // Vertical Lines
     $this->page->setLineWidth(2)
@@ -125,29 +125,65 @@ class Application_Model_PrintData
 	{
 		// Horizontal Lines
     $this->page->setLineWidth(1.5)
-        ->drawLine(50, 655, 546, 655);
+        ->drawLine(51, 655, 546, 655);
 
     $this->page->setLineWidth(1.5)
-        ->drawLine(50, 620, 546, 620);
+        ->drawLine(51, 620, 546, 620);
+
+    $this->page->setLineWidth(1.5)
+        ->drawLine(51, 583, 546, 583);
+
+    $this->page->setLineWidth(1.5)
+        ->drawLine(51, 545, 546, 545);
 
     // Vertical Lines
     $this->page->setLineWidth(2)
-        ->drawLine(51, 620, 51, 690);
+        ->drawLine(51, 544, 51, 690);
 
     $this->page->setLineWidth(2)
-        ->drawLine(545, 620, 545, 690);
+        ->drawLine(545, 544, 545, 690);
 
     $this->page->setLineWidth(1)
-        ->drawLine(320, 620, 320, 690);
+        ->drawLine(320, 655, 320, 690);
 
     $this->page->setLineWidth(1)
-        ->drawLine(385, 620, 385, 690);
+        ->drawLine(385, 655, 385, 690);
+
+    $this->page->setLineWidth(1)
+        ->drawLine(160, 620, 160, 655);
+
+    $this->page->setLineWidth(1)
+        ->drawLine(385, 620, 385, 655);
+
+    $this->page->setLineWidth(1)
+        ->drawLine(120, 583, 120, 620);
+
+    $this->page->setLineWidth(1)
+        ->drawLine(200, 583, 200, 620);
+
+    $this->page->setLineWidth(1)
+        ->drawLine(290, 583, 290, 620);
+
+    $this->page->setLineWidth(1)
+        ->drawLine(385, 583, 385, 620);
+
+    $this->page->setLineWidth(1)
+        ->drawLine(158, 544, 158, 583);
+
+    $this->page->setLineWidth(1)
+        ->drawLine(255, 544, 255, 583);
+
+    $this->page->setLineWidth(1)
+        ->drawLine(345, 544, 345, 583);
+
+    $this->page->setLineWidth(1)
+        ->drawLine(385, 544, 385, 583);
 
     // Words
-	$this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
-            ->drawText('Endereço', 55, 680);
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
+                ->drawText('Endereço', 55, 680);
 
-	$this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
                 ->drawText($data->address, 55, 662);
 
     $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
@@ -161,6 +197,84 @@ class Application_Model_PrintData
 
     $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
                 ->drawText($data->neighborhood, 390, 662);
+
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
+                ->drawText('Telefone', 55, 645);
+
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
+                ->drawText($data->phone, 55, 628);
+
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
+                ->drawText('Município', 163, 645);
+
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
+                ->drawText($data->name_city, 163, 628);
+
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
+                ->drawText('CEP', 390, 644);
+
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
+                ->drawText($data->zipcode, 390, 628);
+
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
+                ->drawText('Identidade', 55, 610);
+
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
+                ->drawText($data->rg, 55, 590);
+
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
+                ->drawText('Orgão Emissor', 123, 610);
+
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
+                ->drawText($data->rg_issuer, 124, 590);
+
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
+                ->drawText('Habilitação', 203, 610);
+
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
+                ->drawText($data->cnh, 204, 590);
+
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
+                ->drawText('Orgão Emissor', 293, 610);
+
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
+                ->drawText($data->cnh_issuer, 294, 590);
+
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
+                ->drawText('CPF', 390, 610);
+
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
+                ->drawText($data->cpf, 390, 590);
+
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
+                ->drawText('Serviço Militar', 55, 573);
+
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
+                ->drawText($data->army, 55, 553);
+
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
+                ->drawText('Orgão Emissor', 162, 573);
+
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
+                ->drawText($data->army_issuer, 162, 553);
+
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
+                ->drawText('Título Eleitor', 259, 573);
+
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
+                ->drawText($data->voter, 259, 553);
+
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
+                ->drawText('Zona', 348, 573);
+
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
+                ->drawText($data->voter_zone, 349, 553);
+
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
+                ->drawText('IAPAS', 388, 573);
+
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
+                ->drawText($data->iapas, 389, 553);
 	}
 
 }
