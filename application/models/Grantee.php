@@ -38,7 +38,7 @@ class Application_Model_Grantee
 		$grantee = new Application_Model_DbTable_Grantee();
 		$select = $grantee->select()->setIntegrityCheck(false);
 		$select	->from(array('g' => 'grantee'), array('grantee_id' => 'id', 'permission','authorization','city',
-																								'start_permission','end_permission') )
+																								'start_permission','end_permission', 'info') )
 						->joinInner(array('p' => 'person'), 'p.id=g.owner')
 						->joinInner(array('a' => 'address'),'a.id = p.address', array('address','number','apartament','neighborhood',
 																																			'address_city' => 'city','zipcode') )

@@ -74,6 +74,12 @@
 					                  <input type="text" name="start_permission" value="<?=Application_Model_General::dateToBr($this->grantee->start_permission)?>" class="input-xlarge" id="start_permission" placeholder="data de início da permissão">
 					              </div><!--/.controls -->
 					          </div><!--/.control-group -->
+					          <div class="control-group">
+					              <label class="control-label" for="info">Observações</label>
+					              <div class="controls">
+					                  <textarea type="text" name="info" rows="5" class="input-xlarge" id="info" placeholder="observações"><?=$this->grantee->info?></textarea>
+					              </div><!--/.controls -->
+					          </div><!--/.control-group -->
 					        </div>
 					      </div>
 					    </div>
