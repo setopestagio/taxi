@@ -71,18 +71,19 @@ class GranteeController extends Zend_Controller_Action
     public function viewAction()
     {
       $grantee = new Application_Model_Grantee();
+      $pagination = new Application_Model_Pagination();
       $permission = $this->getRequest()->getParam('permission');
+      $page = $this->getRequest()->getParam('page');
+      if($page == '') $page = 1;
       if($permission != "")
       {
-        $this->view->list = $grantee->findByPermission(urldecode($permission));
+        $grantees = $grantee->findByPermission(urldecode($permission));
+        $this->view->list = $pagination->generatePagination($grantees,$page,10);
         $this->view->permission = $permission;
       }
       else
       {
-        $page = $this->getRequest()->getParam('page');
-        if($page == '') $page = 1;
         $grantess = $grantee->lists();
-        $pagination = new Application_Model_Pagination();
         $this->view->list = $pagination->generatePagination($grantess,$page,10);
       }
     }

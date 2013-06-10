@@ -79,7 +79,7 @@ class Application_Model_Grantee
 
 						->joinInner(array('p' => 'person'), 'p.id=g.owner')
 						->where('g.permission = ?',$permission);
-		return $grantee->fetchRow($select);
+		return $grantee->fetchAll($select);
 	}
 
 }
