@@ -75,6 +75,12 @@
 					              </div><!--/.controls -->
 					          </div><!--/.control-group -->
 					          <div class="control-group">
+					              <label class="control-label" for="end_permission">Término da permissão</label>
+					              <div class="controls">
+					                  <input type="text" name="end_permission" value="<?=Application_Model_General::dateToBr($this->grantee->end_permission)?>" class="input-xlarge" id="end_permission" placeholder="data de início da permissão">
+					              </div><!--/.controls -->
+					          </div><!--/.control-group -->
+					          <div class="control-group">
 					              <label class="control-label" for="info">Observações</label>
 					              <div class="controls">
 					                  <textarea type="text" name="info" rows="5" class="input-xlarge" id="info" placeholder="observações"><?=$this->grantee->info?></textarea>

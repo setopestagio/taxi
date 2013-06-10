@@ -14,27 +14,34 @@
     	<div class="page-header">
       	<h1>Pesquisa <small>gerencie aqui os dados do permissionário</small></h1>
       	<form class="form-search" action="/grantee/view" method="get">
-      		<input type="text" class="input-medium search-query" placeholder="permissão" name="permission" value="<?=$this->permission?>">
-      		<button type="submit" class="btn">Pesquisar</button>
+      		<input type="text" class="input-xlarge search-query" placeholder="pesquisa" name="field" value="<?=$this->field?>">
+          <select name="optionSearch">
+            <option value="0">Pesquisar por:</option>
+            <option value="1" <?if($this->optionSearch == 1) echo "selected='selected'"; ?>>Permissão</option>
+            <option value="2" <?if($this->optionSearch == 2) echo "selected='selected'"; ?>>CPF</option>
+            <option value="3" <?if($this->optionSearch == 3) echo "selected='selected'"; ?>>Nome</option>
+          </select>
+          <button type="submit" class="btn">Pesquisar</button>
       	</form>
       	<table class="table table-hover table-bordered">
       		<thead>
       			<th>Nome</th>
       			<th>Permissão</th>
       			<th>Início da Permissão</th>
+            <th>Fim da Permissão</th>
       			<th>&nbsp;</th>
       		</thead>
       		<tbody>
       			<?if(is_object($this->list) && !isset($this->list->name)){
       				foreach($this->list as $grantee){?>
 		      			<tr>
-		      				<td><?=$grantee->name?></td>
+		      				<td><a href="/grantee/edit/id/<?=$grantee->grantee_id?>"><?=$grantee->name?></a></td>
 		      				<td><?=$grantee->permission?></td>
 		      				<td><?=Application_Model_General::dateToBr($grantee->start_permission)?></td>
+                  <td><?=Application_Model_General::dateToBr($grantee->end_permission)?></td>
 		      				<td><a href="/grantee/edit/id/<?=$grantee->grantee_id?>" class="editGrantee" data-toggle="tooltip" title="Editar permissionário"><i class="icon-pencil"></i></a></td>
-		      				<td><a href="/grantee/print-data/id/<?=$grantee->grantee_id?>" class="printDataGrantee" data-toggle="tooltip" title="Imprimir dados"><i class="icon-print"></i></a></td>
+		      				<td><a href="/grantee/print-data/id/<?=$grantee->grantee_id?>" class="printDataGrantee" data-toggle="tooltip" title="Imprimir dados"><i class="icon-file"></i></a></td>
                   <td><a href="/grantee/print-license/id/<?=$grantee->grantee_id?>" class="printLicenseGrantee" data-toggle="tooltip" title="Imprimir a carteira"><i class="icon-print"></i></a></td>
-		      				<td><a href="#" class="removePermission" data-toggle="tooltip" title="Finalizar permissão"><i class="icon-trash"></i></a></td>
 		      			</tr>
       			<?} } else{?>
       				<tr>

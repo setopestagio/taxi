@@ -19,6 +19,7 @@ class Application_Model_Grantee
 		$newGrantee->city = $data['city'];
 		$newGrantee->vehicle = $vehicleId;
 		$newGrantee->start_permission = Application_Model_General::dateToUs($data['start_permission']);
+		$newGrantee->end_permission = Application_Model_General::dateToUs($data['end_permission']);
 		return $newGrantee->save();
 	}
 
@@ -60,6 +61,7 @@ class Application_Model_Grantee
 		$editGrantee->authorization = $data['authorization'];
 		$editGrantee->city = $data['city'];
 		$editGrantee->start_permission = Application_Model_General::dateToUs($data['start_permission']);
+		$editGrantee->end_permission = Application_Model_General::dateToUs($data['end_permission']);
 		if($editGrantee->save())
 		{
 			return true;
@@ -79,6 +81,30 @@ class Application_Model_Grantee
 
 						->joinInner(array('p' => 'person'), 'p.id=g.owner')
 						->where('g.permission = ?',$permission);
+		return $grantee->fetchAll($select);
+	}
+
+	public function findByCPF($cpf)
+	{
+		$grantee = new Application_Model_DbTable_Grantee();
+		$select = $grantee->select()->setIntegrityCheck(false);
+		$select	->from(array('g' => 'grantee'), array('grantee_id' => 'id', 'permission','authorization','city',
+																								'start_permission','end_permission') )
+
+						->joinInner(array('p' => 'person'), 'p.id=g.owner')
+						->where('p.cpf = ?',$cpf);
+		return $grantee->fetchAll($select);
+	}
+
+	public function findByName($name)
+	{
+		$grantee = new Application_Model_DbTable_Grantee();
+		$select = $grantee->select()->setIntegrityCheck(false);
+		$select	->from(array('g' => 'grantee'), array('grantee_id' => 'id', 'permission','authorization','city',
+																								'start_permission','end_permission') )
+
+						->joinInner(array('p' => 'person'), 'p.id=g.owner')
+						->where('p.name LIKE ?',$name);
 		return $grantee->fetchAll($select);
 	}
 

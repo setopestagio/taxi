@@ -144,10 +144,10 @@ class Application_Model_PrintData
         ->drawLine(385, 620, 385, 690);
 
     // Words
-		$this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
-                ->drawText('Endereço', 55, 680);
+	$this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
+            ->drawText('Endereço', 55, 680);
 
-		$this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
+	$this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
                 ->drawText($data->address, 55, 662);
 
     $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)

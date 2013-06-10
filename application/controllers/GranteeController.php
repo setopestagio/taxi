@@ -72,14 +72,27 @@ class GranteeController extends Zend_Controller_Action
     {
       $grantee = new Application_Model_Grantee();
       $pagination = new Application_Model_Pagination();
-      $permission = $this->getRequest()->getParam('permission');
+      $field = $this->getRequest()->getParam('field');
+      $optionSearch = $this->getRequest()->getParam('optionSearch');
       $page = $this->getRequest()->getParam('page');
       if($page == '') $page = 1;
-      if($permission != "")
+      if($field != "" && ($optionSearch <= 3 && $optionSearch >= 1))
       {
-        $grantees = $grantee->findByPermission(urldecode($permission));
+        if($optionSearch == 1)
+        {
+          $grantees = $grantee->findByPermission(urldecode($field));
+        }
+        if($optionSearch == 2)
+        {
+          $grantees = $grantee->findByCPF(urldecode($field));
+        }
+        if($optionSearch == 3)
+        {
+          $grantees = $grantee->findByName(urldecode($field));
+        }
         $this->view->list = $pagination->generatePagination($grantees,$page,10);
-        $this->view->permission = $permission;
+        $this->view->field = $field;
+        $this->view->optionSearch = $optionSearch;
       }
       else
       {
