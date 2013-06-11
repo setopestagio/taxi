@@ -45,6 +45,11 @@ class Application_Model_Grantee
 																																			'address_city' => 'city','zipcode') )
 						->joinInner(array('v' => 'vehicle'), 'v.id=g.vehicle')
 						->joinInner(array('c' => 'city'),'g.city=c.id', array('name_city' => 'name'))
+						->joinInner(array('vb' => 'vehicle_brand'), 'vb.id=v.brand', array('vehicle_brand' => 'name'))
+						->joinInner(array('f' => 'vehicle_fuel'), 'f.id=v.fuel', array('vehicle_fuel' => 'name'))
+						->joinInner(array('tb' => 'taximeter_brand'), 'tb.id=v.taximeter_brand', array('taximeter_brand' => 'name'))
+						->joinInner(array('tm' => 'taximeter_model'), 'tm.id=v.taximeter_model', array('taximeter_model' => 'name'))
+						// ->joinInner(array('vm' => 'vehicle_model'), 'vb.id=v.model', array('vehicle_model' => 'name'))
 						->where('g.id = ?', $granteeId);
 		return $grantee->fetchRow($select);
 	}

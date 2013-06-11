@@ -12,7 +12,10 @@ class Application_Model_General
 	public static function dateToBr($date)
 	{
 		$aux = explode('-', $date);
-		return $aux[2].'/'.$aux[1].'/'.$aux[0];
+		$date = $aux[2].'/'.$aux[1].'/'.$aux[0];
+		if($date == '00/00/0000')
+			return '';
+		return $date;
 	}
 
 }

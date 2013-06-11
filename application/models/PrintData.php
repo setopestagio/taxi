@@ -19,7 +19,11 @@ class Application_Model_PrintData
 		try{
 			$this->header();
 			$this->headerData($data);
-			$this->address($data);
+			$this->addressDocuments($data);
+      $this->registered($data);
+      $this->vehicle($data);
+      $this->info($data->info);
+      $this->auxiliar();
       $this->pdf->pages[] = $this->page;
       return $this->pdf;
     }catch(Zend_Pdf_Exception $e){
@@ -121,7 +125,7 @@ class Application_Model_PrintData
                 ->drawText($data->plate, 390, 697);
 	}
 
-	protected function address($data)
+	protected function addressDocuments($data)
 	{
 		// Horizontal Lines
     $this->page->setLineWidth(1.5)
@@ -276,6 +280,209 @@ class Application_Model_PrintData
     $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
                 ->drawText($data->iapas, 389, 553);
 	}
+
+  protected function registered($data)
+  {
+    // Horizontal Lines
+    $this->page->setLineWidth(1.5)
+        ->drawLine(51, 542, 546, 542);
+
+    $this->page->setLineWidth(1.5)
+        ->drawLine(51, 528, 546, 528);
+
+    $this->page->setLineWidth(1.5)
+        ->drawLine(51, 490, 546, 490);
+
+    // Vertical Lines
+    $this->page->setLineWidth(2)
+        ->drawLine(51, 489, 51, 542);
+
+    $this->page->setLineWidth(2)
+        ->drawLine(546, 489, 546, 542);
+
+    $this->page->setLineWidth(1)
+        ->drawLine(300, 490, 300, 542);
+
+    $this->page->setLineWidth(1)
+        ->drawLine(440, 490, 440, 542);
+
+    $this->page->setLineWidth(1)
+        ->drawLine(145, 490, 145, 528);
+
+    $this->page->setLineWidth(1)
+        ->drawLine(222, 490, 222, 528);
+
+    $this->page->setLineWidth(1)
+        ->drawLine(370, 490, 370, 528);
+
+    // Words
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
+                ->drawText('CADASTRAMENTO', 135, 532);
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
+                ->drawText('DATA DE RESERVA', 330, 532);
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
+                ->drawText('DATA EMPLACAMENTO', 442, 532);
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
+                ->drawText('Categoria', 54, 518);
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
+                ->drawText('Início da Permissão', 147, 518);
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
+                ->drawText('Baixa da Permissão', 224, 518);
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
+                ->drawText('Início Reserva', 302, 518);
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
+                ->drawText('Final Reserva', 372, 518);
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
+                ->drawText('Táxi Especial', 55, 498);
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
+                ->drawText(Application_Model_General::dateToBr($data->start_permission), 155, 498);
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
+                ->drawText(Application_Model_General::dateToBr($data->end_permission), 235, 498);
+  }
+
+  protected function vehicle($data)
+  {
+    // Horizontal Lines
+    $this->page->setLineWidth(1.5)
+        ->drawLine(51, 485, 546, 485);
+
+    $this->page->setLineWidth(1.5)
+        ->drawLine(51, 400, 546, 400);
+
+    $this->page->setLineWidth(1.5)
+        ->drawLine(51, 473, 546, 473);
+
+    $this->page->setLineWidth(1.5)
+        ->drawLine(51, 437, 546, 437);
+
+    $this->page->setLineWidth(1)
+        ->drawLine(265, 426, 546, 426);
+
+    // Vertical Lines
+    $this->page->setLineWidth(2)
+        ->drawLine(51, 485, 51, 400);
+
+    $this->page->setLineWidth(2)
+        ->drawLine(546, 485, 546, 400);
+
+    $this->page->setLineWidth(1)
+        ->drawLine(125, 473, 125, 437);
+
+    $this->page->setLineWidth(1)
+        ->drawLine(230, 473, 230, 437);
+
+    $this->page->setLineWidth(1)
+        ->drawLine(290, 473, 290, 437);
+
+    $this->page->setLineWidth(1)
+        ->drawLine(350, 473, 350, 437);
+
+    $this->page->setLineWidth(1)
+        ->drawLine(450, 473, 450, 437);
+
+    $this->page->setLineWidth(1)
+        ->drawLine(265, 437, 265, 400);
+
+    $this->page->setLineWidth(1)
+        ->drawLine(410, 426, 410, 400);
+
+    // Words
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES_BOLD),9)
+                ->drawText('VEÍCULO', 265, 476);
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
+                ->drawText('Marca', 55, 464);
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
+                ->drawText('Modelo', 128, 464);
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
+                ->drawText('Ano Fab.', 233, 464);
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
+                ->drawText('Ano Mod.', 294, 464);
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
+                ->drawText('Cor', 352, 464);
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
+                ->drawText('Combustível', 452, 464);
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
+                ->drawText('Chassi', 55, 428);
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES_BOLD),9)
+                ->drawText('TAXÍMETRO', 385, 428);
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
+                ->drawText('Marca', 267, 418);
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
+                ->drawText('Modelo', 412, 418);
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
+                ->drawText($data->vehicle_brand, 55, 448);
+    // $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
+    //             ->drawText($data->model, 128, 448);
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
+                ->drawText($data->year_fabrication, 240, 448);
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
+                ->drawText($data->year_model, 300, 448);
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
+                ->drawText($data->color, 353, 448);
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
+                ->drawText($data->vehicle_fuel, 453, 448);
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
+                ->drawText($data->chassi, 55, 408);
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
+                ->drawText($data->taximeter_brand, 269, 404);
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
+                ->drawText($data->taximeter_model, 415, 404);
+  }
+
+  protected function info($info)
+  {
+    // Horizontal Lines
+    $this->page->setLineWidth(1.5)
+        ->drawLine(51, 396, 546, 396);
+
+    $this->page->setLineWidth(1.5)
+        ->drawLine(51, 290, 546, 290);
+
+    $this->page->setLineWidth(1)
+        ->drawLine(51, 382, 546, 382);
+
+    // Vertical Lines
+    $this->page->setLineWidth(2)
+        ->drawLine(51, 290, 51, 396);
+
+    $this->page->setLineWidth(2)
+        ->drawLine(546, 290, 546, 396);
+
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES_BOLD),11)
+                ->drawText('INFORMAÇÕES COMPLEMENTARES', 195, 385);
+
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
+                ->drawText($info, 55, 370);
+  }
+
+  protected function auxiliar()
+  {
+    // Horizontal Lines
+    $this->page->setLineWidth(1.5)
+        ->drawLine(51, 286, 546, 286);
+
+    $this->page->setLineWidth(1.5)
+        ->drawLine(51, 200, 546, 200);
+
+    $this->page->setLineWidth(1)
+        ->drawLine(51, 272, 546, 272);
+
+    // Vertical Lines
+    $this->page->setLineWidth(2)
+        ->drawLine(51, 200, 51, 286);
+
+    $this->page->setLineWidth(2)
+        ->drawLine(546, 200, 546, 286);
+
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES_BOLD),11)
+                ->drawText('CONDUTOR(ES) AUXILIAR(ES)', 210, 276);
+
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
+                ->drawText('Nome', 80, 256);
+
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
+                ->drawText('Início Auxiliar', 350, 256);
+  }
 
 }
 
