@@ -34,8 +34,22 @@ class AuxiliarController extends Zend_Controller_Action
         // action body
     }
 
+    public function viewAction()
+    {
+        // action body
+    }
+
+    public function reportAction()
+    {
+        // action body
+    }
+
 
 }
+
+
+
+
 
 
 

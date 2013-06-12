@@ -42,6 +42,8 @@
           <actionMethod actionName="new"/>
           <actionMethod actionName="edit"/>
           <actionMethod actionName="remove"/>
+          <actionMethod actionName="view"/>
+          <actionMethod actionName="report"/>
         </controllerFile>
         <controllerFile controllerName="Doesntallow">
           <actionMethod actionName="index"/>
@@ -171,6 +173,12 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Grantee">
             <viewScriptFile forActionName="printData"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Auxiliar">
+            <viewScriptFile forActionName="view"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Auxiliar">
+            <viewScriptFile forActionName="report"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
