@@ -37,8 +37,7 @@ class Application_Model_ReportGranteeAll extends Application_Model_Report
       {
       	$this->pdf->pages[] = $page;
       	$page = new Zend_Pdf_Page(Zend_Pdf_Page::SIZE_A4);
-      	$this->header($page,'PERMISSIONÁRIOS');
-      	$range = 710;
+      	$range = 810;
       }
     }
     

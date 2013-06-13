@@ -37,7 +37,6 @@ class Application_Model_ReportGranteeActives extends Application_Model_Report
       {
       	$this->pdf->pages[] = $page;
       	$page = new Zend_Pdf_Page(Zend_Pdf_Page::SIZE_A4);
-      	$this->header($page,'PERMISSIONÁRIOS ATIVOS');
       	$range = 710;
       }
     }
