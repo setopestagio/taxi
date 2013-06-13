@@ -37,7 +37,7 @@ class Application_Model_ReportGranteeActives extends Application_Model_Report
       {
       	$this->pdf->pages[] = $page;
       	$page = new Zend_Pdf_Page(Zend_Pdf_Page::SIZE_A4);
-      	$range = 710;
+      	$range = 810;
       }
     }
     
