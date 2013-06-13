@@ -281,7 +281,10 @@
 					              <label class="control-label" for="model">Modelo</label>
 					              <div class="controls">
 					                 <select name="model">
-					                 	<option value="0">-- Selecione um modelo --</option>
+					                 		<option value="0">-- Selecione um modelo --</option>
+					                 	<?foreach($this->vehicleModel as $vehicleModel){?>
+					                 		<option value="<?=$vehicleModel->id?>" <?if($this->grantee->model == $vehicleModel->id) echo 'selected="selected"';?>><?=$vehicleModel->name?></option>
+					                 	<?}?>
 					                 </select>
 					              </div><!--/.controls -->
 					          </div><!--/.control-group -->

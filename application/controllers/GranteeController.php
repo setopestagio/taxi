@@ -38,6 +38,8 @@ class GranteeController extends Zend_Controller_Action
       }catch(Zend_Exception $e){
         $this->view->error = true;
       }
+      $vehicleModel = new Application_Model_DbTable_VehicleModel();
+      $this->view->vehicleModel = $vehicleModel->fetchAll($vehicleModel->select()->limit('name'));
     }
 
     public function editAction()
@@ -61,6 +63,8 @@ class GranteeController extends Zend_Controller_Action
       }catch(Zend_Exception $e){
         $this->view->error = true;
       }
+      $vehicleModel = new Application_Model_DbTable_VehicleModel();
+      $this->view->vehicleModel = $vehicleModel->fetchAll($vehicleModel->select()->limit('name'));
     }
 
     public function removeAction()

@@ -10,28 +10,28 @@ class Application_Model_PrintData
 	public function __construct()
 	{
 		$this->pdf = new Zend_Pdf();
-    $this->page = new Zend_Pdf_Page(Zend_Pdf_Page::SIZE_A4);
-    $this->font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES);
+        $this->page = new Zend_Pdf_Page(Zend_Pdf_Page::SIZE_A4);
+        $this->font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES);
 	}
 
 	public function createPdf($data)
 	{
 		try{
-			$this->header();
-			$this->headerData($data);
-			$this->addressDocuments($data);
-      $this->registered($data);
-      $this->vehicle($data);
-      $this->info($data->info);
-      $this->auxiliar();
-      $this->pdf->pages[] = $this->page;
-      return $this->pdf;
-    }catch(Zend_Pdf_Exception $e){
-        die('PDF error: ' . $e->getMessage());
-    }
-    catch(Zend_Exception $e){
-        die('Error: ' . $e->getMessage());
-    }
+    		$this->header();
+    		$this->headerData($data);
+    		$this->addressDocuments($data);
+            $this->registered($data);
+            $this->vehicle($data);
+            $this->info($data->info);
+            $this->auxiliar();
+            $this->pdf->pages[] = $this->page;
+            return $this->pdf;
+        }catch(Zend_Pdf_Exception $e){
+            die('PDF error: ' . $e->getMessage());
+        }
+        catch(Zend_Exception $e){
+            die('Error: ' . $e->getMessage());
+        }
 	}
 
 	protected function header()
@@ -411,8 +411,8 @@ class Application_Model_PrintData
                 ->drawText('Modelo', 412, 418, 'UTF-8');
     $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
                 ->drawText($data->vehicle_brand, 55, 448, 'UTF-8');
-    // $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
-    //             ->drawText($data->model, 128, 448);
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
+                ->drawText(substr($data->vehicle_model,0,15), 128, 448, 'UTF-8');
     $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
                 ->drawText($data->year_fabrication, 240, 448, 'UTF-8');
     $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
@@ -452,7 +452,7 @@ class Application_Model_PrintData
                 ->drawText('INFORMAÇÕES COMPLEMENTARES', 195, 385, 'UTF-8');
 
     $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
-                ->drawText($info, 55, 370, 'UTF-8');
+                ->drawText(nl2br($info), 55, 370, 'UTF-8');
   }
 
   protected function auxiliar()
