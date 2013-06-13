@@ -36,6 +36,8 @@
           <actionMethod actionName="vis"/>
           <actionMethod actionName="printLicense"/>
           <actionMethod actionName="printData"/>
+          <actionMethod actionName="reportGranteeAll"/>
+          <actionMethod actionName="reportGranteeActives"/>
         </controllerFile>
         <controllerFile controllerName="Auxiliar">
           <actionMethod actionName="index"/>
@@ -80,6 +82,9 @@
         <modelFile modelName="Pagination"/>
         <modelFile modelName="PrintLicense"/>
         <modelFile modelName="PrintData"/>
+        <modelFile modelName="Report"/>
+        <modelFile modelName="ReportGranteeAll"/>
+        <modelFile modelName="ReportGranteeActives"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <servicesDirectory enabled="false"/>
@@ -180,6 +185,12 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Auxiliar">
             <viewScriptFile forActionName="report"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Grantee">
+            <viewScriptFile forActionName="reportGranteeAll"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Grantee">
+            <viewScriptFile forActionName="reportGranteeActives"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

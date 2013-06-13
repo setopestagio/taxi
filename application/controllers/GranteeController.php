@@ -138,8 +138,32 @@ class GranteeController extends Zend_Controller_Action
       }
     }
 
+    public function reportGranteeAllAction()
+    {
+      header('Content-Type: application/pdf');
+      $this->_helper->layout()->setLayout('ajax');
+      $grantee = new Application_Model_Grantee();
+      $grantees = $grantee->findAll();
+      $report = new Application_Model_ReportGranteeAll('PERMISSIONÁRIOS');
+      $report->create($grantees);
+    }
+
+    public function reportGranteeActivesAction()
+    {
+      header('Content-Type: application/pdf');
+      $this->_helper->layout()->setLayout('ajax');
+      $grantee = new Application_Model_Grantee();
+      $grantees = $grantee->findActives();
+      $report = new Application_Model_ReportGranteeActives('PERMISSIONÁRIOS ATIVOS');
+      $report->create($grantees);
+    }
+
 
 }
+
+
+
+
 
 
 
