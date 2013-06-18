@@ -117,7 +117,20 @@ class GranteeController extends Zend_Controller_Action
 
     public function printLicenseAction()
     {
-      $this->_helper->layout()->setLayout('dashboard');
+      try{
+        $this->_helper->layout()->setLayout('ajax');
+        $id = $this->getRequest()->getParam('id');
+        $grantee = new Application_Model_Grantee();
+        $print = new Application_Model_PrintLicense();
+        $granteeRow = $grantee->returnById($id);
+        $pdf = $print->createPdf($granteeRow);
+        header('Content-Type: application/pdf');
+        echo $pdf->render(); 
+      }catch(Zend_Exception $e){
+        die ('PDF error: ' . $e->getMessage()); 
+      }catch (Exception $e) {
+        die ('Application error: ' . $e->getMessage());    
+      }
     }
 
     public function printDataAction()

@@ -42,6 +42,7 @@
 		      				<td><a href="/grantee/edit/id/<?=$grantee->grantee_id?>" class="editGrantee" data-toggle="tooltip" title="Editar permissionário"><i class="icon-pencil"></i></a></td>
 		      				<td><a href="/grantee/print-data/id/<?=$grantee->grantee_id?>" class="printDataGrantee" data-toggle="tooltip" title="Imprimir dados"><i class="icon-file"></i></a></td>
                   <td><a href="/grantee/print-license/id/<?=$grantee->grantee_id?>" class="printLicenseGrantee" data-toggle="tooltip" title="Imprimir a carteira"><i class="icon-print"></i></a></td>
+                  <td><a href="#" class="pendenciesGrantee" data-toggle="modal" title="Extrato de pendências"><i class="icon-book"></i></a></td>
                   <td><a href="#retire_<?=$grantee->grantee_id?>" class="retireGrantee" data-toggle="modal" title="Requerer licença para afastamento"><i class="icon-flag"></i></a></td>
 		      			</tr>
       			<?} } else{?>

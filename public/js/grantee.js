@@ -4,6 +4,7 @@ $(document).ready(function(){
   $('.printLicenseGrantee').tooltip();
   $('.removePermission').tooltip();
   $('.retireGrantee').tooltip();
+  $('.pendenciesGrantee').tooltip();
   $('.datepicker').datepicker()
   	.on('changeDate', function(){
 	 		$('.datepicker').datepicker('hide');

@@ -24,6 +24,7 @@ class Application_Model_PrintData
             $this->vehicle($data);
             $this->info($data->info);
             $this->auxiliar();
+            $this->footer();
             $this->pdf->pages[] = $this->page;
             return $this->pdf;
         }catch(Zend_Pdf_Exception $e){
@@ -37,9 +38,8 @@ class Application_Model_PrintData
 	protected function header()
 	{
 
-    // Line
-    // $image = Zend_Pdf_Image::imageWithPath(APPLICATION_PATH . '/views/img/logo_mg.png');
-    // $this->page->drawImage($image, $leftPos, $bottomPos, $rightPos, $topPos);
+    $image = Zend_Pdf_Image::imageWithPath(APPLICATION_PATH . '/../public/img/brasao.png');
+    $this->page->drawImage($image, 54, 747, 118, 811);
 
     // Horizontal Lines
     $this->page->setLineWidth(2)
@@ -482,6 +482,41 @@ class Application_Model_PrintData
 
     $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
                 ->drawText('Início Auxiliar', 350, 256, 'UTF-8');
+  }
+
+  protected function footer()
+  {
+    // Horizontal Lines
+    $this->page->setLineWidth(1.5)
+        ->drawLine(51, 196, 546, 196);
+
+    $this->page->setLineWidth(1.5)
+        ->drawLine(51, 140, 546, 140);
+
+    $this->page->setLineWidth(1.5)
+        ->drawLine(210, 162, 370, 162);
+
+    $this->page->setLineWidth(1.5)
+        ->drawLine(385, 162, 530, 162);
+
+    // Vertical Lines
+    $this->page->setLineWidth(2)
+        ->drawLine(51, 140, 51, 196);
+
+    $this->page->setLineWidth(2)
+        ->drawLine(546, 140, 546, 196);
+
+    $this->page->setLineWidth(1)
+        ->drawLine(200, 140, 200, 196);
+
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
+                ->drawText('Local e Data', 56, 180, 'UTF-8');
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
+                ->drawText('Belo Horizonte, '.date('d/m/Y'), 56, 150, 'UTF-8');
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
+                ->drawText('Assinatura Permissionário', 230, 150, 'UTF-8');
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
+                ->drawText('Visto da DCM', 420, 150, 'UTF-8');
   }
 
 }
