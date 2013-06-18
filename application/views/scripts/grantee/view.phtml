@@ -42,6 +42,7 @@
 		      				<td><a href="/grantee/edit/id/<?=$grantee->grantee_id?>" class="editGrantee" data-toggle="tooltip" title="Editar permissionário"><i class="icon-pencil"></i></a></td>
 		      				<td><a href="/grantee/print-data/id/<?=$grantee->grantee_id?>" class="printDataGrantee" data-toggle="tooltip" title="Imprimir dados"><i class="icon-file"></i></a></td>
                   <td><a href="/grantee/print-license/id/<?=$grantee->grantee_id?>" class="printLicenseGrantee" data-toggle="tooltip" title="Imprimir a carteira"><i class="icon-print"></i></a></td>
+                  <td><a href="#retire_<?=$grantee->grantee_id?>" class="retireGrantee" data-toggle="modal" title="Requerer licença para afastamento"><i class="icon-flag"></i></a></td>
 		      			</tr>
       			<?} } else{?>
       				<tr>
@@ -55,3 +56,33 @@
     </div>
   </div>
 </div>
+
+<?if(is_object($this->list) && !isset($this->list->name)){
+  foreach($this->list as $grantee){?>
+<div id="retire_<?=$grantee->grantee_id?>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Requerer Licença para Afastamento</h3>
+  </div>
+  <div class="modal-body">
+    <form class="form-horizontal">
+      <div class="control-group">
+        <label class="control-label" for="initialDate">Data Inicial</label>
+        <div class="controls">
+          <input type="text" class="input-xlarge" id="initialDate" placeholder="data inicial" data-mask="99/99/9999">
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="reason">Motivo</label>
+        <div class="controls">
+          <textarea class="input-xlarge" id="reason" placeholder="motivo" rows="5"></textarea>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Fechar</button>
+    <button class="btn btn-primary">Salvar</button>
+  </div>
+</div>
+<? } }?>

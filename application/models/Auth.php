@@ -23,12 +23,23 @@ class Application_Model_Auth
 			$authNamespace->user_id = $info->id;
 			$authNamespace->username = $info->username;
 			$authNamespace->institution = $info->institution;
+			$this->keepDataAccess($info->id);
 			return true;
 		}
 		else
 		{
 			return false;
 		}
+	}
+
+	protected function keepDataAccess($userId)
+	{
+		$systemAccess = new Application_Model_DbTable_SystemAccess();
+		$newAccess = $systemAccess->createRow();
+		$newAccess->id_user = $userId;
+		$newAccess->date = new Zend_Db_Expr('NOW()');
+		$newAccess->ip = $_SERVER['REMOTE_ADDR'];
+		$newAccess->save();
 	}
 
 }

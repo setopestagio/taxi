@@ -73,6 +73,7 @@
           <dbTableFile dbTableName="Grantee"/>
           <dbTableFile dbTableName="Vehicle"/>
           <dbTableFile dbTableName="VehicleModel"/>
+          <dbTableFile dbTableName="SystemAccess"/>
         </dbTableDirectory>
         <modelFile modelName="Address"/>
         <modelFile modelName="Grantee"/>
