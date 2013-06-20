@@ -4,3 +4,7 @@
 }
 
 .accordion-body.in:hover { overflow:visible; }
+
+.datepicker {
+	z-index: 9999;
+}

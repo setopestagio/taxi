@@ -41,9 +41,9 @@
                   <td><?=Application_Model_General::dateToBr($grantee->end_permission)?></td>
 		      				<td><a href="/grantee/edit/id/<?=$grantee->grantee_id?>" class="editGrantee" data-toggle="tooltip" title="Editar permissionário"><i class="icon-pencil"></i></a></td>
 		      				<td><a href="/grantee/print-data/id/<?=$grantee->grantee_id?>" class="printDataGrantee" data-toggle="tooltip" title="Imprimir dados"><i class="icon-file"></i></a></td>
-                  <td><a href="/grantee/print-license/id/<?=$grantee->grantee_id?>" class="printLicenseGrantee" data-toggle="tooltip" title="Imprimir a carteira"><i class="icon-print"></i></a></td>
+                  <td><a href="#license_<?=$grantee->grantee_id?>" class="printLicenseGrantee" data-toggle="modal" title="Imprimir a carteira"><i class="icon-print"></i></a></td>
                   <td><a href="#" class="pendenciesGrantee" data-toggle="modal" title="Extrato de pendências"><i class="icon-book"></i></a></td>
-                  <td><a href="#retire_<?=$grantee->grantee_id?>" class="retireGrantee" data-toggle="modal" title="Requerer licença para afastamento"><i class="icon-flag"></i></a></td>
+                  <td><a href="#retire_<?=$grantee->grantee_id?>" class="retireGrantee" data-toggle="modal" title="Reserva"><i class="icon-flag"></i></a></td>
 		      			</tr>
       			<?} } else{?>
       				<tr>
@@ -85,5 +85,29 @@
     <button class="btn" data-dismiss="modal" aria-hidden="true">Fechar</button>
     <button class="btn btn-primary">Salvar</button>
   </div>
+</div>
+<? } }?>
+
+<?if(is_object($this->list) && !isset($this->list->name)){
+  foreach($this->list as $grantee){?>
+<div id="license_<?=$grantee->grantee_id?>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Emissão de Carteira</h3>
+  </div>
+  <form class="form-horizontal" action="/grantee/print-license/id/<?=$grantee->grantee_id?>" method="post">
+    <div class="modal-body">
+        <div class="control-group">
+          <label class="control-label" for="end_date">Data de Vencimento</label>
+          <div class="controls">
+            <input type="text" class="input-xlarge datepicker" id="end_date" name="end_date" placeholder="data de vencimento" data-mask="99/99/9999"  data-date="<?=date('d/m/Y')?>" data-date-format="dd/mm/yyyy">
+          </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" aria-hidden="true">Fechar</button>
+      <input type="submit" class="btn btn-primary" value="Salvar">
+    </div>
+  </form>
 </div>
 <? } }?>

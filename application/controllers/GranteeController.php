@@ -121,10 +121,15 @@ class GranteeController extends Zend_Controller_Action
       try{
         $this->_helper->layout()->setLayout('ajax');
         $id = $this->getRequest()->getParam('id');
+        if ( $this->getRequest()->isPost() ) 
+        {
+          $data = $this->getRequest()->getPost();
+          $endDate = $data['end_date'];
+        }
         $grantee = new Application_Model_Grantee();
         $print = new Application_Model_PrintLicense();
         $granteeRow = $grantee->returnById($id);
-        $pdf = $print->createPdf($granteeRow);
+        $pdf = $print->createPdf($granteeRow,$endDate);
         header('Content-Type: application/pdf');
         echo $pdf->render(); 
       }catch(Zend_Exception $e){

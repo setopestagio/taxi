@@ -5,8 +5,9 @@ $(document).ready(function(){
   $('.removePermission').tooltip();
   $('.retireGrantee').tooltip();
   $('.pendenciesGrantee').tooltip();
-  $('.datepicker').datepicker()
-  	.on('changeDate', function(){
+  $('.datepicker').datepicker({
+    beforeShow: function() { $('.datepicker').css("z-index", 1051); }
+  }).on('changeDate', function(){
 	 		$('.datepicker').datepicker('hide');
 		});
 });
