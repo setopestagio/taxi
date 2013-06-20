@@ -14,7 +14,6 @@
           <input type="text" class="input-xlarge search-query" placeholder="pesquisa" name="field" value="<?=$this->field?>">
           <select name="optionSearch">
             <option value="0">Pesquisar por:</option>
-            <option value="1" <?if($this->optionSearch == 1) echo "selected='selected'"; ?>>Permissão</option>
             <option value="2" <?if($this->optionSearch == 2) echo "selected='selected'"; ?>>CPF</option>
             <option value="3" <?if($this->optionSearch == 3) echo "selected='selected'"; ?>>Nome</option>
           </select>
@@ -29,11 +28,10 @@
             <?if(is_object($this->list) && !isset($this->list->name)){
               foreach($this->list as $auxiliar){?>
                 <tr>
-                  <td><a href="/auxiliar/edit/id/<?=$auxiliar->auxiliar_id?>"><?=$auxiliar->name?></a></td>
-                  <td><?=$auxiliar->permission?></td>
-                  <td><a href="/auxiliar/edit/id/<?=$auxiliar->auxiliar_id?>" class="editauxiliar" data-toggle="tooltip" title="Editar permissionário"><i class="icon-pencil"></i></a></td>
-                  <td><a href="/auxiliar/print-data/id/<?=$auxiliar->auxiliar_id?>" class="printDataauxiliar" data-toggle="tooltip" title="Imprimir dados"><i class="icon-file"></i></a></td>
-                  <td><a href="/auxiliar/print-license/id/<?=$auxiliar->auxiliar_id?>" class="printLicenseauxiliar" data-toggle="tooltip" title="Imprimir a carteira"><i class="icon-print"></i></a></td>
+                  <td><a href="/auxiliar/edit/id/<?=$auxiliar->id?>"><?=$auxiliar->name?></a></td>
+                  <td><a href="/auxiliar/edit/id/<?=$auxiliar->id?>" class="editauxiliar" data-toggle="tooltip" title="Editar permissionário"><i class="icon-pencil"></i></a></td>
+                  <!-- <td><a href="/auxiliar/print-data/id/<?=$auxiliar->id?>" class="printDataauxiliar" data-toggle="tooltip" title="Imprimir dados"><i class="icon-file"></i></a></td>
+                  <td><a href="/auxiliar/print-license/id/<?=$auxiliar->id?>" class="printLicenseauxiliar" data-toggle="tooltip" title="Imprimir a carteira"><i class="icon-print"></i></a></td> -->
                 </tr>
             <?} } else{?>
               <tr>

@@ -20,6 +20,8 @@ class Application_Model_Grantee
 		$newGrantee->vehicle = $vehicleId;
 		$newGrantee->start_permission = Application_Model_General::dateToUs($data['start_permission']);
 		$newGrantee->end_permission = Application_Model_General::dateToUs($data['end_permission']);
+		$newGrantee->info = $data['info'];
+		$newGrantee->pendencies = $data['pendencies'];
 		return $newGrantee->save();
 	}
 
@@ -39,7 +41,7 @@ class Application_Model_Grantee
 		$grantee = new Application_Model_DbTable_Grantee();
 		$select = $grantee->select()->setIntegrityCheck(false);
 		$select	->from(array('g' => 'grantee'), array('grantee_id' => 'id', 'permission','authorization','city',
-																								'start_permission','end_permission', 'info') )
+																								'start_permission','end_permission', 'info', 'pendencies') )
 						->joinInner(array('p' => 'person'), 'p.id=g.owner')
 						->joinInner(array('a' => 'address'),'a.id = p.address', array('address','number','apartament','neighborhood',
 																																			'address_city' => 'city','zipcode') )
@@ -54,6 +56,17 @@ class Application_Model_Grantee
 		return $grantee->fetchRow($select);
 	}
 
+	public function returnAuxiliars($granteeId)
+	{
+		$granteeAuxiliar = new Application_Model_DbTable_GranteeAuxiliar();
+		$select = $granteeAuxiliar->select()->setIntegrityCheck(false);
+		$select	->from(array('a' => 'grantee_auxiliar') )
+						->joinInner(array('p' => 'person'), 'p.id=a.auxiliar')
+						->where('a.grantee = ?',$granteeId)
+						->where('a.end_date IS NULL');
+		return $granteeAuxiliar->fetchAll($select);
+	}
+
 	public function editGrantee($data, $granteeId)
 	{
 		$grantee = new Application_Model_DbTable_Grantee();
@@ -63,11 +76,16 @@ class Application_Model_Grantee
 		$vehicle = new Application_Model_Vehicle();
 		$person->editPerson($data,$editGrantee->owner);
 		$vehicle->editVehicle($data,$editGrantee->vehicle);
+		$auxiliar = new Application_Model_Auxiliar();
+		$auxiliar->saveToGrantee($granteeId,$data['aux2_id'],$data['aux2_id']);
 		$editGrantee->permission = $data['permission'];
 		$editGrantee->authorization = $data['authorization'];
 		$editGrantee->city = $data['city'];
 		$editGrantee->start_permission = Application_Model_General::dateToUs($data['start_permission']);
 		$editGrantee->end_permission = Application_Model_General::dateToUs($data['end_permission']);
+		$editGrantee->info = $data['info'];
+		$editGrantee->pendencies = $data['pendencies'];
+		$this->saveAuxiliars($data,$granteeId);
 		if($editGrantee->save())
 		{
 			return true;
@@ -76,6 +94,33 @@ class Application_Model_Grantee
 		{
 			return false;
 		}
+	}
+
+	protected function saveAuxiliars($data,$granteeId)
+	{
+		try{
+		if(isset($data['aux1_id']) && $data['aux1_id'] != '')
+		{
+			$granteeAuxiliar = new Application_Model_DbTable_GranteeAuxiliar();
+			$granteeAuxiliarNew = $granteeAuxiliar->createRow();
+			$granteeAuxiliarNew->grantee = $granteeId;
+			$granteeAuxiliarNew->auxiliar = $data['aux1_id'];
+			$granteeAuxiliarNew->start_date = Application_Model_General::dateToUs($data['date_aux1']);
+			$granteeAuxiliarNew->end_date = new Zend_Db_Expr('NULL');
+			$granteeAuxiliarNew->save();
+		}
+		if(isset($data['aux2_id']) && $data['aux2_id'] != '')
+		{
+			$granteeAuxiliarNew2 = $granteeAuxiliar->createRow();
+			$granteeAuxiliarNew2->grantee = $granteeId;
+			$granteeAuxiliarNew2->auxiliar = $data['aux2_id'];
+			$granteeAuxiliarNew2->start_date = Application_Model_General::dateToUs($data['date_aux2']);
+			$granteeAuxiliarNew2->end_date = new Zend_Db_Expr('NULL');
+			$granteeAuxiliarNew2->save();
+		}
+	}catch(Zend_Exception $e){
+		echo $e->getMessage();exit;
+	}
 	}
 
 	public function findByPermission($permission)
@@ -110,7 +155,7 @@ class Application_Model_Grantee
 																								'start_permission','end_permission') )
 
 						->joinInner(array('p' => 'person'), 'p.id=g.owner')
-						->where('p.name LIKE ?',$name);
+						->where('p.name LIKE ?','%$name%');
 		return $grantee->fetchAll($select);
 	}
 
@@ -119,7 +164,7 @@ class Application_Model_Grantee
 		$grantee = new Application_Model_DbTable_Grantee();
 		$select = $grantee->select()->setIntegrityCheck(false);
 		$select	->from(array('g' => 'grantee'), array('grantee_id' => 'id', 'permission','authorization','city',
-																								'start_permission','end_permission', 'info') )
+																								'start_permission','end_permission', 'info', 'pendencies') )
 						->joinInner(array('p' => 'person'), 'p.id=g.owner')
 						->joinInner(array('a' => 'address'),'a.id = p.address', array('address','number','apartament','neighborhood',
 																																			'address_city' => 'city','zipcode') )
@@ -139,7 +184,7 @@ class Application_Model_Grantee
 		$grantee = new Application_Model_DbTable_Grantee();
 		$select = $grantee->select()->setIntegrityCheck(false);
 		$select	->from(array('g' => 'grantee'), array('grantee_id' => 'id', 'permission','authorization','city',
-																								'start_permission','end_permission', 'info') )
+																								'start_permission','end_permission', 'info', 'pendencies') )
 						->joinInner(array('p' => 'person'), 'p.id=g.owner')
 						->joinInner(array('a' => 'address'),'a.id = p.address', array('address','number','apartament','neighborhood',
 																																			'address_city' => 'city','zipcode') )
@@ -153,6 +198,22 @@ class Application_Model_Grantee
 						->where('g.end_permission = "0000-00-00"')
 						->order('p.name');
 		return $grantee->fetchAll($select);
+	}
+
+	public function findAuxByName($name)
+	{
+		$person = new Application_Model_DbTable_Person();
+		$select = $person->select()->setIntegrityCheck(false);
+		$select	->from(array('p' => 'person'), array('name','id') )
+						->where('p.name LIKE ?','%'.utf8_encode($name).'%');
+		$people = $person->fetchAll($select);
+		$aux = array();
+		foreach($people as $person)
+		{
+			$flag = array('id' => $person->id, 'label' => $person->name);
+			array_push($aux,$flag);
+		}
+		return $aux;
 	}
 
 }

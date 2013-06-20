@@ -26,7 +26,25 @@ class AuxiliarController extends Zend_Controller_Action
 
     public function editAction()
     {
-        // action body
+      try{
+        $auxiliarId = $this->getRequest()->getParam('id');
+        $auxiliar = new Application_Model_Auxiliar();
+        if ( $this->getRequest()->isPost() ) 
+        {
+          $data = $this->getRequest()->getPost();
+          if($auxiliar->editAuxiliar($data,$auxiliarId))
+          {
+             $this->view->success = true;
+          }
+          else
+          {
+            $this->view->error = true;
+          }
+        }
+        $this->view->auxiliar = $auxiliar->returnById($auxiliarId);
+      }catch(Zend_Exception $e){
+        $this->view->error = true;
+      }
     }
 
     public function removeAction()
@@ -36,7 +54,31 @@ class AuxiliarController extends Zend_Controller_Action
 
     public function viewAction()
     {
-        // action body
+      $auxiliar = new Application_Model_Auxiliar();
+      $pagination = new Application_Model_Pagination();
+      $field = $this->getRequest()->getParam('field');
+      $optionSearch = $this->getRequest()->getParam('optionSearch');
+      $page = $this->getRequest()->getParam('page');
+      if($page == '') $page = 1;
+      if($field != "" && ($optionSearch <= 3 && $optionSearch >= 1))
+      {
+        if($optionSearch == 2)
+        {
+          $auxiliars = $auxiliar->findByCPF(urldecode($field));
+        }
+        if($optionSearch == 3)
+        {
+          $auxiliars = $auxiliar->findByName(urldecode($field));
+        }
+        $this->view->list = $pagination->generatePagination($auxiliars,$page,10);
+        $this->view->field = $field;
+        $this->view->optionSearch = $optionSearch;
+      }
+      else
+      {
+        $auxiliars = $auxiliar->lists();
+        $this->view->list = $pagination->generatePagination($auxiliars,$page,10);
+      }
     }
 
     public function reportAction()

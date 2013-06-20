@@ -3,14 +3,205 @@
     <div class="span3">
       <ul class="nav nav-list well">
         <li><a href="/auxiliar/new"><i class="icon-user"></i> Novo Auxiliar </a></li>
-        <li class="active"><a href="#"></i> Edição de Auxiliar </a></li>
+        <li class="active"><a href="#">Editar Auxiliar</a></li>
         <li><a href="/auxiliar/view"><i class="icon-bullhorn"></i> Pesquisar Auxiliares </a></li>
         <li><a href="/auxiliar/report"><i class="icon-map-marker"></i> Relatórios </a></li>
       </ul>
     </div><!--/span-->
     <div class="span9">
-      <div class="well">
-      	<h1>Auxiliares</h1>
+      <div class="page-header">
+        <h1><?=$this->auxiliar->name?> <small>dados do auxiliar</small></h1>
+        <hr>
+        <form class="form-horizontal" action="/auxiliar/edit/id/<?=$this->auxiliar->id?>" method="post">
+          <div class="control-group">
+            <div class="accordion" id="acoordion1">
+              <div class="accordion-group">
+                <div class="accordion-heading">
+                  <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseMain">Dados Principais</a>
+                </div>
+                <div id="collapseMain" class="accordion-body collapse">
+                  <div class="accordion-inner">
+                    <div class="control-group">
+                        <label class="control-label" for="name">Nome</label>
+                        <div class="controls">
+                            <input type="text" name="name" value="<?=$this->auxiliar->name?>" class="input-xlarge" id="name" placeholder="nome completo">
+                        </div><!--/.controls -->
+                    </div><!--/.control-group -->
+                    <div class="control-group">
+                        <label class="control-label" for="info">Observações</label>
+                        <div class="controls">
+                            <textarea type="text" name="info" rows="5" class="input-xlarge" id="info" placeholder="observações"><?=$this->auxiliar->info?></textarea>
+                        </div><!--/.controls -->
+                    </div><!--/.control-group -->
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-group">
+                <div class="accordion-heading">
+                  <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseAddress">Endereço</a>
+                </div>
+                <div id="collapseAddress" class="accordion-body collapse">
+                  <div class="accordion-inner">
+                    <div class="control-group">
+                        <label class="control-label" for="address">Endereço</label>
+                        <div class="controls">
+                            <input type="text" name="address" value="<?=$this->auxiliar->address?>" class="input-xlarge" id="address" placeholder="logradouro">
+                        </div><!--/.controls -->
+                    </div><!--/.control-group -->
+                    <div class="control-group">
+                        <label class="control-label" for="number">Número</label>
+                        <div class="controls">
+                            <input type="text" name="number" value="<?=$this->auxiliar->number?>" class="input-xlarge" id="number" placeholder="número">
+                        </div><!--/.controls -->
+                    </div><!--/.control-group -->
+                    <div class="control-group">
+                        <label class="control-label" for="apartament">Complemento</label>
+                        <div class="controls">
+                            <input type="text" name="apartament" value="<?=$this->auxiliar->apartament?>" class="input-xlarge" id="apartament" placeholder="complemento">
+                        </div><!--/.controls -->
+                    </div><!--/.control-group -->
+                    <div class="control-group">
+                        <label class="control-label" for="neighborhood">Bairro</label>
+                        <div class="controls">
+                            <input type="text" name="neighborhood" value="<?=$this->auxiliar->neighborhood?>" class="input-xlarge" id="neighborhood" placeholder="bairro">
+                        </div><!--/.controls -->
+                    </div><!--/.control-group -->
+                    <div class="control-group">
+                        <label class="control-label" for="address_city">Cidade</label>
+                        <div class="controls">
+                          <select name="address_city" id="address_city" class="input-xlarge">
+                            <option value="0" <?if($this->auxiliar->address_city == 0) echo 'selected="selected"'; ?>>-- Escolha o município --</option>
+                            <option value="1" <?if($this->auxiliar->address_city == 1) echo 'selected="selected"'; ?>>Belo Horizonte</option>
+                            <option value="2" <?if($this->auxiliar->address_city == 2) echo 'selected="selected"'; ?>>Sete Lagoas</option>
+                            <option value="3" <?if($this->auxiliar->address_city == 3) echo 'selected="selected"'; ?>>Contagem</option>
+                            <option value="4" <?if($this->auxiliar->address_city == 4) echo 'selected="selected"'; ?>>Betim</option>
+                            <option value="5" <?if($this->auxiliar->address_city == 5) echo 'selected="selected"'; ?>>Santa Luzia</option>
+                            <option value="6" <?if($this->auxiliar->address_city == 6) echo 'selected="selected"'; ?>>Sabará</option>
+                            <option value="7" <?if($this->auxiliar->address_city == 7) echo 'selected="selected"'; ?>>Caeté</option>
+                            <option value="8" <?if($this->auxiliar->address_city == 8) echo 'selected="selected"'; ?>>Confins</option>
+                            <option value="9" <?if($this->auxiliar->address_city == 9) echo 'selected="selected"'; ?>>Ibirité</option>
+                            <option value="10" <?if($this->auxiliar->address_city == 10) echo 'selected="selected"'; ?>>Nova Lima</option>
+                            <option value="11" <?if($this->auxiliar->address_city == 11) echo 'selected="selected"'; ?>>Rio Acima</option>
+                            <option value="12" <?if($this->auxiliar->address_city == 12) echo 'selected="selected"'; ?>>Ribeirão das Neves</option>
+                            <option value="13" <?if($this->auxiliar->address_city == 13) echo 'selected="selected"'; ?>>Raposos</option>
+                            <option value="14" <?if($this->auxiliar->address_city == 14) echo 'selected="selected"'; ?>>Vespasiano</option>
+                            <option value="15" <?if($this->auxiliar->address_city == 15) echo 'selected="selected"'; ?>>Pedro Leopoldo</option>
+                            <option value="16" <?if($this->auxiliar->address_city == 16) echo 'selected="selected"'; ?>>Juatuba</option>
+                            <option value="17" <?if($this->auxiliar->address_city == 17) echo 'selected="selected"'; ?>>Matozinhos</option>
+                          </select>
+                        </div><!--/.controls -->
+                    </div><!--/.control-group -->
+                    <div class="control-group">
+                        <label class="control-label" for="zipcode">CEP</label>
+                        <div class="controls">
+                            <input type="text" name="zipcode" value="<?=$this->auxiliar->zipcode?>" class="input-xlarge" id="zipcode" placeholder="cep">
+                        </div><!--/.controls -->
+                    </div><!--/.control-group -->
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-group">
+                <div class="accordion-heading">
+                  <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseContact">Contato</a>
+                </div>
+                <div id="collapseContact" class="accordion-body collapse">
+                  <div class="accordion-inner">
+                    <div class="control-group">
+                        <label class="control-label" for="phone">Telefone fixo</label>
+                        <div class="controls">
+                            <input type="text" name="phone" value="<?=$this->auxiliar->phone?>" class="input-xlarge" id="phone" placeholder="telefone fixo">
+                        </div><!--/.controls -->
+                    </div><!--/.control-group -->
+                    <div class="control-group">
+                        <label class="control-label" for="mobile">Celular</label>
+                        <div class="controls">
+                            <input type="text" name="mobile" value="<?=$this->auxiliar->mobile?>" class="input-xlarge" id="mobile" placeholder="celular">
+                        </div><!--/.controls -->
+                    </div><!--/.control-group -->
+                    <div class="control-group">
+                        <label class="control-label" for="email">Email</label>
+                        <div class="controls">
+                            <input type="text" name="email" value="<?=$this->auxiliar->email?>" class="input-xlarge" id="email" placeholder="email">
+                        </div><!--/.controls -->
+                    </div><!--/.control-group -->
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-group">
+                <div class="accordion-heading">
+                  <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseDocument">Documentos</a>
+                </div>
+                <div id="collapseDocument" class="accordion-body collapse">
+                  <div class="accordion-inner">
+                    <div class="control-group">
+                        <label class="control-label" for="rg">Identidade</label>
+                        <div class="controls">
+                            <input type="text" name="rg" value="<?=$this->auxiliar->rg?>" class="input-xlarge" id="rg" placeholder="identidade">
+                        </div><!--/.controls -->
+                    </div><!--/.control-group -->
+                    <div class="control-group">
+                        <label class="control-label" for="rg_issuer">Orgão Emissor da Identidade</label>
+                        <div class="controls">
+                            <input type="text" name="rg_issuer" value="<?=$this->auxiliar->rg_issuer?>" class="input-xlarge" id="rg_issuer" placeholder="orgão emissor da identidade">
+                        </div><!--/.controls -->
+                    </div><!--/.control-group -->
+                    <div class="control-group">
+                        <label class="control-label" for="cpf">CPF</label>
+                        <div class="controls">
+                            <input type="text" name="cpf" value="<?=$this->auxiliar->cpf?>" class="input-xlarge" id="cpf" placeholder="cpf">
+                        </div><!--/.controls -->
+                    </div><!--/.control-group -->
+                    <div class="control-group">
+                        <label class="control-label" for="cnh">Habilitação</label>
+                        <div class="controls">
+                            <input type="text" name="cnh" value="<?=$this->auxiliar->cnh?>" class="input-xlarge" id="cnh" placeholder="habilitação">
+                        </div><!--/.controls -->
+                    </div><!--/.control-group -->
+                    <div class="control-group">
+                        <label class="control-label" for="cnh_issuer">Orgão Emissor da Habilitação</label>
+                        <div class="controls">
+                            <input type="text" name="cnh_issuer" value="<?=$this->auxiliar->cnh_issuer?>" class="input-xlarge" id="cnh_issuer" placeholder="orgão emissor da habilitação">
+                        </div><!--/.controls -->
+                    </div><!--/.control-group -->
+                    <div class="control-group">
+                        <label class="control-label" for="iapas">IAPAS</label>
+                        <div class="controls">
+                            <input type="text" name="iapas" value="<?=$this->auxiliar->iapas?>" class="input-xlarge" id="iapas" placeholder="iapas">
+                        </div><!--/.controls -->
+                    </div><!--/.control-group -->
+                    <div class="control-group">
+                        <label class="control-label" for="voter">Título de Eleitor</label>
+                        <div class="controls">
+                            <input type="text" name="voter" value="<?=$this->auxiliar->voter?>" class="input-xlarge" id="voter" placeholder="título de eleitor">
+                        </div><!--/.controls -->
+                    </div><!--/.control-group -->
+                    <div class="control-group">
+                        <label class="control-label" for="voter_zone">Zona Eleitoral</label>
+                        <div class="controls">
+                            <input type="text" name="voter_zone" value="<?=$this->auxiliar->voter_zone?>" class="input-xlarge" id="voter_zone" placeholder="zona eleitoral">
+                        </div><!--/.controls -->
+                    </div><!--/.control-group -->
+                    <div class="control-group">
+                        <label class="control-label" for="army">Militar</label>
+                        <div class="controls">
+                            <input type="text" name="army" value="<?=$this->auxiliar->army?>" class="input-xlarge" id="army" placeholder="documento militar">
+                        </div><!--/.controls -->
+                    </div><!--/.control-group -->
+                    <div class="control-group">
+                        <label class="control-label" for="army_issuer">Orgão Emissor Militar</label>
+                        <div class="controls">
+                            <input type="text" name="army_issuer" value="<?=$this->auxiliar->army_issuer?>" class="input-xlarge" id="army_issuer" placeholder="orgão emissor do documento militar">
+                        </div><!--/.controls -->
+                    </div><!--/.control-group -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-actions">
+              <button type="submit" class="btn btn-primary">Salvar</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>

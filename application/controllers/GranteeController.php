@@ -60,6 +60,7 @@ class GranteeController extends Zend_Controller_Action
           }
         }
         $this->view->grantee = $grantee->returnById($granteeId);
+        $this->view->auxiliars = $grantee->returnAuxiliars($granteeId);
       }catch(Zend_Exception $e){
         $this->view->error = true;
       }
@@ -171,8 +172,20 @@ class GranteeController extends Zend_Controller_Action
       $report->create($grantees);
     }
 
+    public function returnPeopleAction()
+    {
+      $this->_helper->layout()->setLayout('ajax');
+      header('Content-Type: application/json');
+      $grantee = new Application_Model_Grantee();
+      $result = $grantee->findAuxByName($_GET['query']);
+      // print_r($result);
+      echo Zend_Json::encode($result);
+    }
+
 
 }
+
+
 
 
 

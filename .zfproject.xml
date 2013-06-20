@@ -38,6 +38,7 @@
           <actionMethod actionName="printData"/>
           <actionMethod actionName="reportGranteeAll"/>
           <actionMethod actionName="reportGranteeActives"/>
+          <actionMethod actionName="returnPeople"/>
         </controllerFile>
         <controllerFile controllerName="Auxiliar">
           <actionMethod actionName="index"/>
@@ -74,6 +75,7 @@
           <dbTableFile dbTableName="Vehicle"/>
           <dbTableFile dbTableName="VehicleModel"/>
           <dbTableFile dbTableName="SystemAccess"/>
+          <dbTableFile dbTableName="GranteeAuxiliar"/>
         </dbTableDirectory>
         <modelFile modelName="Address"/>
         <modelFile modelName="Grantee"/>
@@ -86,6 +88,7 @@
         <modelFile modelName="Report"/>
         <modelFile modelName="ReportGranteeAll"/>
         <modelFile modelName="ReportGranteeActives"/>
+        <modelFile modelName="Auxiliar"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <servicesDirectory enabled="false"/>
@@ -192,6 +195,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Grantee">
             <viewScriptFile forActionName="reportGranteeActives"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Grantee">
+            <viewScriptFile forActionName="returnPeople"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

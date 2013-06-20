@@ -1,11 +1,11 @@
 <?
 
-$con = mysql_connect('localhost','root','[=abis]mysql');
+$con = mysql_connect('localhost','root','root');
 $db = mysql_select_db('setop_taxi',$con);
 
-$total = 399;
+$total = 400;
 
-for($i=1;$i<=399;$i++){
+for($i=400;$i<=1348;$i++){
 
 	// ADDRESS
 	$sql_address = "
@@ -35,38 +35,12 @@ for($i=1;$i<=399;$i++){
 	echo $address."\n";
 
 
-
-	// GRANTEE
-	$sql_grantee = "
-		SELECT
-			info
-		FROM
-			grantee
-		WHERE
-			id=$i
-	";
-
-	$rs_grantee = mysql_query($sql_grantee);
-	$res_grantee = mysql_fetch_row($rs_grantee);
-
-	$grantee = "
-		UPDATE 
-			grantee
-		SET
-			info='".utf8_encode($res_grantee[0])."'
-		WHERE 
-			id=$i
-	";
-
-	mysql_query($grantee);
-	echo $grantee."\n";
-
-
 	// PERSON
 	$sql_person = "
 		SELECT
 			name,
-			army_issuer
+			army_issuer,
+			info
 		FROM
 			person
 		WHERE
@@ -82,6 +56,7 @@ for($i=1;$i<=399;$i++){
 		SET
 			name='".utf8_encode($res_person[0])."',
 			army_issuer='".utf8_encode($res_person[1])."',
+			info='".utf8_encode($res_person[2])."'
 		WHERE 
 			id=$i
 	";

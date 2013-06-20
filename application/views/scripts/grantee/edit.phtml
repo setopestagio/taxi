@@ -5,15 +5,15 @@
         <li><a href="/grantee/new"><i class="icon-user"></i> Novo Permissionário </a></li>
         <li class="active"><a href="/grantee/new"> Edição de Permissionário </a></li>
         <li><a href="/grantee/view"><i class="icon-bullhorn"></i> Pesquisar Permissionário </a></li>
-        <li><a href="/grantee/report"><i class="icon-map-marker"></i> Relatórios </a></li>
-        <li><a href="/grantee/vis"><i class="icon-picture"></i> Visualização </a></li><!-- 
+        <li><a href="/grantee/report"><i class="icon-map-marker"></i> Relatórios </a></li><!-- 
+        <li><a href="/grantee/vis"><i class="icon-picture"></i> Visualização </a></li>
         <li><a href="#"><i class="icon-picture"></i> Emissão de Carteiras </a></li>
         <li><a href="#"><i class="icon-wrench"></i> Guias de Recolhimento </a></li> -->
       </ul>
     </div><!--/span-->
     <div class="span9">
       <div class="page-header">
-      	<h1>Novo Permissionário <small>defina aqui os dados do permissionário</small></h1>
+      	<h1><?=$this->grantee->name?> <small>dados do permissionário</small></h1>
         <hr>
         <form class="form-horizontal" action="/grantee/edit/id/<?=$this->grantee->grantee_id?>" method="post">
         	<div class="control-group">
@@ -22,7 +22,7 @@
 	          		<div class="accordion-heading">
 	          			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseMain">Dados Principais</a>
 	          		</div>
-	          		<div id="collapseMain" class="accordion-body collapse in">
+	          		<div id="collapseMain" class="accordion-body collapse">
 	          			<div class="accordion-inner">
 					          <div class="control-group">
 					              <label class="control-label" for="name">Nome</label>
@@ -71,13 +71,13 @@
 					          <div class="control-group">
 					              <label class="control-label" for="start_permission">Início da permissão</label>
 					              <div class="controls">
-					                  <input type="text" name="start_permission" value="<?=Application_Model_General::dateToBr($this->grantee->start_permission)?>" class="input-xlarge datepicker" id="start_permission" placeholder="data de início da permissão" data-mask="99/99/9999" data-date="12/02/2012" data-date-format="dd/mm/yyyy">
+					                  <input type="text" name="start_permission" value="<?=Application_Model_General::dateToBr($this->grantee->start_permission)?>" class="input-xlarge datepicker" id="start_permission" placeholder="data de início da permissão" data-mask="99/99/9999" data-date="<?=date('d/m/Y')?>" data-date-format="dd/mm/yyyy">
 					              </div><!--/.controls -->
 					          </div><!--/.control-group -->
 					          <div class="control-group">
 					              <label class="control-label" for="end_permission">Término da permissão</label>
 					              <div class="controls">
-					                  <input type="text" name="end_permission" value="<?=Application_Model_General::dateToBr($this->grantee->end_permission)?>" class="input-xlarge datepicker" id="end_permission" placeholder="data de término da permissão" data-mask="99/99/9999" data-date="12/02/2012" data-date-format="dd/mm/yyyy">
+					                  <input type="text" name="end_permission" value="<?=Application_Model_General::dateToBr($this->grantee->end_permission)?>" class="input-xlarge datepicker" id="end_permission" placeholder="data de término da permissão" data-mask="99/99/9999" data-date="<?=date('d/m/Y')?>" data-date-format="dd/mm/yyyy">
 					              </div><!--/.controls -->
 					          </div><!--/.control-group -->
 					          <div class="control-group">
@@ -89,7 +89,7 @@
 					          <div class="control-group">
 					              <label class="control-label" for="pendencies">Pendências</label>
 					              <div class="controls">
-					                  <textarea type="text" name="pendencies" rows="5" class="input-xlarge" id="pendencies" placeholder="pendências"><?=$this->pendencies?></textarea>
+					                  <textarea type="text" name="pendencies" rows="5" class="input-xlarge" id="pendencies" placeholder="pendências"><?=$this->grantee->pendencies?></textarea>
 					              </div><!--/.controls -->
 					          </div><!--/.control-group -->
 					        </div>
@@ -386,6 +386,42 @@
 	          			</div>
 	          		</div>
 	          	</div>
+	          	<div class="accordion-group">
+	          		<div class="accordion-heading">
+	          			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseAuxiliar">Auxiliares</a>
+	          		</div>
+	          		<div id="collapseAuxiliar" class="accordion-body collapse">
+	          			<div class="accordion-inner">
+	          				<div class="control-group">
+					              <label class="control-label" for="aux1">Auxiliar 1</label>
+					              <div class="controls">
+					                  <input type="text" name="aux1" value="<?=$this->auxiliars[0]['name']?>" class="input-xlarge" id="aux1" placeholder="nome do auxiliar" autocomplete="off"> <i style="cursor: pointer; display: none;" class="icon-remove" id="removeAux1"></i>
+					                  <input type="hidden" name="aux1_id" id="aux1_id" value="<?=$this->auxiliars[0]['id']?>">
+					              </div><!--/.controls -->
+					          </div><!--/.control-group -->
+	          				<div class="control-group">
+					              <label class="control-label" for="date_aux1">Data de ínicio</label>
+					              <div class="controls">
+					                  <input type="text" name="date_aux1" value="<?=Application_Model_General::dateToBr($this->auxiliars[0]['start_date'])?>" class="input-xlarge datepicker" id="date_aux1" placeholder="data de ínicio do auxiliar" data-mask="99/99/9999" data-date="<?=date('d/m/Y')?>" data-date-format="dd/mm/yyyy">
+					              </div><!--/.controls -->
+					          </div><!--/.control-group -->
+					          <hr>
+	          				<div class="control-group">
+					              <label class="control-label" for="aux2">Auxiliar 2</label>
+					              <div class="controls">
+					                  <input type="text" name="aux2" value="<?=$this->auxiliars[1]['name']?>" class="input-xlarge" id="aux2" placeholder="nome do auxiliar" autocomplete="off"> <i style="cursor: pointer; display: none;" class="icon-remove" id="removeAux2"></i>
+					                  <input type="hidden" name="aux2_id" id="aux2_id" value="<?=$this->auxiliars[1]['id']?>">
+					              </div><!--/.controls -->
+					          </div><!--/.control-group -->
+	          				<div class="control-group">
+					              <label class="control-label" for="date_aux2">Data de ínicio</label>
+					              <div class="controls">
+					                  <input type="text" name="date_aux2" value="<?=Application_Model_General::dateToBr($this->auxiliars[1]['start_date'])?>" class="input-xlarge datepicker" id="date_aux2" placeholder="data de ínicio do auxiliar" data-mask="99/99/9999" data-date="<?=date('d/m/Y')?>" data-date-format="dd/mm/yyyy">
+					              </div><!--/.controls -->
+					          </div><!--/.control-group -->
+	          			</div>
+	          		</div>
+	          	</div>
 		        </div>
 		      </div>
           <div class="form-actions">
@@ -396,3 +432,4 @@
     </div>
   </div>
 </div>
+  
