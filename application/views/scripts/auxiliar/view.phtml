@@ -22,16 +22,12 @@
         <table class="table table-hover table-bordered">
           <thead>
             <th>Nome</th>
-            <th>&nbsp;</th>
           </thead>
           <tbody>
             <?if(is_object($this->list) && !isset($this->list->name)){
               foreach($this->list as $auxiliar){?>
                 <tr>
                   <td><a href="/auxiliar/edit/id/<?=$auxiliar->id?>"><?=$auxiliar->name?></a></td>
-                  <td><a href="/auxiliar/edit/id/<?=$auxiliar->id?>" class="editauxiliar" data-toggle="tooltip" title="Editar permissionário"><i class="icon-pencil"></i></a></td>
-                  <!-- <td><a href="/auxiliar/print-data/id/<?=$auxiliar->id?>" class="printDataauxiliar" data-toggle="tooltip" title="Imprimir dados"><i class="icon-file"></i></a></td> -->
-                  <td><a href="#license_<?=$auxiliar->id?>" class="printLicenseauxiliar" data-toggle="modal" title="Imprimir a carteira"><i class="icon-print"></i></a></td>
                 </tr>
             <?} } else{?>
               <tr>

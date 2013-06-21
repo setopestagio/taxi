@@ -21,7 +21,8 @@ class Application_Model_Auxiliar
 	{
 		$person = new Application_Model_DbTable_Person();
 		$select = $person->select()->setIntegrityCheck(false);
-		$select	->from(array('p' => 'person') )
+		$select	->from(array('p' => 'person'),array('id_auxiliar' => 'id','name','phone','mobile','email','rg','rg_issuer','cpf','cnh',
+																										'cnh_issuer', 'iapas', 'voter', 'voter_zone', 'army', 'army_issuer','info') )
 						->joinInner(array('a' => 'address'),'a.id = p.address', array('address','number','apartament','neighborhood',
 																																			'address_city' => 'city','zipcode') )
 						->joinInner(array('c' => 'city'),'a.city=c.id', array('name_city' => 'name'))
