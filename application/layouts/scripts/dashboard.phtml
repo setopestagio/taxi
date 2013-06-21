@@ -28,7 +28,24 @@
           <span class="icon-bar"></span>
         </button>
         <a class="brand" href="/dashboard">Sistema de Controle de Táxi</a>
-          <div class="btn-group pull-right">
+        <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Permissionários <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="/grantee/view">Pesquisar</a></li>
+                  <li><a href="/grantee/report">Relatórios</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Auxiliares <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="/auxiliar/view">Pesquisar</a></li>
+                  <li><a href="/auxiliar/report">Relatórios</a></li>
+                </ul>
+              </li>
+            </ul>
+            <div class="btn-group pull-right">
               <a class="btn btn-inverse dropdown-toggle" data-toggle="dropdown" href="#">
                   <i class="icon-user icon-white"></i>
                   <span class="caret"></span>
@@ -47,6 +64,7 @@
               </li>
               </ul>
           </div>
+        </div>
       </div>
     </div>
   </div>
