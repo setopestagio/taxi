@@ -14,7 +14,7 @@ class Application_Model_PrintData
         $this->font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES);
 	}
 
-	public function createPdf($data)
+	public function createPdf($data,$auxiliars)
 	{
 		try{
     		$this->header();
@@ -23,7 +23,7 @@ class Application_Model_PrintData
             $this->registered($data);
             $this->vehicle($data);
             $this->info($data->info);
-            $this->auxiliar();
+            $this->auxiliar($auxiliars);
             $this->footer();
             $this->pdf->pages[] = $this->page;
             return $this->pdf;
@@ -455,7 +455,7 @@ class Application_Model_PrintData
                 ->drawText(nl2br($info), 55, 370, 'UTF-8');
   }
 
-  protected function auxiliar()
+  protected function auxiliar($auxiliars)
   {
     // Horizontal Lines
     $this->page->setLineWidth(1.5)
@@ -482,6 +482,21 @@ class Application_Model_PrintData
 
     $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
                 ->drawText('Início Auxiliar', 350, 256, 'UTF-8');
+
+    if(isset($auxiliars[0]))
+    {
+        $this->page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
+                        ->drawText($auxiliars[0]['name'], 80, 240, 'UTF-8');
+        $this->page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
+                        ->drawText(Application_Model_General::dateToBr($auxiliars[0]['start_date']), 350, 240, 'UTF-8');
+    }
+    if(isset($auxiliars[1]))
+    {
+        $this->page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
+                        ->drawText($auxiliars[1]['name'], 80, 220, 'UTF-8');
+        $this->page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
+                        ->drawText(Application_Model_General::dateToBr($auxiliars[1]['start_date']), 350, 220, 'UTF-8');
+    }
   }
 
   protected function footer()
