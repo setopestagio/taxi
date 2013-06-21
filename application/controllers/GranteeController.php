@@ -46,6 +46,7 @@ class GranteeController extends Zend_Controller_Action
     {
       try{
         $granteeId = $this->getRequest()->getParam('id');
+        $save = $this->getRequest()->getParam('save');
         $grantee = new Application_Model_Grantee();
         if ( $this->getRequest()->isPost() ) 
         {
@@ -63,6 +64,10 @@ class GranteeController extends Zend_Controller_Action
         $this->view->auxiliars = $grantee->returnAuxiliars($granteeId);
       }catch(Zend_Exception $e){
         $this->view->error = true;
+      }
+      if( isset($save) && $save == "success" )
+      {
+        $this->view->success = true;
       }
       $vehicleModel = new Application_Model_DbTable_VehicleModel();
       $this->view->vehicleModel = $vehicleModel->fetchAll($vehicleModel->select()->limit('name'));
@@ -207,8 +212,24 @@ class GranteeController extends Zend_Controller_Action
       }
     }
 
+    public function saveAuxiliarAction()
+    {
+      if ( $this->getRequest()->isPost() ) 
+      {
+        $grantee = new Application_Model_Grantee();
+        $granteeId = $this->getRequest()->getParam('id');
+        $data = $this->getRequest()->getPost();
+        if($grantee->saveAuxiliars($data,$granteeId))
+        {
+          $this->_redirect('/grantee/edit/id/'.$granteeId.'/save/success');
+        }
+      }
+    }
+
 
 }
+
+
 
 
 

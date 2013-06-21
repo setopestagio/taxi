@@ -40,6 +40,7 @@
           <actionMethod actionName="reportGranteeActives"/>
           <actionMethod actionName="returnPeople"/>
           <actionMethod actionName="extractPendencies"/>
+          <actionMethod actionName="saveAuxiliar"/>
         </controllerFile>
         <controllerFile controllerName="Auxiliar">
           <actionMethod actionName="index"/>
@@ -207,6 +208,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Grantee">
             <viewScriptFile forActionName="extractPendencies"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Grantee">
+            <viewScriptFile forActionName="saveAuxiliar"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

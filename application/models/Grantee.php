@@ -85,7 +85,6 @@ class Application_Model_Grantee
 		$editGrantee->end_permission = Application_Model_General::dateToUs($data['end_permission']);
 		$editGrantee->info = $data['info'];
 		$editGrantee->pendencies = $data['pendencies'];
-		$this->saveAuxiliars($data,$granteeId);
 		if($editGrantee->save())
 		{
 			return true;
@@ -96,31 +95,32 @@ class Application_Model_Grantee
 		}
 	}
 
-	protected function saveAuxiliars($data,$granteeId)
+	public function saveAuxiliars($data,$granteeId)
 	{
 		try{
-		if(isset($data['aux1_id']) && $data['aux1_id'] != '')
-		{
-			$granteeAuxiliar = new Application_Model_DbTable_GranteeAuxiliar();
-			$granteeAuxiliarNew = $granteeAuxiliar->createRow();
-			$granteeAuxiliarNew->grantee = $granteeId;
-			$granteeAuxiliarNew->auxiliar = $data['aux1_id'];
-			$granteeAuxiliarNew->start_date = Application_Model_General::dateToUs($data['date_aux1']);
-			$granteeAuxiliarNew->end_date = new Zend_Db_Expr('NULL');
-			$granteeAuxiliarNew->save();
+			if(isset($data['aux1_id']) && $data['aux1_id'] != '')
+			{
+				$granteeAuxiliar = new Application_Model_DbTable_GranteeAuxiliar();
+				$granteeAuxiliarNew = $granteeAuxiliar->createRow();
+				$granteeAuxiliarNew->grantee = $granteeId;
+				$granteeAuxiliarNew->auxiliar = $data['aux1_id'];
+				$granteeAuxiliarNew->start_date = Application_Model_General::dateToUs($data['date_aux1']);
+				$granteeAuxiliarNew->end_date = new Zend_Db_Expr('NULL');
+				$granteeAuxiliarNew->save();
+			}
+			if(isset($data['aux2_id']) && $data['aux2_id'] != '')
+			{
+				$granteeAuxiliarNew2 = $granteeAuxiliar->createRow();
+				$granteeAuxiliarNew2->grantee = $granteeId;
+				$granteeAuxiliarNew2->auxiliar = $data['aux2_id'];
+				$granteeAuxiliarNew2->start_date = Application_Model_General::dateToUs($data['date_aux2']);
+				$granteeAuxiliarNew2->end_date = new Zend_Db_Expr('NULL');
+				$granteeAuxiliarNew2->save();
+			}
+			return true;
+		}catch(Zend_Exception $e){
+			return false;
 		}
-		if(isset($data['aux2_id']) && $data['aux2_id'] != '')
-		{
-			$granteeAuxiliarNew2 = $granteeAuxiliar->createRow();
-			$granteeAuxiliarNew2->grantee = $granteeId;
-			$granteeAuxiliarNew2->auxiliar = $data['aux2_id'];
-			$granteeAuxiliarNew2->start_date = Application_Model_General::dateToUs($data['date_aux2']);
-			$granteeAuxiliarNew2->end_date = new Zend_Db_Expr('NULL');
-			$granteeAuxiliarNew2->save();
-		}
-	}catch(Zend_Exception $e){
-		echo $e->getMessage();exit;
-	}
 	}
 
 	public function findByPermission($permission)

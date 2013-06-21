@@ -7,6 +7,11 @@ $(document).ready(function(){
 		});
 });
 
+$('#myTab a').click(function (e) {
+  e.preventDefault();
+  $(this).tab('show');
+})
+
 $('#aux1').typeahead({
   source: function(query, process) {
       $('#removeAux1').css('display','none');
