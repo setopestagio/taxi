@@ -155,7 +155,7 @@ class Application_Model_Grantee
 																								'start_permission','end_permission') )
 
 						->joinInner(array('p' => 'person'), 'p.id=g.owner')
-						->where('p.name LIKE ?','%$name%');
+						->where('p.name LIKE ?','%'.utf8_encode($name).'%');
 		return $grantee->fetchAll($select);
 	}
 
@@ -214,6 +214,17 @@ class Application_Model_Grantee
 			array_push($aux,$flag);
 		}
 		return $aux;
+	}
+
+	public function returnPendencies($granteeId)
+	{
+		$grantee = new Application_Model_DbTable_Grantee();
+		$granteeRow = $grantee->fetchRow($grantee->select()->where('id = ?',$granteeId));
+		if($granteeRow->pendencies == '' || $granteeRow->pendencies == NULL)
+		{
+			return 'NADA CONSTA';
+		}
+		return $granteeRow->pendencies;
 	}
 
 }

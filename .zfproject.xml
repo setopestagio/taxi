@@ -39,6 +39,7 @@
           <actionMethod actionName="reportGranteeAll"/>
           <actionMethod actionName="reportGranteeActives"/>
           <actionMethod actionName="returnPeople"/>
+          <actionMethod actionName="extractPendencies"/>
         </controllerFile>
         <controllerFile controllerName="Auxiliar">
           <actionMethod actionName="index"/>
@@ -90,6 +91,7 @@
         <modelFile modelName="ReportGranteeAll"/>
         <modelFile modelName="ReportGranteeActives"/>
         <modelFile modelName="Auxiliar"/>
+        <modelFile modelName="PrintPendencies"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <servicesDirectory enabled="false"/>
@@ -202,6 +204,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Auxiliar">
             <viewScriptFile forActionName="printLicense"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Grantee">
+            <viewScriptFile forActionName="extractPendencies"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

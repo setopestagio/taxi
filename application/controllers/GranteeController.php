@@ -183,12 +183,33 @@ class GranteeController extends Zend_Controller_Action
       header('Content-Type: application/json');
       $grantee = new Application_Model_Grantee();
       $result = $grantee->findAuxByName($_GET['query']);
-      // print_r($result);
       echo Zend_Json::encode($result);
+    }
+
+    public function extractPendenciesAction()
+    {
+      try{
+        $id = $this->getRequest()->getParam('id');
+        header('Content-Type: application/pdf');
+        $this->_helper->layout()->setLayout('ajax');
+        $grantee = new Application_Model_Grantee();
+        $granteeRow = $grantee->returnById($id);
+        $pendencies = $grantee->returnPendencies($id);
+        $auxiliars = $grantee->returnAuxiliars($id);
+        $print = new Application_Model_PrintPendencies();
+        $pdf = $print->createPdf($granteeRow,$pendencies,$auxiliars);
+        echo $pdf->render(); 
+      }catch(Zend_Exception $e){
+        die ('PDF error: ' . $e->getMessage()); 
+      }catch (Exception $e) {
+        die ('Application error: ' . $e->getMessage());    
+      }
     }
 
 
 }
+
+
 
 
 
