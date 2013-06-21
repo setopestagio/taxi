@@ -332,11 +332,12 @@
 					              <div class="controls">
 				                   <select name="fuel">
 					                 	<option value="0" <?if($this->grantee->fuel == 0) echo 'selected="selected"'; ?>>-- Selecione um combustivel --</option>
-					                 	<option value="1" <?if($this->grantee->fuel == 1) echo 'selected="selected"'; ?>>Gasolina</option>
-					                 	<option value="2" <?if($this->grantee->fuel == 2) echo 'selected="selected"'; ?>>Alcool</option>
-					                 	<option value="3" <?if($this->grantee->fuel == 3) echo 'selected="selected"'; ?>>Gás</option>
-					                 	<option value="4" <?if($this->grantee->fuel == 4) echo 'selected="selected"'; ?>>Flex</option>
-					                 	<option value="5" <?if($this->grantee->fuel == 5) echo 'selected="selected"'; ?>>Diesel</option>
+					                 	<option value="1" <?if($this->grantee->fuel == 1) echo 'selected="selected"'; ?>>Alcool/Gnv</option>
+					                 	<option value="2" <?if($this->grantee->fuel == 2) echo 'selected="selected"'; ?>>Gasolina/Alcool</option>
+					                 	<option value="3" <?if($this->grantee->fuel == 3) echo 'selected="selected"'; ?>>Gasolina/Gnv</option>
+					                 	<option value="4" <?if($this->grantee->fuel == 4) echo 'selected="selected"'; ?>>Alcool</option>
+					                 	<option value="5" <?if($this->grantee->fuel == 5) echo 'selected="selected"'; ?>>Gasolina/Alcool/Gnv</option>
+					                 	<option value="6" <?if($this->grantee->fuel == 6) echo 'selected="selected"'; ?>>Gasolina</option>
 					                 </select>
 					              </div><!--/.controls -->
 					          </div><!--/.control-group -->
