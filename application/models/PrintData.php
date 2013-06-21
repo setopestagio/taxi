@@ -531,7 +531,7 @@ class Application_Model_PrintData
     $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
                 ->drawText('Assinatura Permissionário', 230, 150, 'UTF-8');
     $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
-                ->drawText('Visto da DCM', 420, 150, 'UTF-8');
+                ->drawText('SETOP', 440, 150, 'UTF-8');
   }
 
 }

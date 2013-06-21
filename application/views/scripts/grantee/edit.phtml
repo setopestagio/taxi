@@ -17,10 +17,11 @@
         <hr>
         <div>
             <p>
-            	<a href="/grantee/extract-pendencies/id/<?=$this->grantee->grantee_id?>" class="btn pendenciesGrantee" data-toggle="modal" title="Extrato de pendências"><i class="icon-book"></i></a>
-            	<a href="#license_<?=$this->grantee->grantee_id?>" class="btn printLicenseGrantee" data-toggle="modal" title="Imprimir a carteira"><i class="icon-print"></i></a>
-              <a href="/grantee/print-data/id/<?=$this->grantee->grantee_id?>" class="btn printDataGrantee" data-toggle="tooltip" title="Imprimir dados"><i class="icon-file"></i></a>
-              <a href="#retire_<?=$this->grantee->grantee_id?>" class="btn retireGrantee" data-toggle="modal" title="Reserva"><i class="icon-flag"></i></a>
+              <a href="/grantee/print-data/id/<?=$this->grantee->grantee_id?>" class="btn help" data-toggle="tooltip" title="Imprimir dados"><i class="icon-file"></i></a>
+            	<a href="/grantee/extract-pendencies/id/<?=$this->grantee->grantee_id?>" class="btn help" data-toggle="modal" title="Extrato de pendências"><i class="icon-book"></i></a>
+            	<a href="#license_<?=$this->grantee->grantee_id?>" class="btn help" data-toggle="modal" title="Imprimir a carteira"><i class="icon-print"></i></a>
+              <a href="#retire_<?=$this->grantee->grantee_id?>" class="btn help" data-toggle="modal" title="Reserva"><i class="icon-flag"></i></a>
+              <a href="#communication_<?=$this->grantee->grantee_id?>" class="btn help" data-toggle="modal" title="Comunicação ao orgão de trânsito"><i class="icon-road"></i></a>
             </p>
         </div>
         <hr>

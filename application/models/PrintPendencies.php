@@ -10,8 +10,8 @@ class Application_Model_PrintPendencies
 	public function __construct()
 	{
 		$this->pdf = new Zend_Pdf();
-    $this->page = new Zend_Pdf_Page(Zend_Pdf_Page::SIZE_A4);
-    $this->font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES);
+        $this->page = new Zend_Pdf_Page(Zend_Pdf_Page::SIZE_A4);
+        $this->font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES);
 	}
 
 	public function createPdf($data,$pendencies,$auxiliars)
@@ -19,8 +19,8 @@ class Application_Model_PrintPendencies
 		$this->header($data);
 		$this->content($data,$pendencies,$auxiliars);
 		$this->footer();
-    $this->pdf->pages[] = $this->page;
-    return $this->pdf;
+        $this->pdf->pages[] = $this->page;
+        return $this->pdf;
 	}
 
 	protected function header($data)
@@ -210,7 +210,7 @@ class Application_Model_PrintPendencies
                     ->drawText(date('d/m/Y'), 75, 463, 'UTF-8');
 
     $this->page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),10)
-                    ->drawText('Assinatura DCM', 315, 450, 'UTF-8');
+                    ->drawText('SETOP', 335, 450, 'UTF-8');
 	}
 }
 

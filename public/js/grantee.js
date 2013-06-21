@@ -1,10 +1,5 @@
 $(document).ready(function(){
-  $('.editGrantee').tooltip();
-  $('.printDataGrantee').tooltip();
-  $('.printLicenseGrantee').tooltip();
-  $('.removePermission').tooltip();
-  $('.retireGrantee').tooltip();
-  $('.pendenciesGrantee').tooltip();
+  $('.help').tooltip();
   $('.datepicker').datepicker({
     beforeShow: function() { $('.datepicker').css("z-index", 1051); }
   }).on('changeDate', function(){
