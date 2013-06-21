@@ -12,6 +12,14 @@
       <div class="page-header">
         <h1><?=$this->auxiliar->name?> <small>dados do auxiliar</small></h1>
         <hr>
+        <div>
+            <p>
+                <a href="#" class="pendenciesGrantee" data-toggle="modal" title="Extrato de pendências"><i class="icon-book"></i></a>
+                <a href="#license_<?=$this->auxiliar->id?>" class="printLicenseGrantee" data-toggle="modal" title="Imprimir a carteira"><i class="icon-print"></i></a>
+                <a href="/grantee/print-data/id/<?=$this->auxiliar->id?>" class="btn printDataGrantee" data-toggle="tooltip" title="Imprimir dados"><i class="icon-file"></i></a>
+            </p>
+        </div>
+        <hr>
         <form class="form-horizontal" action="/auxiliar/edit/id/<?=$this->auxiliar->id?>" method="post">
           <div class="control-group">
             <div class="accordion" id="acoordion1">
