@@ -30,6 +30,9 @@ class Application_Model_PrintLicense
 
 	protected function front($data)
 	{
+        $image = Zend_Pdf_Image::imageWithPath(APPLICATION_PATH . '/../public/img/minas.png');
+        $this->page->drawImage($image, 44, 620, 200, 760);
+
 		$image = Zend_Pdf_Image::imageWithPath(APPLICATION_PATH . '/../public/img/brasao.png');
         $this->page->drawImage($image, 24, 781, 70, 818);
 

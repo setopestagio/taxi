@@ -47,6 +47,7 @@
           <actionMethod actionName="remove"/>
           <actionMethod actionName="view"/>
           <actionMethod actionName="report"/>
+          <actionMethod actionName="printLicense"/>
         </controllerFile>
         <controllerFile controllerName="Doesntallow">
           <actionMethod actionName="index"/>
@@ -198,6 +199,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Grantee">
             <viewScriptFile forActionName="returnPeople"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Auxiliar">
+            <viewScriptFile forActionName="printLicense"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

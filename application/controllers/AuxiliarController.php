@@ -86,8 +86,33 @@ class AuxiliarController extends Zend_Controller_Action
         // action body
     }
 
+    public function printLicenseAction()
+    {
+      try{
+        $this->_helper->layout()->setLayout('ajax');
+        $id = $this->getRequest()->getParam('id');
+        if ( $this->getRequest()->isPost() ) 
+        {
+          $data = $this->getRequest()->getPost();
+          $endDate = $data['end_date'];
+        }
+        $auxiliar = new Application_Model_Auxiliar();
+        $print = new Application_Model_PrintLicense();
+        $auxiliarRow = $auxiliar->returnById($id);
+        $pdf = $print->createPdf($auxiliarRow,$endDate);
+        header('Content-Type: application/pdf');
+        echo $pdf->render(); 
+      }catch(Zend_Exception $e){
+        die ('PDF error: ' . $e->getMessage()); 
+      }catch (Exception $e) {
+        die ('Application error: ' . $e->getMessage());    
+      }
+    }
+
 
 }
+
+
 
 
 

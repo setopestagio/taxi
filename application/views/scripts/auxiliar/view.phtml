@@ -30,8 +30,8 @@
                 <tr>
                   <td><a href="/auxiliar/edit/id/<?=$auxiliar->id?>"><?=$auxiliar->name?></a></td>
                   <td><a href="/auxiliar/edit/id/<?=$auxiliar->id?>" class="editauxiliar" data-toggle="tooltip" title="Editar permissionário"><i class="icon-pencil"></i></a></td>
-                  <!-- <td><a href="/auxiliar/print-data/id/<?=$auxiliar->id?>" class="printDataauxiliar" data-toggle="tooltip" title="Imprimir dados"><i class="icon-file"></i></a></td>
-                  <td><a href="/auxiliar/print-license/id/<?=$auxiliar->id?>" class="printLicenseauxiliar" data-toggle="tooltip" title="Imprimir a carteira"><i class="icon-print"></i></a></td> -->
+                  <!-- <td><a href="/auxiliar/print-data/id/<?=$auxiliar->id?>" class="printDataauxiliar" data-toggle="tooltip" title="Imprimir dados"><i class="icon-file"></i></a></td> -->
+                  <td><a href="#license_<?=$auxiliar->id?>" class="printLicenseauxiliar" data-toggle="modal" title="Imprimir a carteira"><i class="icon-print"></i></a></td>
                 </tr>
             <?} } else{?>
               <tr>
@@ -45,3 +45,27 @@
     </div>
   </div>
 </div>
+
+<?if(is_object($this->list) && !isset($this->list->name)){
+  foreach($this->list as $auxiliar){?>
+<div id="license_<?=$auxiliar->id?>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Emissão de Carteira</h3>
+  </div>
+  <form class="form-horizontal" action="/auxiliar/print-license/id/<?=$auxiliar->id?>" method="post">
+    <div class="modal-body">
+        <div class="control-group">
+          <label class="control-label" for="end_date">Data de Vencimento</label>
+          <div class="controls">
+            <input type="text" class="input-xlarge datepicker" id="end_date" name="end_date" placeholder="data de vencimento" data-mask="99/99/9999"  data-date="<?=date('d/m/Y')?>" data-date-format="dd/mm/yyyy">
+          </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" aria-hidden="true">Fechar</button>
+      <input type="submit" class="btn btn-primary" value="Salvar">
+    </div>
+  </form>
+</div>
+<? } }?>
