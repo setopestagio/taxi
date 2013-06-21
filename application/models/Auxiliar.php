@@ -2,6 +2,13 @@
 
 class Application_Model_Auxiliar
 {
+	public function newAuxiliar($data)
+	{
+		$address = new Application_Model_Address();
+		$person = new Application_Model_Person();
+		$addressId = $address->newAddress($data);
+		return $person->newPerson($data, $addressId);
+	}
 
 	public function saveToGrantee($granteeId,$aux1='',$aux2='')
 	{

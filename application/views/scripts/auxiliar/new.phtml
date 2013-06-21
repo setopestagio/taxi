@@ -11,7 +11,7 @@
       <div class="page-header">
         <h1>Novo Auxiliar <small>defina aqui os dados do auxiliar</small></h1>
         <hr>
-        <form class="form-horizontal" action="/grantee/new" method="post">
+        <form class="form-horizontal" action="/auxiliar/new" method="post">
           <div class="control-group">
             <div class="accordion" id="acoordion1">
               <div class="accordion-group">
@@ -129,13 +129,13 @@
                     <div class="control-group">
                         <label class="control-label" for="phone">Telefone fixo</label>
                         <div class="controls">
-                            <input type="text" name="phone" value="" class="input-xlarge" id="phone" placeholder="telefone fixo">
+                            <input type="text" name="phone" value="" class="input-xlarge" id="phone" placeholder="telefone fixo" data-mask="(99) 9999-9999">
                         </div><!--/.controls -->
                     </div><!--/.control-group -->
                     <div class="control-group">
                         <label class="control-label" for="mobile">Celular</label>
                         <div class="controls">
-                            <input type="text" name="mobile" value="" class="input-xlarge" id="mobile" placeholder="celular">
+                            <input type="text" name="mobile" value="" class="input-xlarge" id="mobile" placeholder="celular" data-mask="(99) 9999-9999">
                         </div><!--/.controls -->
                     </div><!--/.control-group -->
                     <div class="control-group">
@@ -168,7 +168,7 @@
                     <div class="control-group">
                         <label class="control-label" for="cpf">CPF</label>
                         <div class="controls">
-                            <input type="text" name="cpf" value="" class="input-xlarge" id="cpf" placeholder="cpf">
+                            <input type="text" name="cpf" value="" class="input-xlarge" id="cpf" placeholder="cpf" data-mask="999.999.999-99">
                         </div><!--/.controls -->
                     </div><!--/.control-group -->
                     <div class="control-group">

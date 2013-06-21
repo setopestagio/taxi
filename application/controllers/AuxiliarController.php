@@ -21,7 +21,23 @@ class AuxiliarController extends Zend_Controller_Action
 
     public function newAction()
     {
-        // action body
+      try{
+        if ( $this->getRequest()->isPost() ) 
+        {
+          $data = $this->getRequest()->getPost();
+          $auxiliar = new Application_Model_Auxiliar();
+          if($auxiliar->newAuxiliar($data) > 0)
+          {
+            $this->view->success = true;
+          }
+          else
+          {
+            $this->view->error = true;
+          }
+        }
+      }catch(Zend_Exception $e){
+        $this->view->error = true;
+      }
     }
 
     public function editAction()
