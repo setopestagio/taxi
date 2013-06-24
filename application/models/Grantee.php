@@ -49,8 +49,8 @@ class Application_Model_Grantee
 						->joinInner(array('c' => 'city'),'g.city=c.id', array('name_city' => 'name'))
 						->joinInner(array('vb' => 'vehicle_brand'), 'vb.id=v.brand', array('vehicle_brand' => 'name'))
 						->joinInner(array('f' => 'vehicle_fuel'), 'f.id=v.fuel', array('vehicle_fuel' => 'name'))
-						->joinInner(array('tb' => 'taximeter_brand'), 'tb.id=v.taximeter_brand', array('taximeter_brand' => 'name'))
-						->joinInner(array('tm' => 'taximeter_model'), 'tm.id=v.taximeter_model', array('taximeter_model' => 'name'))
+						->joinInner(array('tb' => 'taximeter_brand'), 'tb.id=v.taximeter_brand', array('taximeter_brand' => 'name','taximeter_brand_id' => 'id'))
+						->joinInner(array('tm' => 'taximeter_model'), 'tm.id=v.taximeter_model', array('taximeter_model' => 'name', 'taximeter_model_id' => 'id'))
 						->joinInner(array('vm' => 'vehicle_model'), 'vm.id=v.model', array('vehicle_model' => 'name'))
 						->where('g.id = ?', $granteeId);
 		return $grantee->fetchRow($select);
@@ -87,13 +87,12 @@ class Application_Model_Grantee
 		$vehicle = new Application_Model_Vehicle();
 		$person->editPerson($data,$editGrantee->owner);
 		$vehicle->editVehicle($data,$editGrantee->vehicle);
-		$auxiliar = new Application_Model_Auxiliar();
-		$auxiliar->saveToGrantee($granteeId,$data['aux2_id'],$data['aux2_id']);
 		$editGrantee->permission = $data['permission'];
 		$editGrantee->authorization = $data['authorization'];
 		$editGrantee->city = $data['city'];
 		$editGrantee->start_permission = Application_Model_General::dateToUs($data['start_permission']);
-		$editGrantee->end_permission = Application_Model_General::dateToUs($data['end_permission']);
+		if($data['end_permission'] != '')
+			$editGrantee->end_permission = Application_Model_General::dateToUs($data['end_permission']);
 		$editGrantee->info = $data['info'];
 		$editGrantee->pendencies = $data['pendencies'];
 		if($editGrantee->save())
