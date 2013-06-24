@@ -95,7 +95,7 @@ class Application_Acl_Setup
                     ->allow( 'user', 'grantee', array('index', 'new', 'edit', 'remove', 'view', 'vis', 'report',
                                                     'print-data', 'print-license', 'report-grantee-all', 'report-grantee-actives',
                                                     'return-people', 'extract-pendencies', 'save-auxiliar', 'remove-auxiliar',
-                                                    'reservation') )
+                                                    'reservation', 'reservation-license') )
                     ->allow( 'user', 'auxiliar', array('index', 'new', 'edit', 'remove', 'view', 'report',
                                                     'print-license') )
                     ->allow( 'user', 'vehicle', array('index', 'new', 'edit', 'remove', 'view', 'vis') );

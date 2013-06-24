@@ -43,6 +43,7 @@
           <actionMethod actionName="saveAuxiliar"/>
           <actionMethod actionName="removeAuxiliar"/>
           <actionMethod actionName="reservation"/>
+          <actionMethod actionName="reservationLicense"/>
         </controllerFile>
         <controllerFile controllerName="Auxiliar">
           <actionMethod actionName="index"/>
@@ -96,6 +97,7 @@
         <modelFile modelName="ReportGranteeActives"/>
         <modelFile modelName="Auxiliar"/>
         <modelFile modelName="PrintPendencies"/>
+        <modelFile modelName="PrintReservation"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <servicesDirectory enabled="false"/>
@@ -220,6 +222,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Grantee">
             <viewScriptFile forActionName="reservation"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Grantee">
+            <viewScriptFile forActionName="reservationLicense"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

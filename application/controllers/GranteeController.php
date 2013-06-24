@@ -268,8 +268,29 @@ class GranteeController extends Zend_Controller_Action
       }
     }
 
+    public function reservationLicenseAction()
+    {
+      try{
+        $id = $this->getRequest()->getParam('id');
+        header('Content-Type: application/pdf');
+        $this->_helper->layout()->setLayout('ajax');
+        $grantee = new Application_Model_Grantee();
+        $print = new Application_Model_PrintReservation();
+        $granteeRow = $grantee->returnById($id);
+        $reservation = $grantee->returnReservation($id);
+        $pdf = $print->createPdf($granteeRow,$reservation);
+        echo $pdf->render(); 
+      }catch(Zend_Exception $e){
+        die ('PDF error: ' . $e->getMessage()); 
+      }catch (Exception $e) {
+        die ('Application error: ' . $e->getMessage());    
+      }
+    }
+
 
 }
+
+
 
 
 

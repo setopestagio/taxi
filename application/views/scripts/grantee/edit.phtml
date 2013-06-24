@@ -21,7 +21,7 @@
             	<a href="/grantee/extract-pendencies/id/<?=$this->grantee->grantee_id?>" class="btn help" data-toggle="modal" title="Extrato de pendências"><i class="icon-book"></i></a>
             	<a href="#license_<?=$this->grantee->grantee_id?>" class="btn help" data-toggle="modal" title="Imprimir a carteira"><i class="icon-print"></i></a>
             	<?if($this->reservation){?>
-              <a href="#retire_<?=$this->grantee->grantee_id?>" class="btn help" data-toggle="modal" title="Emitir certificado de reserva"><i class="icon-flag"></i></a>
+              <a href="/grantee/reservation-license/id/<?=$this->grantee->grantee_id?>" class="btn help" data-toggle="modal" title="Emitir certificado de reserva"><i class="icon-flag"></i></a>
               <?}?>
               <a href="#communication_<?=$this->grantee->grantee_id?>" class="btn help" data-toggle="modal" title="Comunicação ao orgão de trânsito"><i class="icon-road"></i></a>
             </p>
