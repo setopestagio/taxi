@@ -81,3 +81,32 @@ $('#removeAux2').click(function(){
   $('#aux2').val('');
   $('#removeAux2').hide();
 });
+
+$('#removeAuxiliar1').click(function(){
+  var id_aux = $('#aux1_id').val();
+  var end_date = $('#end_date_auxiliar1').val();
+  removeAuxiliar(id_aux,end_date);
+});
+
+$('#removeAuxiliar2').click(function(){
+  var id_aux = $('#aux2_id').val();
+  var end_date = $('#end_date_auxiliar2').val();
+  removeAuxiliar(id_aux,end_date);
+});
+
+function removeAuxiliar(idAux,endDate){
+  granteeId = $('#grantee_id').val();
+  data = 'granteeId='+granteeId+'&idAux='+idAux+'&endDate='+endDate;
+  $.ajax({
+    type: "POST",
+    url: "/grantee/remove-auxiliar",
+    data: data
+  }).done(function( result ) {
+    if(result){
+      alert('Auxiliar retirado com sucesso!');
+      document.location.reload(true);
+    }else{
+      alert('Auxiliar não retirado.')
+    }
+  });
+}

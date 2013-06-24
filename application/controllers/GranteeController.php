@@ -62,12 +62,17 @@ class GranteeController extends Zend_Controller_Action
         }
         $this->view->grantee = $grantee->returnById($granteeId);
         $this->view->auxiliars = $grantee->returnAuxiliars($granteeId);
+        $this->view->auxiliarsInactives = $grantee->returnAuxiliarsInactives($granteeId);
       }catch(Zend_Exception $e){
         $this->view->error = true;
       }
       if( isset($save) && $save == "success" )
       {
         $this->view->success = true;
+      }
+      if( isset($save) && $save == "failure" )
+      {
+        $this->view->error = true;
       }
       $vehicleModel = new Application_Model_DbTable_VehicleModel();
       $this->view->vehicleModel = $vehicleModel->fetchAll($vehicleModel->select()->limit('name'));
@@ -216,18 +221,36 @@ class GranteeController extends Zend_Controller_Action
     {
       if ( $this->getRequest()->isPost() ) 
       {
+        $data = $this->getRequest()->getPost();
         $grantee = new Application_Model_Grantee();
         $granteeId = $this->getRequest()->getParam('id');
-        $data = $this->getRequest()->getPost();
         if($grantee->saveAuxiliars($data,$granteeId))
         {
           $this->_redirect('/grantee/edit/id/'.$granteeId.'/save/success');
         }
+        else
+        {
+          $this->_redirect('/grantee/edit/id/'.$granteeId.'/save/failure');
+        }
       }
+    }
+
+    public function removeAuxiliarAction()
+    {
+      $this->_helper->layout()->setLayout('ajax');
+      if ( $this->getRequest()->isPost() ) 
+      {
+        $grantee = new Application_Model_Grantee();
+        $data = $this->getRequest()->getPost();
+        echo $grantee->removeAuxiliar($data['granteeId'],$data['idAux'],$data['endDate']);
+      }
+      echo false;
     }
 
 
 }
+
+
 
 
 
