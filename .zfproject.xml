@@ -42,6 +42,7 @@
           <actionMethod actionName="extractPendencies"/>
           <actionMethod actionName="saveAuxiliar"/>
           <actionMethod actionName="removeAuxiliar"/>
+          <actionMethod actionName="reservation"/>
         </controllerFile>
         <controllerFile controllerName="Auxiliar">
           <actionMethod actionName="index"/>
@@ -80,6 +81,7 @@
           <dbTableFile dbTableName="VehicleModel"/>
           <dbTableFile dbTableName="SystemAccess"/>
           <dbTableFile dbTableName="GranteeAuxiliar"/>
+          <dbTableFile dbTableName="GranteeReservation"/>
         </dbTableDirectory>
         <modelFile modelName="Address"/>
         <modelFile modelName="Grantee"/>
@@ -215,6 +217,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Grantee">
             <viewScriptFile forActionName="removeAuxiliar"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Grantee">
+            <viewScriptFile forActionName="reservation"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

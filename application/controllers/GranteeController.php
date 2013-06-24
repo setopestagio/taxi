@@ -63,6 +63,8 @@ class GranteeController extends Zend_Controller_Action
         $this->view->grantee = $grantee->returnById($granteeId);
         $this->view->auxiliars = $grantee->returnAuxiliars($granteeId);
         $this->view->auxiliarsInactives = $grantee->returnAuxiliarsInactives($granteeId);
+        $this->view->reservation = $grantee->returnReservation($granteeId);
+        $this->view->reservationHistoric = $grantee->returnReservationHistoric($granteeId);
       }catch(Zend_Exception $e){
         $this->view->error = true;
       }
@@ -247,8 +249,29 @@ class GranteeController extends Zend_Controller_Action
       echo false;
     }
 
+    public function reservationAction()
+    {
+      $this->_helper->layout()->setLayout('ajax');
+      if ( $this->getRequest()->isPost() ) 
+      {
+        $grantee = new Application_Model_Grantee();
+        $granteeId = $this->getRequest()->getParam('id');
+        $data = $this->getRequest()->getPost();
+        if($grantee->saveReservation($data,$granteeId))
+        {
+          $this->_redirect('/grantee/edit/id/'.$granteeId.'/save/success');
+        }
+        else
+        {
+          $this->_redirect('/grantee/edit/id/'.$granteeId.'/save/failure');
+        }
+      }
+    }
+
 
 }
+
+
 
 
 

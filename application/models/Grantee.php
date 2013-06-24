@@ -265,5 +265,52 @@ class Application_Model_Grantee
 		return false;
 	}
 
+	public function saveReservation($data,$granteeId)
+	{
+		$granteeReservation = new Application_Model_DbTable_GranteeReservation();
+		if($data['end_date_reservation'])
+		{
+			$granteeReservationRow = $granteeReservation->fetchRow($granteeReservation->select()
+																												->where('grantee = ?',$granteeId)
+																												->where('end_date IS NULL'));
+			$granteeReservationRow->grantee = $granteeId;
+			$granteeReservationRow->start_date = Application_Model_General::dateToUs($data['start_date_reservation']);
+			$granteeReservationRow->end_date = Application_Model_General::dateToUs($data['end_date_reservation']);
+			$granteeReservationRow->reason = $data['reason'];
+			$granteeReservationRow->info = $data['info'];
+		}
+		else
+		{
+			$granteeReservationRow = $granteeReservation->createRow();
+			$granteeReservationRow->grantee = $granteeId;
+			$granteeReservationRow->start_date = Application_Model_General::dateToUs($data['start_date_reservation']);
+			$granteeReservationRow->reason = $data['reason'];
+			$granteeReservationRow->info = $data['info'];
+		}
+		return $granteeReservationRow->save();
+	}
+
+	public function returnReservation($granteeId)
+	{
+		$granteeReservation = new Application_Model_DbTable_GranteeReservation();
+		$granteeReservationRow = $granteeReservation->fetchRow($granteeReservation->select()
+																									->where('grantee = ?',$granteeId)
+																									->where('end_date IS NULL'));
+		if($granteeReservationRow)
+		{
+			return $granteeReservationRow;
+		}
+		return 0;
+	}
+
+	public function returnReservationHistoric($granteeId)
+	{
+		$granteeReservation = new Application_Model_DbTable_GranteeReservation();
+		$granteeReservationRow = $granteeReservation->fetchAll($granteeReservation->select()
+																									->where('grantee = ?',$granteeId)
+																									->where('end_date IS NOT NULL'));
+		return $granteeReservationRow;
+	}
+
 }
 
