@@ -1,10 +1,10 @@
 $(document).ready(function(){
   $('.help').tooltip();
   $('.datepicker').datepicker({
-    beforeShow: function() { $('.datepicker').css("z-index", 1051); }
-  }).on('changeDate', function(){
-	 		$('.datepicker').datepicker('hide');
-		});
+    language: 'pt-BR',
+    autoclose: true,
+    format: 'mm/dd/yyyy'
+  });
 });
 
 $('#myTab a').click(function (e) {
