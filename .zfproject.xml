@@ -64,6 +64,15 @@
           <actionMethod actionName="remove"/>
           <actionMethod actionName="vis"/>
         </controllerFile>
+        <controllerFile controllerName="Administration">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="inspector"/>
+          <actionMethod actionName="inspectorNew"/>
+          <actionMethod actionName="inspectorEdit"/>
+        </controllerFile>
+        <controllerFile controllerName="Inspection">
+          <actionMethod actionName="index"/>
+        </controllerFile>
       </controllersDirectory>
       <formsDirectory enabled="false"/>
       <layoutsDirectory>
@@ -98,6 +107,7 @@
         <modelFile modelName="Auxiliar"/>
         <modelFile modelName="PrintPendencies"/>
         <modelFile modelName="PrintReservation"/>
+        <modelFile modelName="Inspector"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <servicesDirectory enabled="false"/>
@@ -225,6 +235,21 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Grantee">
             <viewScriptFile forActionName="reservationLicense"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Administration">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Inspection">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Administration">
+            <viewScriptFile forActionName="inspector"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Administration">
+            <viewScriptFile forActionName="inspectorNew"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Administration">
+            <viewScriptFile forActionName="inspectorEdit"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

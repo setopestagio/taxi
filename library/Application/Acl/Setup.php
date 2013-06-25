@@ -72,6 +72,8 @@ class Application_Acl_Setup
         $this->_acl->addResource( new Zend_Acl_Resource('grantee') );
         $this->_acl->addResource( new Zend_Acl_Resource('auxiliar') );
         $this->_acl->addResource( new Zend_Acl_Resource('vehicle') );
+        $this->_acl->addResource( new Zend_Acl_Resource('administration') );
+        $this->_acl->addResource( new Zend_Acl_Resource('inspection') );
     }
 
     /**
@@ -89,6 +91,8 @@ class Application_Acl_Setup
 
         $this->_acl	->allow( 'user', 'index', 'index' )
         			->allow( 'user', 'auth', array('index', 'login') )
+                    ->allow( 'user', 'administration', array('index', 'inspector', 'inspector-new', 'inspector-edit') )
+                    ->allow( 'user', 'inspection', array('index') )
                     ->allow( 'user', 'dashboard', array('index') )
                     ->allow( 'user', 'doesntallow', array('index'))
                     ->allow( 'user', 'account', array('index', 'access', 'personal', 'photo', 'password') )

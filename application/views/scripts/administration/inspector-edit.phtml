@@ -1,0 +1,55 @@
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span3">
+      <div class="well sidebar-nav">
+        <ul class="nav nav-list">
+          <li class="nav-header">Fiscais</li>
+          <li><a href="/administration/inspector-new">Cadastro</a></li>
+          <li class="active"><a href="#">Edição</a></li>
+          <li><a href="/administration/inspector">Pesquisa</a></li>
+          <li class="nav-header">Fiscalização</li>
+        </ul>
+      </div><!--/.well -->
+    </div><!--/span-->
+    <div class="span9">
+      <div class="page-header">
+      	<h1><?=$this->user->name?> <small>dados do fiscal</small></h1><hr>
+        <form class="form-horizontal" method="post">
+        	<div class="control-group">
+              <label class="control-label" for="name">Nome</label>
+              <div class="controls">
+                  <input type="text" name="name" value="<?=$this->user->name?>" class="input-xlarge" id="name" placeholder="nome completo">
+              </div><!--/.controls -->
+          </div><!--/.control-group -->
+        	<div class="control-group">
+              <label class="control-label" for="masp">MASP</label>
+              <div class="controls">
+                  <input type="text" name="masp" value="<?=$this->user->masp?>" class="input-xlarge" id="masp" placeholder="masp do fiscal">
+              </div><!--/.controls -->
+          </div><!--/.control-group -->
+          <div class="control-group">
+              <label class="control-label" for="cpf">CPF</label>
+              <div class="controls">
+                  <input type="text" name="cpf" value="<?=$this->user->cpf?>" class="input-xlarge" id="cpf" placeholder="cpf do fiscal" data-mask="999.999.999-99">
+              </div><!--/.controls -->
+          </div><!--/.control-group -->
+        	<div class="control-group">
+              <label class="control-label" for="phone">Telefone</label>
+              <div class="controls">
+                  <input type="text" name="phone" value="<?=$this->user->phone?>" class="input-xlarge" id="phone" placeholder="telefone" data-mask="(99) 9999-9999">
+              </div><!--/.controls -->
+          </div><!--/.control-group -->
+        	<div class="control-group">
+              <label class="control-label" for="email">E-mail</label>
+              <div class="controls">
+                  <input type="email" name="email" value="<?=$this->user->email?>" class="input-xlarge" id="email" placeholder="email">
+              </div><!--/.controls -->
+          </div><!--/.control-group -->
+          <div class="form-actions">
+              <button type="submit" class="btn btn-primary">Salvar</button>
+          </div>
+        </form>
+      </div>
+    </div><!--/span-->
+  </div><!--/row-->
+</div>

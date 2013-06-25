@@ -72,16 +72,9 @@
                       <i class="icon-wrench"></i> Minha conta
                   </a>
               </li>
-              <?if($userId == 1 || $userId == 5){?>
+              <?if($userId == 1 || $userId == 5 || $userId == 9){?>
               <li>
-                  <a href="#">
-                      <i class="icon-eye-close"></i> Administração
-                  </a>
-              </li>
-              <?}?>
-              <?if($userId == 9){?>
-              <li>
-                  <a href="#">
+                  <a href="/administration">
                       <i class="icon-eye-close"></i> Administração
                   </a>
               </li>
