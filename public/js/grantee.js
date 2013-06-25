@@ -3,7 +3,7 @@ $(document).ready(function(){
   $('.datepicker').datepicker({
     language: 'pt-BR',
     autoclose: true,
-    format: 'mm/dd/yyyy'
+    format: 'dd/mm/yyyy'
   });
 });
 
