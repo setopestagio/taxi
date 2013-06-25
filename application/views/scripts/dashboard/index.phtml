@@ -2,7 +2,12 @@
   <div class="row-fluid">
     <img src='/img/taxi.jpg'><br><br>
   </div>
-  <?if($this->institution == 1){?>
+    <? 
+      $authNamespace = new Zend_Session_Namespace('userInformation');
+      $institution = $authNamespace->institution;
+      $userId = $authNamespace->user_id; 
+    ?>
+  <?if($institution == 1){?>
   <div class="row-fluid">
     <div class="span4 well">
       <h2>Permissionários</h2>
@@ -15,22 +20,17 @@
       <p><a href="/auxiliar" class="btn">gerenciar >></a></p>
     </div>
   </div>
-  <?}else{?>
+  <?}else if($institution == 2){?>
     <div class="row-fluid">
     <div class="span4 well">
-      <h2>Permissionários</h2>
-      <p>O serviço público de transporte individual de passageiros por táxi especial metropolitano poderá ser prestado por terceiros mediante permissão, obtida por meio de licitação, respeitada a legislação vigente.</p>
-      <p><a href="/grantee" class="btn">relatórios >></a></p>
+      <h2>Fiscais</h2>
+      <p>A fiscalização do cumprimento do disposto nesta Lei será exercida pelo DER-MG, que terá competência para apurar as infrações e aplicar as penas.</p>
+      <p><a href="/#" class="btn">gerenciar >></a></p>
     </div>
     <div class="span4 well">
-      <h2>Auxiliares</h2>
-      <p>Um auxiliar detém a permissão para transitar em táxis com as devidas permissões liberadas por um determinado permissionário.</p>
-      <p><a href="/auxiliar" class="btn">relatórios >></a></p>
-    </div>
-    <div class="span4 well">
-      <h2>Veículos</h2>
-      <p>Gerenciamento de veículos, vinculação a permissionários, relatórios do sistema e visualiação do comportamento dos mesmos no sistema de transporte metropolitano </p>
-      <p><a href="/vehicle" class="btn">relatórios >></a></p>
+      <h2>Relatórios</h2>
+      <p>Relatórios de auxilio a fiscalização, como permissionários, auxiliares, veículos, fiscalizações anteriomente realizadas, entre outros.</p>
+      <p><a href="/#" class="btn">relatórios >></a></p>
     </div>
   </div>
   <?}?>

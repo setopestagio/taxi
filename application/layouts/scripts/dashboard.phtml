@@ -45,6 +45,12 @@
   </head>
   <body>
 
+    <? 
+      $authNamespace = new Zend_Session_Namespace('userInformation');
+      $institution = $authNamespace->institution;
+      $userId = $authNamespace->user_id; 
+    ?>
+
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
@@ -53,7 +59,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="#">Sistema de Controle de Táxi</a>
+          <a class="brand" href="/dashboard">SETOP | Táxi</a>
           <div class="nav-collapse collapse">
             <div class="btn-group pull-right">
               <a class="btn btn-inverse dropdown-toggle" data-toggle="dropdown" href="#">
@@ -66,6 +72,20 @@
                       <i class="icon-wrench"></i> Minha conta
                   </a>
               </li>
+              <?if($userId == 1){?>
+              <li>
+                  <a href="/account">
+                      <i class="icon-eye-close"></i> Administração
+                  </a>
+              </li>
+              <?}?>
+              <?if($userId == 9){?>
+              <li>
+                  <a href="/account">
+                      <i class="icon-eye-close"></i> Administração
+                  </a>
+              </li>
+              <?}?>
               <li class="divider"></li>
               <li>
                   <a href="/auth/logout">
@@ -74,6 +94,7 @@
               </li>
               </ul>
             </div>
+            <?if($institution == 1){?>
             <ul class="nav">
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Permissionários <b class="caret"></b></a>
@@ -90,6 +111,17 @@
                 </ul>
               </li>
             </ul>
+            <?}?>
+            <?if($institution == 2){?>
+            <ul class="nav">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Fiscalização <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Gerenciar</a></li>
+                </ul>
+              </li>
+            </ul>
+            <?}?>
           </div><!--/.nav-collapse -->
         </div>
       </div>

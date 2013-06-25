@@ -7,7 +7,6 @@ class AuxiliarController extends Zend_Controller_Action
     {
       $this->_helper->layout()->setLayout('dashboard');
       $authNamespace = new Zend_Session_Namespace('userInformation');
-      $this->view->institution = $authNamespace->institution;
       if($authNamespace->institution != 1)
       {
           $this->_redirect('/doesntallow');
