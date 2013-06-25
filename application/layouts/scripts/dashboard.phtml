@@ -9,42 +9,52 @@
 
     <!-- Le styles -->
     <link href="/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+
+      @media (max-width: 980px) {
+        /* Enable use of floated navbar text */
+        .navbar-text.pull-right {
+          float: none;
+          padding-left: 5px;
+          padding-right: 5px;
+        }
+      }
+    </style>
     <link href="/css/bootstrap-responsive.css" rel="stylesheet">
     <link href="/css/datepicker.css" rel="stylesheet">
     <link href="/css/general.css" rel="stylesheet">
+
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="/js/html5shiv.js"></script>
     <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="/img/favicon.png">
   </head>
   <body>
 
-  <div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="navbar-inner">
-      <div class="container">
-        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="brand" href="/dashboard">Sistema de Controle de Táxi</a>
-        <div class="nav-collapse collapse">
-            <ul class="nav">
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Permissionários <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="/grantee/view">Pesquisar</a></li>
-                  <li><a href="/grantee/report">Relatórios</a></li>
-                </ul>
-              </li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Auxiliares <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="/auxiliar/view">Pesquisar</a></li>
-                  <li><a href="/auxiliar/report">Relatórios</a></li>
-                </ul>
-              </li>
-            </ul>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="#">Sistema de Controle de Táxi</a>
+          <div class="nav-collapse collapse">
             <div class="btn-group pull-right">
               <a class="btn btn-inverse dropdown-toggle" data-toggle="dropdown" href="#">
                   <i class="icon-user icon-white"></i>
@@ -63,12 +73,27 @@
                   </a>
               </li>
               </ul>
-          </div>
+            </div>
+            <ul class="nav">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Permissionários <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="/grantee/view">Pesquisar</a></li>
+                  <li><a href="/grantee/report">Relatórios</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Auxiliares <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="/auxiliar/view">Pesquisar</a></li>
+                  <li><a href="/auxiliar/report">Relatórios</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
-  </div>
-
 
     <div class="container">
 
@@ -101,9 +126,19 @@
 
     </div>
     
-    <script src="/js/jquery-1.8.3.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.js"></script>
     <script src="/js/bootstrap-transition.js"></script>
+    <script src="/js/bootstrap-alert.js"></script>
+    <script src="/js/bootstrap-modal.js"></script>
+    <script src="/js/bootstrap-dropdown.js"></script>
+    <script src="/js/bootstrap-scrollspy.js"></script>
+    <script src="/js/bootstrap-tab.js"></script>
+    <script src="/js/bootstrap-tooltip.js"></script>
+    <script src="/js/bootstrap-popover.js"></script>
+    <script src="/js/bootstrap-button.js"></script>
+    <script src="/js/bootstrap-collapse.js"></script>
+    <script src="/js/bootstrap-carousel.js"></script>
+    <script src="/js/bootstrap-typeahead.js"></script>
     <script src="/js/bootstrap-inputmask.min.js"></script>
     <script src="/js/bootstrap-datepicker.js"></script>
     <script src="/js/locales/bootstrap-datepicker.pt-BR.js"></script>
