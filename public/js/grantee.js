@@ -5,6 +5,7 @@ $(document).ready(function(){
     autoclose: true,
     format: 'dd/mm/yyyy'
   });
+  $(".dateMask").mask("99/99/9999");
 });
 
 $('#myTab a').click(function (e) {
