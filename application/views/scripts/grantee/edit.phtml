@@ -428,6 +428,12 @@
 		                  <input type="text" name="date_aux1" value="<?if(isset($this->auxiliars[0])) echo Application_Model_General::dateToBr($this->auxiliars[0]['start_date'])?>" class="input-large datepicker" id="date_aux1" placeholder="data de ínicio do auxiliar" data-mask="99/99/9999" data-date="<?=date('d/m/Y')?>" data-date-format="dd/mm/yyyy" <?if(isset($this->auxiliars[0])) echo 'disabled="disabled"'?>>
 		              </div><!--/.controls -->
 		          </div><!--/.control-group -->
+	    				<div class="control-group">
+		              <label class="control-label" for="date_end_aux1">Data de baixa</label>
+		              <div class="controls">
+		                  <input type="text" name="date_end_aux1" value="" class="input-large datepicker" id="date_end_aux1" placeholder="data de baixa do auxiliar" data-mask="99/99/9999" data-date="<?=date('d/m/Y')?>" data-date-format="dd/mm/yyyy">
+		              </div><!--/.controls -->
+	            </div>
 	    				<?if(isset($this->auxiliars[0])){?>
 	    				<div class="control-group">
 		              <label class="control-label" for="date_aux2"></label>
@@ -450,6 +456,12 @@
 		                  <input type="text" name="date_aux2" value="<?if(isset($this->auxiliars[1])) echo Application_Model_General::dateToBr($this->auxiliars[1]['start_date'])?>" class="input-large datepicker" id="date_aux2" placeholder="data de ínicio do auxiliar" data-mask="99/99/9999" data-date="<?=date('d/m/Y')?>" data-date-format="dd/mm/yyyy" <?if(isset($this->auxiliars[1])) echo 'disabled="disabled"'?>>
 		              </div><!--/.controls -->
 		          </div><!--/.control-group -->
+	    				<div class="control-group">
+		              <label class="control-label" for="date_end_aux2">Data de baixa</label>
+		              <div class="controls">
+		                  <input type="text" name="date_end_aux2" value="" class="input-large datepicker" id="date_end_aux2" placeholder="data de baixa do auxiliar" data-mask="99/99/9999" data-date="<?=date('d/m/Y')?>" data-date-format="dd/mm/yyyy">
+		              </div><!--/.controls -->
+		          </div><!--/.control-group -->
 	    				<?if(isset($this->auxiliars[1])){?>
 	    				<div class="control-group">
 		              <label class="control-label" for="date_aux2"></label>
@@ -458,6 +470,67 @@
 		              </div>
 		          </div><!--/.control-group -->
 		          <?}?>
+		          <hr>
+		          <div class="control-group">
+		              <label class="control-label" for="aux3">Auxiliar 3</label>
+		              <div class="controls">
+		                  <input type="text" name="aux3" value="" class="input-xxlarge" id="aux3" placeholder="nome do auxiliar" autocomplete="off"> <i style="cursor: pointer; display: none;" class="icon-remove" id="removeAux1"></i>
+		                  <input type="hidden" name="aux3_id" id="aux3_id" value="">
+		              </div><!--/.controls -->
+		          </div><!--/.control-group -->
+	    				<div class="control-group">
+		              <label class="control-label" for="date_aux3">Data de ínicio</label>
+		              <div class="controls">
+		                  <input type="text" name="date_aux3" value="" class="input-large datepicker" id="date_aux3" placeholder="data de ínicio do auxiliar" data-mask="99/99/9999" data-date="<?=date('d/m/Y')?>" data-date-format="dd/mm/yyyy">
+		              </div><!--/.controls -->
+		          </div><!--/.control-group -->
+	    				<div class="control-group">
+		              <label class="control-label" for="date_end_aux3">Data de baixa</label>
+		              <div class="controls">
+		                  <input type="text" name="date_end_aux3" value="" class="input-large datepicker" id="date_end_aux3" placeholder="data de baixa do auxiliar" data-mask="99/99/9999" data-date="<?=date('d/m/Y')?>" data-date-format="dd/mm/yyyy">
+		              </div><!--/.controls -->
+	            </div>
+	            <hr>
+		          <div class="control-group">
+		              <label class="control-label" for="aux4">Auxiliar 4</label>
+		              <div class="controls">
+		                  <input type="text" name="aux4" value="" class="input-xxlarge" id="aux4" placeholder="nome do auxiliar" autocomplete="off"> <i style="cursor: pointer; display: none;" class="icon-remove" id="removeAux1"></i>
+		                  <input type="hidden" name="aux4_id" id="aux4_id" value="">
+		              </div><!--/.controls -->
+		          </div><!--/.control-group -->
+	    				<div class="control-group">
+		              <label class="control-label" for="date_aux4">Data de ínicio</label>
+		              <div class="controls">
+		                  <input type="text" name="date_aux4" value="" class="input-large datepicker" id="date_aux4" placeholder="data de ínicio do auxiliar" data-mask="99/99/9999" data-date="<?=date('d/m/Y')?>" data-date-format="dd/mm/yyyy">
+		              </div><!--/.controls -->
+		          </div><!--/.control-group -->
+	    				<div class="control-group">
+		              <label class="control-label" for="date_end_aux4">Data de baixa</label>
+		              <div class="controls">
+		                  <input type="text" name="date_end_aux4" value="" class="input-large datepicker" id="date_end_aux4" placeholder="data de baixa do auxiliar" data-mask="99/99/9999" data-date="<?=date('d/m/Y')?>" data-date-format="dd/mm/yyyy">
+		              </div><!--/.controls -->
+	            </div>
+	            <hr>
+		          <div class="control-group">
+		              <label class="control-label" for="aux5">Auxiliar 5</label>
+		              <div class="controls">
+		                  <input type="text" name="aux5" value="" class="input-xxlarge" id="aux5" placeholder="nome do auxiliar" autocomplete="off"> <i style="cursor: pointer; display: none;" class="icon-remove" id="removeAux1"></i>
+		                  <input type="hidden" name="aux5_id" id="aux5_id" value="">
+		              </div><!--/.controls -->
+		          </div><!--/.control-group -->
+	    				<div class="control-group">
+		              <label class="control-label" for="date_aux5">Data de ínicio</label>
+		              <div class="controls">
+		                  <input type="text" name="date_aux5" value="" class="input-large datepicker" id="date_aux5" placeholder="data de ínicio do auxiliar" data-mask="99/99/9999" data-date="<?=date('d/m/Y')?>" data-date-format="dd/mm/yyyy">
+		              </div><!--/.controls -->
+		          </div><!--/.control-group -->
+	    				<div class="control-group">
+		              <label class="control-label" for="date_end_aux5">Data de baixa</label>
+		              <div class="controls">
+		                  <input type="text" name="date_end_aux5" value="" class="input-large datepicker" id="date_end_aux5" placeholder="data de baixa do auxiliar" data-mask="99/99/9999" data-date="<?=date('d/m/Y')?>" data-date-format="dd/mm/yyyy">
+		              </div><!--/.controls -->
+	            </div>
+	            <hr>
 	    				<div class="accordion" id="accordionHistory">
 		          	<div class="accordion-group">
 		          		<div class="accordion-heading">

@@ -223,6 +223,7 @@ class GranteeController extends Zend_Controller_Action
       if ( $this->getRequest()->isPost() ) 
       {
         $data = $this->getRequest()->getPost();
+        // print_r($data);exit;
         $grantee = new Application_Model_Grantee();
         $granteeId = $this->getRequest()->getParam('id');
         if($grantee->saveAuxiliars($data,$granteeId))

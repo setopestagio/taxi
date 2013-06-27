@@ -73,6 +73,12 @@
         <controllerFile controllerName="Inspection">
           <actionMethod actionName="index"/>
         </controllerFile>
+        <controllerFile controllerName="Survey">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="Assessment">
+          <actionMethod actionName="index"/>
+        </controllerFile>
       </controllersDirectory>
       <formsDirectory enabled="false"/>
       <layoutsDirectory>
@@ -250,6 +256,12 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Administration">
             <viewScriptFile forActionName="inspectorEdit"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Survey">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Assessment">
+            <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

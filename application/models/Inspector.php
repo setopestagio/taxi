@@ -48,7 +48,25 @@ class Application_Model_Inspector
 	public function returnById($userId)
 	{
 		$user = new Application_Model_DbTable_User();
-		return $user->fetchRow($user->select()->where('id = ?',$userId));
+		return $user->fetchRow($user->select()->where('id = ?',$userId)->where('institution = 2'));
+	}
+
+	public function findByMASP($masp)
+	{
+		$user = new Application_Model_DbTable_User();
+		return $user->fetchAll($user->select()->where('masp = ?',$masp)->where('institution = 2'));
+	}
+
+	public function findByCPF($cpf)
+	{
+		$user = new Application_Model_DbTable_User();
+		return $user->fetchAll($user->select()->where('cpf = ?',$cpf)->where('institution = 2'));
+	}
+
+	public function findByName($name)
+	{
+		$user = new Application_Model_DbTable_User();
+		return $user->fetchAll($user->select()->where('name LIKE ?', '%'.utf8_encode($name).'%')->where('institution = 2'));
 	}
 
 }

@@ -110,3 +110,85 @@ function removeAuxiliar(idAux,endDate){
     }
   });
 }
+
+
+
+
+/** PROVISORIOOO **/
+$('#aux3').typeahead({
+  source: function(query, process) {
+      $('#removeAux3').css('display','none');
+      objects = [];
+      map = {};
+      $.getJSON('/grantee/return-people', { query: query }, function(data) {
+        $.each(data, function(i, object) {
+            map[object.label] = object;
+            objects.push(object.label);
+        });
+        process(objects);
+      });
+    },
+    updater: function(item) {
+        $('#aux3_id').val(map[item].id);
+        $('#aux3').attr('disabled',true);
+        $('#removeAux3').css('display','');
+        return item;
+    }, 
+    matcher: function (item) {
+      if (item == null)
+            return false;
+      return ~item.toLowerCase().indexOf(this.query.toLowerCase())
+    }
+});
+
+$('#aux4').typeahead({
+  source: function(query, process) {
+      $('#removeAux4').css('display','none');
+      objects = [];
+      map = {};
+      $.getJSON('/grantee/return-people', { query: query }, function(data) {
+        $.each(data, function(i, object) {
+            map[object.label] = object;
+            objects.push(object.label);
+        });
+        process(objects);
+      });
+    },
+    updater: function(item) {
+        $('#aux4_id').val(map[item].id);
+        $('#aux4').attr('disabled',true);
+        $('#removeAux4').css('display','');
+        return item;
+    }, 
+    matcher: function (item) {
+      if (item == null)
+            return false;
+      return ~item.toLowerCase().indexOf(this.query.toLowerCase())
+    }
+});
+
+$('#aux5').typeahead({
+  source: function(query, process) {
+      $('#removeAux5').css('display','none');
+      objects = [];
+      map = {};
+      $.getJSON('/grantee/return-people', { query: query }, function(data) {
+        $.each(data, function(i, object) {
+            map[object.label] = object;
+            objects.push(object.label);
+        });
+        process(objects);
+      });
+    },
+    updater: function(item) {
+        $('#aux5_id').val(map[item].id);
+        $('#aux5').attr('disabled',true);
+        $('#removeAux5').css('display','');
+        return item;
+    }, 
+    matcher: function (item) {
+      if (item == null)
+            return false;
+      return ~item.toLowerCase().indexOf(this.query.toLowerCase())
+    }
+});

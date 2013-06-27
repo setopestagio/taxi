@@ -74,6 +74,8 @@ class Application_Acl_Setup
         $this->_acl->addResource( new Zend_Acl_Resource('vehicle') );
         $this->_acl->addResource( new Zend_Acl_Resource('administration') );
         $this->_acl->addResource( new Zend_Acl_Resource('inspection') );
+        $this->_acl->addResource( new Zend_Acl_Resource('survey') );
+        $this->_acl->addResource( new Zend_Acl_Resource('assessment') );
     }
 
     /**
@@ -102,7 +104,9 @@ class Application_Acl_Setup
                                                     'reservation', 'reservation-license') )
                     ->allow( 'user', 'auxiliar', array('index', 'new', 'edit', 'remove', 'view', 'report',
                                                     'print-license') )
-                    ->allow( 'user', 'vehicle', array('index', 'new', 'edit', 'remove', 'view', 'vis') );
+                    ->allow( 'user', 'vehicle', array('index', 'new', 'edit', 'remove', 'view', 'vis') )
+                    ->allow( 'user', 'survey', array('index') )
+                    ->allow( 'user', 'assessment', array('index') );
     }
 
     /**

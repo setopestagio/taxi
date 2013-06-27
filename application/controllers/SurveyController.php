@@ -1,6 +1,6 @@
 <?php
 
-class InspectionController extends Zend_Controller_Action
+class SurveyController extends Zend_Controller_Action
 {
 
     public function init()
