@@ -309,15 +309,16 @@ class Application_Model_Grantee
 
 	public function findAuxByName($name)
 	{
+
 		$person = new Application_Model_DbTable_Person();
 		$select = $person->select()->setIntegrityCheck(false);
 		$select	->from(array('p' => 'person'), array('name','id') )
-						->where('p.name LIKE ?','%'.utf8_encode($name).'%');
+						->where('p.name LIKE ?','%'.$name.'%');
 		$people = $person->fetchAll($select);
 		$aux = array();
 		foreach($people as $person)
 		{
-			$flag = array('id' => $person->id, 'label' => $person->name);
+			$flag = array('id' => $person->id, 'label' => Application_Model_General::removeAccents($person->name));
 			array_push($aux,$flag);
 		}
 		return $aux;
