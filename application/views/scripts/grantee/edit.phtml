@@ -560,6 +560,12 @@
 										                  <span class="input-xlarge uneditable-input"><?=Application_Model_General::dateToBr($auxiliarsInactives->end_date)?></span>
 										              </div><!--/.controls -->
 										          </div><!--/.control-group -->
+									    				<div class="control-group">
+										              <label class="control-label"></label>
+										              <div class="controls">
+										              	<a href="#aux_history_<?=$auxiliarsInactives->_id?>" role="button" class="btn btn-danger" data-toggle="modal">Remover do histórico</a>
+										              </div>
+										          </div><!--/.control-group -->
 						          			</div>
 						          		</div>
 						          	</div><!--/.control-group -->
@@ -750,6 +756,23 @@
     </div>
   </form>
 </div>
+
+
+<?foreach($this->auxiliarsInactives as $auxiliarsInactives){ ?>
+	<div id="aux_history_<?=$auxiliarsInactives->_id?>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	    <h3 id="myModalLabel">Retirar auxiliar deste permissionário</h3>
+	  </div>
+	    <div class="modal-body">
+	        <p>Tem certeza que deseja apagar este auxiliar deste permissionário?</p>
+	    </div>
+	    <div class="modal-footer">
+	      <button class="btn" data-dismiss="modal" aria-hidden="true">Fechar</button>
+	      <input type="button" class="btn btn-danger" value="Remover">
+	    </div>
+	</div>
+<?}?>
 
 <input type="hidden" id="grantee_id" value="<?=$this->grantee->grantee_id?>">
   
