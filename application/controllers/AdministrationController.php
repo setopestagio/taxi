@@ -63,6 +63,7 @@ class AdministrationController extends Zend_Controller_Action
       {
       	$this->_redirect('/doesntallow');
       }
+      $this->view->form = new Application_Form_Inspector();
      	if ( $this->getRequest()->isPost() ) 
       {
         $data = $this->getRequest()->getPost();
@@ -73,6 +74,7 @@ class AdministrationController extends Zend_Controller_Action
         }
         else
         {
+          $this->view->form->populate($data);
         	$this->view->error = true;
         }
       }
