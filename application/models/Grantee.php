@@ -228,7 +228,7 @@ class Application_Model_Grantee
 																								'start_permission','end_permission') )
 
 						->joinInner(array('p' => 'person'), 'p.id=g.owner')
-						->where('p.name LIKE ?','%'.utf8_encode($name).'%');
+						->where('p.name LIKE ?','%'.$name.'%');
 		return $grantee->fetchAll($select);
 	}
 
@@ -275,7 +275,6 @@ class Application_Model_Grantee
 
 	public function findAuxByName($name)
 	{
-
 		$person = new Application_Model_DbTable_Person();
 		$select = $person->select()->setIntegrityCheck(false);
 		$select	->from(array('p' => 'person'), array('name','id') )

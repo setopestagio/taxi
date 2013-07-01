@@ -5,7 +5,7 @@ $db = mysql_select_db('setop_taxi',$con);
 
 $total = 400;
 
-for($i=400;$i<=1348;$i++){
+for($i=0;$i<=1348;$i++){
 
 	// ADDRESS
 	$sql_address = "
@@ -25,8 +25,8 @@ for($i=400;$i<=1348;$i++){
 		UPDATE 
 			address
 		SET
-			address='".utf8_encode($res_address[0])."',
-			neighborhood='".utf8_encode($res_address[1])."'
+			address='".utf8_decode($res_address[0])."',
+			neighborhood='".utf8_decode($res_address[1])."'
 		WHERE 
 			id=$i
 	";
@@ -54,9 +54,9 @@ for($i=400;$i<=1348;$i++){
 		UPDATE 
 			person
 		SET
-			name='".utf8_encode($res_person[0])."',
-			army_issuer='".utf8_encode($res_person[1])."',
-			info='".utf8_encode($res_person[2])."'
+			name='".utf8_decode($res_person[0])."',
+			army_issuer='".utf8_decode($res_person[1])."',
+			info='".utf8_decode($res_person[2])."'
 		WHERE 
 			id=$i
 	";
