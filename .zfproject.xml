@@ -44,6 +44,7 @@
           <actionMethod actionName="removeAuxiliar"/>
           <actionMethod actionName="reservation"/>
           <actionMethod actionName="reservationLicense"/>
+          <actionMethod actionName="excludeAuxiliar"/>
         </controllerFile>
         <controllerFile controllerName="Auxiliar">
           <actionMethod actionName="index"/>
@@ -264,6 +265,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Assessment">
             <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Grantee">
+            <viewScriptFile forActionName="excludeAuxiliar"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

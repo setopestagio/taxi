@@ -287,8 +287,28 @@ class GranteeController extends Zend_Controller_Action
       }
     }
 
+    public function excludeAuxiliarAction()
+    {
+      $this->_helper->layout()->setLayout('ajax');
+      if ( $this->getRequest()->isPost() ) 
+      {
+        $grantee = new Application_Model_Grantee();
+        $data = $this->getRequest()->getPost();
+        if($grantee->excludeAuxiliar($data['excludeGranteeAuxiliar']))
+        {
+          $this->_redirect('/grantee/edit/id/'.$data['excludeGranteeId'].'/save/success');
+        }
+        else
+        {
+          $this->_redirect('/grantee/edit/id/'.$data['excludeGranteeId'].'/save/failure');
+        }
+      }
+    }
+
 
 }
+
+
 
 
 

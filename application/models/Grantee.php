@@ -362,5 +362,17 @@ class Application_Model_Grantee
 		return $granteeReservationRow;
 	}
 
+	public function excludeAuxiliar($auxiliarGranteeId)
+	{
+		$granteeAuxiliar = new Application_Model_DbTable_GranteeAuxiliar();
+		$granteeAuxiliarRow = $granteeAuxiliar->fetchRow($granteeAuxiliar->select()->where('id = ?',$auxiliarGranteeId));
+		if($granteeAuxiliarRow)
+		{
+			$granteeAuxiliarRow->delete();
+			return true;
+		}
+		return false;
+	}
+
 }
 
