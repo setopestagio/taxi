@@ -106,7 +106,7 @@ class Application_Acl_Setup
                                                     'print-license') )
                     ->allow( 'user', 'vehicle', array('index', 'new', 'edit', 'remove', 'view', 'vis') )
                     ->allow( 'user', 'survey', array('index') )
-                    ->allow( 'user', 'assessment', array('index') );
+                    ->allow( 'user', 'assessment', array('index', 'new', 'edit', 'view', 'remove', 'report') );
     }
 
     /**

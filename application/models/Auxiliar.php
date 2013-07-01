@@ -73,7 +73,7 @@ class Application_Model_Auxiliar
 						->joinInner(array('a' => 'address'),'a.id = p.address', array('address','number','apartament','neighborhood',
 																																			'address_city' => 'city','zipcode') )
 						->joinInner(array('c' => 'city'),'a.city=c.id', array('name_city' => 'name'))
-						->where('p.name LIKE ?','%'.utf8_encode($name).'%');
+						->where('p.name LIKE ?','%'.$name.'%');
 		return $person->fetchAll($select);
 	}
 }

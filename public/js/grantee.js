@@ -1,13 +1,3 @@
-$(document).ready(function(){
-  $('.help').tooltip();
-  $('.datepicker').datepicker({
-    language: 'pt-BR',
-    autoclose: true,
-    format: 'dd/mm/yyyy'
-  });
-  $(".dateMask").mask("99/99/9999");
-});
-
 $('#myTab a').click(function (e) {
   e.preventDefault();
   $(this).tab('show');

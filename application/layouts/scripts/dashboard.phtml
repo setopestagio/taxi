@@ -61,32 +61,6 @@
           </button>
           <a class="brand" href="/dashboard">SETOP | Táxi</a>
           <div class="nav-collapse collapse">
-            <div class="btn-group pull-right">
-              <a class="btn btn-inverse dropdown-toggle" data-toggle="dropdown" href="#">
-                  <i class="icon-user icon-white"></i>
-                  <span class="caret"></span>
-              </a>
-              <ul class="dropdown-menu">
-              <li>
-                  <a href="/account">
-                      <i class="icon-wrench"></i> Minha conta
-                  </a>
-              </li>
-              <?if($userId == 1 || $userId == 5 || $userId == 9){?>
-              <li>
-                  <a href="/administration">
-                      <i class="icon-eye-close"></i> Administração
-                  </a>
-              </li>
-              <?}?>
-              <li class="divider"></li>
-              <li>
-                  <a href="/auth/logout">
-                      <i class="icon-signout"></i> Sair
-                  </a>
-              </li>
-              </ul>
-            </div>
             <?if($institution == 1){?>
             <ul class="nav">
               <li class="dropdown">
@@ -132,6 +106,32 @@
               </li>
             </ul>
             <?}?>
+            <div class="btn-group pull-right">
+              <a class="btn btn-inverse dropdown-toggle" data-toggle="dropdown" href="#">
+                  <i class="icon-user icon-white"></i>
+                  <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+              <li>
+                  <a href="/account">
+                      <i class="icon-wrench"></i> Minha conta
+                  </a>
+              </li>
+              <?if($userId == 1 || $userId == 5 || $userId == 9){?>
+              <li>
+                  <a href="/administration">
+                      <i class="icon-eye-close"></i> Administração
+                  </a>
+              </li>
+              <?}?>
+              <li class="divider"></li>
+              <li>
+                  <a href="/auth/logout">
+                      <i class="icon-signout"></i> Sair
+                  </a>
+              </li>
+              </ul>
+            </div>
           </div><!--/.nav-collapse -->
         </div>
       </div>
@@ -187,6 +187,10 @@
     <script src="/js/locales/bootstrap-datepicker.pt-BR.js"></script>
     <script src="/js/d3.v3.min.js"></script>
     <script src="/js/general.js"></script>
+    <?if($this->institution == 1){?>
     <script src="/js/grantee.js"></script>
+    <?}else{?>
+    <script src="/js/assessment.js"></script>
+    <?}?>
   </body>
 </html>

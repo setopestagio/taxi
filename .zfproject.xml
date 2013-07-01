@@ -79,10 +79,17 @@
         </controllerFile>
         <controllerFile controllerName="Assessment">
           <actionMethod actionName="index"/>
+          <actionMethod actionName="new"/>
+          <actionMethod actionName="edit"/>
+          <actionMethod actionName="view"/>
+          <actionMethod actionName="remove"/>
+          <actionMethod actionName="report"/>
+          <actionMethod actionName="returnGrantee"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory>
         <formFile formName="Inspector"/>
+        <formFile formName="Assessment"/>
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
@@ -117,6 +124,7 @@
         <modelFile modelName="PrintPendencies"/>
         <modelFile modelName="PrintReservation"/>
         <modelFile modelName="Inspector"/>
+        <modelFile modelName="Assessment"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <servicesDirectory enabled="false"/>
@@ -268,6 +276,24 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Grantee">
             <viewScriptFile forActionName="excludeAuxiliar"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Assessment">
+            <viewScriptFile forActionName="new"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Assessment">
+            <viewScriptFile forActionName="edit"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Assessment">
+            <viewScriptFile forActionName="view"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Assessment">
+            <viewScriptFile forActionName="remove"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Assessment">
+            <viewScriptFile forActionName="report"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Assessment">
+            <viewScriptFile forActionName="returnGrantee"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
