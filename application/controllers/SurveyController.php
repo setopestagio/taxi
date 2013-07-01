@@ -13,6 +13,13 @@ class SurveyController extends Zend_Controller_Action
         // action body
     }
 
+    public function calendarAction()
+    {
+        // action body
+    }
+
 
 }
+
+
 

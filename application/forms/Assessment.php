@@ -37,7 +37,8 @@ class Application_Form_Assessment extends Twitter_Bootstrap_Form_Horizontal
       																	3	=> 'Andamento',
       																	4 => 'Concluído',
       																	5	=> 'Aguardando pagamento',
-      																	6	=> 'Pagamento realizado')
+      																	6	=> 'Pagamento realizado'
+      																)
     	));
 
       $this->addElement('submit', 'submit', array(

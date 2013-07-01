@@ -76,6 +76,7 @@
         </controllerFile>
         <controllerFile controllerName="Survey">
           <actionMethod actionName="index"/>
+          <actionMethod actionName="calendar"/>
         </controllerFile>
         <controllerFile controllerName="Assessment">
           <actionMethod actionName="index"/>
@@ -85,6 +86,7 @@
           <actionMethod actionName="remove"/>
           <actionMethod actionName="report"/>
           <actionMethod actionName="returnGrantee"/>
+          <actionMethod actionName="calendar"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory>
@@ -294,6 +296,12 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Assessment">
             <viewScriptFile forActionName="returnGrantee"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Assessment">
+            <viewScriptFile forActionName="calendar"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Survey">
+            <viewScriptFile forActionName="calendar"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

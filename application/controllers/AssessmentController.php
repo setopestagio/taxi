@@ -47,8 +47,15 @@ class AssessmentController extends Zend_Controller_Action
       echo Zend_Json::encode($result);
     }
 
+    public function calendarAction()
+    {
+        // action body
+    }
+
 
 }
+
+
 
 
 

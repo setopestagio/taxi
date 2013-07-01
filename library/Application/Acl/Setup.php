@@ -105,7 +105,7 @@ class Application_Acl_Setup
                     ->allow( 'user', 'auxiliar', array('index', 'new', 'edit', 'remove', 'view', 'report',
                                                     'print-license') )
                     ->allow( 'user', 'vehicle', array('index', 'new', 'edit', 'remove', 'view', 'vis') )
-                    ->allow( 'user', 'survey', array('index') )
+                    ->allow( 'user', 'survey', array('index', 'calendar') )
                     ->allow( 'user', 'assessment', array('index', 'new', 'edit', 'view', 'remove', 'report') );
     }
 
