@@ -438,6 +438,7 @@
 	    				<div class="control-group">
 		              <label class="control-label" for="date_aux2"></label>
 		              <div class="controls">
+		              	<input type="hidden" value="1" name="exists_aux_1" id="exists_aux_1">
 		              	<a href="#aux1_<?=$this->grantee->grantee_id?>" role="button" class="btn btn-danger" data-toggle="modal">Retirar auxiliar</a>
 		              </div>
 		          </div><!--/.control-group -->
@@ -466,6 +467,7 @@
 	    				<div class="control-group">
 		              <label class="control-label" for="date_aux2"></label>
 		              <div class="controls">
+		              	<input type="hidden" value="1" name="exists_aux_2" id="exists_aux_2">
 		              	<a href="#aux2_<?=$this->grantee->grantee_id?>" role="button" class="btn btn-danger" data-toggle="modal">Retirar auxiliar</a>
 		              </div>
 		          </div><!--/.control-group -->
@@ -542,9 +544,9 @@
 		          					<?foreach($this->auxiliarsInactives as $auxiliarsInactives){ ?>
 						          	<div class="accordion-group">
 						          		<div class="accordion-heading">
-						          			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionAuxiliar" href="#collapseAuxiliar_<?=$auxiliarsInactives->id?>"><?=$auxiliarsInactives->name?></a>
+						          			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionAuxiliar" href="#collapseAuxiliar_<?=$auxiliarsInactives->_id?>"><?=$auxiliarsInactives->name?></a>
 						          		</div>
-						          		<div id="collapseAuxiliar_<?=$auxiliarsInactives->id?>" class="accordion-body collapse">
+						          		<div id="collapseAuxiliar_<?=$auxiliarsInactives->_id?>" class="accordion-body collapse">
 						          			<div class="accordion-inner">
 						          				<div class="control-group">
 										              <label class="control-label" for="color">Data inicial</label>
