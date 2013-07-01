@@ -428,12 +428,14 @@
 		                  <input type="text" name="date_aux1" value="<?if(isset($this->auxiliars[0])) echo Application_Model_General::dateToBr($this->auxiliars[0]['start_date'])?>" class="input-large dateMask" id="date_aux1" placeholder="data de ínicio do auxiliar" <?if(isset($this->auxiliars[0])) echo 'disabled="disabled"'?>>
 		              </div><!--/.controls -->
 		          </div><!--/.control-group -->
+	    				<?if(!isset($this->auxiliars[0])){?>
 	    				<div class="control-group">
 		              <label class="control-label" for="date_end_aux1">Data de baixa</label>
 		              <div class="controls">
 		                  <input type="text" name="date_end_aux1" value="" class="input-large dateMask" id="date_end_aux1" placeholder="data de baixa do auxiliar">
 		              </div><!--/.controls -->
 	            </div>
+		          <?}?>
 	    				<?if(isset($this->auxiliars[0])){?>
 	    				<div class="control-group">
 		              <label class="control-label" for="date_aux2"></label>
@@ -457,12 +459,14 @@
 		                  <input type="text" name="date_aux2" value="<?if(isset($this->auxiliars[1])) echo Application_Model_General::dateToBr($this->auxiliars[1]['start_date'])?>" class="input-large dateMask" id="date_aux2" placeholder="data de ínicio do auxiliar" <?if(isset($this->auxiliars[1])) echo 'disabled="disabled"'?>>
 		              </div><!--/.controls -->
 		          </div><!--/.control-group -->
+	    				<?if(!isset($this->auxiliars[1])){?>
 	    				<div class="control-group">
 		              <label class="control-label" for="date_end_aux2">Data de baixa</label>
 		              <div class="controls">
 		                  <input type="text" name="date_end_aux2" value="" class="input-large dateMask" id="date_end_aux2" placeholder="data de baixa do auxiliar">
 		              </div><!--/.controls -->
 		          </div><!--/.control-group -->
+		          <?}?>
 	    				<?if(isset($this->auxiliars[1])){?>
 	    				<div class="control-group">
 		              <label class="control-label" for="date_aux2"></label>
@@ -764,6 +768,7 @@
 	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 	    <h3 id="myModalLabel">Retirar auxiliar deste permissionário</h3>
 	  </div>
+	  <form class="form-horizontal">
 	    <div class="modal-body">
 	        <p>Tem certeza que deseja apagar este auxiliar deste permissionário?</p>
 	    </div>
@@ -771,6 +776,7 @@
 	      <button class="btn" data-dismiss="modal" aria-hidden="true">Fechar</button>
 	      <input type="button" class="btn btn-danger" value="Remover">
 	    </div>
+	  </form>
 	</div>
 <?}?>
 
