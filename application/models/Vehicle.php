@@ -33,5 +33,11 @@ class Application_Model_Vehicle
 		$editVehicle->fuel  = $data['fuel'];
 		return $editVehicle->save();
 	}
+
+	public function returnByPlate($plate)
+	{
+		$vehicle = new Application_Model_DbTable_Vehicle();
+		return $vehicle->fetchRow($vehicle->select()->where('plate like ?',$plate));
+	}
 }
 

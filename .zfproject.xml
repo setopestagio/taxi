@@ -115,6 +115,7 @@
           <dbTableFile dbTableName="SystemAccess"/>
           <dbTableFile dbTableName="GranteeAuxiliar"/>
           <dbTableFile dbTableName="GranteeReservation"/>
+          <dbTableFile dbTableName="Inspection"/>
         </dbTableDirectory>
         <modelFile modelName="Address"/>
         <modelFile modelName="Grantee"/>
@@ -132,6 +133,7 @@
         <modelFile modelName="PrintReservation"/>
         <modelFile modelName="Inspector"/>
         <modelFile modelName="Assessment"/>
+        <modelFile modelName="Inspection"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <servicesDirectory enabled="false"/>

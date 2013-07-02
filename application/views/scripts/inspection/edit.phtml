@@ -1,4 +1,25 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>Inspection</b> and script/action name <b>edit</b></p>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span3">
+      <div class="well sidebar-nav">
+        <ul class="nav nav-list">
+          <li class="nav-header">Fiscalização Rotineira</li>
+          <li><a href="/inspection/new">Cadastro</a></li>
+          <li class="active"><a href="#">Edição</a></li>
+          <li><a href="/inspection/view">Pesquisa</a></li>
+          <li class="nav-header">Transporte Clandestino</li>
+          <li><a href="#">Cadastro</a></li>
+          <li><a href="#">Pesquisa</a></li>
+        </ul>
+      </div><!--/.well -->
+    </div><!--/span-->
+    <div class="span9">
+    	<div class="page-header">
+      	<h1>Nova Fiscalização <small>dados da fiscalização realizada</small></h1>
+        <hr>
+        <?=$this->form?>
+      </div>
+    </div>
+    </div><!--/span-->
+  </div><!--/row-->
 </div>

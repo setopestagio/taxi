@@ -10,39 +10,39 @@ class Application_Form_Inspection extends Twitter_Bootstrap_Form_Horizontal
       $this->addElement('text', 'local', array(
       		'label'					=> 'Local',
           'placeholder'   => 'local da fiscalização',
-          'class'					=> 'input-xlarge'
+          'class'					=> 'input-xxlarge'
       ));
 
       $this->addElement('text', 'inspection_date', array(
       		'label'					=> 'Data',
           'placeholder'   => 'data da fiscalização realizada',
-          'class'					=> 'input-xlarge'
+          'class'					=> 'input-xxlarge dateMask datepicker'
+      ));
+
+      $this->addElement('text', 'permission', array(
+          'label'         => 'Permissionário',
+          'placeholder'   => 'número da permissão',
+          'class'         => 'input-xxlarge permission'
       ));
 
       $this->addElement('text', 'plate', array(
       		'label'					=> 'Placa do Veículo',
           'placeholder'   => 'placa do veículo',
-          'class'					=> 'input-xlarge'
+          'class'					=> 'input-xxlarge plate'
       ));
 
       $this->addElement('textarea', 'info', array(
       		'label'					=> 'Informações Adicionais',
           'placeholder'   => 'informações adicionais',
-          'class'					=> 'input-xlarge',
+          'class'					=> 'input-xxlarge',
           'rows'					=> '5'
       ));
 
      	$this->addElement('select','infraction', array(
       		'label'							=> 'Infração cometida',
-          'class'							=> 'input-xlarge',
+          'class'							=> 'input-xxlarge',
       		'MultiOptions'			=> array(
-      																	0 => '-- Selecione uma infração --',
-      																	1 => 'Aberto', 
-      																	2 => 'Processado',
-      																	3	=> 'Andamento',
-      																	4 => 'Concluído',
-      																	5	=> 'Aguardando pagamento',
-      																	6	=> 'Pagamento realizado'
+      																	0 => '-- Selecione uma infração --'
       																)
   		));
 
