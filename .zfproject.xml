@@ -92,11 +92,19 @@
           <actionMethod actionName="returnGrantee"/>
           <actionMethod actionName="calendar"/>
         </controllerFile>
+        <controllerFile controllerName="Clandestine">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="new"/>
+          <actionMethod actionName="edit"/>
+          <actionMethod actionName="view"/>
+          <actionMethod actionName="remove"/>
+        </controllerFile>
       </controllersDirectory>
       <formsDirectory>
         <formFile formName="Inspector"/>
         <formFile formName="Assessment"/>
         <formFile formName="Inspection"/>
+        <formFile formName="Clandestine"/>
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
@@ -116,6 +124,7 @@
           <dbTableFile dbTableName="GranteeAuxiliar"/>
           <dbTableFile dbTableName="GranteeReservation"/>
           <dbTableFile dbTableName="Inspection"/>
+          <dbTableFile dbTableName="Clandestine"/>
         </dbTableDirectory>
         <modelFile modelName="Address"/>
         <modelFile modelName="Grantee"/>
@@ -134,6 +143,7 @@
         <modelFile modelName="Inspector"/>
         <modelFile modelName="Assessment"/>
         <modelFile modelName="Inspection"/>
+        <modelFile modelName="Clandestine"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <servicesDirectory enabled="false"/>
@@ -320,6 +330,21 @@
             <viewScriptFile forActionName="view"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Inspection">
+            <viewScriptFile forActionName="remove"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Clandestine">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Clandestine">
+            <viewScriptFile forActionName="new"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Clandestine">
+            <viewScriptFile forActionName="edit"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Clandestine">
+            <viewScriptFile forActionName="view"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Clandestine">
             <viewScriptFile forActionName="remove"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>

@@ -76,6 +76,7 @@ class Application_Acl_Setup
         $this->_acl->addResource( new Zend_Acl_Resource('inspection') );
         $this->_acl->addResource( new Zend_Acl_Resource('survey') );
         $this->_acl->addResource( new Zend_Acl_Resource('assessment') );
+        $this->_acl->addResource( new Zend_Acl_Resource('clandestine') );
     }
 
     /**
@@ -95,6 +96,7 @@ class Application_Acl_Setup
         			->allow( 'user', 'auth', array('index', 'login') )
                     ->allow( 'user', 'administration', array('index', 'inspector', 'inspector-new', 'inspector-edit') )
                     ->allow( 'user', 'inspection', array('index', 'new', 'edit', 'view', 'remove') )
+                    ->allow( 'user', 'clandestine', array('index', 'new', 'edit', 'view', 'remove') )
                     ->allow( 'user', 'dashboard', array('index') )
                     ->allow( 'user', 'doesntallow', array('index'))
                     ->allow( 'user', 'account', array('index', 'access', 'personal', 'photo', 'password') )
