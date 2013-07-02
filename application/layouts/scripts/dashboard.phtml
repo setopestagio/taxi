@@ -64,47 +64,15 @@
           <div class="nav-collapse collapse">
             <?if($institution == 1){?>
             <ul class="nav">
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Permissionários <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="/grantee/view">Pesquisar</a></li>
-                  <li><a href="/grantee/report">Relatórios</a></li>
-                </ul>
-              </li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Auxiliares <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="/auxiliar/view">Pesquisar</a></li>
-                  <li><a href="/auxiliar/report">Relatórios</a></li>
-                </ul>
-              </li>
+              <li><a href="/grantee">Permissionários</a></li>
+              <li><a href="/auxiliar">Auxiliares</a></li>
             </ul>
             <?}?>
             <?if($institution == 2){?>
             <ul class="nav">
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Fiscalização <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Gerenciar</a></li>
-                </ul>
-              </li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Vistoria <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Cronograma</a></li>
-                  <li><a href="#">Cadastro</a></li>
-                  <li><a href="#">Pesquisa</a></li>
-                  <li><a href="#">Relatórios</a></li>
-                  <li><a href="#">Visualização</a></li>
-                </ul>
-              </li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Autuações <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Cadastro</a></li>
-                  <li><a href="#">Pesquisa</a></li>
-                </ul>
-              </li>
+              <li><a href="/inspection">Fiscalização</a></li>
+              <li><a href="/survey">Vistoria</a></li>
+              <li><a href="/assessment">Autuações</a></li>
             </ul>
             <?}?>
             <div class="btn-group pull-right">
