@@ -25,8 +25,13 @@ class AuxiliarController extends Zend_Controller_Action
         {
           $data = $this->getRequest()->getPost();
           $auxiliar = new Application_Model_Auxiliar();
-          if($auxiliar->newAuxiliar($data) > 0)
+          $auxiliarId = $auxiliar->newAuxiliar($data);
+          if($auxiliarId)
           {
+            if(isset($data['permission']) && $data['permission'] != '')
+            {
+              $auxiliar->saveToGrantee($data['permission'],$data['initialDateGrantee'],$auxiliarId);
+            }
             $this->view->success = true;
           }
           else

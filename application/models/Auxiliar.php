@@ -10,9 +10,19 @@ class Application_Model_Auxiliar
 		return $person->newPerson($data, $addressId);
 	}
 
-	public function saveToGrantee($granteeId,$aux1='',$aux2='')
+	public function saveToGrantee($permission,$startDate,$auxiliarId)
 	{
-		
+		$grantee = new Application_Model_DbTable_Grantee();
+		$granteeRow = $grantee->fetchRow($grantee->select()->where('permission = ?',$permission));
+		if($granteeRow)
+		{
+			$granteeAuxiliar = new Application_Model_DbTable_GranteeAuxiliar();
+			$granteeAuxiliarRow = $granteeAuxiliar->createRow();
+			$granteeAuxiliarRow->grantee = $granteeRow->id;
+			$granteeAuxiliarRow->auxiliar = $auxiliarId;
+			$granteeAuxiliarRow->start_date = Application_Model_General::dateToUs($startDate);
+			$granteeAuxiliarRow->save();
+		}
 	}
 
 	public function lists()
@@ -35,6 +45,7 @@ class Application_Model_Auxiliar
 						->joinInner(array('c' => 'city'),'a.city=c.id', array('name_city' => 'name'))
 						->joinLeft(array('aux' => 'grantee_auxiliar'),'aux.auxiliar=p.id',array('start_permission' => 'start_date'))
 						->joinLeft(array('g' => 'grantee'),'g.id=aux.grantee') 
+						->joinleft(array('pg' => 'person'),'g.owner=pg.id',array('name_grantee' => 'name'))
 						->joinLeft(array('v' => 'vehicle'),'v.id=g.vehicle')
 						->where('p.id = ?', $id);
 		return $person->fetchRow($select);
