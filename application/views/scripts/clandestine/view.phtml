@@ -1,0 +1,54 @@
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span3">
+      <div class="well sidebar-nav">
+        <ul class="nav nav-list">
+          <li class="nav-header">Fiscalização Rotineira</li>
+          <li><a href="/inspection/new">Cadastro</a></li>
+          <li><a href="/inspection/view">Pesquisa</a></li>
+          <li class="nav-header">Transporte Clandestino</li>
+          <li><a href="/clandestine/new">Cadastro</a></li>
+          <li class="active"><a href="/clandestine/view">Pesquisa</a></li>
+        </ul>
+      </div><!--/.well -->
+    </div><!--/span-->
+    <div class="span9">
+      <div class="page-header">
+        <h1>Pesquisa <small>gerencie aqui os dados do transporte clandestino</small></h1>
+        <form class="form-search" action="/clandestine/view" method="get">
+          <input type="text" class="input-xlarge search-query" placeholder="pesquisa" name="field" value="<?=$this->field?>">
+          <select name="optionSearch">
+            <option value="0">Pesquisar por:</option>
+            <option value="1" <?if($this->optionSearch == 1) echo "selected='selected'"; ?>>Local</option>
+            <option value="3" <?if($this->optionSearch == 2) echo "selected='selected'"; ?>>Data</option>
+          </select>
+          <button type="submit" class="btn">Pesquisar</button>
+        </form>
+        <table class="table table-hover table-bordered">
+          <thead>
+            <th>Motorista</th>
+            <th>Local</th>
+            <th>Carro</th>
+            <th>Data</th>
+          </thead>
+          <tbody>
+            <?if(is_object($this->list) && !isset($this->list->name)){
+              foreach($this->list as $clandestine){?>
+                <tr>
+                  <td><a href="/clandestine/edit/id/<?=$clandestine->clandestine_id?>"><?=$clandestine->driver?></a></td>
+                  <td><?=$clandestine->local?></td>
+                  <td></td>
+                  <td><?=$clandestine->clandestine_date?></td>
+                </tr>
+            <?} } else{?>
+              <tr>
+                <td colspan="7">Não encontrado nenhum transporte clandestino na pesquisa.</td>
+              </tr>
+            <?}?>
+          </tbody>
+        </table>
+        <?if(is_object($this->list) && !isset($this->list->name)){ echo $this->paginationControl($this->list,'Sliding','pagination.phtml'); }?>
+      </div>
+    </div><!--/span-->
+  </div><!--/row-->
+</div>
