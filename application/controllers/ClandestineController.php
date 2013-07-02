@@ -79,10 +79,6 @@ class ClandestineController extends Zend_Controller_Action
         }
         if($optionSearch == 2)
         {
-          $clandestines = $clandestine->findByPermission(urldecode($field));
-        }
-        if($optionSearch == 3)
-        {
           $clandestines = $clandestine->findByDate(urldecode($field));
         }
         $this->view->list = $pagination->generatePagination($clandestines,$page,10);
