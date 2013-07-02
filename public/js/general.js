@@ -2,7 +2,8 @@ $(document).ready(function(){
 	$(".phone").mask("(99) 9999-9999");
 	$(".cpf").mask("999.999.999-99");  
 	$(".permission").mask("aa 9999");
-	$(".zipcode").mask("99999-999");  
+	$(".zipcode").mask("99999-999");
+  $(".plate").mask("aaa 9999");    
 	$('.help').tooltip();
   $('.datepicker').datepicker({
     language: 'pt-BR',
