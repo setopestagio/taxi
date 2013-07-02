@@ -73,6 +73,10 @@
         </controllerFile>
         <controllerFile controllerName="Inspection">
           <actionMethod actionName="index"/>
+          <actionMethod actionName="new"/>
+          <actionMethod actionName="edit"/>
+          <actionMethod actionName="view"/>
+          <actionMethod actionName="remove"/>
         </controllerFile>
         <controllerFile controllerName="Survey">
           <actionMethod actionName="index"/>
@@ -92,6 +96,7 @@
       <formsDirectory>
         <formFile formName="Inspector"/>
         <formFile formName="Assessment"/>
+        <formFile formName="Inspection"/>
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
@@ -302,6 +307,18 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Survey">
             <viewScriptFile forActionName="calendar"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Inspection">
+            <viewScriptFile forActionName="new"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Inspection">
+            <viewScriptFile forActionName="edit"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Inspection">
+            <viewScriptFile forActionName="view"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Inspection">
+            <viewScriptFile forActionName="remove"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
