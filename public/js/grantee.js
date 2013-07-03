@@ -1,7 +1,7 @@
 $('#myTab a').click(function (e) {
   e.preventDefault();
   $(this).tab('show');
-})
+});
 
 $('#aux1').typeahead({
   source: function(query, process) {
@@ -182,4 +182,47 @@ $('#aux5').typeahead({
             return false;
       return ~item.toLowerCase().indexOf(this.query.toLowerCase())
     }
+});
+
+$('#operation').change(function() {
+  if($(this).val() == 1){
+    $('#transferGroup').show();
+    $('#vehicleGroup').hide();
+    $('#chassiGroup').hide();
+    $('#reservationGroup').hide();
+    $('#plateGroup').hide();
+    $('#otherGroup').hide();
+  }
+  if($(this).val() == 2){
+    $('#transferGroup').hide();
+    $('#vehicleGroup').show();
+    $('#chassiGroup').show();
+    $('#reservationGroup').hide();
+    $('#plateGroup').hide();
+    $('#otherGroup').hide();
+  }
+  if($(this).val() == 3){
+    $('#transferGroup').hide();
+    $('#vehicleGroup').hide();
+    $('#chassiGroup').hide();
+    $('#reservationGroup').show();
+    $('#plateGroup').hide();
+    $('#otherGroup').hide();
+  }
+  if($(this).val() == 4){
+    $('#transferGroup').hide();
+    $('#vehicleGroup').hide();
+    $('#chassiGroup').hide();
+    $('#reservationGroup').hide();
+    $('#plateGroup').show();
+    $('#otherGroup').hide();
+  }
+  if($(this).val() == 5){
+    $('#transferGroup').hide();
+    $('#vehicleGroup').hide();
+    $('#chassiGroup').hide();
+    $('#reservationGroup').hide();
+    $('#plateGroup').hide();
+    $('#otherGroup').show();
+  }
 });

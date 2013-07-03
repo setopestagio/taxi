@@ -45,6 +45,7 @@
           <actionMethod actionName="reservation"/>
           <actionMethod actionName="reservationLicense"/>
           <actionMethod actionName="excludeAuxiliar"/>
+          <actionMethod actionName="printCommunication"/>
         </controllerFile>
         <controllerFile controllerName="Auxiliar">
           <actionMethod actionName="index"/>
@@ -144,6 +145,7 @@
         <modelFile modelName="Assessment"/>
         <modelFile modelName="Inspection"/>
         <modelFile modelName="Clandestine"/>
+        <modelFile modelName="PrintCommunication"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <servicesDirectory enabled="false"/>
@@ -346,6 +348,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Clandestine">
             <viewScriptFile forActionName="remove"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Grantee">
+            <viewScriptFile forActionName="printCommunication"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
