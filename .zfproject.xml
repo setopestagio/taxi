@@ -74,6 +74,9 @@
           <actionMethod actionName="user"/>
           <actionMethod actionName="userNew"/>
           <actionMethod actionName="userEdit"/>
+          <actionMethod actionName="city"/>
+          <actionMethod actionName="cityNew"/>
+          <actionMethod actionName="cityEdit"/>
         </controllerFile>
         <controllerFile controllerName="Inspection">
           <actionMethod actionName="index"/>
@@ -110,6 +113,7 @@
         <formFile formName="Inspection"/>
         <formFile formName="Clandestine"/>
         <formFile formName="User"/>
+        <formFile formName="City"/>
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
@@ -130,6 +134,7 @@
           <dbTableFile dbTableName="GranteeReservation"/>
           <dbTableFile dbTableName="Inspection"/>
           <dbTableFile dbTableName="Clandestine"/>
+          <dbTableFile dbTableName="City"/>
         </dbTableDirectory>
         <modelFile modelName="Address"/>
         <modelFile modelName="Grantee"/>
@@ -151,6 +156,7 @@
         <modelFile modelName="Clandestine"/>
         <modelFile modelName="PrintCommunication"/>
         <modelFile modelName="User"/>
+        <modelFile modelName="City"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <servicesDirectory enabled="false"/>
@@ -365,6 +371,15 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Administration">
             <viewScriptFile forActionName="userEdit"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Administration">
+            <viewScriptFile forActionName="city"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Administration">
+            <viewScriptFile forActionName="cityNew"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Administration">
+            <viewScriptFile forActionName="cityEdit"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

@@ -95,7 +95,8 @@ class Application_Acl_Setup
         $this->_acl	->allow( 'user', 'index', 'index' )
         			->allow( 'user', 'auth', array('index', 'login') )
                     ->allow( 'user', 'administration', array(   'index', 'inspector', 'inspector-new', 'inspector-edit',
-                                                                'user', 'user-new', 'user-edit') )
+                                                                'user', 'user-new', 'user-edit',
+                                                                'city', 'city-new', 'city-edit') )
                     ->allow( 'user', 'inspection', array('index', 'new', 'edit', 'view', 'remove') )
                     ->allow( 'user', 'clandestine', array('index', 'new', 'edit', 'view', 'remove') )
                     ->allow( 'user', 'dashboard', array('index') )
