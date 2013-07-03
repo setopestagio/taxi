@@ -1,0 +1,50 @@
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Usuários</li>
+              <li><a href="/administration/user-new">Novo</a></li>
+              <li class="active"><a href="/administration/user">Pesquisar</a></li>
+              <li class="nav-header">Cadastros</li>
+              <li><a href="#">Cidades</a></li>
+              <li><a href="#">Autorização</a></li>
+              <li><a href="#">Combustível</a></li>
+              <li class="nav-header">Carros</li>
+              <li><a href="#">Marcas de Carro</a></li>
+              <li><a href="#">Modelos de Carro</a></li>
+              <li class="nav-header">Taxímetros</li>
+              <li><a href="#">Marcas de Táximetro</a></li>
+              <li><a href="#">Modelos de Táximetro</a></li>
+            </ul>
+          </div><!--/.well -->
+        </div><!--/span-->
+        <div class="span9">
+          <div class="page-header">
+            <h1>Pesquisa <small>gerencie aqui os dados dos usuários</small></h1>
+            <form class="form-search" action="/administration/user" method="get">
+              <input type="text" class="input-xlarge search-query" placeholder="nome do usuário" name="field" value="<?=$this->field?>">
+              <button type="submit" class="btn">Pesquisar</button>
+            </form>
+            <table class="table table-hover table-bordered">
+              <thead>
+                <th>Nome</th>
+              </thead>
+              <tbody>
+                <?if(is_object($this->list) && !isset($this->list->name)){
+                  foreach($this->list as $user){?>
+                    <tr>
+                      <td><a href="/administration/user-edit/id/<?=$user->id?>"><?=$user->name?></a></td>
+                    </tr>
+                <?} } else{?>
+                  <tr>
+                    <td colspan="7">Não encontrado nenhum fiscal na pesquisa.</td>
+                  </tr>
+                <?}?>
+              </tbody>
+            </table>
+            <?if(is_object($this->list) && !isset($this->list->name)){ echo $this->paginationControl($this->list,'Sliding','pagination.phtml'); }?>
+          </div>
+        </div><!--/span-->
+      </div><!--/row-->

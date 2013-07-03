@@ -71,6 +71,9 @@
           <actionMethod actionName="inspector"/>
           <actionMethod actionName="inspectorNew"/>
           <actionMethod actionName="inspectorEdit"/>
+          <actionMethod actionName="user"/>
+          <actionMethod actionName="userNew"/>
+          <actionMethod actionName="userEdit"/>
         </controllerFile>
         <controllerFile controllerName="Inspection">
           <actionMethod actionName="index"/>
@@ -106,6 +109,7 @@
         <formFile formName="Assessment"/>
         <formFile formName="Inspection"/>
         <formFile formName="Clandestine"/>
+        <formFile formName="User"/>
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
@@ -146,6 +150,7 @@
         <modelFile modelName="Inspection"/>
         <modelFile modelName="Clandestine"/>
         <modelFile modelName="PrintCommunication"/>
+        <modelFile modelName="User"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <servicesDirectory enabled="false"/>
@@ -351,6 +356,15 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Grantee">
             <viewScriptFile forActionName="printCommunication"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Administration">
+            <viewScriptFile forActionName="user"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Administration">
+            <viewScriptFile forActionName="userNew"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Administration">
+            <viewScriptFile forActionName="userEdit"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

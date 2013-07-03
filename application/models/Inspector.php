@@ -66,7 +66,7 @@ class Application_Model_Inspector
 	public function findByName($name)
 	{
 		$user = new Application_Model_DbTable_User();
-		return $user->fetchAll($user->select()->where('name LIKE ?', '%'.utf8_encode($name).'%')->where('institution = 2'));
+		return $user->fetchAll($user->select()->where('name LIKE ?', '%'.$name.'%')->where('institution = 2'));
 	}
 
 }
