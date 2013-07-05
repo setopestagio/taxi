@@ -44,7 +44,7 @@ class Application_Model_Auxiliar
 																																			'address_city' => 'city','zipcode') )
 						->joinInner(array('c' => 'city'),'a.city=c.id', array('name_city' => 'name'))
 						->joinLeft(array('aux' => 'grantee_auxiliar'),'aux.auxiliar=p.id AND aux.end_date IS NULL',array('start_permission' => 'start_date'))
-						->joinLeft(array('g' => 'grantee'),'g.id=aux.grantee',array('permission', 'pendecies')) 
+						->joinLeft(array('g' => 'grantee'),'g.id=aux.grantee',array('permission', 'pendencies')) 
 						->joinleft(array('pg' => 'person'),'g.owner=pg.id',array('name_grantee' => 'name'))
 						->joinLeft(array('v' => 'vehicle'),'v.id=g.vehicle')
 						->joinLeft(array('vb' => 'vehicle_brand'), 'vb.id=v.brand', array('vehicle_brand' => 'name'))
