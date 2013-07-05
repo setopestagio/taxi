@@ -55,6 +55,7 @@
           <actionMethod actionName="view"/>
           <actionMethod actionName="report"/>
           <actionMethod actionName="printLicense"/>
+          <actionMethod actionName="printData"/>
         </controllerFile>
         <controllerFile controllerName="Doesntallow">
           <actionMethod actionName="index"/>
@@ -157,6 +158,7 @@
         <modelFile modelName="PrintCommunication"/>
         <modelFile modelName="User"/>
         <modelFile modelName="City"/>
+        <modelFile modelName="PrintDataAuxiliar"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <servicesDirectory enabled="false"/>
@@ -380,6 +382,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Administration">
             <viewScriptFile forActionName="cityEdit"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Auxiliar">
+            <viewScriptFile forActionName="printData"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

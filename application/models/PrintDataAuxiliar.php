@@ -1,6 +1,6 @@
 <?php
 
-class Application_Model_PrintData
+class Application_Model_PrintDataAuxiliar
 {
 
 	protected $pdf;
@@ -475,13 +475,7 @@ class Application_Model_PrintData
         ->drawLine(546, 200, 546, 286);
 
     $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES_BOLD),11)
-                ->drawText('CONDUTOR(ES) AUXILIAR(ES)', 210, 276, 'UTF-8');
-
-    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
-                ->drawText('Nome', 80, 256, 'UTF-8');
-
-    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
-                ->drawText('Início Auxiliar', 350, 256, 'UTF-8');
+                ->drawText('', 210, 276, 'UTF-8');
 
     if(isset($auxiliars[0]))
     {

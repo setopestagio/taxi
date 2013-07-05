@@ -693,7 +693,12 @@
             <select class="input-xlarge" name="receiver" id="receiver">
             	<option>-- selecione um orgão --</option>
             	<option value="DETRAN/MG">DETRAN/MG</option>
-            	<option value="PREFEITURA DE CONFINS">PREFEITURA DE CONFINS</option>
+            	<option value="DELEGACIA DE TRÂNSITO DE CONFINS">DELEGACIA DE TRÂNSITO DE CONFINS</option>
+            	<option value="DELEGACIA DE TRÂNSITO DE CONFINS">DELEGACIA DE TRÂNSITO DE CONTAGEM</option>
+            	<option value="DELEGACIA DE TRÂNSITO DE CONFINS">DELEGACIA DE TRÂNSITO DE LAGOA SANTA</option>
+            	<option value="DELEGACIA DE TRÂNSITO DE CONFINS">DELEGACIA DE TRÂNSITO DE SANTA LUZIA</option>
+            	<option value="DELEGACIA DE TRÂNSITO DE CONFINS">DELEGACIA DE TRÂNSITO DE BETIM</option>
+            	<option value="DELEGACIA DE TRÂNSITO DE CONFINS">DELEGACIA DE TRÂNSITO DE SABARÁ</option>
             </select>
           </div>
         </div>
@@ -701,55 +706,6 @@
           <label class="control-label" for="end_date_communication">Data de validade</label>
           <div class="controls">
             <input type="text" class="input-xlarge datepicker dateMask" id="end_date_communication" name="end_date_communication" placeholder="data de retirada" data-date="<?=date('d/m/Y')?>" data-date-format="dd/mm/yyyy">
-          </div>
-        </div>
-        <div class="control-group">
-          <label class="control-label" for="operation">Operação</label>
-          <div class="controls">
-            <select class="input-xlarge" name="operation" id="operation">
-            	<option>-- selecione uma operação --</option>
-            	<option value="1">Transferência do veículo</option>
-            	<option value="2">Substituição do veículo</option>
-            	<option value="3">Reserva da permissão</option>
-            	<option value="4">Emplacamento</option>
-            	<option value="5">Outros</option>
-            </select>
-          </div>
-        </div>
-        <div class="control-group hide" id="transferGroup">
-          <label class="control-label" for="transferTo">Transferência para</label>
-          <div class="controls">
-            <input type="text" name="transferTo">
-          </div>
-        </div>
-        <div class="control-group hide" id="vehicleGroup">
-          <label class="control-label" for="vehicleModel">Veículo</label>
-          <div class="controls">
-            <input type="text" name="vehicleModel">
-          </div>
-        </div>
-        <div class="control-group hide" id="chassiGroup">
-          <label class="control-label" for="chassi">Chassi</label>
-          <div class="controls">
-            <input type="text" name="chassi">
-          </div>
-        </div>
-        <div class="control-group hide" id="reservationGroup">
-          <label class="control-label" for="reservation">Reserva</label>
-          <div class="controls">
-            <input type="text" name="reservation">
-          </div>
-        </div>
-        <div class="control-group hide" id="plateGroup">
-          <label class="control-label" for="plateOn">Emplacamento</label>
-          <div class="controls">
-            <input type="text" name="plateOn">
-          </div>
-        </div>
-        <div class="control-group hide" id="otherGroup">
-          <label class="control-label" for="other">Outros</label>
-          <div class="controls">
-            <input type="text" name="other">
           </div>
         </div>
     </div>
@@ -767,12 +723,12 @@
   </div>
   <form class="form-horizontal">
     <div class="modal-body">
-        <div class="control-group">
-          <label class="control-label" for="end_date_auxiliar1">Data de retirada</label>
-          <div class="controls">
-            <input type="text" class="input-xlarge datepicker" id="end_date_auxiliar1" name="end_date_auxiliar1" placeholder="data de retirada" data-mask="99/99/9999"  data-date="<?=date('d/m/Y')?>" data-date-format="dd/mm/yyyy">
-          </div>
+      <div class="control-group">
+        <label class="control-label" for="end_date_auxiliar1">Data de retirada</label>
+        <div class="controls">
+          <input type="text" class="input-xlarge datepicker" id="end_date_auxiliar1" name="end_date_auxiliar1" placeholder="data de retirada" data-mask="99/99/9999"  data-date="<?=date('d/m/Y')?>" data-date-format="dd/mm/yyyy">
         </div>
+      </div>
     </div>
     <div class="modal-footer">
       <button class="btn" data-dismiss="modal" aria-hidden="true">Fechar</button>

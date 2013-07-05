@@ -43,11 +43,17 @@ class Application_Model_Auxiliar
 						->joinInner(array('a' => 'address'),'a.id = p.address', array('address','number','apartament','neighborhood',
 																																			'address_city' => 'city','zipcode') )
 						->joinInner(array('c' => 'city'),'a.city=c.id', array('name_city' => 'name'))
-						->joinLeft(array('aux' => 'grantee_auxiliar'),'aux.auxiliar=p.id',array('start_permission' => 'start_date'))
-						->joinLeft(array('g' => 'grantee'),'g.id=aux.grantee') 
+						->joinLeft(array('aux' => 'grantee_auxiliar'),'aux.auxiliar=p.id AND aux.end_date IS NULL',array('start_permission' => 'start_date'))
+						->joinLeft(array('g' => 'grantee'),'g.id=aux.grantee',array('permission', 'pendecies')) 
 						->joinleft(array('pg' => 'person'),'g.owner=pg.id',array('name_grantee' => 'name'))
 						->joinLeft(array('v' => 'vehicle'),'v.id=g.vehicle')
-						->where('p.id = ?', $id);
+						->joinLeft(array('vb' => 'vehicle_brand'), 'vb.id=v.brand', array('vehicle_brand' => 'name'))
+						->joinLeft(array('f' => 'vehicle_fuel'), 'f.id=v.fuel', array('vehicle_fuel' => 'name'))
+						->joinLeft(array('tb' => 'taximeter_brand'), 'tb.id=v.taximeter_brand', array('taximeter_brand' => 'name','taximeter_brand_id' => 'id'))
+						->joinLeft(array('tm' => 'taximeter_model'), 'tm.id=v.taximeter_model', array('taximeter_model' => 'name', 'taximeter_model_id' => 'id'))
+						->joinLeft(array('vm' => 'vehicle_model'), 'vm.id=v.model', array('vehicle_model' => 'name'))
+						->where('p.id = ?', $id)
+						->order('aux.start_date DESC');
 		return $person->fetchRow($select);
 	}
 

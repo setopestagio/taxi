@@ -64,6 +64,7 @@ class AuxiliarController extends Zend_Controller_Action
         $this->view->auxiliar = $auxiliar->returnById($auxiliarId);
       }catch(Zend_Exception $e){
         $this->view->error = true;
+        echo $e->getMessage();
       }
     }
 
@@ -129,8 +130,28 @@ class AuxiliarController extends Zend_Controller_Action
       }
     }
 
+    public function printDataAction()
+    {
+      try{
+        $this->_helper->layout()->setLayout('ajax');
+        $id = $this->getRequest()->getParam('id');
+        $auxiliar = new Application_Model_Auxiliar();
+        $print = new Application_Model_PrintDataAuxiliar();
+        $auxiliarRow = $auxiliar->returnById($id);
+        $pdf = $print->createPdf($auxiliarRow);
+        header('Content-Type: application/pdf');
+        echo $pdf->render(); 
+      }catch(Zend_Exception $e){
+        die ('PDF error: ' . $e->getMessage()); 
+      }catch (Exception $e) {
+        die ('Application error: ' . $e->getMessage());    
+      }
+    }
+
 
 }
+
+
 
 
 

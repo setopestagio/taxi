@@ -107,7 +107,7 @@ class Application_Acl_Setup
                                                     'return-people', 'extract-pendencies', 'save-auxiliar', 'remove-auxiliar',
                                                     'reservation', 'reservation-license', 'exclude-auxiliar', 'print-communication') )
                     ->allow( 'user', 'auxiliar', array('index', 'new', 'edit', 'remove', 'view', 'report',
-                                                    'print-license') )
+                                                    'print-license', 'print-data') )
                     ->allow( 'user', 'vehicle', array('index', 'new', 'edit', 'remove', 'view', 'vis') )
                     ->allow( 'user', 'survey', array('index', 'calendar') )
                     ->allow( 'user', 'assessment', array('index', 'new', 'edit', 'view', 'remove', 'report') );
