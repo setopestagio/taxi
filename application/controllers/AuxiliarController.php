@@ -33,6 +33,7 @@ class AuxiliarController extends Zend_Controller_Action
               $auxiliar->saveToGrantee($data['permission'],$data['initialDateGrantee'],$auxiliarId);
             }
             $this->view->success = true;
+            $this->_redirect('/auxiliar/edit/id/'.$auxiliarId);
           }
           else
           {
