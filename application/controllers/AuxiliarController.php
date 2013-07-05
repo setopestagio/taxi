@@ -43,6 +43,8 @@ class AuxiliarController extends Zend_Controller_Action
       }catch(Zend_Exception $e){
         $this->view->error = true;
       }
+      $city = new Application_Model_DbTable_City();
+      $this->view->cities = $city->fetchAll();
     }
 
     public function editAction()
@@ -66,6 +68,8 @@ class AuxiliarController extends Zend_Controller_Action
       }catch(Zend_Exception $e){
         $this->view->error = true;
       }
+      $city = new Application_Model_DbTable_City();
+      $this->view->cities = $city->fetchAll();
     }
 
     public function removeAction()

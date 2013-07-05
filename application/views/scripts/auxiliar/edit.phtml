@@ -79,23 +79,9 @@
                         <div class="controls">
                           <select name="address_city" id="address_city" class="input-xlarge">
                             <option value="0" <?if($this->auxiliar->address_city == 0) echo 'selected="selected"'; ?>>-- Escolha o município --</option>
-                            <option value="1" <?if($this->auxiliar->address_city == 1) echo 'selected="selected"'; ?>>Belo Horizonte</option>
-                            <option value="2" <?if($this->auxiliar->address_city == 2) echo 'selected="selected"'; ?>>Sete Lagoas</option>
-                            <option value="3" <?if($this->auxiliar->address_city == 3) echo 'selected="selected"'; ?>>Contagem</option>
-                            <option value="4" <?if($this->auxiliar->address_city == 4) echo 'selected="selected"'; ?>>Betim</option>
-                            <option value="5" <?if($this->auxiliar->address_city == 5) echo 'selected="selected"'; ?>>Santa Luzia</option>
-                            <option value="6" <?if($this->auxiliar->address_city == 6) echo 'selected="selected"'; ?>>Sabará</option>
-                            <option value="7" <?if($this->auxiliar->address_city == 7) echo 'selected="selected"'; ?>>Caeté</option>
-                            <option value="8" <?if($this->auxiliar->address_city == 8) echo 'selected="selected"'; ?>>Confins</option>
-                            <option value="9" <?if($this->auxiliar->address_city == 9) echo 'selected="selected"'; ?>>Ibirité</option>
-                            <option value="10" <?if($this->auxiliar->address_city == 10) echo 'selected="selected"'; ?>>Nova Lima</option>
-                            <option value="11" <?if($this->auxiliar->address_city == 11) echo 'selected="selected"'; ?>>Rio Acima</option>
-                            <option value="12" <?if($this->auxiliar->address_city == 12) echo 'selected="selected"'; ?>>Ribeirão das Neves</option>
-                            <option value="13" <?if($this->auxiliar->address_city == 13) echo 'selected="selected"'; ?>>Raposos</option>
-                            <option value="14" <?if($this->auxiliar->address_city == 14) echo 'selected="selected"'; ?>>Vespasiano</option>
-                            <option value="15" <?if($this->auxiliar->address_city == 15) echo 'selected="selected"'; ?>>Pedro Leopoldo</option>
-                            <option value="16" <?if($this->auxiliar->address_city == 16) echo 'selected="selected"'; ?>>Juatuba</option>
-                            <option value="17" <?if($this->auxiliar->address_city == 17) echo 'selected="selected"'; ?>>Matozinhos</option>
+                            <?foreach ($this->cities as $city){ ?>
+                            <option <?if($this->auxiliar->address_city == $city->id) echo 'selected="selected"'; ?> value="<?=$city->id?>"><?=$city->name?></option>
+                            <?}?>
                           </select>
                         </div><!--/.controls -->
                     </div><!--/.control-group -->

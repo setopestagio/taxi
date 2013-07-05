@@ -39,6 +39,8 @@ class GranteeController extends Zend_Controller_Action
       }
       $vehicleModel = new Application_Model_DbTable_VehicleModel();
       $this->view->vehicleModel = $vehicleModel->fetchAll($vehicleModel->select()->limit('name'));
+      $city = new Application_Model_DbTable_City();
+      $this->view->cities = $city->fetchAll();
     }
 
     public function editAction()
@@ -77,6 +79,8 @@ class GranteeController extends Zend_Controller_Action
       }
       $vehicleModel = new Application_Model_DbTable_VehicleModel();
       $this->view->vehicleModel = $vehicleModel->fetchAll($vehicleModel->select()->limit('name'));
+      $city = new Application_Model_DbTable_City();
+      $this->view->cities = $city->fetchAll();
     }
 
     public function removeAction()

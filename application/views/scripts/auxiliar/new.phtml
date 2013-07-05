@@ -31,21 +31,9 @@
                         <div class="controls">
                           <select name="city" id="city" class="input-xlarge">
                             <option value="0">-- Escolha o município --</option>
-                            <option value="1">Belo Horizonte</option>
-                            <option value="2">Sete Lagoas</option>
-                            <option value="3">Contagem</option>
-                            <option value="4">Betim</option>
-                            <option value="5">Santa Luzia</option>
-                            <option value="6">Sabará</option>
-                            <option value="7">Caeté</option>
-                            <option value="8">Confins</option>
-                            <option value="9">Ibirité</option>
-                            <option value="10">Nova Lima</option>
-                            <option value="11">Rio Acima</option>
-                            <option value="12">Ribeirão das Neves</option>
-                            <option value="13">Raposos</option>
-                            <option value="14">Vespasiano</option>
-                            <option value="15">Pedro Leopoldo</option>
+                            <?foreach ($this->cities as $city){ ?>
+                            <option value="<?=$city->id?>"><?=$city->name?></option>
+                            <?}?>
                           </select>
                         </div><!--/.controls -->
                     </div><!--/.control-group -->
@@ -93,21 +81,9 @@
                         <div class="controls">
                             <select name="address_city" id="address_city" class="input-xlarge">
                               <option value="0">-- Escolha o município --</option>
-                              <option value="1">Belo Horizonte</option>
-                              <option value="2">Sete Lagoas</option>
-                              <option value="3">Contagem</option>
-                              <option value="4">Betim</option>
-                              <option value="5">Santa Luzia</option>
-                              <option value="6">Sabará</option>
-                              <option value="7">Caeté</option>
-                              <option value="8">Confins</option>
-                              <option value="9">Ibirité</option>
-                              <option value="10">Nova Lima</option>
-                              <option value="11">Rio Acima</option>
-                              <option value="12">Ribeirão das Neves</option>
-                              <option value="13">Raposos</option>
-                              <option value="14">Vespasiano</option>
-                              <option value="15">Pedro Leopoldo</option>
+                              <?foreach ($this->cities as $city){ ?>
+                              <option value="<?=$city->id?>"><?=$city->name?></option>
+                              <?}?>
                             </select>
                         </div><!--/.controls -->
                     </div><!--/.control-group -->
