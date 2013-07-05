@@ -140,7 +140,7 @@ class GranteeController extends Zend_Controller_Action
 
     public function visAction()
     {
-        // action body
+      $this->_helper->layout()->setLayout('vis');
     }
 
     public function printLicenseAction()
