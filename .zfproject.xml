@@ -78,6 +78,18 @@
           <actionMethod actionName="city"/>
           <actionMethod actionName="cityNew"/>
           <actionMethod actionName="cityEdit"/>
+          <actionMethod actionName="brandVehicle"/>
+          <actionMethod actionName="brandVehicleNew"/>
+          <actionMethod actionName="brandVehicleEdit"/>
+          <actionMethod actionName="modelVehicle"/>
+          <actionMethod actionName="modelVehicleNew"/>
+          <actionMethod actionName="modelVehicleEdit"/>
+          <actionMethod actionName="modelTaximeter"/>
+          <actionMethod actionName="modelTaximeterNew"/>
+          <actionMethod actionName="modelTaximeterEdit"/>
+          <actionMethod actionName="brandTaximeter"/>
+          <actionMethod actionName="brandTaximeterNew"/>
+          <actionMethod actionName="brandTaximeterEdit"/>
         </controllerFile>
         <controllerFile controllerName="Inspection">
           <actionMethod actionName="index"/>
@@ -115,6 +127,10 @@
         <formFile formName="Clandestine"/>
         <formFile formName="User"/>
         <formFile formName="City"/>
+        <formFile formName="VehicleBrand"/>
+        <formFile formName="VehicleModel"/>
+        <formFile formName="TaximeterModel"/>
+        <formFile formName="TaximeterBrand"/>
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
@@ -136,6 +152,9 @@
           <dbTableFile dbTableName="Inspection"/>
           <dbTableFile dbTableName="Clandestine"/>
           <dbTableFile dbTableName="City"/>
+          <dbTableFile dbTableName="VehicleBrand"/>
+          <dbTableFile dbTableName="TaximeterBrand"/>
+          <dbTableFile dbTableName="TaximeterModel"/>
         </dbTableDirectory>
         <modelFile modelName="Address"/>
         <modelFile modelName="Grantee"/>
@@ -159,6 +178,10 @@
         <modelFile modelName="User"/>
         <modelFile modelName="City"/>
         <modelFile modelName="PrintDataAuxiliar"/>
+        <modelFile modelName="VehicleBrand"/>
+        <modelFile modelName="VehicleModel"/>
+        <modelFile modelName="TaximeterBrand"/>
+        <modelFile modelName="TaximeterModel"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <servicesDirectory enabled="false"/>
@@ -385,6 +408,42 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Auxiliar">
             <viewScriptFile forActionName="printData"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Administration">
+            <viewScriptFile forActionName="brandVehicle"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Administration">
+            <viewScriptFile forActionName="brandVehicleNew"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Administration">
+            <viewScriptFile forActionName="brandVehicleEdit"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Administration">
+            <viewScriptFile forActionName="modelVehicle"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Administration">
+            <viewScriptFile forActionName="modelVehicleNew"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Administration">
+            <viewScriptFile forActionName="modelVehicleEdit"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Administration">
+            <viewScriptFile forActionName="modelTaximeter"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Administration">
+            <viewScriptFile forActionName="modelTaximeterNew"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Administration">
+            <viewScriptFile forActionName="modelTaximeterEdit"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Administration">
+            <viewScriptFile forActionName="brandTaximeter"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Administration">
+            <viewScriptFile forActionName="brandTaximeterNew"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Administration">
+            <viewScriptFile forActionName="brandTaximeterEdit"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

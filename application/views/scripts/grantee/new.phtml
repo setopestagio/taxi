@@ -243,16 +243,9 @@
 					              <div class="controls">
 				                   <select name="brand">
 					                 	<option value="0">-- Selecione uma marca --</option>
-					                 	 <option value="1">Citroën</option>
-														 <option value="2">GM</option>
-														 <option value="3">Fiat</option>
-														 <option value="4">Ford</option>
-														 <option value="5">Honda</option>
-														 <option value="6">Peugeot</option>
-														 <option value="7">Renault</option>
-														 <option value="8">Toyota</option>
-														 <option value="9">Volkswagen</option>
-														 <option value="10">Citroën</option>
+					                 	 <?foreach($this->vehicleBrand as $vehicleBrand){?>
+					                 		<option value="<?=$vehicleBrand->id?>"><?=$vehicleBrand->name?></option>
+					                 	<?}?>
 					                 </select>
 					              </div><!--/.controls -->
 					          </div><!--/.control-group -->
@@ -310,29 +303,9 @@
 					              <div class="controls">
 				                   <select name="taximeter_model">
 					                 	<option value="0">-- Selecione um modelo --</option>
-					                 	<option value="1">B-3</option>
-					                 	<option value="2">Cap-z</option>
-					                 	<option value="3">Dijotax</option>
-					                 	<option value="4">Dijotax 31</option>
-					                 	<option value="5">Fib/97</option>
-					                 	<option value="6">Fip</option>
-					                 	<option value="7">Fip LL</option>
-					                 	<option value="8">Micro XT</option>
-					                 	<option value="9">Mig LLL</option>
-					                 	<option value="10">Mini Mig</option>
-					                 	<option value="11">Sm 2000</option>
-					                 	<option value="12">XI-5</option>
-					                 	<option value="13">XT-5</option>
-					                 	<option value="14">XT-5 Mini</option>
-					                 	<option value="16">6 AT</option>
-					                 	<option value="17">CAP 2</option>
-					                 	<option value="18">15 Mini</option>
-					                 	<option value="19">6 II</option>
-					                 	<option value="20">Fib At</option>
-					                 	<option value="21">1 Milenium</option>
-					                 	<option value="22">Uel/ Vr 11</option>
-					                 	<option value="23">1 Printer</option>
-					                 	<option value="24">Slim</option>
+					                 	<?foreach($this->modelTaximeter as $modelTaximeter){?>
+					                 		<option value="<?=$modelTaximeter->id?>"><?=$modelTaximeter->name?></option>
+					                 	<?}?>
 					                 </select>
 					              </div><!--/.controls -->
 					          </div><!--/.control-group -->
@@ -341,19 +314,9 @@
 					              <div class="controls">
 				                   <select name="taximeter_brand">
 					                 	<option value="0">-- Selecione uma marca --</option>
-					                 	<option value="1">Arco</option>
-					                 	<option value="2">Bossa</option>
-					                 	<option value="3">Brasilcotax</option>
-					                 	<option value="4">Capelinha</option>
-					                 	<option value="5">D. Bell</option>
-					                 	<option value="6">Digitax</option>
-					                 	<option value="7">Fumaça</option>
-					                 	<option value="8">Metron</option>
-					                 	<option value="9">Micromac</option>
-					                 	<option value="10">Mig</option>
-					                 	<option value="11">Silmar</option>
-					                 	<option value="12">União</option>
-					                 	<option value="13">Univertax</option>
+					                 	<?foreach($this->brandTaximeter as $brandTaximeter){?>
+					                 		<option value="<?=$brandTaximeter->id?>"><?=$brandTaximeter->name?></option>
+					                 	<?}?>
 					                 </select>
 					              </div><!--/.controls -->
 					          </div><!--/.control-group -->

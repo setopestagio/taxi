@@ -39,8 +39,14 @@ class GranteeController extends Zend_Controller_Action
       }
       $vehicleModel = new Application_Model_DbTable_VehicleModel();
       $this->view->vehicleModel = $vehicleModel->fetchAll($vehicleModel->select()->limit('name'));
+      $vehicleBrand = new Application_Model_DbTable_VehicleBrand();
+      $this->view->vehicleBrand = $vehicleBrand->fetchAll();
       $city = new Application_Model_DbTable_City();
       $this->view->cities = $city->fetchAll();
+      $modelTaximeter = new Application_Model_DbTable_TaximeterModel();
+      $this->view->modelTaximeter = $modelTaximeter->fetchAll();
+      $brandTaximeter = new Application_Model_DbTable_TaximeterModel();
+      $this->view->brandTaximeter = $brandTaximeter->fetchAll();
     }
 
     public function editAction()
@@ -79,8 +85,14 @@ class GranteeController extends Zend_Controller_Action
       }
       $vehicleModel = new Application_Model_DbTable_VehicleModel();
       $this->view->vehicleModel = $vehicleModel->fetchAll($vehicleModel->select()->limit('name'));
+      $vehicleBrand = new Application_Model_DbTable_VehicleBrand();
+      $this->view->vehicleBrand = $vehicleBrand->fetchAll();
       $city = new Application_Model_DbTable_City();
       $this->view->cities = $city->fetchAll();
+      $modelTaximeter = new Application_Model_DbTable_TaximeterModel();
+      $this->view->modelTaximeter = $modelTaximeter->fetchAll();
+      $brandTaximeter = new Application_Model_DbTable_TaximeterModel();
+      $this->view->brandTaximeter = $brandTaximeter->fetchAll();
     }
 
     public function removeAction()

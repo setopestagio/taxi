@@ -96,7 +96,11 @@ class Application_Acl_Setup
         			->allow( 'user', 'auth', array('index', 'login') )
                     ->allow( 'user', 'administration', array(   'index', 'inspector', 'inspector-new', 'inspector-edit',
                                                                 'user', 'user-new', 'user-edit',
-                                                                'city', 'city-new', 'city-edit') )
+                                                                'city', 'city-new', 'city-edit',
+                                                                'model-vehicle', 'model-vehicle-new', 'model-vehicle-edit',
+                                                                'brand-vehicle', 'brand-vehicle-new', 'brand-vehicle-edit',
+                                                                'model-taximeter', 'model-taximeter-new', 'model-taximeter-edit',
+                                                                'brand-taximeter', 'brand-taximeter-new', 'brand-taximeter-edit') )
                     ->allow( 'user', 'inspection', array('index', 'new', 'edit', 'view', 'remove') )
                     ->allow( 'user', 'clandestine', array('index', 'new', 'edit', 'view', 'remove') )
                     ->allow( 'user', 'dashboard', array('index') )

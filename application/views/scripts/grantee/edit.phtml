@@ -263,16 +263,9 @@
 							              <div class="controls">
 						                   <select name="brand">
 							                 	 <option value="0" <?if($this->grantee->brand == 0) echo 'selected="selected"'; ?>>-- Selecione uma marca --</option>
-							                 	 <option value="1" <?if($this->grantee->brand == 1) echo 'selected="selected"'; ?>>Citroën</option>
-																 <option value="2" <?if($this->grantee->brand == 2) echo 'selected="selected"'; ?>>GM</option>
-																 <option value="3" <?if($this->grantee->brand == 3) echo 'selected="selected"'; ?>>Fiat</option>
-																 <option value="4" <?if($this->grantee->brand == 4) echo 'selected="selected"'; ?>>Ford</option>
-																 <option value="5" <?if($this->grantee->brand == 5) echo 'selected="selected"'; ?>>Honda</option>
-																 <option value="6" <?if($this->grantee->brand == 6) echo 'selected="selected"'; ?>>Peugeot</option>
-																 <option value="7" <?if($this->grantee->brand == 7) echo 'selected="selected"'; ?>>Renault</option>
-																 <option value="8" <?if($this->grantee->brand == 8) echo 'selected="selected"'; ?>>Toyota</option>
-																 <option value="9" <?if($this->grantee->brand == 9) echo 'selected="selected"'; ?>>Volkswagen</option>
-																 <option value="10" <?if($this->grantee->brand == 10) echo 'selected="selected"'; ?>>Citroën</option>
+								                 	<?foreach($this->vehicleBrand as $vehicleBrand){?>
+								                 		<option value="<?=$vehicleBrand->id?>" <?if($this->grantee->brand == $vehicleBrand->id) echo 'selected="selected"';?>><?=$vehicleBrand->name?></option>
+								                 	<?}?>
 							                 </select>
 							              </div><!--/.controls -->
 							          </div><!--/.control-group -->
@@ -330,29 +323,9 @@
 							              <div class="controls">
 						                   <select name="taximeter_model">
 							                 	<option value="0" <?if($this->grantee->taximeter_model_id == 0) echo 'selected="selected"'; ?>>-- Selecione um modelo --</option>
-							                 	<option value="1" <?if($this->grantee->taximeter_model_id == 1) echo 'selected="selected"'; ?>>B-3</option>
-							                 	<option value="2" <?if($this->grantee->taximeter_model_id == 2) echo 'selected="selected"'; ?>>Cap-z</option>
-							                 	<option value="3" <?if($this->grantee->taximeter_model_id == 3) echo 'selected="selected"'; ?>>Dijotax</option>
-							                 	<option value="4" <?if($this->grantee->taximeter_model_id == 4) echo 'selected="selected"'; ?>>Dijotax 31</option>
-							                 	<option value="5" <?if($this->grantee->taximeter_model_id == 5) echo 'selected="selected"'; ?>>Fib/97</option>
-							                 	<option value="6" <?if($this->grantee->taximeter_model_id == 6) echo 'selected="selected"'; ?>>Fip</option>
-							                 	<option value="7" <?if($this->grantee->taximeter_model_id == 7) echo 'selected="selected"'; ?>>Fip LL</option>
-							                 	<option value="8" <?if($this->grantee->taximeter_model_id == 8) echo 'selected="selected"'; ?>>Micro XT</option>
-							                 	<option value="9" <?if($this->grantee->taximeter_model_id == 9) echo 'selected="selected"'; ?>>Mig LLL</option>
-							                 	<option value="10" <?if($this->grantee->taximeter_model_id == 10) echo 'selected="selected"'; ?>>Mini Mig</option>
-							                 	<option value="11" <?if($this->grantee->taximeter_model_id == 11) echo 'selected="selected"'; ?>>Sm 2000</option>
-							                 	<option value="12" <?if($this->grantee->taximeter_model_id == 12) echo 'selected="selected"'; ?>>XI-5</option>
-							                 	<option value="13" <?if($this->grantee->taximeter_model_id == 13) echo 'selected="selected"'; ?>>XT-5</option>
-							                 	<option value="14" <?if($this->grantee->taximeter_model_id == 14) echo 'selected="selected"'; ?>>XT-5 Mini</option>
-							                 	<option value="16" <?if($this->grantee->taximeter_model_id == 16) echo 'selected="selected"'; ?>>6 AT</option>
-							                 	<option value="17" <?if($this->grantee->taximeter_model_id == 17) echo 'selected="selected"'; ?>>CAP 2</option>
-							                 	<option value="18" <?if($this->grantee->taximeter_model_id == 18) echo 'selected="selected"'; ?>>15 Mini</option>
-							                 	<option value="19" <?if($this->grantee->taximeter_model_id == 19) echo 'selected="selected"'; ?>>6 II</option>
-							                 	<option value="20" <?if($this->grantee->taximeter_model_id == 20) echo 'selected="selected"'; ?>>Fib At</option>
-							                 	<option value="21" <?if($this->grantee->taximeter_model_id == 21) echo 'selected="selected"'; ?>>1 Milenium</option>
-							                 	<option value="22" <?if($this->grantee->taximeter_model_id == 22) echo 'selected="selected"'; ?>>Uel/ Vr 11</option>
-							                 	<option value="23" <?if($this->grantee->taximeter_model_id == 23) echo 'selected="selected"'; ?>>1 Printer</option>
-							                 	<option value="24" <?if($this->grantee->taximeter_model_id == 24) echo 'selected="selected"'; ?>>Slim</option>
+							                 	<?foreach($this->modelTaximeter as $modelTaximeter){?>
+							                 		<option <?if($this->grantee->taximeter_model_id == $modelTaximeter->id) echo 'selected="selected"'; ?> value="<?=$modelTaximeter->id?>"><?=$modelTaximeter->name?></option>
+							                 	<?}?>
 							                 </select>
 							              </div><!--/.controls -->
 							          </div><!--/.control-group -->
@@ -361,19 +334,9 @@
 							              <div class="controls">
 						                   <select name="taximeter_brand">
 							                 	<option value="0" <?if($this->grantee->taximeter_brand_id == 0) echo 'selected="selected"'; ?>>-- Selecione uma marca --</option>
-							                 	<option value="1" <?if($this->grantee->taximeter_brand_id == 1) echo 'selected="selected"'; ?>>Arco</option>
-							                 	<option value="2" <?if($this->grantee->taximeter_brand_id == 2) echo 'selected="selected"'; ?>>Bossa</option>
-							                 	<option value="3" <?if($this->grantee->taximeter_brand_id == 3) echo 'selected="selected"'; ?>>Brasilcotax</option>
-							                 	<option value="4" <?if($this->grantee->taximeter_brand_id == 4) echo 'selected="selected"'; ?>>Capelinha</option>
-							                 	<option value="5" <?if($this->grantee->taximeter_brand_id == 5) echo 'selected="selected"'; ?>>D. Bell</option>
-							                 	<option value="6" <?if($this->grantee->taximeter_brand_id == 6) echo 'selected="selected"'; ?>>Digitax</option>
-							                 	<option value="7" <?if($this->grantee->taximeter_brand_id == 7) echo 'selected="selected"'; ?>>Fumaça</option>
-							                 	<option value="8" <?if($this->grantee->taximeter_brand_id == 8) echo 'selected="selected"'; ?>>Metron</option>
-							                 	<option value="9" <?if($this->grantee->taximeter_brand_id == 9) echo 'selected="selected"'; ?>>Micromac</option>
-							                 	<option value="10" <?if($this->grantee->taximeter_brand_id == 10) echo 'selected="selected"'; ?>>Mig</option>
-							                 	<option value="11" <?if($this->grantee->taximeter_brand_id == 11) echo 'selected="selected"'; ?>>Silmar</option>
-							                 	<option value="12" <?if($this->grantee->taximeter_brand_id == 12) echo 'selected="selected"'; ?>>União</option>
-							                 	<option value="13" <?if($this->grantee->taximeter_brand_id == 13) echo 'selected="selected"'; ?>>Univertax</option>
+							                 	<?foreach($this->brandTaximeter as $brandTaximeter){?>
+							                 		<option <?if($this->grantee->taximeter_brand_id == $brandTaximeter->id) echo 'selected="selected"'; ?> value="<?=$brandTaximeter->id?>"><?=$brandTaximeter->name?></option>
+							                 	<?}?>
 							                 </select>
 							              </div><!--/.controls -->
 							          </div><!--/.control-group -->

@@ -9,7 +9,7 @@
               <li><a href="/administration/user">Pesquisar</a></li>
               <li class="nav-header">Cidades</li>
               <li><a href="/administration/city-new">Novo</a></li>
-              <li class="active"><a href="/administration/city">Pesquisar</a></li>
+              <li><a href="/administration/city">Pesquisar</a></li>
               <li class="nav-header">Modelos de Carro</li>
               <li><a href="/administration/model-vehicle-new">Novo</a></li>
               <li><a href="/administration/model-vehicle">Pesquisar</a></li>
@@ -21,14 +21,14 @@
               <li><a href="/administration/model-taximeter">Pesquisar</a></li>
               <li class="nav-header">Marcas de Táximetro</li>
               <li><a href="/administration/brand-taximeter-new">Novo</a></li>
-              <li><a href="/administration/brand-taximeter">Pesquisar</a></li>
+              <li class="active"><a href="/administration/brand-taximeter">Pesquisar</a></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
-        <div class="span9">
+        <div class="span9">   
           <div class="page-header">
-            <h1>Pesquisa <small>gerencie aqui os dados dos usuários</small></h1>
-            <form class="form-search" action="/administration/city" method="get">
+            <h1>Pesquisa <small>gerencie aqui as marcas de taxímetros</small></h1>
+            <form class="form-search" action="/administration/brand-taximeter" method="get">
               <input type="text" class="input-xlarge search-query" placeholder="nome do usuário" name="field" value="<?=$this->field?>">
               <button type="submit" class="btn">Pesquisar</button>
             </form>
@@ -38,13 +38,13 @@
               </thead>
               <tbody>
                 <?if(is_object($this->list) && !isset($this->list->name)){
-                  foreach($this->list as $city){?>
+                  foreach($this->list as $brandTaximeter){?>
                     <tr>
-                      <td><a href="/administration/city-edit/id/<?=$city->id?>"><?=$city->name?></a></td>
+                      <td><a href="/administration/brand-taximeter-edit/id/<?=$brandTaximeter->id?>"><?=$brandTaximeter->name?></a></td>
                     </tr>
                 <?} } else{?>
                   <tr>
-                    <td colspan="7">Não encontrado nenhum fiscal na pesquisa.</td>
+                    <td colspan="7">Não encontrado nenhum modelo de carro na pesquisa.</td>
                   </tr>
                 <?}?>
               </tbody>
