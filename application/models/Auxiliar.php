@@ -39,9 +39,9 @@ class Application_Model_Auxiliar
 		$person = new Application_Model_DbTable_Person();
 		$select = $person->select()->setIntegrityCheck(false);
 		$select	->from(array('p' => 'person'),array('id_auxiliar' => 'id','name','phone','mobile','email','rg','rg_issuer','cpf','cnh',
-																										'cnh_issuer', 'iapas', 'voter', 'voter_zone', 'army', 'army_issuer','info') )
+																	'cnh_issuer', 'iapas', 'voter', 'voter_zone', 'army', 'army_issuer','info') )
 						->joinInner(array('a' => 'address'),'a.id = p.address', array('address','number','apartament','neighborhood',
-																																			'address_city' => 'city','zipcode') )
+																	'address_city' => 'city','zipcode') )
 						->joinInner(array('c' => 'city'),'a.city=c.id', array('name_city' => 'name'))
 						->joinLeft(array('aux' => 'grantee_auxiliar'),'aux.auxiliar=p.id AND aux.end_date IS NULL',array('start_permission' => 'start_date', 'end_permission' => 'end_date'))
 						->joinLeft(array('g' => 'grantee'),'g.id=aux.grantee',array('permission', 'pendencies')) 
@@ -76,7 +76,7 @@ class Application_Model_Auxiliar
 		$select = $person->select()->setIntegrityCheck(false);
 		$select	->from(array('p' => 'person') )
 						->joinInner(array('a' => 'address'),'a.id = p.address', array('address','number','apartament','neighborhood',
-																																			'address_city' => 'city','zipcode') )
+															'address_city' => 'city','zipcode') )
 						->joinInner(array('c' => 'city'),'a.city=c.id', array('name_city' => 'name'))
 						->where('p.cpf = ?',$cpf);
 		return $person->fetchAll($select);
@@ -88,7 +88,7 @@ class Application_Model_Auxiliar
 		$select = $person->select()->setIntegrityCheck(false);
 		$select	->from(array('p' => 'person') )
 						->joinInner(array('a' => 'address'),'a.id = p.address', array('address','number','apartament','neighborhood',
-																																			'address_city' => 'city','zipcode') )
+															'address_city' => 'city','zipcode') )
 						->joinInner(array('c' => 'city'),'a.city=c.id', array('name_city' => 'name'))
 						->where('p.name LIKE ?','%'.$name.'%');
 		return $person->fetchAll($select);

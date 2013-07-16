@@ -46,6 +46,7 @@ class Application_Model_Person
 		$editPerson->voter_zone = $data['voter_zone'];
 		$editPerson->army = $data['army'];
 		$editPerson->army_issuer = $data['army_issuer'];
+		$editPerson->info = $data['info'];
 		return $editPerson->save();
 	}
 }
