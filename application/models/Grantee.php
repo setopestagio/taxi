@@ -41,13 +41,13 @@ class Application_Model_Grantee
 		$grantee = new Application_Model_DbTable_Grantee();
 		$select = $grantee->select()->setIntegrityCheck(false);
 		$select	->from(array('g' => 'grantee'), array('grantee_id' => 'id', 'permission','authorization','city',
-																								'start_permission','end_permission', 'info', 'pendencies') )
+																					'start_permission','end_permission', 'info_grantee' => 'info', 'pendencies') )
 						->joinInner(array('p' => 'person'), 'p.id=g.owner', array('permission', 'name', 'name_grantee' => 'name', 'address',
-																																			'phone', 'mobile', 'email', 'rg', 'rg_issuer', 'cpf',
-																																			'cnh', 'cnh_issuer', 'iapas', 'voter', 'voter_zone', 'army',
-																																			'army_issuer', 'info'))
+																					'phone', 'mobile', 'email', 'rg', 'rg_issuer', 'cpf',
+																					'cnh', 'cnh_issuer', 'iapas', 'voter', 'voter_zone', 'army',
+																					'army_issuer', 'info'))
 						->joinInner(array('a' => 'address'),'a.id = p.address', array('address','number','apartament','neighborhood',
-																																			'address_city' => 'city','zipcode') )
+																					'address_city' => 'city','zipcode') )
 						->joinInner(array('v' => 'vehicle'), 'v.id=g.vehicle')
 						->joinInner(array('c' => 'city'),'g.city=c.id', array('name_city' => 'name'))
 						->joinInner(array('vb' => 'vehicle_brand'), 'vb.id=v.brand', array('vehicle_brand' => 'name'))
