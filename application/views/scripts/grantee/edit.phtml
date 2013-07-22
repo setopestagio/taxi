@@ -50,7 +50,7 @@
 							          <div class="control-group">
 							              <label class="control-label" for="permission">Permissão</label>
 							              <div class="controls">
-							                  <input type="text" name="permission" value="<?=$this->grantee->permission?>" class="input-xlarge permission" id="permission" placeholder="número da permissão">
+							                  <input type="text" name="permission" value="<?=$this->grantee->permission?>" class="input-xlarge" id="permission" placeholder="número da permissão">
 							              </div><!--/.controls -->
 							          </div><!--/.control-group -->
 							          <div class="control-group">
@@ -644,7 +644,67 @@
         <div class="control-group">
           <label class="control-label" for="end_date_communication">Data de validade</label>
           <div class="controls">
-            <input type="text" class="input-xlarge datepicker dateMask" id="end_date_communication" name="end_date_communication" placeholder="data de retirada" data-date="<?=date('d/m/Y')?>" data-date-format="dd/mm/yyyy">
+            <input type="text" class="input-xlarge datepicker dateMask" id="end_date_communication" name="end_date_communication" placeholder="data de validade" data-date="<?=date('d/m/Y')?>" data-date-format="dd/mm/yyyy">
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="operation">Operação</label>
+          <div class="controls">
+            <select class="input-xlarge" name="operation" id="operation">
+            	<option>-- selecione uma operação --</option>
+            	<option value="1">TRANSFERÊNCIA DO VEÍCULO</option>
+            	<option value="2">SUBSTITUIÇÃO DO VEÍCULO</option>
+            	<option value="3">RESERVA DA PERMISSÃO</option>
+            	<option value="4">EMPLACAMENTO</option>
+            	<option value="5">OUTROS</option>
+            </select>
+          </div>
+        </div>
+        <div class="control-group hide" id="transferGroup">
+    	  <label class="control-label" for="transfer">Nome</label>
+          <div class="controls">
+            <input type="text" class="input-xlarge" id="transfer" name="transfer" placeholder="nome do permissionário">
+          </div>
+        </div>
+        <div class="control-group hide" id="vehicleGroup">
+    	  <label class="control-label" for="brandCar">Modelo</label>
+          <div class="controls">
+            <select name="brandCar">
+         		<option value="0">-- Selecione um modelo --</option>
+             	<?foreach($this->vehicleModel as $vehicleModel){?>
+         		<option value="<?=$vehicleModel->name?>"><?=$vehicleModel->name?></option>
+             	<?}?>
+             </select>
+          </div>
+        </div>
+        <div class="control-group hide" id="chassiGroup">
+    	  <label class="control-label" for="chassi">Chassi</label>
+          <div class="controls">
+            <input type="text" class="input-xlarge" id="chassi" name="chassi" placeholder="chassi do veículo">
+          </div>
+        </div>
+        <div class="control-group hide" id="reservationGroupStart">
+    	  <label class="control-label" for="start_date_reservation">Data Inicial</label>
+          <div class="controls">
+            <input type="text" class="input-xlarge datepicker dateMask" id="start_date_reservation" name="start_date_reservation" placeholder="data de inicio" data-date="<?=date('d/m/Y')?>" data-date-format="dd/mm/yyyy">
+          </div>
+        </div>
+        <div class="control-group hide" id="reservationGroupEnd">
+    	  <label class="control-label" for="end_date_reservation">Data de Fim</label>
+          <div class="controls">
+            <input type="text" class="input-xlarge datepicker dateMask" id="end_date_reservation" name="end_date_reservation" placeholder="data de fim" data-date="<?=date('d/m/Y')?>" data-date-format="dd/mm/yyyy">
+          </div>
+        </div>
+        <div class="control-group hide" id="plateGroup">
+    	  <label class="control-label" for="plate">Placa</label>
+          <div class="controls">
+            <input type="text" class="input-xlarge" id="plate" name="plate" placeholder="nova placa">
+          </div>
+        </div>
+        <div class="control-group hide" id="otherGroup">
+    	  <label class="control-label" for="other">Outro</label>
+          <div class="controls">
+            <input type="text" class="input-xlarge" id="other" name="other" placeholder="outro motivo">
           </div>
         </div>
     </div>

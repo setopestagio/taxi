@@ -189,7 +189,8 @@ $('#operation').change(function() {
     $('#transferGroup').show();
     $('#vehicleGroup').hide();
     $('#chassiGroup').hide();
-    $('#reservationGroup').hide();
+    $('#reservationGroupStart').hide();
+    $('#reservationGroupEnd').hide();
     $('#plateGroup').hide();
     $('#otherGroup').hide();
   }
@@ -197,7 +198,8 @@ $('#operation').change(function() {
     $('#transferGroup').hide();
     $('#vehicleGroup').show();
     $('#chassiGroup').show();
-    $('#reservationGroup').hide();
+    $('#reservationGroupStart').hide();
+    $('#reservationGroupEnd').hide();
     $('#plateGroup').hide();
     $('#otherGroup').hide();
   }
@@ -205,7 +207,8 @@ $('#operation').change(function() {
     $('#transferGroup').hide();
     $('#vehicleGroup').hide();
     $('#chassiGroup').hide();
-    $('#reservationGroup').show();
+    $('#reservationGroupStart').show();
+    $('#reservationGroupEnd').show();
     $('#plateGroup').hide();
     $('#otherGroup').hide();
   }
@@ -213,7 +216,8 @@ $('#operation').change(function() {
     $('#transferGroup').hide();
     $('#vehicleGroup').hide();
     $('#chassiGroup').hide();
-    $('#reservationGroup').hide();
+    $('#reservationGroupStart').hide();
+    $('#reservationGroupEnd').hide();
     $('#plateGroup').show();
     $('#otherGroup').hide();
   }
@@ -221,7 +225,8 @@ $('#operation').change(function() {
     $('#transferGroup').hide();
     $('#vehicleGroup').hide();
     $('#chassiGroup').hide();
-    $('#reservationGroup').hide();
+    $('#reservationGroupStart').hide();
+    $('#reservationGroupEnd').hide();
     $('#plateGroup').hide();
     $('#otherGroup').show();
   }

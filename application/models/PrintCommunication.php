@@ -197,6 +197,15 @@ class Application_Model_PrintCommunication
         ->drawLine(90, 520, 90, 530);
     $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
                 ->drawText('1', 100, 522, 'UTF-8');
+    if($data['operation'] == 1)
+    {
+        $this->page->setLineWidth(0.5)
+            ->drawLine(80, 520, 90 , 530);
+        $this->page->setLineWidth(0.5)
+            ->drawLine(80, 530, 90, 520);
+        $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES_BOLD),11)
+                ->drawText($data['transfer'], 100, 440, 'UTF-8');
+    }
 
     $this->page->setLineWidth(0.5)
         ->drawLine(170, 520, 180 , 520);
@@ -208,6 +217,17 @@ class Application_Model_PrintCommunication
         ->drawLine(180, 520, 180, 530);
     $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
                 ->drawText('2', 190, 522, 'UTF-8');
+    if($data['operation'] == 2)
+    {
+        $this->page->setLineWidth(0.5)
+            ->drawLine(170, 520, 180 , 530);
+        $this->page->setLineWidth(0.5)
+            ->drawLine(170, 530, 180, 520);
+        $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES_BOLD),11)
+                ->drawText($data['brandCar'], 115, 360, 'UTF-8');
+        $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES_BOLD),11)
+                ->drawText($data['chassi'], 385, 360, 'UTF-8');
+    }
 
     $this->page->setLineWidth(0.5)
         ->drawLine(260, 520, 270 , 520);
@@ -219,6 +239,17 @@ class Application_Model_PrintCommunication
         ->drawLine(270, 520, 270, 530);
     $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
                 ->drawText('3', 280, 522, 'UTF-8');
+    if($data['operation'] == 3)
+    {
+        $this->page->setLineWidth(0.5)
+            ->drawLine(260, 520, 270 , 530);
+        $this->page->setLineWidth(0.5)
+            ->drawLine(260, 530, 270, 520);
+        $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES_BOLD),11)
+                ->drawText('Início da Reserva: '.$data['start_date_reservation'], 75, 290, 'UTF-8');
+        $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES_BOLD),11)
+                ->drawText('Fim da Reserva: '.$data['end_date_reservation'], 375, 290, 'UTF-8');
+    }
 
     $this->page->setLineWidth(0.5)
         ->drawLine(360, 520, 350 , 520);
@@ -230,6 +261,15 @@ class Application_Model_PrintCommunication
         ->drawLine(350, 520, 350, 530);
     $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
                 ->drawText('4', 370, 522, 'UTF-8');
+    if($data['operation'] == 4)
+    {
+        $this->page->setLineWidth(0.5)
+            ->drawLine(350, 520, 360 , 530);
+        $this->page->setLineWidth(0.5)
+            ->drawLine(350, 530, 360, 520);
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES_BOLD),11)
+                ->drawText('Placa: '.$data['plate'], 75, 230, 'UTF-8');
+    }
 
     $this->page->setLineWidth(0.5)
         ->drawLine(450, 520, 460 , 520);
@@ -241,6 +281,15 @@ class Application_Model_PrintCommunication
         ->drawLine(460, 520, 460, 530);
     $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
                 ->drawText('5', 470, 522, 'UTF-8');
+    if($data['operation'] == 5)
+    {
+        $this->page->setLineWidth(0.5)
+            ->drawLine(450, 520, 460 , 530);
+        $this->page->setLineWidth(0.5)
+            ->drawLine(450, 530, 460, 520);
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
+                ->drawText($data['other'], 75, 180, 'UTF-8');
+    }
 
 
 
@@ -257,6 +306,8 @@ class Application_Model_PrintCommunication
                 ->drawText('2 - Substituição do veículo acima pelo de marca: ', 75, 390, 'UTF-8');
     $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
                 ->drawText('Modelo: ', 75, 360, 'UTF-8');
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
+                ->drawText('Chassi: ', 350, 360, 'UTF-8');
 
     $this->page->setLineWidth(1)
         ->drawLine(50, 340, 545, 340);
