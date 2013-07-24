@@ -28,6 +28,7 @@
       }
     </style>
     <link href="/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="/css/font-awesome.min.css" rel="stylesheet" >
     <link href="/css/calendar.min.css" rel="stylesheet" >
     <link href="/css/datepicker.css" rel="stylesheet">
     <link href="/css/general.css" rel="stylesheet">
@@ -35,6 +36,10 @@
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!--[if IE 7]>
+      <link rel="stylesheet" href="/css/font-awesome-ie7.min.css">
     <![endif]-->
 
     <!-- Fav and touch icons -->
@@ -64,8 +69,8 @@
           <div class="nav-collapse collapse">
             <?if($institution == 1){?>
             <ul class="nav">
-              <li><a href="/grantee">Permissionários</a></li>
-              <li><a href="/auxiliar">Auxiliares</a></li>
+              <li><a href="/grantee/view">Permissionários</a></li>
+              <li><a href="/auxiliar/view">Auxiliares</a></li>
             </ul>
             <?}?>
             <?if($institution == 2){?>
@@ -86,7 +91,7 @@
                       <i class="icon-wrench"></i> Minha conta
                   </a>
               </li>
-              <?if($userId == 1 || $userId == 5 || $userId == 9){?>
+              <?if($userId == 1 || $userId == 5 || $userId == 9 || $userId == 6 || $userId == 11){?>
               <li>
                   <a href="/administration">
                       <i class="icon-eye-close"></i> Administração
@@ -149,6 +154,7 @@
     <script src="/js/general.js"></script>
     <?if($institution == 1){?>
     <script src="/js/grantee.js"></script>
+    <script src="/js/auxiliar.js"></script>
     <?}else{?>
     <script src="/js/assessment.js"></script>
     <?}?>
