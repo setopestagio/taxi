@@ -131,6 +131,7 @@
         <formFile formName="VehicleModel"/>
         <formFile formName="TaximeterModel"/>
         <formFile formName="TaximeterBrand"/>
+        <formFile formName="Reservation"/>
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>

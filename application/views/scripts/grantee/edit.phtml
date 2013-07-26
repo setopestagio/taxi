@@ -6,7 +6,7 @@
         <li class="active"><a href="/grantee/new"> Edição de Permissionário </a></li>
         <li><a href="/grantee/view"><i class="icon-bullhorn"></i> Pesquisar Permissionário </a></li>
         <li><a href="/grantee/report"><i class="icon-map-marker"></i> Relatórios </a></li>
-        <li><a href="/grantee/vis"><i class="icon-picture"></i> Visualização </a></li>
+        <li><a href="/grantee/vis"><i class="icon-bar-chart"></i> Visualização </a></li>
       </ul>
     </div><!--/span-->
     <div class="span9">
@@ -460,113 +460,41 @@
 		  </div>
 		  <div class="tab-pane" id="reservation">
 		  	<div class="accordion" id="accordionReservation">
-			  	<form class="form-horizontal" method="post" action="/grantee/reservation/id/<?=$this->grantee->grantee_id?>">
-          	<div class="accordion-group">
-          		<div class="accordion-heading">
-          			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionReservation" href="#accordionReservationNew">Nova Reserva</a>
-          		</div>
-          		<div id="accordionReservationNew" class="accordion-body collapse">
-          			<div class="accordion-inner">
-									<div class="control-group">
-				              <label class="control-label" for="start_date_reservation">Data de Ínicio</label>
-				              <div class="controls">
-				              	<input type="text" name="start_date_reservation" value="" class="input-large datepicker dateMask" id="start_date_reservation" placeholder="data de ínicio da reserva" data-mask="99/99/9999" data-date="<?=date('d/m/Y')?>" data-date-format="dd/mm/yyyy">
-				              </div>
-				          </div><!--/.control-group -->
-									<div class="control-group">
-				              <label class="control-label" for="end_date_reservation">Data de Fim</label>
-				              <div class="controls">
-				              	<input type="text" name="end_date_reservation" value="" class="input-large datepicker dateMask" id="end_date_reservation" placeholder="data de fim da reserva" data-mask="99/99/9999" data-date="<?=date('d/m/Y')?>" data-date-format="dd/mm/yyyy">
-				              </div>
-				          </div><!--/.control-group -->
-									<div class="control-group">
-				              <label class="control-label" for="plate_date">Data de Emplacamento</label>
-				              <div class="controls">
-				              	<input type="text" name="plate_date" value="" class="input-large datepicker dateMask" id="plate_date" placeholder="data de emplacamento" data-mask="99/99/9999" data-date="<?=date('d/m/Y')?>" data-date-format="dd/mm/yyyy">
-				              </div>
-				          </div><!--/.control-group -->
-									<div class="control-group">
-				              <label class="control-label" for="period">Período</label>
-				              <div class="controls">
-				              	<input type="text" name="period" value="" class="input-large" id="period" placeholder="período">
-				              </div>
-				          </div><!--/.control-group -->
-									<div class="control-group">
-				              <label class="control-label" for="reason">Motivo</label>
-				              <div class="controls">
-				              	<textarea class="input-xxlarge" rows="5" id="reason" name="reason" placeholder="motivo da reserva"></textarea>
-				              </div>
-				          </div><!--/.control-group -->
-									<div class="control-group">
-				              <label class="control-label" for="infoReservation">Informações adicionais</label>
-				              <div class="controls">
-				              	<textarea class="input-xxlarge" rows="5" id="infoReservation" name="infoReservation" placeholder="informações adicionais"></textarea>
-				              </div>
-				          </div><!--/.control-group -->
-					      </div>
-						  </div>
-						</div>
-		          <?if(isset($this->reservationHistoric) && count($this->reservationHistoric)){?>
-        				<?foreach($this->reservationHistoric as $reservationHistoric){?>
-			          	<div class="accordion-group">
-			          		<div class="accordion-heading">
-			          			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionHistory1" href="#collapseHistory_<?=$reservationHistoric->id?>">De <?=Application_Model_General::dateToBr($reservationHistoric->start_date)?> a <?=Application_Model_General::dateToBr($reservationHistoric->end_date)?> </a>
-			          		</div>
-			          		<div id="collapseHistory_<?=$reservationHistoric->id?>" class="accordion-body collapse">
-			          			<div class="accordion-inner"><div class="control-group">
+        	<div class="accordion-group">
+        		<div class="accordion-heading">
+        			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionReservation" href="#accordionReservationNew">Nova Reserva</a>
+        		</div>
+        		<div id="accordionReservationNew" class="accordion-body collapse">
+        			<div class="accordion-inner">
+								<?=$this->reservation->populate($this->aux)?>
+				      </div>
+					  </div>
+					</div>
+	          <?if(isset($this->reservationHistoric) && count($this->reservationHistoric)){?>
+      				<?foreach($this->reservationHistoric as $reservationHistoric){?>
+		          	<div class="accordion-group">
+		          		<div class="accordion-heading">
+		          			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionHistory1" href="#collapseHistory_<?=$reservationHistoric->id?>">De <?=$reservationHistoric->start_date?> a <?=$reservationHistoric->end_date?> </a>
+		          		</div>
+		          		<div id="collapseHistory_<?=$reservationHistoric->id?>" class="accordion-body collapse">
+		          			<div class="accordion-inner">
+		          				<form class="form-horizontal">
+			          				<div class="control-group">
 							              <label class="control-label">&nbsp;</label>
 							              <div class="controls">
-							                  <a href="/grantee/reservation-license/id/<?=$this->grantee->grantee_id?>" class="btn help" data-toggle="modal" title="Emitir certificado de reserva"><i class="icon-flag"></i></a>
-							              </div><!--/.controls -->
+	           									<a href="/grantee/reservation-license/id/<?=$reservationHistoric->id?>" class="btn help" data-toggle="modal" title="Certificado de Reserva"><i class="icon-book"></i></a>
+							              </div>
 							          </div><!--/.control-group -->
-			          				<div class="control-group">
-							              <label class="control-label">Data de Início</label>
-							              <div class="controls">
-							                  <input type="text" value="<?=Application_Model_General::dateToBr($reservationHistoric->start_date)?>" disabled="disabled">
-							              </div><!--/.controls -->
-							          </div><!--/.control-group -->
-			          				<div class="control-group">
-							              <label class="control-label">Data de Fim</label>
-							              <div class="controls">
-							                 <input type="text" value="<?=Application_Model_General::dateToBr($reservationHistoric->end_date)?>" disabled="disabled">
-							              </div><!--/.controls -->
-							          </div><!--/.control-group -->
-			          				<div class="control-group">
-							              <label class="control-label">Data de Emplacamento</label>
-							              <div class="controls">
-							                   <input type="text" value="<?=Application_Model_General::dateToBr($reservationHistoric->plate_date)?>" disabled="disabled">
-							              </div><!--/.controls -->
-							          </div><!--/.control-group -->
-			          				<div class="control-group">
-							              <label class="control-label">Período</label>
-							              <div class="controls">
-							                   <input type="text" value="<?=$reservationHistoric->period?>" disabled="disabled">
-							              </div><!--/.controls -->
-							          </div><!--/.control-group -->
-			          				<div class="control-group">
-							              <label class="control-label">Motivo</label>
-							              <div class="controls">
-							                 <textarea class="input-xxlarge" rows="5" disabled="disabled"><?=$reservationHistoric->reason?></textarea>
-							              </div><!--/.controls -->
-							          </div><!--/.control-group -->
-			          				<div class="control-group">
-							              <label class="control-label">Informações adicionais</label>
-							              <div class="controls">
-							                  <textarea class="input-xxlarge" rows="5" disabled="disabled"><?=$reservationHistoric->info?></textarea>
-							              </div><!--/.controls -->
-							          </div><!--/.control-group -->
-			          			</div>
+						        	</form>
+		          				<?=$this->reservation->populate($reservationHistoric->toArray())?>
 		          			</div>
-		          		</div>	
-	          		<?}?>
-		          <?}?>
-	          <div class="form-actions">
-	              <button type="submit" class="btn btn-primary">Salvar alterações</button>
-	          </div>
-		  		</form>
-		  	</div>
+	          			</div>
+	          		</div>	
+          		<?}?>
+	          <?}?>
+		  		</div>
+				</div>
 			</div>
-		</div>
     </div>
   </div>
 </div>

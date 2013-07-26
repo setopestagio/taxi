@@ -70,7 +70,7 @@ class GranteeController extends Zend_Controller_Action
         $this->view->grantee = $grantee->returnById($granteeId);
         $this->view->auxiliars = $grantee->returnAuxiliars($granteeId);
         $this->view->auxiliarsInactives = $grantee->returnAuxiliarsInactives($granteeId);
-        $this->view->reservation = $grantee->returnReservation($granteeId);
+        // $this->view->reservation = $grantee->returnReservation($granteeId);
         $this->view->reservationHistoric = $grantee->returnReservationHistoric($granteeId);
       }catch(Zend_Exception $e){
         $this->view->error = true;
@@ -93,6 +93,8 @@ class GranteeController extends Zend_Controller_Action
       $this->view->modelTaximeter = $modelTaximeter->fetchAll();
       $brandTaximeter = new Application_Model_DbTable_TaximeterModel();
       $this->view->brandTaximeter = $brandTaximeter->fetchAll();
+      $this->view->aux = array( 'grantee' => $granteeId );
+      $this->view->reservation = new Application_Form_Reservation();
     }
 
     public function removeAction()
@@ -270,15 +272,14 @@ class GranteeController extends Zend_Controller_Action
       if ( $this->getRequest()->isPost() ) 
       {
         $grantee = new Application_Model_Grantee();
-        $granteeId = $this->getRequest()->getParam('id');
         $data = $this->getRequest()->getPost();
-        if($grantee->saveReservation($data,$granteeId))
+        if($grantee->saveReservation($data))
         {
-          $this->_redirect('/grantee/edit/id/'.$granteeId.'/save/success');
+          $this->_redirect('/grantee/edit/id/'.$data['grantee'].'/save/success');
         }
         else
         {
-          $this->_redirect('/grantee/edit/id/'.$granteeId.'/save/failure');
+          $this->_redirect('/grantee/edit/id/'.$data['grantee'].'/save/failure');
         }
       }
     }
@@ -291,8 +292,8 @@ class GranteeController extends Zend_Controller_Action
         $this->_helper->layout()->setLayout('ajax');
         $grantee = new Application_Model_Grantee();
         $print = new Application_Model_PrintReservation();
-        $granteeRow = $grantee->returnById($id);
         $reservation = $grantee->returnReservation($id);
+        $granteeRow = $grantee->returnById($reservation->grantee);
         $pdf = $print->createPdf($granteeRow,$reservation);
         echo $pdf->render(); 
       }catch(Zend_Exception $e){

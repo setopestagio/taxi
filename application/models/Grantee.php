@@ -145,54 +145,6 @@ class Application_Model_Grantee
 				}
 				$granteeAuxiliarNew2->save();
 			}
-			if(isset($data['aux3_id']) && $data['aux3_id'] != '')
-			{
-				$granteeAuxiliarNew3 = $granteeAuxiliar->createRow();
-				$granteeAuxiliarNew3->grantee = $granteeId;
-				$granteeAuxiliarNew3->auxiliar = $data['aux3_id'];
-				$granteeAuxiliarNew3->start_date = Application_Model_General::dateToUs($data['date_aux3']);
-				if($data['date_end_aux3'] != '')
-				{
-					$granteeAuxiliarNew3->end_date = Application_Model_General::dateToUs($data['date_end_aux3']);
-				}
-				else
-				{
-					$granteeAuxiliarNew3->end_date = new Zend_Db_Expr('NULL');
-				}
-				$granteeAuxiliarNew3->save();
-			}
-			if(isset($data['aux4_id']) && $data['aux4_id'] != '')
-			{
-				$granteeAuxiliarNew4 = $granteeAuxiliar->createRow();
-				$granteeAuxiliarNew4->grantee = $granteeId;
-				$granteeAuxiliarNew4->auxiliar = $data['aux4_id'];
-				$granteeAuxiliarNew4->start_date = Application_Model_General::dateToUs($data['date_aux4']);
-				if($data['date_end_aux4'] != '')
-				{
-					$granteeAuxiliarNew4->end_date = Application_Model_General::dateToUs($data['date_end_aux4']);
-				}
-				else
-				{
-					$granteeAuxiliarNew4->end_date = new Zend_Db_Expr('NULL');
-				}
-				$granteeAuxiliarNew4->save();
-			}
-			if(isset($data['aux5_id']) && $data['aux5_id'] != '')
-			{
-				$granteeAuxiliarNew5 = $granteeAuxiliar->createRow();
-				$granteeAuxiliarNew5->grantee = $granteeId;
-				$granteeAuxiliarNew5->auxiliar = $data['aux5_id'];
-				$granteeAuxiliarNew5->start_date = Application_Model_General::dateToUs($data['date_aux5']);
-				if($data['date_end_aux5'] != '')
-				{
-					$granteeAuxiliarNew5->end_date = Application_Model_General::dateToUs($data['date_end_aux5']);
-				}
-				else
-				{
-					$granteeAuxiliarNew5->end_date = new Zend_Db_Expr('NULL');
-				}
-				$granteeAuxiliarNew5->save();
-			}
 			return true;
 		}catch(Zend_Exception $e){
 			return false;
@@ -317,43 +269,41 @@ class Application_Model_Grantee
 		return false;
 	}
 
-	public function saveReservation($data,$granteeId)
+	public function saveReservation($data)
 	{
 		$granteeReservation = new Application_Model_DbTable_GranteeReservation();
-		$granteeReservationRow = $granteeReservation->fetchRow($granteeReservation->select()
-																												->where('grantee = ?',$granteeId)
-																												->where('end_date IS NULL'));
-		if(count($granteeReservationRow))
+		if(isset($data['id']) && $data['id'])
 		{
-			$granteeReservationRow->grantee = $granteeId;
-			$granteeReservationRow->start_date = Application_Model_General::dateToUs($data['start_date_reservation']);
-			$granteeReservationRow->end_date = Application_Model_General::dateToUs($data['end_date_reservation']);
+			$granteeReservationRow = $granteeReservation->fetchRow($granteeReservation->select()
+																												->where('id = ?',$data['id']));
+			$granteeReservationRow->grantee = $data['grantee'];
+			$granteeReservationRow->start_date = Application_Model_General::dateToUs($data['start_date']);
+			$granteeReservationRow->end_date = Application_Model_General::dateToUs($data['end_date']);
 			$granteeReservationRow->plate_date = Application_Model_General::dateToUs($data['plate_date']);
 			$granteeReservationRow->period = $data['period'];
 			$granteeReservationRow->reason = $data['reason'];
-			$granteeReservationRow->info = $data['infoReservation'];
+			$granteeReservationRow->info = $data['info'];
 		}
 		else
 		{
 			$granteeReservationRow = $granteeReservation->createRow();
-			$granteeReservationRow->grantee = $granteeId;
-			$granteeReservationRow->start_date = Application_Model_General::dateToUs($data['start_date_reservation']);
-			$granteeReservationRow->end_date = Application_Model_General::dateToUs($data['end_date_reservation']);
+			$granteeReservationRow->grantee = $data['grantee'];
+			$granteeReservationRow->start_date = Application_Model_General::dateToUs($data['start_date']);
+			$granteeReservationRow->end_date = Application_Model_General::dateToUs($data['end_date']);
 			$granteeReservationRow->emission_date = new Zend_Db_Expr('NOW()');
 			$granteeReservationRow->plate_date = Application_Model_General::dateToUs($data['plate_date']);
 			$granteeReservationRow->period = $data['period'];
 			$granteeReservationRow->reason = $data['reason'];
-			$granteeReservationRow->info = $data['infoReservation'];
+			$granteeReservationRow->info = $data['info'];
 		}
 		return $granteeReservationRow->save();
 	}
 
-	public function returnReservation($granteeId)
+	public function returnReservation($id)
 	{
 		$granteeReservation = new Application_Model_DbTable_GranteeReservation();
 		$granteeReservationRow = $granteeReservation->fetchRow($granteeReservation->select()
-																									->where('grantee = ?',$granteeId)
-																									->where('end_date IS NULL'));
+																									->where('id = ?',$id));
 		if($granteeReservationRow)
 		{
 			return $granteeReservationRow;
@@ -364,10 +314,14 @@ class Application_Model_Grantee
 	public function returnReservationHistoric($granteeId)
 	{
 		$granteeReservation = new Application_Model_DbTable_GranteeReservation();
-		$granteeReservationRow = $granteeReservation->fetchAll($granteeReservation->select()
-																									->where('grantee = ?',$granteeId)
-																									->where('end_date IS NOT NULL'));
-		return $granteeReservationRow;
+		$select = $granteeReservation->select()->setIntegrityCheck(false);
+		$select	->from(array('g' => 'grantee_reservation'), array('id', 'grantee', 
+																								'start_date' => new Zend_Db_Expr ('DATE_FORMAT(start_date,"%d/%m/%Y")'),
+																								'end_date' => new Zend_Db_Expr ('DATE_FORMAT(end_date,"%d/%m/%Y")'),
+																								'plate_date' => new Zend_Db_Expr ('DATE_FORMAT(plate_date,"%d/%m/%Y")'),
+																								'period', 'reason', 'info' ) )
+						->where('grantee = ?',$granteeId);
+		return $granteeReservation->fetchAll($select);
 	}
 
 	public function excludeAuxiliar($auxiliarGranteeId)
