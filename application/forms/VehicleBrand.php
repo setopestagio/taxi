@@ -7,7 +7,7 @@ class Application_Form_VehicleBrand extends Twitter_Bootstrap_Form_Horizontal
     {
       $this->addElement('text', 'name', array(
       		'label'					=> 'Marca',
-          'placeholder'   => 'marca de taxímetro',
+          'placeholder'   => 'marca de automóvel',
           'class'					=> 'input-xlarge'
       ));
 
