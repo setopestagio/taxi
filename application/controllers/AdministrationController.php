@@ -9,7 +9,7 @@ class AdministrationController extends Zend_Controller_Action
       $authNamespace = new Zend_Session_Namespace('userInformation');
       $this->view->institution = $authNamespace->institution;
       $this->view->userId = $authNamespace->user_id; 
-      if($this->view->userId != 1 && $this->view->userId != 5 && $this->view->userId != 9)
+      if($this->view->userId != 1 && $this->view->userId != 5 && $this->view->userId != 9 && $this->view->userId != 11 && $this->view->userId != 6)
       {
       	$this->_redirect('/doesntallow');
       }
