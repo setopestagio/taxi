@@ -320,24 +320,30 @@ class Application_Model_Grantee
 	public function saveReservation($data,$granteeId)
 	{
 		$granteeReservation = new Application_Model_DbTable_GranteeReservation();
-		if($data['end_date_reservation'])
-		{
-			$granteeReservationRow = $granteeReservation->fetchRow($granteeReservation->select()
+		$granteeReservationRow = $granteeReservation->fetchRow($granteeReservation->select()
 																												->where('grantee = ?',$granteeId)
 																												->where('end_date IS NULL'));
+		if(count($granteeReservationRow))
+		{
 			$granteeReservationRow->grantee = $granteeId;
 			$granteeReservationRow->start_date = Application_Model_General::dateToUs($data['start_date_reservation']);
 			$granteeReservationRow->end_date = Application_Model_General::dateToUs($data['end_date_reservation']);
+			$granteeReservationRow->plate_date = Application_Model_General::dateToUs($data['plate_date']);
+			$granteeReservationRow->period = $data['period'];
 			$granteeReservationRow->reason = $data['reason'];
-			$granteeReservationRow->info = $data['info'];
+			$granteeReservationRow->info = $data['infoReservation'];
 		}
 		else
 		{
 			$granteeReservationRow = $granteeReservation->createRow();
 			$granteeReservationRow->grantee = $granteeId;
 			$granteeReservationRow->start_date = Application_Model_General::dateToUs($data['start_date_reservation']);
+			$granteeReservationRow->end_date = Application_Model_General::dateToUs($data['end_date_reservation']);
+			$granteeReservationRow->emission_date = new Zend_Db_Expr('NOW()');
+			$granteeReservationRow->plate_date = Application_Model_General::dateToUs($data['plate_date']);
+			$granteeReservationRow->period = $data['period'];
 			$granteeReservationRow->reason = $data['reason'];
-			$granteeReservationRow->info = $data['info'];
+			$granteeReservationRow->info = $data['infoReservation'];
 		}
 		return $granteeReservationRow->save();
 	}

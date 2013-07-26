@@ -299,23 +299,23 @@
 					              </div><!--/.controls -->
 					          </div><!--/.control-group -->
 	          				<div class="control-group">
-					              <label class="control-label" for="taximeter_model">Taxímetro Modelo</label>
-					              <div class="controls">
-				                   <select name="taximeter_model">
-					                 	<option value="0">-- Selecione um modelo --</option>
-					                 	<?foreach($this->modelTaximeter as $modelTaximeter){?>
-					                 		<option value="<?=$modelTaximeter->id?>"><?=$modelTaximeter->name?></option>
-					                 	<?}?>
-					                 </select>
-					              </div><!--/.controls -->
-					          </div><!--/.control-group -->
-	          				<div class="control-group">
 					              <label class="control-label" for="taximeter_brand">Taxímetro Marca</label>
 					              <div class="controls">
 				                   <select name="taximeter_brand">
 					                 	<option value="0">-- Selecione uma marca --</option>
 					                 	<?foreach($this->brandTaximeter as $brandTaximeter){?>
 					                 		<option value="<?=$brandTaximeter->id?>"><?=$brandTaximeter->name?></option>
+					                 	<?}?>
+					                 </select>
+					              </div><!--/.controls -->
+					          </div><!--/.control-group -->
+	          				<div class="control-group">
+					              <label class="control-label" for="taximeter_model">Taxímetro Modelo</label>
+					              <div class="controls">
+				                   <select name="taximeter_model">
+					                 	<option value="0">-- Selecione um modelo --</option>
+					                 	<?foreach($this->modelTaximeter as $modelTaximeter){?>
+					                 		<option value="<?=$modelTaximeter->id?>"><?=$modelTaximeter->name?></option>
 					                 	<?}?>
 					                 </select>
 					              </div><!--/.controls -->

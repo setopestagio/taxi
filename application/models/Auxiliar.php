@@ -93,5 +93,17 @@ class Application_Model_Auxiliar
 						->where('p.name LIKE ?','%'.$name.'%');
 		return $person->fetchAll($select);
 	}
+
+	public function returnGrantees($auxiliarId)
+	{
+		$granteeAuxiliar = new Application_Model_DbTable_GranteeAuxiliar();
+		$select = $granteeAuxiliar->select()->setIntegrityCheck(false);
+		$select ->from(array('ga' => 'grantee_auxiliar') )
+				->joinInner(array('g' => 'grantee'),'g.id=ga.grantee')
+				->joinInner(array('p' => 'person'), 'g.owner=p.id')
+				->where('ga.auxiliar = ?',$auxiliarId)
+				->order('ga.end_date');
+		return $granteeAuxiliar->fetchAll($select);
+	}
 }
 

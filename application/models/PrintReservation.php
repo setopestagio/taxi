@@ -17,7 +17,7 @@ class Application_Model_PrintReservation
 	public function createPdf($data,$reservation)
 	{
 		$this->header();
-		$this->content($data);
+		$this->content($data,$reservation);
 		$this->footer($data,$reservation);
     $this->pdf->pages[] = $this->page;
     return $this->pdf;
@@ -53,7 +53,7 @@ class Application_Model_PrintReservation
                     ->drawText('SOLICITAÇÃO DE RESERVA DE PERMISSÃO', 195, 760, 'UTF-8');
   }
 
-  protected function content($data)
+  protected function content($data,$reservation)
   {
   	// Horizontal Lines
     $this->page->setLineWidth(2)
@@ -151,7 +151,7 @@ class Application_Model_PrintReservation
                     ->drawText('O permissionário, acima identificado, socilita a SETOP reserva de permissão por um período', 60, 610, 'UTF-8');
 
     $this->page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),12)
-                    ->drawText('de 360 dias, a contar desta data.', 60, 590, 'UTF-8');
+                    ->drawText('de '.$reservation->period.', a contar desta data.', 60, 590, 'UTF-8');
 
     $this->page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),10)
                     ->drawText('Assinatura', 355, 550, 'UTF-8');
@@ -198,14 +198,14 @@ class Application_Model_PrintReservation
     $this->page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES_BOLD),10)
                     ->drawText('MOTIVO', 270, 525, 'UTF-8');
 
-    $this->page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
-                    ->drawText($reservation->reason, 85, 500, 'UTF-8');
+    $this->page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),13)
+                    ->drawText($reservation->reason, 55, 500, 'UTF-8');
 
     $this->page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
                     ->drawText('Informações Complementares', 55, 472, 'UTF-8');
 
-    $this->page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
-                    ->drawText($reservation->info, 55, 462, 'UTF-8');
+    $this->page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),13)
+                    ->drawText($reservation->info, 55, 450, 'UTF-8');
 
     $this->page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
                     ->drawText('Vencimento da Reserva', 55, 432, 'UTF-8');
@@ -215,6 +215,9 @@ class Application_Model_PrintReservation
 
     $this->page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
                     ->drawText('Autorização (uso exclusivo da SETOP)', 173, 432, 'UTF-8');
+
+    $this->page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),13)
+                    ->drawText(date('d/m/Y'), 183, 405, 'UTF-8');
 
     $this->page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
                     ->drawText('Assinatura', 405, 397, 'UTF-8');

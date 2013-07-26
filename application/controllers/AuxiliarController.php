@@ -65,6 +65,7 @@ class AuxiliarController extends Zend_Controller_Action
           }
         }
         $this->view->auxiliar = $auxiliar->returnById($auxiliarId);
+        $this->view->historicGrantees = $auxiliar->returnGrantees($auxiliarId);
       }catch(Zend_Exception $e){
         $this->view->error = true;
       }
