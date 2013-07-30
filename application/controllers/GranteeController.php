@@ -91,7 +91,7 @@ class GranteeController extends Zend_Controller_Action
       $this->view->cities = $city->fetchAll();
       $modelTaximeter = new Application_Model_DbTable_TaximeterModel();
       $this->view->modelTaximeter = $modelTaximeter->fetchAll();
-      $brandTaximeter = new Application_Model_DbTable_TaximeterModel();
+      $brandTaximeter = new Application_Model_DbTable_TaximeterBrand();
       $this->view->brandTaximeter = $brandTaximeter->fetchAll();
       $this->view->aux = array( 'grantee' => $granteeId );
       $this->view->reservation = new Application_Form_Reservation();
