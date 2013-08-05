@@ -65,8 +65,10 @@ class Application_Model_Grantee
 		$select = $granteeAuxiliar->select()->setIntegrityCheck(false);
 		$select	->from(array('a' => 'grantee_auxiliar') )
 						->joinInner(array('p' => 'person'), 'p.id=a.auxiliar')
+						->joinLeft(array('g' => 'grantee'), 'g.id=a.auxiliar')
 						->where('a.grantee = ?',$granteeId)
-						->where('a.end_date IS NULL');
+						->where('a.end_date IS NULL')
+						->where('g.id IS NULL');
 		return $granteeAuxiliar->fetchAll($select);
 	}
 
@@ -108,7 +110,6 @@ class Application_Model_Grantee
 		}
 	}
 
-	// METODO PROVISORIO SALVANDO 5 AUXILIARES PARA FINS DE CADASTRO
 	public function saveAuxiliars($data,$granteeId)
 	{
 		try{
