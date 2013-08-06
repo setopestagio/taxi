@@ -474,7 +474,7 @@
       				<?foreach($this->reservationHistoric as $reservationHistoric){?>
 		          	<div class="accordion-group">
 		          		<div class="accordion-heading">
-		          			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionHistory1" href="#collapseHistory_<?=$reservationHistoric->id?>">De <?=$reservationHistoric->start_date?> a <?=$reservationHistoric->end_date?> </a>
+		          			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionHistory1" href="#collapseHistory_<?=$reservationHistoric->id?>">De <?=$reservationHistoric->start_date?> a <?=$reservationHistoric->end_date?> <?if($reservationHistoric->plate_date){?> - Emplacamento em <?=$reservationHistoric->plate_date?> <?}?></a>
 		          		</div>
 		          		<div id="collapseHistory_<?=$reservationHistoric->id?>" class="accordion-body collapse">
 		          			<div class="accordion-inner">
