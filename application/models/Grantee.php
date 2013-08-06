@@ -337,5 +337,18 @@ class Application_Model_Grantee
 		return false;
 	}
 
+	public function editAuxiliar($data)
+	{
+		$granteeAuxiliar = new Application_Model_DbTable_GranteeAuxiliar();
+		$granteeAuxiliarRow = $granteeAuxiliar->fetchRow($granteeAuxiliar->select()->where('id = ?',$data['id']));
+		if($granteeAuxiliarRow)
+		{
+			$granteeAuxiliarRow->start_date = Application_Model_General::dateToUs($data['start_date']);;
+			$granteeAuxiliarRow->end_date = Application_Model_General::dateToUs($data['end_date']);;
+			return $granteeAuxiliarRow->save();
+		}
+		return false;
+	}
+
 }
 

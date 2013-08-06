@@ -46,6 +46,7 @@
           <actionMethod actionName="reservationLicense"/>
           <actionMethod actionName="excludeAuxiliar"/>
           <actionMethod actionName="printCommunication"/>
+          <actionMethod actionName="editAuxiliar"/>
         </controllerFile>
         <controllerFile controllerName="Auxiliar">
           <actionMethod actionName="index"/>
@@ -445,6 +446,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Administration">
             <viewScriptFile forActionName="brandTaximeterEdit"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Grantee">
+            <viewScriptFile forActionName="editAuxiliar"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

@@ -343,8 +343,27 @@ class GranteeController extends Zend_Controller_Action
       }
     }
 
+    public function editAuxiliarAction()
+    {
+      if ( $this->getRequest()->isPost() ) 
+      {
+        $data = $this->getRequest()->getPost();
+        $grantee = new Application_Model_Grantee();
+        if($grantee->editAuxiliar($data))
+        {
+          $this->_redirect('/grantee/edit/id/'.$data['grantee_id'].'/save/success');
+        }
+        else
+        {
+          $this->_redirect('/grantee/edit/id/'.$data['grantee_id'].'/save/failure');
+        }
+      }
+    }
+
 
 }
+
+
 
 
 
