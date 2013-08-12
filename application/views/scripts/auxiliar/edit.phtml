@@ -204,7 +204,8 @@
                 </form>
             </div>
             <div class="tab-pane" id="grantee">
-                <table class="table table-hover table-bordered" id='tableGrantees'>
+              <form class="form-horizontal" method="post" action="/auxiliar/save-grantee">
+                  <table class="table table-hover table-bordered" id='tableGrantees'>
                     <thead>
                         <th>&nbsp;</th>
                         <th>Nome</th>
@@ -217,9 +218,9 @@
                         <tr <?if($historicGrantees->end_date == '') echo 'class="success"'; else echo 'class="error"';?>> 
                             <td>&nbsp;</td>
                             <td><?=$historicGrantees->name?></td>
-                            <td><?=$historicGrantees->permission?></td>
-                            <td><?=Application_Model_General::dateToBr($historicGrantees->start_date)?></td>
-                            <td><?=Application_Model_General::dateToBr($historicGrantees->end_date)?></td>
+                            <td><?=$historicGrantees->permission?> <input type="hidden" name="permission[]" value="<?=$historicGrantees->permission?>"> <input type="hidden" name="_id[]" value="<?=$historicGrantees->_id?>"></td>
+                            <td><input type="text" class="input-small dateMask datepicker" name="start_date[]" value="<?=Application_Model_General::dateToBr($historicGrantees->start_date)?>"></td>
+                            <td><input type="text" class="input-small dateMask datepicker" name="end_date[]" value="<?=Application_Model_General::dateToBr($historicGrantees->end_date)?>"></td>
                         </tr>
                         <?}?>
                         <tr>
@@ -228,7 +229,12 @@
                             </td>
                         </tr>
                     </tbody>
-                </table>
+                  </table>
+                  <div>
+                    <input type="submit" class="btn btn-primary" value="Salvar">
+                    <input type="hidden" name="auxiliar_add" value="<?=$this->auxiliar->id_auxiliar?>">
+                  <div>
+              </form>
             </div>
         </div>
       </div>

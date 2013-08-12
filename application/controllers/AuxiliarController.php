@@ -153,8 +153,27 @@ class AuxiliarController extends Zend_Controller_Action
       }
     }
 
+    public function saveGranteeAction()
+    {
+      if ( $this->getRequest()->isPost() ) 
+      {
+        $auxiliar = new Application_Model_Auxiliar();
+        $data = $this->getRequest()->getPost();
+        if($auxiliar->saveGranteesToAuxiliar($data))
+        {
+          $this->_redirect('/auxiliar/edit/id/'.$data['auxiliar_add'].'/save/success');
+        }
+        else
+        {
+          $this->_redirect('/auxiliar/edit/id/'.$data['auxiliar_add'].'/save/failure');
+        }
+      }
+    }
+
 
 }
+
+
 
 
 

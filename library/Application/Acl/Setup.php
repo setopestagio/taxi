@@ -112,7 +112,7 @@ class Application_Acl_Setup
                                                     'reservation', 'reservation-license', 'exclude-auxiliar', 'print-communication',
                                                     'edit-auxiliar') )
                     ->allow( 'user', 'auxiliar', array('index', 'new', 'edit', 'remove', 'view', 'report',
-                                                    'print-license', 'print-data') )
+                                                    'print-license', 'print-data', 'save-grantee') )
                     ->allow( 'user', 'vehicle', array('index', 'new', 'edit', 'remove', 'view', 'vis') )
                     ->allow( 'user', 'survey', array('index', 'calendar') )
                     ->allow( 'user', 'assessment', array('index', 'new', 'edit', 'view', 'remove', 'report') );

@@ -57,6 +57,7 @@
           <actionMethod actionName="report"/>
           <actionMethod actionName="printLicense"/>
           <actionMethod actionName="printData"/>
+          <actionMethod actionName="saveGrantee"/>
         </controllerFile>
         <controllerFile controllerName="Doesntallow">
           <actionMethod actionName="index"/>
@@ -449,6 +450,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Grantee">
             <viewScriptFile forActionName="editAuxiliar"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Auxiliar">
+            <viewScriptFile forActionName="saveGrantee"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
