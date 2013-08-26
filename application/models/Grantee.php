@@ -152,6 +152,19 @@ class Application_Model_Grantee
 		}
 	}
 
+	public function findActiveGrantee($permission)
+	{
+		$grantee = new Application_Model_DbTable_Grantee();
+		$select = $grantee->select()->setIntegrityCheck(false);
+		$select	->from(array('g' => 'grantee'), array('grantee_id' => 'id', 'permission','authorization','city',
+																								'start_permission','end_permission') )
+
+						->joinInner(array('p' => 'person'), 'p.id=g.owner')
+						->where('g.permission = ?',$permission)
+						->where('g.end_permission = ?','0000-00-00');
+		return $grantee->fetchAll($select);
+	}
+
 	public function findByPermission($permission)
 	{
 		$grantee = new Application_Model_DbTable_Grantee();

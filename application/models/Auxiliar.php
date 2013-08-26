@@ -125,7 +125,7 @@ class Application_Model_Auxiliar
 				else
 				{
 					$granteeAuxiliarNew = $granteeAuxiliar->createRow();
-					$granteeRow = $grantee->findByPermission($data['permission'][$i]);
+					$granteeRow = $grantee->findActiveGrantee($data['permission'][$i]);
 					$granteeAuxiliarNew->grantee = $granteeRow[0]['grantee_id'];
 					$granteeAuxiliarNew->auxiliar = $data['auxiliar_add'];
 					$granteeAuxiliarNew->start_date = Application_Model_General::dateToUs($data['start_date'][$i]);
