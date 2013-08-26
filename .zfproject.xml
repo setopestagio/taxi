@@ -47,6 +47,7 @@
           <actionMethod actionName="excludeAuxiliar"/>
           <actionMethod actionName="printCommunication"/>
           <actionMethod actionName="editAuxiliar"/>
+          <actionMethod actionName="reportVehicle"/>
         </controllerFile>
         <controllerFile controllerName="Auxiliar">
           <actionMethod actionName="index"/>
@@ -185,6 +186,7 @@
         <modelFile modelName="VehicleModel"/>
         <modelFile modelName="TaximeterBrand"/>
         <modelFile modelName="TaximeterModel"/>
+        <modelFile modelName="PrintVehicle"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <servicesDirectory enabled="false"/>
@@ -453,6 +455,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Auxiliar">
             <viewScriptFile forActionName="saveGrantee"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Grantee">
+            <viewScriptFile forActionName="reportVehicle"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

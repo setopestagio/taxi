@@ -110,7 +110,7 @@ class Application_Acl_Setup
                                                     'print-data', 'print-license', 'report-grantee-all', 'report-grantee-actives',
                                                     'return-people', 'extract-pendencies', 'save-auxiliar', 'remove-auxiliar',
                                                     'reservation', 'reservation-license', 'exclude-auxiliar', 'print-communication',
-                                                    'edit-auxiliar') )
+                                                    'edit-auxiliar', 'report-vehicle') )
                     ->allow( 'user', 'auxiliar', array('index', 'new', 'edit', 'remove', 'view', 'report',
                                                     'print-license', 'print-data', 'save-grantee') )
                     ->allow( 'user', 'vehicle', array('index', 'new', 'edit', 'remove', 'view', 'vis') )

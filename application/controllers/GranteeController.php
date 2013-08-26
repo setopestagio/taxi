@@ -360,8 +360,27 @@ class GranteeController extends Zend_Controller_Action
       }
     }
 
+    public function reportVehicleAction()
+    {
+      try{
+        header('Content-Type: application/pdf');
+        $this->_helper->layout()->setLayout('ajax');
+        $id = $this->getRequest()->getParam('id');
+        $print = new Application_Model_PrintVehicle('FROTA');
+        $vehicle = new Application_Model_Vehicle();
+        $fleet = $vehicle->returnAll();
+        $pdf = $print->createPdf($fleet);
+      }catch(Zend_Exception $e){
+        die ('PDF error: ' . $e->getMessage()); 
+      }catch (Exception $e) {
+        die ('Application error: ' . $e->getMessage());    
+      }
+    }
+
 
 }
+
+
 
 
 

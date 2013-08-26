@@ -39,5 +39,17 @@ class Application_Model_Vehicle
 		$vehicle = new Application_Model_DbTable_Vehicle();
 		return $vehicle->fetchRow($vehicle->select()->where('plate like ?',$plate));
 	}
+
+	public function returnAll()
+	{
+		$grantee = new Application_Model_DbTable_Vehicle();
+		$select = $grantee->select()->setIntegrityCheck(false);
+		$select	->from(array('g' => 'grantee'))
+						->joinInner(array('v' => 'vehicle'), 'v.id=g.vehicle')
+						->joinLeft(array('m' => 'vehicle_model'),'v.model=m.id',array('vehicle_model' => 'name'))
+						->joinLeft(array('b' => 'vehicle_brand'),'v.brand=b.id',array('vehicle_brand' => 'name'))
+						->joinLeft(array('f' => 'vehicle_fuel'),'v.fuel=f.id',array('vehicle_fuel' => 'name'));
+		return $grantee->fetchAll($select);
+	}
 }
 
