@@ -10,44 +10,50 @@ class Application_Model_PrintVehicle extends Application_Model_Report
 
 
   	$page		->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),10)
-                		->drawText('PERMISSÃO', 60, $range+5,'UTF-8');
+                		->drawText('PERMISSÃO', 30, $range+5,'UTF-8');
 
   	$page		->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),10)
-                		->drawText('MARCA', 140, $range+5,'UTF-8');
+                		->drawText('MARCA', 110, $range+5,'UTF-8');
 
   	$page		->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),10)
-                		->drawText('MODELO', 220, $range+5,'UTF-8');
+                		->drawText('MODELO', 190, $range+5,'UTF-8');
 
   	$page		->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),10)
-                		->drawText('FABRICAÇÃO', 290, $range+5,'UTF-8');
+                		->drawText('FABRICAÇÃO', 260, $range+5,'UTF-8');
 
   	$page		->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),10)
-                		->drawText('MODELO', 370, $range+5,'UTF-8');
+                		->drawText('MODELO', 340, $range+5,'UTF-8');
 
   	$page		->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),10)
-                		->drawText('COMBUSTÍVEL', 430, $range+5,'UTF-8');
+                		->drawText('COMBUSTÍVEL', 400, $range+5,'UTF-8');
+
+    $page   ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),10)
+                    ->drawText('VIDA ÚTIL', 495, $range+5,'UTF-8');
 
     foreach($data as $fleet)
     {
 
     	$page		->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),10)
-                  		->drawText($fleet->permission, 60, $range-20,'UTF-8');
+                  		->drawText($fleet->permission, 30, $range-20,'UTF-8');
 
       $page		->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),10)
-                  		->drawText($fleet->vehicle_brand, 140, $range-20,'UTF-8');
+                  		->drawText($fleet->vehicle_brand, 110, $range-20,'UTF-8');
 
       list($first_word) = explode(' ', trim($fleet->vehicle_model));
       $page		->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),10)
-                  		->drawText($first_word, 220, $range-20,'UTF-8');
+                  		->drawText($first_word, 190, $range-20,'UTF-8');
 
       $page		->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),10)
-                  		->drawText($fleet->year_fabrication, 310, $range-20,'UTF-8');
+                  		->drawText($fleet->year_fabrication, 260, $range-20,'UTF-8');
 
       $page		->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),10)
-                  		->drawText($fleet->year_model, 380, $range-20,'UTF-8');
+                  		->drawText($fleet->year_model, 340, $range-20,'UTF-8');
 
       $page		->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),10)
-                  		->drawText($fleet->vehicle_fuel, 440, $range-20,'UTF-8');
+                  		->drawText($fleet->vehicle_fuel, 400, $range-20,'UTF-8');
+
+      $page   ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),10)
+                      ->drawText((date('Y') - $fleet->year_fabrication), 515, $range-20,'UTF-8');
 
       $range -= 40;
       if($range < 60)
