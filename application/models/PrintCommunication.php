@@ -149,7 +149,7 @@ class Application_Model_PrintCommunication
                 ->drawText('Modelo', 300, 635, 'UTF-8');
 
     $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),12)
-                ->drawText($data->vehicle_model, 300, 613, 'UTF-8');
+                ->drawText(Application_Model_General::cutString($data->vehicle_model,10), 300, 613, 'UTF-8');
 
     $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
                 ->drawText('Ano Mod.', 418, 635, 'UTF-8');
@@ -161,7 +161,7 @@ class Application_Model_PrintCommunication
                 ->drawText('Cor', 465, 635, 'UTF-8');
 
     $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),12)
-                ->drawText($data->color, 465, 613, 'UTF-8');
+                ->drawText(Application_Model_General::cutString($data->color,5), 465, 613, 'UTF-8');
 	}
 
 	protected function content($data)
@@ -245,10 +245,14 @@ class Application_Model_PrintCommunication
             ->drawLine(260, 520, 270 , 530);
         $this->page->setLineWidth(0.5)
             ->drawLine(260, 530, 270, 520);
+        $this->page->setLineWidth(0.5)
+            ->drawLine(450, 520, 460 , 530);
+        $this->page->setLineWidth(0.5)
+            ->drawLine(450, 530, 460, 520);
         $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES_BOLD),11)
                 ->drawText('Início da Reserva: '.$data['start_date_reservation'], 75, 290, 'UTF-8');
-        $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES_BOLD),11)
-                ->drawText('Fim da Reserva: '.$data['end_date_reservation'], 375, 290, 'UTF-8');
+        $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
+                ->drawText($data['other'], 75, 180, 'UTF-8');
     }
 
     $this->page->setLineWidth(0.5)
@@ -267,8 +271,14 @@ class Application_Model_PrintCommunication
             ->drawLine(350, 520, 360 , 530);
         $this->page->setLineWidth(0.5)
             ->drawLine(350, 530, 360, 520);
-    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES_BOLD),11)
+         $this->page->setLineWidth(0.5)
+            ->drawLine(450, 520, 460 , 530);
+        $this->page->setLineWidth(0.5)
+            ->drawLine(450, 530, 460, 520);
+        $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES_BOLD),11)
                 ->drawText('Placa: '.$data['plate'], 75, 230, 'UTF-8');
+        $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
+                ->drawText($data['other'], 75, 180, 'UTF-8');
     }
 
     $this->page->setLineWidth(0.5)
@@ -287,7 +297,7 @@ class Application_Model_PrintCommunication
             ->drawLine(450, 520, 460 , 530);
         $this->page->setLineWidth(0.5)
             ->drawLine(450, 530, 460, 520);
-    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
+        $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
                 ->drawText($data['other'], 75, 180, 'UTF-8');
     }
 

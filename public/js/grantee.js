@@ -126,9 +126,9 @@ $('#operation').change(function() {
     $('#vehicleGroup').hide();
     $('#chassiGroup').hide();
     $('#reservationGroupStart').show();
-    $('#reservationGroupEnd').show();
+    $('#reservationGroupEnd').hide();
     $('#plateGroup').hide();
-    $('#otherGroup').hide();
+    $('#otherGroup').show();
   }
   if($(this).val() == 4){
     $('#transferGroup').hide();
@@ -137,7 +137,7 @@ $('#operation').change(function() {
     $('#reservationGroupStart').hide();
     $('#reservationGroupEnd').hide();
     $('#plateGroup').show();
-    $('#otherGroup').hide();
+    $('#otherGroup').show();
   }
   if($(this).val() == 5){
     $('#transferGroup').hide();
