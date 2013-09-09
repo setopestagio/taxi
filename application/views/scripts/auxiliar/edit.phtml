@@ -219,8 +219,8 @@
                             <td>&nbsp;</td>
                             <td><?=$historicGrantees->name?></td>
                             <td><?=$historicGrantees->permission?> <input type="hidden" name="permission[]" value="<?=$historicGrantees->permission?>"> <input type="hidden" name="_id[]" value="<?=$historicGrantees->_id?>"></td>
-                            <td><input type="text" class="input-small dateMask datepicker" name="start_date[]" value="<?=Application_Model_General::dateToBr($historicGrantees->start_date)?>"></td>
-                            <td><input type="text" class="input-small dateMask datepicker" name="end_date[]" value="<?=Application_Model_General::dateToBr($historicGrantees->end_date)?>"></td>
+                            <td><input type="text" class="input-small dateMask" name="start_date[]" value="<?=Application_Model_General::dateToBr($historicGrantees->start_date)?>"></td>
+                            <td><input type="text" class="input-small dateMask" name="end_date[]" value="<?=Application_Model_General::dateToBr($historicGrantees->end_date)?>"></td>
                         </tr>
                         <?}?>
                         <tr>
@@ -253,7 +253,7 @@
         <div class="control-group">
           <label class="control-label" for="end_date">Data de Vencimento</label>
           <div class="controls">
-            <input type="text" class="input-xlarge datepicker" id="end_date" name="end_date" placeholder="data de vencimento" data-mask="99/99/9999"  data-date="<?=date('d/m/Y')?>" data-date-format="dd/mm/yyyy">
+            <input type="text" class="input-xlarge dateMask" id="end_date" name="end_date" placeholder="data de vencimento" data-mask="99/99/9999"  data-date="<?=date('d/m/Y')?>" data-date-format="dd/mm/yyyy">
           </div>
         </div>
     </div>

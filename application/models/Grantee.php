@@ -334,6 +334,7 @@ class Application_Model_Grantee
 																								'end_date' => new Zend_Db_Expr ('DATE_FORMAT(end_date,"%d/%m/%Y")'),
 																								'plate_date' => new Zend_Db_Expr ('DATE_FORMAT(plate_date,"%d/%m/%Y")'),
 																								'period', 'reason', 'info' ) )
+						->order('start_date ASC')
 						->where('grantee = ?',$granteeId);
 		return $granteeReservation->fetchAll($select);
 	}

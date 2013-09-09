@@ -430,7 +430,7 @@
           					<?foreach($this->auxiliarsInactives as $auxiliarsInactives){ ?>
 					          	<div class="accordion-group">
 					          		<div class="accordion-heading">
-					          			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionAuxiliar" href="#collapseAuxiliar_<?=$auxiliarsInactives->_id?>"><?=$auxiliarsInactives->name?></a>
+					          			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionAuxiliar" href="#collapseAuxiliar_<?=$auxiliarsInactives->_id?>"><?=$auxiliarsInactives->name?> - De <?=Application_Model_General::dateToBr($auxiliarsInactives->start_date)?> a <?=Application_Model_General::dateToBr($auxiliarsInactives->end_date)?></a>
 					          		</div>
 					          		<div id="collapseAuxiliar_<?=$auxiliarsInactives->_id?>" class="accordion-body collapse">
 			          					<form action="/grantee/edit-auxiliar" method="post" class="form-horizontal">
