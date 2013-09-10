@@ -5,6 +5,8 @@ class Application_Model_General
 
 	public static function dateToUs($date)
 	{
+    if($date == '0000-00-00' || $date == '')
+      return new Zend_Db_Expr('NULL');
 		$aux = explode('/', $date);
 		return $aux[2].'-'.$aux[1].'-'.$aux[0];
 	}
@@ -12,7 +14,7 @@ class Application_Model_General
 	public static function dateToBr($date)
 	{
     if($date == '0000-00-00' || $date == '')
-      return '';
+      return new Zend_Db_Expr('NULL');
 		$aux = explode('-', $date);
 		$date = $aux[2].'/'.$aux[1].'/'.$aux[0];
 		return $date;
@@ -53,6 +55,10 @@ class Application_Model_General
     $search = explode(",","ç,æ,œ,á,é,í,ó,ú,à,è,ì,ò,ù,ä,ë,ï,ö,ü,ÿ,â,ê,î,ô,û,å,e,i,ø,u");
     $replace = explode(",","c,ae,oe,a,e,i,o,u,a,e,i,o,u,a,e,i,o,u,y,a,e,i,o,u,a,e,i,o,u");
     return str_replace($search, $replace, $title);
+  }
+  public static function formatLongText($text,$start,$finished)
+  {
+    return ltrim(substr($text, $start, $finished));
   }
 }
 

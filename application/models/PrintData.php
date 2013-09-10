@@ -9,30 +9,30 @@ class Application_Model_PrintData
 
 	public function __construct()
 	{
-		$this->pdf = new Zend_Pdf();
-        $this->page = new Zend_Pdf_Page(Zend_Pdf_Page::SIZE_A4);
-        $this->font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES);
+	    $this->pdf = new Zend_Pdf();
+      $this->page = new Zend_Pdf_Page(Zend_Pdf_Page::SIZE_A4);
+      $this->font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES);
 	}
 
 	public function createPdf($data,$auxiliars='')
 	{
 		try{
-    		$this->header();
-    		$this->headerData($data);
-    		$this->addressDocuments($data);
-            $this->registered($data);
-            $this->vehicle($data);
-            $this->info($data->info);
-            $this->auxiliar($auxiliars);
-            $this->footer();
-            $this->pdf->pages[] = $this->page;
-            return $this->pdf;
-        }catch(Zend_Pdf_Exception $e){
-            die('PDF error: ' . $e->getMessage());
-        }
-        catch(Zend_Exception $e){
-            die('Error: ' . $e->getMessage());
-        }
+  		$this->header();
+  		$this->headerData($data);
+  		$this->addressDocuments($data);
+      $this->registered($data);
+      $this->vehicle($data);
+      $this->info($data->info);
+      $this->auxiliar($auxiliars);
+      $this->footer();
+      $this->pdf->pages[] = $this->page;
+      return $this->pdf;
+    }catch(Zend_Pdf_Exception $e){
+      die('PDF error: ' . $e->getMessage());
+    }
+    catch(Zend_Exception $e){
+      die('Error: ' . $e->getMessage());
+    }
 	}
 
 	protected function header()
@@ -338,6 +338,8 @@ class Application_Model_PrintData
                 ->drawText(Application_Model_General::dateToBr($data->start_permission), 155, 498, 'UTF-8');
     $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
                 ->drawText(Application_Model_General::dateToBr($data->end_permission), 235, 498, 'UTF-8');
+
+
   }
 
   protected function vehicle($data)

@@ -1,5 +1,16 @@
 <?php
+				
+//         $textSize = 50;
+//         $count = 0;
+//         while($count < strlen($textSize))
+//         {
+//             				echo substr($text, $count, $count + $textSize);
+//                     $count += $textSize;
+//         }
 
+
+
+// exit;
 // Define path to application directory
 defined('APPLICATION_PATH')
     || define('APPLICATION_PATH', realpath(dirname(__FILE__) . '/../application'));

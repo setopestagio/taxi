@@ -11,19 +11,19 @@ class Application_Form_Reservation extends Twitter_Bootstrap_Form_Horizontal
       $this->addElement('text', 'start_date', array(
       		'label'					=> 'Data de Início',
           'placeholder'   => 'data de início',
-          'class'					=> 'input-xlarge datepicker dateMask'
+          'class'					=> 'input-xlarge dateMask'
       ));
 
       $this->addElement('text', 'end_date', array(
       		'label'					=> 'Data de Fim',
           'placeholder'   => 'data de fim',
-          'class'					=> 'input-xlarge datepicker dateMask'
+          'class'					=> 'input-xlarge dateMask'
       ));
 
       $this->addElement('text', 'plate_date', array(
       		'label'					=> 'Data de Emplacamento',
           'placeholder'   => 'data de emplacamento',
-          'class'					=> 'input-xlarge datepicker dateMask'
+          'class'					=> 'input-xlarge dateMask'
       ));
 
       $this->addElement('text', 'period', array(

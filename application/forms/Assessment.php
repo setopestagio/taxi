@@ -22,7 +22,7 @@ class Application_Form_Assessment extends Twitter_Bootstrap_Form_Horizontal
       $this->addElement('text', 'date', array(
       		'label'							=> 'Data',
           'placeholder'   		=> 'data da autuação',
-          'class'							=> 'input-xlarge datepicker',
+          'class'							=> 'input-xlarge',
           'data-date'					=> date('d/m/Y'),
           'data-date-format'	=> 'dd/mm/yyyy'
       ));

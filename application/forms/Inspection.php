@@ -16,7 +16,7 @@ class Application_Form_Inspection extends Twitter_Bootstrap_Form_Horizontal
       $this->addElement('text', 'inspection_date', array(
       		'label'					=> 'Data',
           'placeholder'   => 'data da fiscalização realizada',
-          'class'					=> 'input-xxlarge dateMask datepicker'
+          'class'					=> 'input-xxlarge dateMask'
       ));
 
       $this->addElement('text', 'permission', array(

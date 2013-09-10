@@ -16,7 +16,7 @@ class Application_Form_Clandestine extends Twitter_Bootstrap_Form_Horizontal
       $this->addElement('text', 'clandestine_date', array(
       		'label'					=> 'Data',
           'placeholder'   => 'data da fiscalização realizada',
-          'class'					=> 'input-xxlarge dateMask datepicker'
+          'class'					=> 'input-xxlarge dateMask'
       ));
 
       $this->addElement('text', 'driver', array(

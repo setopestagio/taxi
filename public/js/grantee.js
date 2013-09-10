@@ -110,7 +110,7 @@ $('#operation').change(function() {
     $('#reservationGroupStart').hide();
     $('#reservationGroupEnd').hide();
     $('#plateGroup').hide();
-    $('#otherGroup').hide();
+    $('#otherGroup').show();
   }
   if($(this).val() == 2){
     $('#transferGroup').hide();
@@ -119,7 +119,7 @@ $('#operation').change(function() {
     $('#reservationGroupStart').hide();
     $('#reservationGroupEnd').hide();
     $('#plateGroup').hide();
-    $('#otherGroup').hide();
+    $('#otherGroup').show();
   }
   if($(this).val() == 3){
     $('#transferGroup').hide();
