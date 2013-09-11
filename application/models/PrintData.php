@@ -14,13 +14,13 @@ class Application_Model_PrintData
       $this->font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES);
 	}
 
-	public function createPdf($data,$auxiliars='')
+	public function createPdf($data,$auxiliars='',$reservation='')
 	{
 		try{
   		$this->header();
   		$this->headerData($data);
   		$this->addressDocuments($data);
-      $this->registered($data);
+      $this->registered($data,$reservation);
       $this->vehicle($data);
       $this->info($data->info);
       $this->auxiliar($auxiliars);
@@ -281,7 +281,7 @@ class Application_Model_PrintData
                 ->drawText($data->iapas, 389, 553, 'UTF-8');
 	}
 
-  protected function registered($data)
+  protected function registered($data,$reservation='')
   {
     // Horizontal Lines
     $this->page->setLineWidth(1.5)
@@ -339,6 +339,15 @@ class Application_Model_PrintData
     $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
                 ->drawText(Application_Model_General::dateToBr($data->end_permission), 235, 498, 'UTF-8');
 
+    if(is_object($reservation))
+    {
+      $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
+                ->drawText(Application_Model_General::dateToBr($reservation->start_date), 305, 498, 'UTF-8');
+      $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
+                ->drawText(Application_Model_General::dateToBr($reservation->end_date), 375, 498, 'UTF-8');
+      $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
+                ->drawText(Application_Model_General::dateToBr($reservation->plate_date), 455, 498, 'UTF-8');
+    }
 
   }
 

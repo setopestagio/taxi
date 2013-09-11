@@ -365,5 +365,13 @@ class Application_Model_Grantee
 		return false;
 	}
 
+	public function returnReservationActive($granteeId)
+	{
+		$granteeReservation = new Application_Model_DbTable_GranteeReservation();
+		return $granteeReservation->fetchRow($granteeReservation->select()
+																	->where('grantee = ?',$granteeId)
+																	->where('end_date >= ?', new Zend_Db_Expr('NOW()')));
+	}
+
 }
 

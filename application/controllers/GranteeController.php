@@ -177,7 +177,8 @@ class GranteeController extends Zend_Controller_Action
         $print = new Application_Model_PrintData();
         $granteeRow = $grantee->returnById($id);
         $auxiliars = $grantee->returnAuxiliars($id);
-        $pdf = $print->createPdf($granteeRow,$auxiliars);
+        $reservation = $grantee->returnReservationActive($id);
+        $pdf = $print->createPdf($granteeRow,$auxiliars,$reservation);
         header('Content-Type: application/pdf');
         echo $pdf->render(); 
       }catch(Zend_Exception $e){

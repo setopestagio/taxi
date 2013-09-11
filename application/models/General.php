@@ -14,7 +14,7 @@ class Application_Model_General
 	public static function dateToBr($date)
 	{
     if($date == '0000-00-00' || $date == '')
-      return new Zend_Db_Expr('NULL');
+      return '';
 		$aux = explode('-', $date);
 		$date = $aux[2].'/'.$aux[1].'/'.$aux[0];
 		return $date;
