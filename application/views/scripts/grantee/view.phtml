@@ -34,8 +34,8 @@
 		      			<tr>
 		      				<td><a href="/grantee/edit/id/<?=$grantee->grantee_id?>"><?=$grantee->name?></a></td>
 		      				<td><?=$grantee->permission?></td>
-		      				<td><?=Application_Model_General::dateToBr($grantee->start_permission)?></td>
-                  <td><?=Application_Model_General::dateToBr($grantee->end_permission)?></td>
+		      				<td><?if(Application_Model_General::dateToBr($grantee->start_permission) != 'NULL') echo Application_Model_General::dateToBr($grantee->start_permission);?></td>
+                  <td><?if(Application_Model_General::dateToBr($grantee->end_permission) != 'NULL') echo Application_Model_General::dateToBr($grantee->end_permission);?></td>
 		      			</tr>
       			<?} } else{?>
       				<tr>
