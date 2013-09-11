@@ -78,6 +78,7 @@ class Application_Model_Grantee
 		$select = $granteeAuxiliar->select()->setIntegrityCheck(false);
 		$select	->from(array('a' => 'grantee_auxiliar'), array('_id' => 'id', 'start_date','end_date') )
 						->joinInner(array('p' => 'person'), 'p.id=a.auxiliar')
+						->order('a.start_date ASC')
 						->where('a.grantee = ?',$granteeId)
 						->where('a.end_date IS NOT NULL');
 		return $granteeAuxiliar->fetchAll($select);
