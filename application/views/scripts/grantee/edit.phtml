@@ -440,13 +440,13 @@
 					          				<div class="control-group">
 									              <label class="control-label" for="color">Data inicial</label>
 									              <div class="controls">
-									                  <input type="text" name="start_date" class="input-xlarge dateMask datepicker" value="<?=Application_Model_General::dateToBr($auxiliarsInactives->start_date)?>" maxlength="10">
+									                  <input type="text" name="start_date" class="input-xlarge dateMask" value="<?=Application_Model_General::dateToBr($auxiliarsInactives->start_date)?>" maxlength="10">
 									              </div><!--/.controls -->
 									          </div><!--/.control-group -->
 					          				<div class="control-group">
 									              <label class="control-label" for="color">Data final</label>
 									              <div class="controls">
-									                  <input type="text" name="end_date" class="input-xlarge dateMask datepicker" value="<?=Application_Model_General::dateToBr($auxiliarsInactives->end_date)?>" maxlength="10">
+									                  <input type="text" name="end_date" class="input-xlarge dateMask" value="<?=Application_Model_General::dateToBr($auxiliarsInactives->end_date)?>" maxlength="10">
 									              </div><!--/.controls -->
 									          </div><!--/.control-group -->
 									          <div class="form-actions">
@@ -514,7 +514,7 @@
         <div class="control-group">
           <label class="control-label" for="end_date">Data de Vencimento</label>
           <div class="controls">
-            <input type="text" class="input-xlarge datepicker" id="end_date" name="end_date" placeholder="data de vencimento" data-mask="99/99/9999"  data-date="<?=date('d/m/Y')?>" data-date-format="dd/mm/yyyy">
+            <input type="text" class="input-xlarge dateMask" id="end_date" name="end_date" placeholder="data de vencimento">
           </div>
         </div>
     </div>
