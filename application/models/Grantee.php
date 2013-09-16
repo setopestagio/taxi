@@ -67,8 +67,7 @@ class Application_Model_Grantee
 						->joinInner(array('p' => 'person'), 'p.id=a.auxiliar')
 						->joinLeft(array('g' => 'grantee'), 'g.id=a.auxiliar')
 						->where('a.grantee = ?',$granteeId)
-						->where('a.end_date IS NULL')
-						->where('g.id IS NULL');
+						->where('a.end_date IS NULL');
 		return $granteeAuxiliar->fetchAll($select);
 	}
 
