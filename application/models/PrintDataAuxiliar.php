@@ -491,10 +491,7 @@ class Application_Model_PrintDataAuxiliar
         ->drawLine(51, 220, 546, 220);
 
     $this->page->setLineWidth(1.5)
-        ->drawLine(210, 240, 370, 240);
-
-    $this->page->setLineWidth(1.5)
-        ->drawLine(385, 240, 530, 240);
+        ->drawLine(250, 240, 500, 240);
 
     // Vertical Lines
     $this->page->setLineWidth(2)
@@ -511,9 +508,7 @@ class Application_Model_PrintDataAuxiliar
     $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
                 ->drawText('Belo Horizonte, '.date('d/m/Y'), 56, 240, 'UTF-8');
     $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
-                ->drawText('Assinatura do Auxiliar', 240, 230, 'UTF-8');
-    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
-                ->drawText('SETOP', 440, 230, 'UTF-8');
+                ->drawText('Assinatura do Auxiliar', 320, 230, 'UTF-8');
   }
 
   protected function footer($data)
