@@ -141,5 +141,18 @@ class Application_Model_Auxiliar
 			return false;
 		}
 	}
+
+	public function remove($auxiliarId)
+	{
+		$granteeAuxiliar = new Application_Model_DbTable_GranteeAuxiliar();
+		$granteeAuxiliarRow = $granteeAuxiliar->fetchAll($granteeAuxiliar->select()->where('auxiliar = ?',$auxiliarId));
+		foreach($granteeAuxiliarRow as $granteeAuxiliarAux)
+		{
+			$granteeAuxiliarAux->delete();
+		}
+		$person = new Application_Model_DbTable_Person();
+		$auxiliarRow = $person->fetchRow($person->select()->where('id = ?', $auxiliarId));
+		return $auxiliarRow->delete();
+	}
 }
 

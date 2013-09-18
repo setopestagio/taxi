@@ -75,7 +75,20 @@ class AuxiliarController extends Zend_Controller_Action
 
     public function removeAction()
     {
-        // action body
+      $id = $this->getRequest()->getParam('id');
+      if ( $this->getRequest()->isPost() ) 
+      {
+        $auxiliar = new Application_Model_Auxiliar();
+        if($auxiliar->remove($id))
+        {
+          $this->_redirect('/auxiliar/view');
+        }
+        else
+        {
+           $this->_redirect('/auxiliar/view');
+        }
+      }
+     $this->_redirect('/auxiliar/view');
     }
 
     public function viewAction()

@@ -200,6 +200,7 @@
                   </div>
                   <div class="form-actions">
                       <button type="submit" class="btn btn-primary">Salvar</button>
+                      <a data-toggle="modal" href="#myModal" class="btn btn-danger">Remover auxiliar</a>
                   </div>
                 </form>
             </div>
@@ -263,3 +264,23 @@
     </div>
   </form>
 </div>
+
+<form action="/auxiliar/remove/id/<?=$this->auxiliar->id_auxiliar?>" method="post">
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Remover auxiliar</h4>
+        </div>
+        <div class="modal-body">
+          Tem certeza que deseja remover o auxiliar <?=$this->auxiliar->name?>?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+          <button type="submit" class="btn btn-danger">Remover</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+</form>
