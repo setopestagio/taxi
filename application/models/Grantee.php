@@ -29,10 +29,9 @@ class Application_Model_Grantee
 	{
 		$grantee = new Application_Model_DbTable_Grantee();
 		$select = $grantee->select()->setIntegrityCheck(false);
-		$select	->from(array('g' => 'grantee'), array('grantee_id' => 'id', 'permission','authorization','city',
-																								'start_permission','end_permission') )
-
-						->joinInner(array('p' => 'person'), 'p.id=g.owner');
+		$select	->from(array('p' => 'person') )
+						->joinInner(array('g' => 'grantee'), 'p.id=g.owner', array('grantee_id' => 'id', 'permission','authorization','city',
+																								'start_permission','end_permission') );
 		return $grantee->fetchAll($select);
 	}
 
@@ -169,10 +168,9 @@ class Application_Model_Grantee
 	{
 		$grantee = new Application_Model_DbTable_Grantee();
 		$select = $grantee->select()->setIntegrityCheck(false);
-		$select	->from(array('g' => 'grantee'), array('grantee_id' => 'id', 'permission','authorization','city',
+		$select	->from(array('p' => 'person') )
+						->joinInner(array('g' => 'grantee'), 'p.id=g.owner', array('grantee_id' => 'id', 'permission','authorization','city',
 																								'start_permission','end_permission') )
-
-						->joinInner(array('p' => 'person'), 'p.id=g.owner')
 						->where('g.permission = ?',$permission);
 		return $grantee->fetchAll($select);
 	}
@@ -181,10 +179,9 @@ class Application_Model_Grantee
 	{
 		$grantee = new Application_Model_DbTable_Grantee();
 		$select = $grantee->select()->setIntegrityCheck(false);
-		$select	->from(array('g' => 'grantee'), array('grantee_id' => 'id', 'permission','authorization','city',
+		$select	->from(array('p' => 'person') )
+						->joinInner(array('g' => 'grantee'), 'p.id=g.owner', array('grantee_id' => 'id', 'permission','authorization','city',
 																								'start_permission','end_permission') )
-
-						->joinInner(array('p' => 'person'), 'p.id=g.owner')
 						->where('p.cpf = ?',$cpf);
 		return $grantee->fetchAll($select);
 	}
@@ -193,10 +190,9 @@ class Application_Model_Grantee
 	{
 		$grantee = new Application_Model_DbTable_Grantee();
 		$select = $grantee->select()->setIntegrityCheck(false);
-		$select	->from(array('g' => 'grantee'), array('grantee_id' => 'id', 'permission','authorization','city',
+		$select	->from(array('p' => 'person') )
+						->joinInner(array('g' => 'grantee'), 'p.id=g.owner', array('grantee_id' => 'id', 'permission','authorization','city',
 																								'start_permission','end_permission') )
-
-						->joinInner(array('p' => 'person'), 'p.id=g.owner')
 						->where('p.name LIKE ?','%'.$name.'%');
 		return $grantee->fetchAll($select);
 	}
