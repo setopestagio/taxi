@@ -15,6 +15,8 @@ class Application_Model_Vehicle
 		$newVehicle->color = $data['color'];
 		$newVehicle->chassi  = $data['chassi'];
 		$newVehicle->fuel  = $data['fuel'];
+		$newVehicle->taximeter_brand = $data['taximeter_brand'];
+		$newVehicle->taximeter_model = $data['taximeter_model'];
 		return $newVehicle->save();
 	}
 
@@ -31,6 +33,8 @@ class Application_Model_Vehicle
 		$editVehicle->color = $data['color'];
 		$editVehicle->chassi  = $data['chassi'];
 		$editVehicle->fuel  = $data['fuel'];
+		$editVehicle->taximeter_brand = $data['taximeter_brand'];
+		$editVehicle->taximeter_model = $data['taximeter_model'];
 		return $editVehicle->save();
 	}
 
