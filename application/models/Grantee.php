@@ -40,7 +40,7 @@ class Application_Model_Grantee
 	{
 		$grantee = new Application_Model_DbTable_Grantee();
 		$select = $grantee->select()->setIntegrityCheck(false);
-		$select	->from(array('g' => 'grantee'), array('grantee_id' => 'id', 'permission','authorization','city',
+		$select	->from(array('g' => 'grantee'), array('grantee_id' => 'id', 'permission','authorization','city', 'owner',
 																					'start_permission','end_permission', 'info_grantee' => 'info', 'pendencies') )
 						->joinInner(array('p' => 'person'), 'p.id=g.owner', array('permission', 'name', 'name_grantee' => 'name', 'address',
 																					'phone', 'mobile', 'email', 'rg', 'rg_issuer', 'cpf',
@@ -370,6 +370,100 @@ class Application_Model_Grantee
 		return $granteeReservation->fetchRow($granteeReservation->select()
 																	->where('grantee = ?',$granteeId)
 																	->where('end_date >= ?', new Zend_Db_Expr('NOW()')));
+	}
+
+	public function newHistoric($data)
+	{
+		$grantee = new Application_Model_DbTable_Grantee();
+		$granteeNew = $grantee->createRow();
+		$granteeNew->permission = $data['permission'];
+		$granteeNew->authorization = 1;
+		$granteeNew->owner = $data['owner'];
+		$granteeNew->city = $data['city'];
+		$granteeNew->start_permission = Application_Model_General::dateToUs($data['start_permission']);
+		$granteeNew->end_permission = Application_Model_General::dateToUs($data['end_permission']);
+		$granteeNew->info = $data['info'];
+		return $granteeNew->save();
+	}
+
+	public function returnPermissionsHistoric($granteeId)
+	{
+		$grantee = new Application_Model_DbTable_Grantee();
+		$select = $grantee->select()->setIntegrityCheck(false);
+		$select 					->from(array('g' => 'grantee'), array('id', 'permission', 'owner', 'city', 'info',
+												'start_permission' => new Zend_Db_Expr ('DATE_FORMAT(start_permission,"%d/%m/%Y")'),
+												'end_permission' => new Zend_Db_Expr ('DATE_FORMAT(end_permission,"%d/%m/%Y")')))
+											->where('owner = ?',$granteeId)
+											->where('end_permission IS NOT NULL')
+											->where('end_permission != "0000-00-00"');
+		return $grantee->fetchAll($select);
+	}
+
+	public function editHistoric($data,$granteeId)
+	{
+		$grantee = new Application_Model_DbTable_Grantee();
+		$granteeRow = $grantee->fetchRow($grantee->select()->where('id = ?',$granteeId));
+		if($granteeRow)
+		{
+			$granteeRow->permission = $data['permission'];
+			$granteeRow->owner = $data['owner'];
+			$granteeRow->city = $data['city'];
+			$granteeRow->start_permission = Application_Model_General::dateToUs($data['start_permission']);
+			$granteeRow->end_permission = Application_Model_General::dateToUs($data['end_permission']);
+			$granteeRow->info = $data['info'];
+			return $granteeRow->save();
+		}
+		return false;
+	}
+
+	public function removeHistoric($granteeId)
+	{
+		$grantee = new Application_Model_DbTable_Grantee();
+		$granteeRow = $grantee->fetchRow($grantee->select()->where('id = ?',$granteeId));
+		if($granteeRow)
+		{
+			return $granteeRow->delete();
+		}
+		return false;
+	}
+
+	public function addAuxiliarHistoric($data)
+	{
+		$granteeAuxiliar = new Application_Model_DbTable_GranteeAuxiliar();
+		$granteeRow = $granteeAuxiliar->createRow();
+		$granteeRow->grantee = $data['id'];
+		$granteeRow->auxiliar = $data['auxiliar_id'];
+		$granteeRow->start_date = Application_Model_General::dateToUs($data['start_date_aux']);
+		$granteeRow->end_date = Application_Model_General::dateToUs($data['end_date_aux']);
+		return $granteeRow->save();
+	}
+
+	public function editAuxiliarHistoric($data)
+	{
+		$granteeAuxiliar = new Application_Model_DbTable_GranteeAuxiliar();
+		$granteeRow = $granteeAuxiliar->fetchRow($granteeAuxiliar->select()
+																								->where('grantee = ?',$data['grantee'])
+																								->where('auxiliar = ?',$data['auxiliar']));
+		if($granteeRow)
+		{
+			$granteeRow->start_date = Application_Model_General::dateToUs($data['start_date_aux']);
+			$granteeRow->end_date = Application_Model_General::dateToUs($data['end_date_aux']);
+			return $granteeRow->save();
+		}
+		return false;
+	}
+
+	public function removeAuxiliarHistoric($data)
+	{
+		$granteeAuxiliar = new Application_Model_DbTable_GranteeAuxiliar();
+		$granteeRow = $granteeAuxiliar->fetchRow($granteeAuxiliar->select()
+																								->where('grantee = ?',$data['grantee'])
+																								->where('auxiliar = ?',$data['auxiliar']));
+		if($granteeRow)
+		{
+			return $granteeRow->delete();
+		}
+		return false;
 	}
 
 }

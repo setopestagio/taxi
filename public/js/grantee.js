@@ -149,3 +149,41 @@ $('#operation').change(function() {
     $('#otherGroup').show();
   }
 });
+
+
+$('.addAuxiliar').typeahead({
+  source: function(query, process) {
+      $('.addAuxiliarRemove').css('display','none');
+      objects = [];
+      map = {};
+      $.getJSON('/grantee/return-people', { query: query }, function(data) {
+        $.each(data, function(i, object) {
+            map[object.label] = object;
+            objects.push(object.label);
+        });
+        process(objects);
+      });
+    },
+    updater: function(item) {
+        $('.auxiliar_id').val(map[item].id);
+        $('.addAuxiliar').attr('disabled',true);
+        $('.addAuxiliarRemove').css('display','');
+        return item;
+    }, 
+    matcher: function (item) {
+      if (item == null)
+            return false;
+      return ~item.toLowerCase().indexOf(this.query.toLowerCase())
+    }
+}).on('typeahead:opened', function() {
+    $(this).closest('.accordion-body').css('overflow','visible');
+}).on('typeahead:closed', function() {
+    $(this).closest('.accordion-body').css('overflow','hidden');
+});
+
+$('.addAuxiliarRemove').click(function(){
+  $('.auxiliar_id').val('');
+  $('.addAuxiliar').attr('disabled',false);
+  $('.addAuxiliar').val('');
+  $('.addAuxiliarRemove').hide();
+});

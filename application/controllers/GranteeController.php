@@ -72,6 +72,7 @@ class GranteeController extends Zend_Controller_Action
         $this->view->auxiliarsInactives = $grantee->returnAuxiliarsInactives($granteeId);
         // $this->view->reservation = $grantee->returnReservation($granteeId);
         $this->view->reservationHistoric = $grantee->returnReservationHistoric($granteeId);
+        $this->view->permissionsHistoric = $grantee->returnPermissionsHistoric($granteeId);
       }catch(Zend_Exception $e){
         $this->view->error = true;
       }
@@ -378,8 +379,146 @@ class GranteeController extends Zend_Controller_Action
       }
     }
 
+    public function newHistoricAction()
+    {
+      try{
+        if ( $this->getRequest()->isPost() ) 
+        {
+          $data = $this->getRequest()->getPost();
+          $grantee = new Application_Model_Grantee();
+          if($grantee->newHistoric($data))
+          {
+            $this->_redirect('/grantee/edit/id/'.$data['owner'].'/save/success');
+          }
+          else
+          {
+            $this->_redirect('/grantee/edit/id/'.$data['owner'].'/save/failure');
+          }
+        }
+      }catch(Zend_Exception $e){
+          $this->_redirect('/grantee/edit/id/'.$data['owner'].'/save/failure');
+      }
+    }
+
+    public function editHistoricAction()
+    {
+      try{
+        if ( $this->getRequest()->isPost() ) 
+        {
+          $data = $this->getRequest()->getPost();
+          $grantee = new Application_Model_Grantee();
+          if($grantee->editHistoric($data,$data['id']))
+          {
+            $this->_redirect('/grantee/edit/id/'.$data['owner'].'/save/success');
+          }
+          else
+          {
+            $this->_redirect('/grantee/edit/id/'.$data['owner'].'/save/failure');
+          }
+        }
+      }catch(Zend_Exception $e){
+          $this->_redirect('/grantee/edit/id/'.$data['owner'].'/save/failure');
+      }
+    }
+
+    public function removeHistoricAction()
+    {
+      try{
+        if ( $this->getRequest()->isPost() ) 
+        {
+          $data = $this->getRequest()->getPost();
+          $grantee = new Application_Model_Grantee();
+          if($grantee->removeHistoric($data['id']))
+          {
+            $this->_redirect('/grantee/edit/id/'.$data['owner'].'/save/success');
+          }
+          else
+          {
+            $this->_redirect('/grantee/edit/id/'.$data['owner'].'/save/failure');
+          }
+        }
+      }catch(Zend_Exception $e){
+          $this->_redirect('/grantee/edit/id/'.$data['owner'].'/save/failure');
+      }
+    }
+
+    public function addAuxiliarHistoricAction()
+    {
+      try{
+        if ( $this->getRequest()->isPost() ) 
+        {
+          $data = $this->getRequest()->getPost();
+          $grantee = new Application_Model_Grantee();
+          if($grantee->addAuxiliarHistoric($data))
+          {
+            $this->_redirect('/grantee/edit/id/'.$data['grantee_id'].'/save/success');
+          }
+          else
+          {
+            $this->_redirect('/grantee/edit/id/'.$data['grantee_id'].'/save/failure');
+          }
+        }
+      }catch(Zend_Exception $e){
+          $this->_redirect('/grantee/edit/id/'.$data['grantee_id'].'/save/failure');
+      }
+    }
+
+    public function editAuxiliarHistoricAction()
+    {
+      try{
+        if ( $this->getRequest()->isPost() ) 
+        {
+          $data = $this->getRequest()->getPost();
+          $grantee = new Application_Model_Grantee();
+          if($grantee->editAuxiliarHistoric($data))
+          {
+            $this->_redirect('/grantee/edit/id/'.$data['owner'].'/save/success');
+          }
+          else
+          {
+            $this->_redirect('/grantee/edit/id/'.$data['owner'].'/save/failure');
+          }
+        }
+      }catch(Zend_Exception $e){
+          $this->_redirect('/grantee/edit/id/'.$data['owner'].'/save/failure');
+      }
+    }
+
+    public function removeAuxiliarHistoricAction()
+    {
+      try{
+        if ( $this->getRequest()->isPost() ) 
+        {
+          $data = $this->getRequest()->getPost();
+          $grantee = new Application_Model_Grantee();
+          if($grantee->removeAuxiliarHistoric($data))
+          {
+            $this->_redirect('/grantee/edit/id/'.$data['owner'].'/save/success');
+          }
+          else
+          {
+            $this->_redirect('/grantee/edit/id/'.$data['owner'].'/save/failure');
+          }
+        }
+      }catch(Zend_Exception $e){
+          $this->_redirect('/grantee/edit/id/'.$data['owner'].'/save/failure');
+      }
+    }
+
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

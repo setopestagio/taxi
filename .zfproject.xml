@@ -48,6 +48,12 @@
           <actionMethod actionName="printCommunication"/>
           <actionMethod actionName="editAuxiliar"/>
           <actionMethod actionName="reportVehicle"/>
+          <actionMethod actionName="newHistoric"/>
+          <actionMethod actionName="editHistoric"/>
+          <actionMethod actionName="removeHistoric"/>
+          <actionMethod actionName="addAuxiliarHistoric"/>
+          <actionMethod actionName="editAuxiliarHistoric"/>
+          <actionMethod actionName="removeAuxiliarHistoric"/>
         </controllerFile>
         <controllerFile controllerName="Auxiliar">
           <actionMethod actionName="index"/>
@@ -458,6 +464,24 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Grantee">
             <viewScriptFile forActionName="reportVehicle"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Grantee">
+            <viewScriptFile forActionName="newHistoric"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Grantee">
+            <viewScriptFile forActionName="editHistoric"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Grantee">
+            <viewScriptFile forActionName="removeHistoric"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Grantee">
+            <viewScriptFile forActionName="addAuxiliarHistoric"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Grantee">
+            <viewScriptFile forActionName="editAuxiliarHistoric"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Grantee">
+            <viewScriptFile forActionName="removeAuxiliarHistoric"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

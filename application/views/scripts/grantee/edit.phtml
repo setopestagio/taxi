@@ -6,7 +6,6 @@
         <li class="active"><a href="/grantee/new"> Edição de Permissionário </a></li>
         <li><a href="/grantee/view"><i class="icon-bullhorn"></i> Pesquisar Permissionário </a></li>
         <li><a href="/grantee/report"><i class="icon-map-marker"></i> Relatórios </a></li>
-        <li><a href="/grantee/vis"><i class="icon-bar-chart"></i> Visualização </a></li>
       </ul>
     </div><!--/span-->
     <div class="span9">
@@ -23,10 +22,11 @@
         </div>
         <hr>
         <ul class="nav nav-tabs" id="myTab">
-		  <li class="active"><a href="#data">Dados</a></li>
-		  <li><a href="#auxiliars">Auxiliares</a></li>
-		  <li><a href="#reservation">Reserva</a></li>
-		</ul>
+				  <li class="active"><a href="#data">Dados</a></li>
+				  <li><a href="#auxiliars">Auxiliares</a></li>
+				  <li><a href="#reservation">Reserva</a></li>
+				  <li><a href="#historic">Histórico</a></li>
+				</ul>
 		<div class="tab-content">
 			<div class="tab-pane active" id="data">
         <form class="form-horizontal" action="/grantee/edit/id/<?=$this->grantee->grantee_id?>" method="post">
@@ -499,6 +499,247 @@
 	          <?}?>
 		  		</div>
 				</div>
+				<div class="tab-pane" id="historic">
+						<div class="accordion" id="accordionHistoric">
+		        	<div class="accordion-group">
+		        		<div class="accordion-heading">
+		        			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionHistoric" href="#accordionNewHistoric">Novo histórico de permissão</a>
+		        		</div>
+		        		<div id="accordionNewHistoric" class="accordion-body collapse">
+		        			<div class="accordion-inner">
+										<form action="/grantee/new-historic" method="post" class="form-horizontal">
+          						<input type="hidden" name="owner" value="<?=$this->grantee->owner?>">
+			          				<div class="control-group">
+							              <label class="control-label" for="color">Permissão</label>
+							              <div class="controls">
+							                  <input type="text" name="permission" class="input-xlarge" value="" maxlength="10" placeholder="número da permissão">
+							              </div><!--/.controls -->
+							          </div><!--/.control-group -->
+							          <div class="control-group">
+							              <label class="control-label" for="city">Cidade</label>
+							              <div class="controls">
+						                  <select name="city" id="city" class="input-xlarge">
+						                  	<option value="0">-- Escolha o município --</option>
+						                  	<?foreach ($this->cities as $city){ ?>
+						                  	<option value="<?=$city->id?>"><?=$city->name?></option>
+						                  	<?}?>
+						                  </select>
+							              </div><!--/.controls -->
+							          </div><!--/.control-group -->
+			          				<div class="control-group">
+							              <label class="control-label" for="start_permission">Data inicial</label>
+							              <div class="controls">
+							                  <input type="text" name="start_permission" class="input-xlarge dateMask" value="" maxlength="10" placeholder="data inicial da permissão">
+							              </div><!--/.controls -->
+							          </div><!--/.control-group -->
+			          				<div class="control-group">
+							              <label class="control-label" for="end_permission">Data final</label>
+							              <div class="controls">
+							                  <input type="text" name="end_permission" class="input-xlarge dateMask" value="" maxlength="10" placeholder="data final da permissão">
+							              </div><!--/.controls -->
+							          </div><!--/.control-group -->
+			          				<div class="control-group">
+							              <label class="control-label" for="info">Observações</label>
+							              <div class="controls">
+							                  <textarea type="text" name="info" rows="5" class="input-xlarge" placeholder="observações"></textarea>
+							              </div><!--/.controls -->
+							          </div><!--/.control-group -->
+							          <div class="control-group">
+							          	<label class="control-label" for="color">&nbsp;</label>
+						              <div class="controls">
+						              	<button type="submit" class="btn btn-primary">Salvar</button>
+						            	</div>
+							          </div>
+		          			</form>
+						      </div>
+							  </div>
+							</div>
+							<?foreach($this->permissionsHistoric as $permissionsHistoric){?>
+							<div class="accordion-group">
+		        		<div class="accordion-heading">
+		        			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionHistoric" href="#accordion_<?=$permissionsHistoric->id?>">Permissão - <?=$permissionsHistoric->permission?></a>
+		        		</div>
+		        		<div id="accordion_<?=$permissionsHistoric->id?>" class="accordion-body collapse">
+		        			<div class="accordion-inner">
+		        				<div class="accordion-group">
+					        		<div class="accordion-heading">
+					        			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_<?=$permissionsHistoric->permission?>" href="#accordion_data">Dados Principais</a>
+					        		</div>
+					        		<div id="accordion_data" class="accordion-body collapse">
+					        			<div class="accordion-inner">
+													<form action="/grantee/edit-historic" method="post" class="form-horizontal">
+			          						<input type="hidden" name="id" value="<?=$permissionsHistoric->id?>">
+			          						<input type="hidden" name="owner" value="<?=$this->grantee->owner?>">
+						          				<div class="control-group">
+										              <label class="control-label" for="color">Permissão</label>
+										              <div class="controls">
+										                  <input type="text" name="permission" class="input-xlarge" value="<?=$permissionsHistoric->permission?>" maxlength="10" placeholder="número da permissão">
+										              </div><!--/.controls -->
+										          </div><!--/.control-group -->
+										          <div class="control-group">
+										              <label class="control-label" for="city">Cidade</label>
+										              <div class="controls">
+									                  <select name="city" id="city" class="input-xlarge">
+									                  	<option value="0">-- Escolha o município --</option>
+									                  	<?foreach ($this->cities as $city){ ?>
+									                  	<option value="<?=$city->id?>" <?if($permissionsHistoric->city == $city->id) echo 'selected="selected"';?>><?=$city->name?></option>
+									                  	<?}?>
+									                  </select>
+										              </div><!--/.controls -->
+										          </div><!--/.control-group -->
+						          				<div class="control-group">
+										              <label class="control-label" for="start_permission">Data inicial</label>
+										              <div class="controls">
+										                  <input type="text" name="start_permission" class="input-xlarge dateMask" value="<?=$permissionsHistoric->start_permission?>" maxlength="10" placeholder="data inicial da permissão">
+										              </div><!--/.controls -->
+										          </div><!--/.control-group -->
+						          				<div class="control-group">
+										              <label class="control-label" for="end_permission">Data final</label>
+										              <div class="controls">
+										                  <input type="text" name="end_permission" class="input-xlarge dateMask" value="<?=$permissionsHistoric->end_permission?>" maxlength="10" placeholder="data final da permissão">
+										              </div><!--/.controls -->
+										          </div><!--/.control-group -->
+						          				<div class="control-group">
+										              <label class="control-label" for="info">Observações</label>
+										              <div class="controls">
+										                  <textarea type="text" name="info" rows="5" class="input-xlarge" placeholder="observações"><?=$permissionsHistoric->info?></textarea>
+										              </div><!--/.controls -->
+										          </div><!--/.control-group -->
+										          <div class="control-group">
+										          	<label class="control-label" for="color">&nbsp;</label>
+									              <div class="controls">
+									              	<button type="submit" class="btn btn-primary">Salvar</button>
+									            	</div>
+										          </div>
+					          			</form>
+					          		</div>
+					          	</div>
+					          </div>
+					          <div class="accordion-group">
+					        		<div class="accordion-heading">
+					        			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_<?=$permissionsHistoric->permission?>" href="#accordion_aux_<?=$permissionsHistoric->id?>">Auxiliares</a>
+					        		</div>
+					        		<div id="accordion_aux_<?=$permissionsHistoric->id?>" class="accordion-body collapse">
+						        			<div class="accordion-inner">
+
+				        						<div class="accordion-group">
+									        		<div class="accordion-heading">
+									        			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_aux" href="#accordion_aux_new_<?=$permissionsHistoric->id?>">Novo auxiliar</a>
+									        		</div>
+									        		<div id="accordion_aux_new_<?=$permissionsHistoric->id?>" class="accordion-body collapse">
+									        			<div class="accordion-inner">
+	        												<form class="form-horizontal" action="/grantee/add-auxiliar-historic" method="post">
+										        				<div class="control-group">
+												              <label class="control-label" for="aux1">Nome auxiliar</label>
+												              <div class="controls">
+												                  <input type="text" name="nameNewAuxiliar" value="" class="input-xxlarge addAuxiliar" placeholder="nome do auxiliar" autocomplete="off"> <i style="cursor: pointer; display: none;" class="icon-remove addAuxiliarRemove"></i>
+												                  <input type="hidden" name="auxiliar_id" class="auxiliar_id" value="">
+												                  <input type="hidden" name="id" value="<?=$permissionsHistoric->id?>">
+																					<input type="hidden" name="grantee_id" value="<?=$this->grantee->grantee_id?>">
+												              </div><!--/.controls -->
+												          	</div><!--/.control-group -->
+																		<div class="control-group">
+												              <label class="control-label" for="start_date_aux">Data de ínicio</label>
+												              <div class="controls">
+												                  <input type="text" name="start_date_aux" value="" class="input-large dateMask" placeholder="data de ínicio do auxiliar">
+												              </div><!--/.controls -->
+													          </div><!--/.control-group -->
+																		<div class="control-group">
+												              <label class="control-label" for="end_date_aux">Data de término</label>
+												              <div class="controls">
+												                  <input type="text" name="end_date_aux" value="" class="input-large dateMask" placeholder="data de baixa do auxiliar">
+												              </div><!--/.controls -->
+													          </div><!--/.control-group -->
+													          <div class="control-group">
+													          	<label class="control-label" for="color">&nbsp;</label>
+												              <div class="controls">
+												              	<button type="submit" class="btn btn-primary">Salvar</button>
+												            	</div><!--/.controls -->
+													          </div><!--/.control-group -->
+								        					</form>
+									        			</div>
+									        		</div>
+									        	</div>
+
+									        	<?  // Lógica para listar os auxiliares - SOLUÇÃO PROVISORIA!
+									        		$granteeAuxiliar = new Application_Model_DbTable_GranteeAuxiliar();
+															$select = $granteeAuxiliar->select()->setIntegrityCheck(false);
+															$select	->from(array('g' => 'grantee_auxiliar') )
+																			->joinInner(array('p' => 'person'), 'p.id=g.auxiliar')	
+																			->where('grantee = ?',$permissionsHistoric->id);
+									        		$granteeAuxiliarRow = $granteeAuxiliar->fetchAll($select);
+															foreach($granteeAuxiliarRow as $auxiliar){
+									        	?>
+										        		<div class="accordion-group">
+											        		<div class="accordion-heading">
+											        			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_aux" href="#accordion_aux_edit_<?=$auxiliar->auxiliar?>"><?=$auxiliar->name?></a>
+											        		</div>
+											        		<div id="accordion_aux_edit_<?=$auxiliar->auxiliar?>" class="accordion-body collapse">
+											        			<div class="accordion-inner">
+										        					<form action="/grantee/edit-auxiliar-historic" method="post" class="form-horizontal">
+																				<div class="control-group">
+														              <label class="control-label" for="start_date_aux">Data de ínicio</label>
+														              <div class="controls">
+														                  <input type="text" name="start_date_aux" value="<?=Application_Model_General::dateToBr($auxiliar->start_date)?>" class="input-large dateMask" placeholder="data de ínicio do auxiliar">
+														              </div><!--/.controls -->
+															          </div><!--/.control-group -->
+																				<div class="control-group">
+														              <label class="control-label" for="end_date_aux">Data de término</label>
+														              <div class="controls">
+														                  <input type="text" name="end_date_aux" value="<?=Application_Model_General::dateToBr($auxiliar->end_date)?>" class="input-large dateMask" placeholder="data de baixa do auxiliar">
+														              </div><!--/.controls -->
+															          </div><!--/.control-group -->
+															          <div class="control-group">
+															          	<label class="control-label" for="color">&nbsp;</label>
+														              <div class="controls">
+														              	<button type="submit" class="btn btn-primary">Salvar</button>
+														              	<a href="#removeAuxiliarHistoric_<?=$auxiliar->auxiliar?>" class="btn btn-danger" data-toggle="modal">Remover</a>
+																			      <input type="hidden" value="<?=$auxiliar->auxiliar?>" name="auxiliar">
+																			      <input type="hidden" value="<?=$auxiliar->grantee?>" name="grantee">
+																			      <input type="hidden" value="<?=$this->grantee->grantee_id?>" name="owner">
+														            	</div><!--/.controls -->
+															          </div><!--/.control-group -->
+											        				</form>
+											        			</div>
+											        		</div>
+											        	</div>
+
+											        	<div id="removeAuxiliarHistoric_<?=$auxiliar->auxiliar?>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+																  <div class="modal-header">
+																    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+																    <h3 id="myModalLabel">Remover <?=$auxiliar->name?> deste histórico?</h3>
+																  </div>
+																  <form class="form-horizontal" action="/grantee/remove-auxiliar-historic" method="post">
+																    <div class="modal-body">
+																        <p>Tem certeza que deseja apagar este auxiliar deste histórico?</p>
+																    </div>
+																    <div class="modal-footer">
+																      <button class="btn" data-dismiss="modal" aria-hidden="true">Fechar</button>
+																      <input type="submit" class="btn btn-danger" value="Remover">
+																      <input type="hidden" value="<?=$auxiliar->auxiliar?>" name="auxiliar">
+																      <input type="hidden" value="<?=$auxiliar->grantee?>" name="grantee">
+																      <input type="hidden" value="<?=$this->grantee->grantee_id?>" name="owner">
+																    </div>
+																  </form>
+																</div>
+
+									        	<?}?>
+
+						          		</div>
+					          	</div>
+					          </div>	
+					          <div class="control-group">
+					          	<label class="control-label" for="color">&nbsp;</label>
+				              <div class="controls">
+				              	<a href="#removeHistoric_<?=$permissionsHistoric->id?>" class="btn btn-danger" data-toggle="modal"><i class="icon-trash"></i> Remover</a>
+				            	</div>
+					          </div>
+						      </div>
+							  </div>
+							</div>
+							<?}?>
+						</div>
+				</div>
 			</div>
     </div>
   </div>
@@ -685,4 +926,25 @@
 <?}?>
 
 <input type="hidden" id="grantee_id" value="<?=$this->grantee->grantee_id?>">
+
+
+<?foreach($this->permissionsHistoric as $permissionsHistoric){ ?>
+	<div id="removeHistoric_<?=$permissionsHistoric->id?>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	    <h3 id="myModalLabel">Remover o histórico da permissão <?=$permissionsHistoric->permission?></h3>
+	  </div>
+	  <form class="form-horizontal" action="/grantee/remove-historic" method="post">
+	    <div class="modal-body">
+	        <p>Tem certeza que deseja apagar este histórico de permissões?</p>
+	    </div>
+	    <div class="modal-footer">
+	      <button class="btn" data-dismiss="modal" aria-hidden="true">Fechar</button>
+	      <input type="submit" class="btn btn-danger" value="Remover">
+	      <input type="hidden" value="<?=$permissionsHistoric->id?>" name="id">
+	      <input type="hidden" value="<?=$permissionsHistoric->owner?>" name="owner">
+	    </div>
+	  </form>
+	</div>
+<?}?>
   
