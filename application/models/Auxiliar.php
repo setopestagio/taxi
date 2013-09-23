@@ -30,7 +30,8 @@ class Application_Model_Auxiliar
 		$person = new Application_Model_DbTable_Person();
 		$select = $person->select()->setIntegrityCheck(false);
 		$select	->from( array('p' => 'person') )
-						->where('p.id NOT IN (SELECT id FROM grantee WHERE end_permission IS NOT NULL)');
+						->where('p.id NOT IN (SELECT id FROM grantee WHERE end_permission IS NOT NULL)')
+						->where('p.id IN (SELECT auxiliar FROM grantee_auxiliar GROUP BY auxiliar)');
 		return $person->fetchAll($select);
 	}
 
@@ -78,7 +79,8 @@ class Application_Model_Auxiliar
 						->joinInner(array('a' => 'address'),'a.id = p.address', array('address','number','apartament','neighborhood',
 															'address_city' => 'city','zipcode') )
 						->joinInner(array('c' => 'city'),'a.city=c.id', array('name_city' => 'name'))
-						->where('p.cpf = ?',$cpf);
+						->where('p.cpf = ?',$cpf)
+						->where('p.id IN (SELECT auxiliar FROM grantee_auxiliar GROUP BY auxiliar)');
 		return $person->fetchAll($select);
 	}
 
@@ -90,7 +92,8 @@ class Application_Model_Auxiliar
 						->joinInner(array('a' => 'address'),'a.id = p.address', array('address','number','apartament','neighborhood',
 															'address_city' => 'city','zipcode') )
 						->joinInner(array('c' => 'city'),'a.city=c.id', array('name_city' => 'name'))
-						->where('p.name LIKE ?','%'.$name.'%');
+						->where('p.name LIKE ?','%'.$name.'%')
+						->where('p.id IN (SELECT auxiliar FROM grantee_auxiliar GROUP BY auxiliar)');
 		return $person->fetchAll($select);
 	}
 
