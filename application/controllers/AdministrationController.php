@@ -436,7 +436,7 @@ class AdministrationController extends Zend_Controller_Action
       {
         $data = $this->getRequest()->getPost();
         $modelTaximeter = new Application_Model_TaximeterModel();
-        if($modelTaximeter->newmModelTaximeter($data))
+        if($modelTaximeter->newModelTaximeter($data))
         {
           $this->view->success = true;
         }
