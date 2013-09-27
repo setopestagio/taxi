@@ -38,15 +38,15 @@ class GranteeController extends Zend_Controller_Action
         $this->view->error = true;
       }
       $vehicleModel = new Application_Model_DbTable_VehicleModel();
-      $this->view->vehicleModel = $vehicleModel->fetchAll($vehicleModel->select()->limit('name'));
+      $this->view->vehicleModel = $vehicleModel->fetchAll($vehicleModel->select()->order('name'));
       $vehicleBrand = new Application_Model_DbTable_VehicleBrand();
-      $this->view->vehicleBrand = $vehicleBrand->fetchAll();
+      $this->view->vehicleBrand = $vehicleBrand->fetchAll($vehicleBrand->select()->order('name'));
       $city = new Application_Model_DbTable_City();
-      $this->view->cities = $city->fetchAll();
+      $this->view->cities = $city->fetchAll($city->select()->order('name'));
       $modelTaximeter = new Application_Model_DbTable_TaximeterModel();
-      $this->view->modelTaximeter = $modelTaximeter->fetchAll();
+      $this->view->modelTaximeter = $modelTaximeter->fetchAll($modelTaximeter->select()->order('name'));
       $brandTaximeter = new Application_Model_DbTable_TaximeterModel();
-      $this->view->brandTaximeter = $brandTaximeter->fetchAll();
+      $this->view->brandTaximeter = $brandTaximeter->fetchAll($brandTaximeter->select()->order('name'));
     }
 
     public function editAction()
@@ -85,15 +85,15 @@ class GranteeController extends Zend_Controller_Action
         $this->view->error = true;
       }
       $vehicleModel = new Application_Model_DbTable_VehicleModel();
-      $this->view->vehicleModel = $vehicleModel->fetchAll($vehicleModel->select()->limit('name'));
+      $this->view->vehicleModel = $vehicleModel->fetchAll($vehicleModel->select()->order('name'));
       $vehicleBrand = new Application_Model_DbTable_VehicleBrand();
-      $this->view->vehicleBrand = $vehicleBrand->fetchAll();
+      $this->view->vehicleBrand = $vehicleBrand->fetchAll($vehicleBrand->select()->order('name'));
       $city = new Application_Model_DbTable_City();
-      $this->view->cities = $city->fetchAll();
+      $this->view->cities = $city->fetchAll($city->select()->order('name'));
       $modelTaximeter = new Application_Model_DbTable_TaximeterModel();
-      $this->view->modelTaximeter = $modelTaximeter->fetchAll();
+      $this->view->modelTaximeter = $modelTaximeter->fetchAll($modelTaximeter->select()->order('name'));
       $brandTaximeter = new Application_Model_DbTable_TaximeterBrand();
-      $this->view->brandTaximeter = $brandTaximeter->fetchAll();
+      $this->view->brandTaximeter = $brandTaximeter->fetchAll($brandTaximeter->select()->order('name'));
       $this->view->aux = array( 'grantee' => $granteeId );
       $this->view->reservation = new Application_Form_Reservation();
     }
