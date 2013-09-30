@@ -108,49 +108,49 @@ function removeAuxiliar(idAux,endDate){
 
 $('#operation').change(function() {
   if($(this).val() == 1){
-    $('#transferGroup').show();
-    $('#vehicleGroup').hide();
-    $('#chassiGroup').hide();
-    $('#reservationGroupStart').hide();
-    $('#reservationGroupEnd').hide();
-    $('#plateGroup').hide();
-    $('#otherGroup').show();
+    $('#transferGroup').removeClass('hide');
+    $('#vehicleGroup').addClass('hide');
+    $('#chassiGroup').addClass('hide');
+    $('#reservationGroupStart').addClass('hide');
+    $('#reservationGroupEnd').addClass('hide');
+    $('#plateGroup').addClass('hide');
+    $('#otherGroup').removeClass('hide');
   }
   if($(this).val() == 2){
-    $('#transferGroup').hide();
-    $('#vehicleGroup').show();
-    $('#chassiGroup').show();
-    $('#reservationGroupStart').hide();
-    $('#reservationGroupEnd').hide();
-    $('#plateGroup').hide();
-    $('#otherGroup').show();
+    $('#transferGroup').addClass('hide');
+    $('#vehicleGroup').removeClass('hide');
+    $('#chassiGroup').removeClass('hide');
+    $('#reservationGroupStart').addClass('hide');
+    $('#reservationGroupEnd').addClass('hide');
+    $('#plateGroup').addClass('hide');
+    $('#otherGroup').removeClass('hide');
   }
   if($(this).val() == 3){
-    $('#transferGroup').hide();
-    $('#vehicleGroup').hide();
-    $('#chassiGroup').hide();
-    $('#reservationGroupStart').show();
-    $('#reservationGroupEnd').hide();
-    $('#plateGroup').hide();
-    $('#otherGroup').show();
+    $('#transferGroup').addClass('hide');
+    $('#vehicleGroup').addClass('hide');
+    $('#chassiGroup').addClass('hide');
+    $('#reservationGroupStart').removeClass('hide');
+    $('#reservationGroupEnd').addClass('hide');
+    $('#plateGroup').addClass('hide');
+    $('#otherGroup').removeClass('hide');
   }
   if($(this).val() == 4){
-    $('#transferGroup').hide();
-    $('#vehicleGroup').hide();
-    $('#chassiGroup').hide();
-    $('#reservationGroupStart').hide();
-    $('#reservationGroupEnd').hide();
-    $('#plateGroup').show();
-    $('#otherGroup').show();
+    $('#transferGroup').addClass('hide');
+    $('#vehicleGroup').addClass('hide');
+    $('#chassiGroup').addClass('hide');
+    $('#reservationGroupStart').addClass('hide');
+    $('#reservationGroupEnd').addClass('hide');
+    $('#plateGroup').removeClass('hide');
+    $('#otherGroup').removeClass('hide');
   }
   if($(this).val() == 5){
-    $('#transferGroup').hide();
-    $('#vehicleGroup').hide();
-    $('#chassiGroup').hide();
-    $('#reservationGroupStart').hide();
-    $('#reservationGroupEnd').hide();
-    $('#plateGroup').hide();
-    $('#otherGroup').show();
+    $('#transferGroup').addClass('hide');
+    $('#vehicleGroup').addClass('hide');
+    $('#chassiGroup').addClass('hide');
+    $('#reservationGroupStart').addClass('hide');
+    $('#reservationGroupEnd').addClass('hide');
+    $('#plateGroup').addClass('hide');
+    $('#otherGroup').removeClass('hide');
   }
 });
 

@@ -706,12 +706,14 @@
 									        		$granteeAuxiliarRow = $granteeAuxiliar->fetchAll($select);
 															foreach($granteeAuxiliarRow as $auxiliar){
 									        	?>
-										        		<div class="accordion-group">
-											        		<div class="accordion-heading">
-											        			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_aux" href="#accordion_aux_edit_<?=$auxiliar->auxiliar?>"><?=$auxiliar->name?></a>
+										        		<div class="panel panel-default">
+											        		<div class="panel-heading">
+											        			<h4 class="panel-title">
+											        				<a class="panel-toggle" data-toggle="collapse" data-parent="#panel_aux_<?=$permissionsHistoric->id?>" href="#panel_aux_edit_<?=$auxiliar->auxiliar?>"><?=$auxiliar->name?></a>
+											        			</h4>
 											        		</div>
-											        		<div id="accordion_aux_edit_<?=$auxiliar->auxiliar?>" class="accordion-body collapse">
-											        			<div class="accordion-inner">
+											        		<div id="panel_aux_edit_<?=$auxiliar->auxiliar?>" class="panel-collapse collapse">
+											        			<div class="panel-body">
 										        					<form action="/grantee/edit-auxiliar-historic" method="post" class="form-horizontal">
 																				<div class="form-group">
 														              <label class="col-lg-2 control-label" for="start_date_aux">Data de ínicio</label>
@@ -740,23 +742,27 @@
 											        		</div>
 											        	</div>
 
-											        	<div id="removeAuxiliarHistoric_<?=$auxiliar->auxiliar?>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-																  <div class="modal-header">
-																    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-																    <h3 id="myModalLabel">Remover <?=$auxiliar->name?> deste histórico?</h3>
-																  </div>
-																  <form class="form-horizontal" action="/grantee/remove-auxiliar-historic" method="post">
-																    <div class="modal-body">
-																        <p>Tem certeza que deseja apagar este auxiliar deste histórico?</p>
-																    </div>
-																    <div class="modal-footer">
-																      <button class="btn" data-dismiss="modal" aria-hidden="true">Fechar</button>
-																      <input type="submit" class="btn btn-danger" value="Remover">
-																      <input type="hidden" value="<?=$auxiliar->auxiliar?>" name="auxiliar">
-																      <input type="hidden" value="<?=$auxiliar->grantee?>" name="grantee">
-																      <input type="hidden" value="<?=$this->grantee->grantee_id?>" name="owner">
-																    </div>
-																  </form>
+											        	<div id="removeAuxiliarHistoric_<?=$auxiliar->auxiliar?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+											        		<div class="modal-dialog">
+											        			<div class="modal-content">
+																		  <div class="modal-header">
+																		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+																		    <h3 id="myModalLabel">Remover <?=$auxiliar->name?> deste histórico?</h3>
+																		  </div>
+																		  <form class="form-horizontal" action="/grantee/remove-auxiliar-historic" method="post">
+																		    <div class="modal-body">
+																		        <p>Tem certeza que deseja apagar este auxiliar deste histórico?</p>
+																		    </div>
+																		    <div class="modal-footer">
+																		      <button class="btn" data-dismiss="modal" aria-hidden="true">Fechar</button>
+																		      <input type="submit" class="btn btn-danger" value="Remover">
+																		      <input type="hidden" value="<?=$auxiliar->auxiliar?>" name="auxiliar">
+																		      <input type="hidden" value="<?=$auxiliar->grantee?>" name="grantee">
+																		      <input type="hidden" value="<?=$this->grantee->grantee_id?>" name="owner">
+																		    </div>
+																		  </form>
+																	  </div>
+																	</div>
 																</div>
 
 									        	<?}?>
@@ -781,121 +787,129 @@
   </div>
 </div>
 
-<div id="license_<?=$this->grantee->grantee_id?>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Emissão de Carteira</h3>
+<div id="license_<?=$this->grantee->grantee_id?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		    <h4 class="modal-title">Emissão de Carteira</h4>
+		  </div>
+		  <form class="form-horizontal" action="/grantee/print-license/id/<?=$this->grantee->grantee_id?>" method="post">
+		    <div class="modal-body">
+		        <div class="form-group">
+		          <label class="col-lg-4 control-label" for="end_date">Data de Vencimento</label>
+		          <div class="col-lg-5">
+		            <input type="text" class="form-control dateMask" id="end_date" name="end_date" placeholder="data de vencimento">
+		          </div>
+		        </div>
+		    </div>
+		    <div class="modal-footer">
+		      <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Fechar</button>
+		      <input type="submit" class="btn btn-primary" value="Emitir">
+		    </div>
+		  </form>
+		 </div>
   </div>
-  <form class="form-horizontal" action="/grantee/print-license/id/<?=$this->grantee->grantee_id?>" method="post">
-    <div class="modal-body">
-        <div class="form-group">
-          <label class="col-lg-2 control-label" for="end_date">Data de Vencimento</label>
-          <div class="col-lg-5">
-            <input type="text" class="form-control dateMask" id="end_date" name="end_date" placeholder="data de vencimento">
-          </div>
-        </div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn" data-dismiss="modal" aria-hidden="true">Fechar</button>
-      <input type="submit" class="btn btn-primary" value="Emitir">
-    </div>
-  </form>
 </div>
 
-<div id="communication_<?=$this->grantee->grantee_id?>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Comunicação ao Orgão de Trânsito</h3>
-  </div>
-  <form class="form-horizontal" action="/grantee/print-communication/id/<?=$this->grantee->grantee_id?>" method="post">
-    <div class="modal-body">
-        <div class="form-group">
-          <label class="col-lg-2 control-label" for="receiver">Destinatário</label>
-          <div class="col-lg-5">
-            <select class="form-control" name="receiver" id="receiver">
-            	<option>-- selecione um orgão --</option>
-            	<option value="DETRAN/MG">DETRAN/MG</option>
-            	<option value="DELEGACIA DE TRÂNSITO DE CONFINS">DELEGACIA DE TRÂNSITO DE CONFINS</option>
-            	<option value="DELEGACIA DE TRÂNSITO DE CONFINS">DELEGACIA DE TRÂNSITO DE CONTAGEM</option>
-            	<option value="DELEGACIA DE TRÂNSITO DE CONFINS">DELEGACIA DE TRÂNSITO DE LAGOA SANTA</option>
-            	<option value="DELEGACIA DE TRÂNSITO DE CONFINS">DELEGACIA DE TRÂNSITO DE SANTA LUZIA</option>
-            	<option value="DELEGACIA DE TRÂNSITO DE CONFINS">DELEGACIA DE TRÂNSITO DE BETIM</option>
-            	<option value="DELEGACIA DE TRÂNSITO DE CONFINS">DELEGACIA DE TRÂNSITO DE SABARÁ</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-lg-2 control-label" for="end_date_communication">Data de validade</label>
-          <div class="col-lg-5">
-            <input type="text" class="form-control dateMask" id="end_date_communication" name="end_date_communication" placeholder="data de validade" data-date="<?=date('d/m/Y')?>" data-date-format="dd/mm/yyyy">
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-lg-2 control-label" for="operation">Operação</label>
-          <div class="col-lg-5">
-            <select class="form-control" name="operation" id="operation">
-            	<option>-- selecione uma operação --</option>
-            	<option value="1">TRANSFERÊNCIA DO VEÍCULO</option>
-            	<option value="2">SUBSTITUIÇÃO DO VEÍCULO</option>
-            	<option value="3">RESERVA DA PERMISSÃO</option>
-            	<option value="4">EMPLACAMENTO</option>
-            	<option value="5">OUTROS</option>
-            </select>
-          </div>
-        </div>
-        <div class="control-group hide" id="transferGroup">
-    	  <label class="col-lg-2 control-label" for="transfer">Nome</label>
-          <div class="col-lg-5">
-            <input type="text" class="form-control" id="transfer" name="transfer" placeholder="nome do permissionário">
-          </div>
-        </div>
-        <div class="control-group hide" id="vehicleGroup">
-    	  <label class="col-lg-2 control-label" for="brandCar">Modelo</label>
-          <div class="col-lg-5">
-            <select name="brandCar">
-         		<option value="0">-- Selecione um modelo --</option>
-             	<?foreach($this->vehicleModel as $vehicleModel){?>
-         		<option value="<?=$vehicleModel->name?>"><?=$vehicleModel->name?></option>
-             	<?}?>
-             </select>
-          </div>
-        </div>
-        <div class="control-group hide" id="chassiGroup">
-    	  <label class="col-lg-2 control-label" for="chassi">Chassi</label>
-          <div class="col-lg-5">
-            <input type="text" class="form-control" id="chassi" name="chassi" placeholder="chassi do veículo">
-          </div>
-        </div>
-        <div class="control-group hide" id="reservationGroupStart">
-    	  <label class="col-lg-2 control-label" for="start_date_reservation">Data Inicial</label>
-          <div class="col-lg-5">
-            <input type="text" class="form-control dateMask" id="start_date_reservation" name="start_date_reservation" placeholder="data de inicio" data-date="<?=date('d/m/Y')?>" data-date-format="dd/mm/yyyy">
-          </div>
-        </div>
-        <div class="control-group hide" id="reservationGroupEnd">
-    	  <label class="col-lg-2 control-label" for="end_date_reservation">Data de Fim</label>
-          <div class="col-lg-5">
-            <input type="text" class="form-control dateMask" id="end_date_reservation" name="end_date_reservation" placeholder="data de fim" data-date="<?=date('d/m/Y')?>" data-date-format="dd/mm/yyyy">
-          </div>
-        </div>
-        <div class="control-group hide" id="plateGroup">
-    	  <label class="col-lg-2 control-label" for="plate">Placa</label>
-          <div class="col-lg-5">
-            <input type="text" class="form-control plate" id="plate" name="plate" placeholder="nova placa">
-          </div>
-        </div>
-        <div class="control-group hide" id="otherGroup">
-    	  <label class="col-lg-2 control-label" for="other">Observações</label>
-          <div class="col-lg-5">
-            <textarea class="form-control" rows="5" id="other" name="other" placeholder="observações"></textarea>
-          </div>
-        </div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn" data-dismiss="modal" aria-hidden="true">Fechar</button>
-      <input type="submit" class="btn btn-primary" value="Emitir">
-    </div>
-  </form>
+<div id="communication_<?=$this->grantee->grantee_id?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		    <h4 class="modal-title">Comunicação ao Orgão de Trânsito</h4>
+		  </div>
+		  <form class="form-horizontal" action="/grantee/print-communication/id/<?=$this->grantee->grantee_id?>" method="post">
+		    <div class="modal-body">
+		        <div class="form-group">
+		          <label class="col-lg-4 control-label" for="receiver">Destinatário</label>
+		          <div class="col-lg-7">
+		            <select class="form-control" name="receiver" id="receiver">
+		            	<option>-- selecione um orgão --</option>
+		            	<option value="DETRAN/MG">DETRAN/MG</option>
+		            	<option value="DELEGACIA DE TRÂNSITO DE CONFINS">DELEGACIA DE TRÂNSITO DE CONFINS</option>
+		            	<option value="DELEGACIA DE TRÂNSITO DE CONFINS">DELEGACIA DE TRÂNSITO DE CONTAGEM</option>
+		            	<option value="DELEGACIA DE TRÂNSITO DE CONFINS">DELEGACIA DE TRÂNSITO DE LAGOA SANTA</option>
+		            	<option value="DELEGACIA DE TRÂNSITO DE CONFINS">DELEGACIA DE TRÂNSITO DE SANTA LUZIA</option>
+		            	<option value="DELEGACIA DE TRÂNSITO DE CONFINS">DELEGACIA DE TRÂNSITO DE BETIM</option>
+		            	<option value="DELEGACIA DE TRÂNSITO DE CONFINS">DELEGACIA DE TRÂNSITO DE SABARÁ</option>
+		            </select>
+		          </div>
+		        </div>
+		        <div class="form-group">
+		          <label class="col-lg-4 control-label" for="end_date_communication">Data de validade</label>
+		          <div class="col-lg-7">
+		            <input type="text" class="form-control dateMask" id="end_date_communication" name="end_date_communication" placeholder="data de validade">
+		          </div>
+		        </div>
+		        <div class="form-group">
+		          <label class="col-lg-4 control-label" for="operation">Operação</label>
+		          <div class="col-lg-7">
+		            <select class="form-control" name="operation" id="operation">
+		            	<option>-- selecione uma operação --</option>
+		            	<option value="1">TRANSFERÊNCIA DO VEÍCULO</option>
+		            	<option value="2">SUBSTITUIÇÃO DO VEÍCULO</option>
+		            	<option value="3">RESERVA DA PERMISSÃO</option>
+		            	<option value="4">EMPLACAMENTO</option>
+		            	<option value="5">OUTROS</option>
+		            </select>
+		          </div>
+		        </div>
+		        <div class="form-group hide" id="transferGroup">
+		    	  <label class="col-lg-4 control-label" for="transfer">Nome</label>
+		          <div class="col-lg-7">
+		            <input type="text" class="form-control" id="transfer" name="transfer" placeholder="nome do permissionário">
+		          </div>
+		        </div>
+		        <div class="form-group hide" id="vehicleGroup">
+		    	  <label class="col-lg-4 control-label" for="brandCar">Modelo</label>
+		          <div class="col-lg-7">
+		            <select name="brandCar" class="form-control">
+		         		<option value="0">-- Selecione um modelo --</option>
+		             	<?foreach($this->vehicleModel as $vehicleModel){?>
+		         		<option value="<?=$vehicleModel->name?>"><?=$vehicleModel->name?></option>
+		             	<?}?>
+		             </select>
+		          </div>
+		        </div>
+		        <div class="form-group hide" id="chassiGroup">
+		    	  <label class="col-lg-4 control-label" for="chassi">Chassi</label>
+		          <div class="col-lg-7">
+		            <input type="text" class="form-control" id="chassi" name="chassi" placeholder="chassi do veículo">
+		          </div>
+		        </div>
+		        <div class="form-group hide" id="reservationGroupStart">
+		    	  <label class="col-lg-4 control-label" for="start_date_reservation">Data Inicial</label>
+		          <div class="col-lg-7">
+		            <input type="text" class="form-control dateMask" id="start_date_reservation" name="start_date_reservation" placeholder="data de inicio">
+		          </div>
+		        </div>
+		        <div class="form-group hide" id="reservationGroupEnd">
+		    	  <label class="col-lg-4 control-label" for="end_date_reservation">Data de Fim</label>
+		          <div class="col-lg-7">
+		            <input type="text" class="form-control dateMask" id="end_date_reservation" name="end_date_reservation" placeholder="data de fim">
+		          </div>
+		        </div>
+		        <div class="form-group hide" id="plateGroup">
+		    	  <label class="col-lg-4 control-label" for="plate">Placa</label>
+		          <div class="col-lg-7">
+		            <input type="text" class="form-control plate" id="plate" name="plate" placeholder="nova placa">
+		          </div>
+		        </div>
+		        <div class="form-group hide" id="otherGroup">
+		    	  <label class="col-lg-4 control-label" for="other">Observações</label>
+		          <div class="col-lg-7">
+		            <textarea class="form-control" rows="5" id="other" name="other" placeholder="observações"></textarea>
+		          </div>
+		        </div>
+		    </div>
+		    <div class="modal-footer">
+		      <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Fechar</button>
+		      <input type="submit" class="btn btn-primary" value="Emitir">
+		    </div>
+		  </form>
+		</div>
+	</div>
 </div>
 
 <div id="aux1_<?=$this->grantee->grantee_id?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
