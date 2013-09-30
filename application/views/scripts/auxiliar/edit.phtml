@@ -1,22 +1,30 @@
-<div class="container-fluid">
-  <div class="row-fluid">
-    <div class="span3">
-      <ul class="nav nav-list well">
-        <li><a href="/auxiliar/new"><i class="icon-user"></i> Novo Auxiliar </a></li>
-        <li class="active"><a href="#">Editar Auxiliar</a></li>
-        <li><a href="/auxiliar/view"><i class="icon-bullhorn"></i> Pesquisar Auxiliares </a></li>
-        <li><a href="/auxiliar/report"><i class="icon-map-marker"></i> Relatórios </a></li>
-      </ul>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="list-group">
+        <a href="/auxiliar" class="list-group-item">
+          <h4 class="list-group-item-heading">Auxiliares</h4>
+            <p class="list-group-item-text">Gerencie aqui os dados dos auxiliares</p>
+        </a>
+        <a href="/auxiliar/new" class="list-group-item"><span class="glyphicon glyphicon-user"></span> Novo</a>
+        <a href="/auxiliar/new" class="list-group-item active">Edição</a>
+        <a href="/auxiliar/view" class="list-group-item"><span class="glyphicon glyphicon-bullhorn"></span> Pesquisa</a>
+        <a href="/auxiliar/report" class="list-group-item"><span class="glyphicon glyphicon-map-marker"></span> Relatórios</a>
+      </div>
     </div><!--/span-->
-    <div class="span9">
+    <div class="col-md-9">
+      <ol class="breadcrumb">
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="/auxiliar">Auxiliar</a></li>
+        <li class="active">Edição</li>
+      </ol>  
       <div class="page-header">
         <h1><?=$this->auxiliar->name?> <small>dados do auxiliar</small></h1>
         <hr>
         <div>
             <p>
-                <a href="/auxiliar/print-data/id/<?=$this->auxiliar->id_auxiliar?>" class="btn help" data-toggle="tooltip" title="Imprimir dados"><i class="icon-file"></i></a>
-                <!-- <a href="#" class="btn help" data-toggle="modal" title="Extrato de pendências"><i class="icon-book"></i></a> -->
-                <a href="#license_<?=$this->auxiliar->id_auxiliar?>" class="btn help" data-toggle="modal" title="Imprimir a carteira"><i class="icon-print"></i></a>
+              <a href="/auxiliar/print-data/id/<?=$this->auxiliar->id_auxiliar?>" class="btn btn-default help" data-toggle="tooltip" title="Imprimir dados"><i class="icon-file"></i></a>
+              <a href="#license_<?=$this->auxiliar->id_auxiliar?>" class="btn btn-default help" data-toggle="modal" title="Imprimir a carteira"><i class="icon-print"></i></a>
             </p>
         </div>
         <hr>
@@ -25,16 +33,17 @@
           <li><a href="#grantee">Permissionários</a></li>
         </ul>
         <div class="tab-content">
-            <div class="tab-pane active" id="data">
+            <div class="tab-pane active" id="data"><br>
                 <form class="form-horizontal" action="/auxiliar/edit/id/<?=$this->auxiliar->id_auxiliar?>" method="post">
-                  <div class="control-group">
-                    <div class="accordion" id="acoordion1">
-                      <div class="accordion-group">
-                        <div class="accordion-heading">
-                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseMain">Dados Principais</a>
+                  <div class="panel-group" id="accordion1">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <h4 class="panel-title">
+                            <a class="panel-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseMain">Dados Principais</a>
+                          </h4>
                         </div>
-                        <div id="collapseMain" class="accordion-body collapse">
-                          <div class="accordion-inner">
+                        <div id="collapseMain" class="panel-collapse collapse">
+                          <div class="panel-body">
                             <div class="control-group">
                                 <label class="control-label" for="name">Nome</label>
                                 <div class="controls">
@@ -50,12 +59,14 @@
                           </div>
                         </div>
                       </div>
-                      <div class="accordion-group">
-                        <div class="accordion-heading">
-                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseAddress">Endereço</a>
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <h4 class="panel-title">
+                            <a class="panel-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseAddress">Endereço</a>
+                          </h4>
                         </div>
-                        <div id="collapseAddress" class="accordion-body collapse">
-                          <div class="accordion-inner">
+                        <div id="collapseAddress" class="panel-collapse collapse">
+                          <div class="panel-body">
                             <div class="control-group">
                                 <label class="control-label" for="address">Endereço</label>
                                 <div class="controls">
@@ -100,12 +111,14 @@
                           </div>
                         </div>
                       </div>
-                      <div class="accordion-group">
-                        <div class="accordion-heading">
-                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseContact">Contato</a>
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <h4 class="panel-title">
+                            <a class="panel-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseContact">Contato</a>
+                          </h4>
                         </div>
-                        <div id="collapseContact" class="accordion-body collapse">
-                          <div class="accordion-inner">
+                        <div id="collapseContact" class="panel-collapse collapse">
+                          <div class="panel-body">
                             <div class="control-group">
                                 <label class="control-label" for="phone">Telefone fixo</label>
                                 <div class="controls">
@@ -127,12 +140,14 @@
                           </div>
                         </div>
                       </div>
-                      <div class="accordion-group">
-                        <div class="accordion-heading">
-                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseDocument">Documentos</a>
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <h4 class="panel-title">
+                            <a class="panel-toggle" data-toggle="collapse" data-parent="#panel" href="#collapseDocument">Documentos</a>
+                          </h4>
                         </div>
-                        <div id="collapseDocument" class="accordion-body collapse">
-                          <div class="accordion-inner">
+                        <div id="collapseDocument" class="panel-collapse collapse">
+                          <div class="panel-body">
                             <div class="control-group">
                                 <label class="control-label" for="rg">Identidade</label>
                                 <div class="controls">
@@ -196,15 +211,16 @@
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                  <div class="form-actions">
+                    </div><br>
+                  <div class="form-group">
+                    <div class="col-lg-5">
                       <button type="submit" class="btn btn-primary">Salvar</button>
                       <a data-toggle="modal" href="#myModal" class="btn btn-danger">Remover auxiliar</a>
+                    </div>
                   </div>
                 </form>
             </div>
-            <div class="tab-pane" id="grantee">
+            <div class="tab-pane" id="grantee"><br>
               <form class="form-horizontal" method="post" action="/auxiliar/save-grantee">
                   <table class="table table-hover table-bordered" id='tableGrantees'>
                     <thead>
@@ -216,12 +232,12 @@
                     </thead>
                     <tbody>
                         <?foreach($this->historicGrantees as $historicGrantees){?>
-                        <tr <?if($historicGrantees->end_date == '') echo 'class="success"'; else echo 'class="error"';?>> 
+                        <tr <?if($historicGrantees->end_date == '') echo 'class="success"'; else echo 'class="danger"';?>> 
                             <td>&nbsp;</td>
                             <td><?=$historicGrantees->name?></td>
                             <td><?=$historicGrantees->permission?> <input type="hidden" name="permission[]" value="<?=$historicGrantees->permission?>"> <input type="hidden" name="_id[]" value="<?=$historicGrantees->_id?>"></td>
-                            <td><input type="text" class="input-small dateMask" name="start_date[]" value="<?=Application_Model_General::dateToBr($historicGrantees->start_date)?>"></td>
-                            <td><input type="text" class="input-small dateMask" name="end_date[]" value="<?=Application_Model_General::dateToBr($historicGrantees->end_date)?>"></td>
+                            <td><input type="text" class="form-control dateMask" name="start_date[]" value="<?=Application_Model_General::dateToBr($historicGrantees->start_date)?>"></td>
+                            <td><input type="text" class="form-control dateMask" name="end_date[]" value="<?=Application_Model_General::dateToBr($historicGrantees->end_date)?>"></td>
                         </tr>
                         <?}?>
                         <tr>
@@ -244,25 +260,29 @@
 </div>
 
 
-<div id="license_<?=$this->auxiliar->id_auxiliar?>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Emissão de Carteira</h3>
-  </div>
-  <form class="form-horizontal" action="/auxiliar/print-license/id/<?=$this->auxiliar->id_auxiliar?>" method="post">
-    <div class="modal-body">
-        <div class="control-group">
-          <label class="control-label" for="end_date">Data de Vencimento</label>
-          <div class="controls">
-            <input type="text" class="input-xlarge dateMask" id="end_date" name="end_date" placeholder="data de vencimento" data-mask="99/99/9999"  data-date="<?=date('d/m/Y')?>" data-date-format="dd/mm/yyyy">
-          </div>
+<div id="license_<?=$this->auxiliar->id_auxiliar?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title">Emissão de Carteira</h3>
+      </div>
+      <form class="form-horizontal" action="/auxiliar/print-license/id/<?=$this->auxiliar->id_auxiliar?>" method="post">
+        <div class="modal-body">
+            <div class="form-group">
+              <label class="col-lg-4 control-label" for="end_date">Data de Vencimento</label>
+              <div class="col-lg-5">
+                <input type="text" class="form-control dateMask" id="end_date" name="end_date" placeholder="data de vencimento">
+              </div>
+            </div>
         </div>
+        <div class="modal-footer">
+          <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Fechar</button>
+          <input type="submit" class="btn btn-primary" value="Emitir">
+        </div>
+      </form>
     </div>
-    <div class="modal-footer">
-      <button class="btn" data-dismiss="modal" aria-hidden="true">Fechar</button>
-      <input type="submit" class="btn btn-primary" value="Emitir">
-    </div>
-  </form>
+  </div>
 </div>
 
 <form action="/auxiliar/remove/id/<?=$this->auxiliar->id_auxiliar?>" method="post">

@@ -1,213 +1,231 @@
-<div class="container-fluid">
-  <div class="row-fluid">
-    <div class="span3">
-      <ul class="nav nav-list well">
-        <li class="active"><a href="/auxiliar/new"><i class="icon-user"></i> Novo Auxiliar </a></li>
-        <li><a href="/auxiliar/view"><i class="icon-bullhorn"></i> Pesquisar Auxiliares </a></li>
-        <li><a href="/auxiliar/report"><i class="icon-map-marker"></i> Relatórios </a></li>
-      </ul>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="list-group">
+        <a href="/auxiliar" class="list-group-item">
+          <h4 class="list-group-item-heading">Auxiliares</h4>
+            <p class="list-group-item-text">Gerencie aqui os dados dos auxiliares</p>
+        </a>
+        <a href="/auxiliar/new" class="list-group-item active"><span class="glyphicon glyphicon-user"></span> Novo</a>
+        <a href="/auxiliar/view" class="list-group-item"><span class="glyphicon glyphicon-bullhorn"></span> Pesquisa</a>
+        <a href="/auxiliar/report" class="list-group-item"><span class="glyphicon glyphicon-map-marker"></span> Relatórios</a>
+      </div>
     </div><!--/span-->
-    <div class="span9">
+    <div class="col-md-9">
+      <ol class="breadcrumb">
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="/auxiliar">Auxiliar</a></li>
+        <li class="active">Novo</li>
+      </ol>  
       <div class="page-header">
         <h1>Novo Auxiliar <small>defina aqui os dados do auxiliar</small></h1>
         <hr>
         <form class="form-horizontal" action="/auxiliar/new" method="post">
-          <div class="control-group">
-            <div class="accordion" id="acoordion1">
-              <div class="accordion-group">
-                <div class="accordion-heading">
-                  <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseMain">Dados Principais</a>
+          <div class="panel-group" id="accordion1">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a class="panel-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseMain">Dados Principais</a>
+                </h4>
+              </div>
+              <div id="collapseMain" class="panel-collapse collapse in">
+                <div class="panel-body">
+                  <div class="form-group">
+                      <label class=" col-lg-2 control-label" for="name">Nome</label>
+                      <div class="col-lg-5">
+                          <input type="text" name="name" value="" class="form-control" id="name" placeholder="nome completo">
+                      </div><!--/.controls -->
+                  </div><!--/.control-group -->
+                  <div class="form-group">
+                      <label class=" col-lg-2 control-label" for="city">Cidade</label>
+                      <div class="col-lg-5">
+                        <select name="city" id="city" class="form-control">
+                          <option value="0">-- Escolha o município --</option>
+                          <?foreach ($this->cities as $city){ ?>
+                          <option value="<?=$city->id?>"><?=$city->name?></option>
+                          <?}?>
+                        </select>
+                      </div><!--/.controls -->
+                  </div><!--/.control-group -->
+                  <div class="form-group">
+                      <label class=" col-lg-2 control-label" for="info">Observações</label>
+                      <div class="col-lg-5">
+                          <textarea type="text" name="info" rows="5" class="form-control" id="info" placeholder="observações"></textarea>
+                      </div><!--/.controls -->
+                  </div><!--/.control-group -->
                 </div>
-                <div id="collapseMain" class="accordion-body collapse in">
-                  <div class="accordion-inner">
-                    <div class="control-group">
-                        <label class="control-label" for="name">Nome</label>
-                        <div class="controls">
-                            <input type="text" name="name" value="" class="input-xlarge" id="name" placeholder="nome completo">
-                        </div><!--/.controls -->
-                    </div><!--/.control-group -->
-                    <div class="control-group">
-                        <label class="control-label" for="city">Cidade</label>
-                        <div class="controls">
-                          <select name="city" id="city" class="input-xlarge">
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a class="panel-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseAddress">Endereço</a>
+                </h4>
+              </div>
+              <div id="collapseAddress" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <div class="form-group">
+                      <label class=" col-lg-2 control-label" for="address">Endereço</label>
+                      <div class="col-lg-5">
+                          <input type="text" name="address" value="" class="form-control" id="address" placeholder="logradouro">
+                      </div><!--/.controls -->
+                  </div><!--/.control-group -->
+                  <div class="form-group">
+                      <label class=" col-lg-2 control-label" for="number">Número</label>
+                      <div class="col-lg-5">
+                          <input type="text" name="number" value="" class="form-control" id="number" placeholder="número">
+                      </div><!--/.controls -->
+                  </div><!--/.control-group -->
+                  <div class="form-group">
+                      <label class=" col-lg-2 control-label" for="apartament">Complemento</label>
+                      <div class="col-lg-5">
+                          <input type="text" name="apartament" value="" class="form-control" id="apartament" placeholder="complemento">
+                      </div><!--/.controls -->
+                  </div><!--/.control-group -->
+                  <div class="form-group">
+                      <label class=" col-lg-2 control-label" for="neighborhood">Bairro</label>
+                      <div class="col-lg-5">
+                          <input type="text" name="neighborhood" value="" class="form-control" id="neighborhood" placeholder="bairro">
+                      </div><!--/.controls -->
+                  </div><!--/.control-group -->
+                  <div class="form-group">
+                      <label class=" col-lg-2 control-label" for="address_city">Cidade</label>
+                      <div class="col-lg-5">
+                          <select name="address_city" id="address_city" class="form-control">
                             <option value="0">-- Escolha o município --</option>
                             <?foreach ($this->cities as $city){ ?>
                             <option value="<?=$city->id?>"><?=$city->name?></option>
                             <?}?>
                           </select>
+                      </div><!--/.controls -->
+                  </div><!--/.control-group -->
+                  <div class="form-group">
+                      <label class=" col-lg-2 control-label" for="zipcode">CEP</label>
+                      <div class="col-lg-5">
+                          <input type="text" name="zipcode" value="" class="form-control zipcode" id="zipcode" placeholder="cep">
+                      </div><!--/.controls -->
+                  </div><!--/.control-group -->
+                </div>
+              </div>
+            </div>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a class="panel-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseContact">Contato</a>
+                  </h4>
+                </div>
+                <div id="collapseContact" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <div class="form-group">
+                        <label class=" col-lg-2 control-label" for="phone">Telefone fixo</label>
+                        <div class="col-lg-5">
+                            <input type="text" name="phone" value="" class="form-control phone" id="phone" placeholder="telefone fixo" data-mask="(99) 9999-9999">
                         </div><!--/.controls -->
                     </div><!--/.control-group -->
-                    <div class="control-group">
-                        <label class="control-label" for="info">Observações</label>
-                        <div class="controls">
-                            <textarea type="text" name="info" rows="5" class="input-xlarge" id="info" placeholder="observações"></textarea>
+                    <div class="form-group">
+                        <label class=" col-lg-2 control-label" for="mobile">Celular</label>
+                        <div class="col-lg-5">
+                            <input type="text" name="mobile" value="" class="form-control phone" id="mobile" placeholder="celular" data-mask="(99) 9999-9999">
+                        </div><!--/.controls -->
+                    </div><!--/.control-group -->
+                    <div class="form-group">
+                        <label class=" col-lg-2 control-label" for="email">Email</label>
+                        <div class="col-lg-5">
+                            <input type="text" name="email" value="" class="form-control" id="email" placeholder="email">
                         </div><!--/.controls -->
                     </div><!--/.control-group -->
                   </div>
                 </div>
               </div>
-              <div class="accordion-group">
-                <div class="accordion-heading">
-                  <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseAddress">Endereço</a>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a class="panel-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseDocument">Documentos</a>
+                  </h4>
                 </div>
-                <div id="collapseAddress" class="accordion-body collapse">
-                  <div class="accordion-inner">
-                    <div class="control-group">
-                        <label class="control-label" for="address">Endereço</label>
-                        <div class="controls">
-                            <input type="text" name="address" value="" class="input-xlarge" id="address" placeholder="logradouro">
+                <div id="collapseDocument" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <div class="form-group">
+                        <label class=" col-lg-2 control-label" for="rg">Identidade</label>
+                        <div class="col-lg-5">
+                            <input type="text" name="rg" value="" class="form-control" id="rg" placeholder="identidade">
                         </div><!--/.controls -->
                     </div><!--/.control-group -->
-                    <div class="control-group">
-                        <label class="control-label" for="number">Número</label>
-                        <div class="controls">
-                            <input type="text" name="number" value="" class="input-xlarge" id="number" placeholder="número">
+                    <div class="form-group">
+                        <label class=" col-lg-2 control-label" for="rg_issuer">Orgão Emissor da Identidade</label>
+                        <div class="col-lg-5">
+                            <input type="text" name="rg_issuer" value="" class="form-control" id="rg_issuer" placeholder="orgão emissor da identidade">
                         </div><!--/.controls -->
                     </div><!--/.control-group -->
-                    <div class="control-group">
-                        <label class="control-label" for="apartament">Complemento</label>
-                        <div class="controls">
-                            <input type="text" name="apartament" value="" class="input-xlarge" id="apartament" placeholder="complemento">
+                    <div class="form-group">
+                        <label class=" col-lg-2 control-label" for="cpf">CPF</label>
+                        <div class="col-lg-5">
+                            <input type="text" name="cpf" value="" class="form-control cpf" id="cpf" placeholder="cpf">
                         </div><!--/.controls -->
                     </div><!--/.control-group -->
-                    <div class="control-group">
-                        <label class="control-label" for="neighborhood">Bairro</label>
-                        <div class="controls">
-                            <input type="text" name="neighborhood" value="" class="input-xlarge" id="neighborhood" placeholder="bairro">
+                    <div class="form-group">
+                        <label class=" col-lg-2 control-label" for="cnh">Habilitação</label>
+                        <div class="col-lg-5">
+                            <input type="text" name="cnh" value="" class="form-control" id="cnh" placeholder="habilitação">
                         </div><!--/.controls -->
                     </div><!--/.control-group -->
-                    <div class="control-group">
-                        <label class="control-label" for="address_city">Cidade</label>
-                        <div class="controls">
-                            <select name="address_city" id="address_city" class="input-xlarge">
-                              <option value="0">-- Escolha o município --</option>
-                              <?foreach ($this->cities as $city){ ?>
-                              <option value="<?=$city->id?>"><?=$city->name?></option>
-                              <?}?>
-                            </select>
+                    <div class="form-group">
+                        <label class=" col-lg-2 control-label" for="cnh_issuer">Orgão Emissor da Habilitação</label>
+                        <div class="col-lg-5">
+                            <input type="text" name="cnh_issuer" value="" class="form-control" id="cnh_issuer" placeholder="orgão emissor da habilitação">
                         </div><!--/.controls -->
                     </div><!--/.control-group -->
-                    <div class="control-group">
-                        <label class="control-label" for="zipcode">CEP</label>
-                        <div class="controls">
-                            <input type="text" name="zipcode" value="" class="input-xlarge zipcode" id="zipcode" placeholder="cep">
+                    <div class="form-group">
+                        <label class=" col-lg-2 control-label" for="iapas">IAPAS</label>
+                        <div class="col-lg-5">
+                            <input type="text" name="iapas" value="" class="form-control" id="iapas" placeholder="iapas">
+                        </div><!--/.controls -->
+                    </div><!--/.control-group -->
+                    <div class="form-group">
+                        <label class=" col-lg-2 control-label" for="voter">Título de Eleitor</label>
+                        <div class="col-lg-5">
+                            <input type="text" name="voter" value="" class="form-control" id="voter" placeholder="título de eleitor">
+                        </div><!--/.controls -->
+                    </div><!--/.control-group -->
+                    <div class="form-group">
+                        <label class=" col-lg-2 control-label" for="voter_zone">Zona Eleitoral</label>
+                        <div class="col-lg-5">
+                            <input type="text" name="voter_zone" value="" class="form-control" id="voter_zone" placeholder="zona eleitoral">
+                        </div><!--/.controls -->
+                    </div><!--/.control-group -->
+                    <div class="form-group">
+                        <label class=" col-lg-2 control-label" for="army">Militar</label>
+                        <div class="col-lg-5">
+                            <input type="text" name="army" value="" class="form-control" id="army" placeholder="documento militar">
+                        </div><!--/.controls -->
+                    </div><!--/.control-group -->
+                    <div class="form-group">
+                        <label class=" col-lg-2 control-label" for="army_issuer">Orgão Emissor Militar</label>
+                        <div class="col-lg-5">
+                            <input type="text" name="army_issuer" value="" class="form-control" id="army_issuer" placeholder="orgão emissor do documento militar">
                         </div><!--/.controls -->
                     </div><!--/.control-group -->
                   </div>
                 </div>
               </div>
-              <div class="accordion-group">
-                <div class="accordion-heading">
-                  <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseContact">Contato</a>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a class="panel-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseGrantee">Permissionário</a>
+                  </h4>
                 </div>
-                <div id="collapseContact" class="accordion-body collapse">
-                  <div class="accordion-inner">
-                    <div class="control-group">
-                        <label class="control-label" for="phone">Telefone fixo</label>
-                        <div class="controls">
-                            <input type="text" name="phone" value="" class="input-xlarge phone" id="phone" placeholder="telefone fixo" data-mask="(99) 9999-9999">
+                <div id="collapseGrantee" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <div class="form-group">
+                        <label class=" col-lg-2 control-label" for="permission">Permissão</label>
+                        <div class="col-lg-5">
+                            <input type="text" name="permission" value="" class="form-control" id="permission" placeholder="permissão">
                         </div><!--/.controls -->
                     </div><!--/.control-group -->
-                    <div class="control-group">
-                        <label class="control-label" for="mobile">Celular</label>
-                        <div class="controls">
-                            <input type="text" name="mobile" value="" class="input-xlarge phone" id="mobile" placeholder="celular" data-mask="(99) 9999-9999">
-                        </div><!--/.controls -->
-                    </div><!--/.control-group -->
-                    <div class="control-group">
-                        <label class="control-label" for="email">Email</label>
-                        <div class="controls">
-                            <input type="text" name="email" value="" class="input-xlarge" id="email" placeholder="email">
-                        </div><!--/.controls -->
-                    </div><!--/.control-group -->
-                  </div>
-                </div>
-              </div>
-              <div class="accordion-group">
-                <div class="accordion-heading">
-                  <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseDocument">Documentos</a>
-                </div>
-                <div id="collapseDocument" class="accordion-body collapse">
-                  <div class="accordion-inner">
-                    <div class="control-group">
-                        <label class="control-label" for="rg">Identidade</label>
-                        <div class="controls">
-                            <input type="text" name="rg" value="" class="input-xlarge" id="rg" placeholder="identidade">
-                        </div><!--/.controls -->
-                    </div><!--/.control-group -->
-                    <div class="control-group">
-                        <label class="control-label" for="rg_issuer">Orgão Emissor da Identidade</label>
-                        <div class="controls">
-                            <input type="text" name="rg_issuer" value="" class="input-xlarge" id="rg_issuer" placeholder="orgão emissor da identidade">
-                        </div><!--/.controls -->
-                    </div><!--/.control-group -->
-                    <div class="control-group">
-                        <label class="control-label" for="cpf">CPF</label>
-                        <div class="controls">
-                            <input type="text" name="cpf" value="" class="input-xlarge cpf" id="cpf" placeholder="cpf">
-                        </div><!--/.controls -->
-                    </div><!--/.control-group -->
-                    <div class="control-group">
-                        <label class="control-label" for="cnh">Habilitação</label>
-                        <div class="controls">
-                            <input type="text" name="cnh" value="" class="input-xlarge" id="cnh" placeholder="habilitação">
-                        </div><!--/.controls -->
-                    </div><!--/.control-group -->
-                    <div class="control-group">
-                        <label class="control-label" for="cnh_issuer">Orgão Emissor da Habilitação</label>
-                        <div class="controls">
-                            <input type="text" name="cnh_issuer" value="" class="input-xlarge" id="cnh_issuer" placeholder="orgão emissor da habilitação">
-                        </div><!--/.controls -->
-                    </div><!--/.control-group -->
-                    <div class="control-group">
-                        <label class="control-label" for="iapas">IAPAS</label>
-                        <div class="controls">
-                            <input type="text" name="iapas" value="" class="input-xlarge" id="iapas" placeholder="iapas">
-                        </div><!--/.controls -->
-                    </div><!--/.control-group -->
-                    <div class="control-group">
-                        <label class="control-label" for="voter">Título de Eleitor</label>
-                        <div class="controls">
-                            <input type="text" name="voter" value="" class="input-xlarge" id="voter" placeholder="título de eleitor">
-                        </div><!--/.controls -->
-                    </div><!--/.control-group -->
-                    <div class="control-group">
-                        <label class="control-label" for="voter_zone">Zona Eleitoral</label>
-                        <div class="controls">
-                            <input type="text" name="voter_zone" value="" class="input-xlarge" id="voter_zone" placeholder="zona eleitoral">
-                        </div><!--/.controls -->
-                    </div><!--/.control-group -->
-                    <div class="control-group">
-                        <label class="control-label" for="army">Militar</label>
-                        <div class="controls">
-                            <input type="text" name="army" value="" class="input-xlarge" id="army" placeholder="documento militar">
-                        </div><!--/.controls -->
-                    </div><!--/.control-group -->
-                    <div class="control-group">
-                        <label class="control-label" for="army_issuer">Orgão Emissor Militar</label>
-                        <div class="controls">
-                            <input type="text" name="army_issuer" value="" class="input-xlarge" id="army_issuer" placeholder="orgão emissor do documento militar">
-                        </div><!--/.controls -->
-                    </div><!--/.control-group -->
-                  </div>
-                </div>
-              </div>
-              <div class="accordion-group">
-                <div class="accordion-heading">
-                  <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseGrantee">Permissionário</a>
-                </div>
-                <div id="collapseGrantee" class="accordion-body collapse">
-                  <div class="accordion-inner">
-                    <div class="control-group">
-                        <label class="control-label" for="permission">Permissão</label>
-                        <div class="controls">
-                            <input type="text" name="permission" value="" class="input-xlarge" id="permission" placeholder="permissão">
-                        </div><!--/.controls -->
-                    </div><!--/.control-group -->
-                    <div class="control-group">
-                        <label class="control-label" for="initialDateGrantee">Data inicial</label>
-                        <div class="controls">
-                            <input type="text" name="initialDateGrantee" value="" class="input-xlarge dateMask" id="initialDateGrantee" placeholder="data inicial">
+                    <div class="form-group">
+                        <label class=" col-lg-2 control-label" for="initialDateGrantee">Data inicial</label>
+                        <div class="col-lg-5">
+                            <input type="text" name="initialDateGrantee" value="" class="form-control dateMask" id="initialDateGrantee" placeholder="data inicial">
                         </div><!--/.controls -->
                     </div><!--/.control-group -->
                   </div>
@@ -215,7 +233,7 @@
               </div>
             </div>
           </div>
-          <div class="form-actions">
+          <div class="form-group">
               <button type="submit" class="btn btn-primary">Salvar</button>
           </div>
         </form>

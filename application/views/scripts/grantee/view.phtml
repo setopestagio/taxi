@@ -1,25 +1,40 @@
-<div class="container-fluid">
-  <div class="row-fluid">
-    <div class="span3">
-      <ul class="nav nav-list well">
-        <li><a href="/grantee/new"><i class="icon-user"></i> Novo Permissionário </a></li>
-        <li class="active"><a href="/grantee/view"><i class="icon-bullhorn"></i> Pesquisar Permissionário </a></li>
-        <li><a href="/grantee/report"><i class="icon-map-marker"></i> Relatórios </a></li>
-      </ul>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="list-group">
+        <a href="/grantee" class="list-group-item">
+          <h4 class="list-group-item-heading">Permissionários</h4>
+            <p class="list-group-item-text">Gerencie aqui os dados dos permissionários</p>
+        </a>
+        <a href="/grantee/new" class="list-group-item"><span class="glyphicon glyphicon-user"></span> Novo</a>
+        <a href="/grantee/view" class="list-group-item active"><span class="glyphicon glyphicon-bullhorn"></span> Pesquisa</a>
+        <a href="/grantee/report" class="list-group-item"><span class="glyphicon glyphicon-map-marker"></span> Relatórios</a>
+      </div>
     </div><!--/span-->
-    <div class="span9">
+    <div class="col-md-9">
+      <ol class="breadcrumb">
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="/grantee">Permissionário</a></li>
+        <li class="active">Pesquisa</li>
+      </ol>  
     	<div class="page-header">
       	<h1>Pesquisa <small>gerencie aqui os dados do permissionário</small></h1>
-      	<form class="form-search" action="/grantee/view" method="get">
-      		<input type="text" class="input-xlarge search-query" placeholder="pesquisa" name="field" value="<?=$this->field?>">
-          <select name="optionSearch">
-            <option value="0">Pesquisar por:</option>
-            <option value="1" <?if($this->optionSearch == 1) echo "selected='selected'"; ?>>Permissão</option>
-            <option value="2" <?if($this->optionSearch == 2) echo "selected='selected'"; ?>>CPF</option>
-            <option value="3" <?if($this->optionSearch == 3) echo "selected='selected'"; ?>>Nome</option>
-          </select>
-          <button type="submit" class="btn">Pesquisar</button>
-      	</form>
+        <hr>
+      	<form class="form-inline" action="/grantee/view" method="get" role="form">
+          <div class="form-group col-md-4">
+    		    <input type="text" class="form-control search-query" placeholder="pesquisa" name="field" value="<?=$this->field?>">
+          </div>
+          <div class="form-group col-md-3">
+            <select name="optionSearch" class="form-control">
+              <option value="0">Pesquisar por:</option>
+              <option value="1" <?if($this->optionSearch == 1) echo "selected='selected'"; ?>>Permissão</option>
+              <option value="2" <?if($this->optionSearch == 2) echo "selected='selected'"; ?>>CPF</option>
+              <option value="3" <?if($this->optionSearch == 3) echo "selected='selected'"; ?>>Nome</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Pesquisar</button>
+      	 </form>
+         <hr>
       	<table class="table table-hover table-bordered">
       		<thead>
       			<th>Nome</th>
