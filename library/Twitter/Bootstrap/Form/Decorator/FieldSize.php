@@ -30,7 +30,7 @@ class Twitter_Bootstrap_Form_Decorator_FieldSize extends Zend_Form_Decorator_Abs
         if (false !== ($size = $element->getAttrib('dimension'))) {
             $classes = explode(' ', $element->getAttrib('class'));
             if ((int) $size > 0) {
-                $classes[] = 'span' . $size;
+                $classes[] = 'col-lg-' . $size;
             }
 
             $element->setAttrib('class', trim(implode(' ', $classes)));

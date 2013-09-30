@@ -1,37 +1,46 @@
-<div class="container-fluid">
-  <div class="row-fluid">
-    <div class="span3">
-      <ul class="nav nav-list well">
-        <li class="active"><a href="/account/personal"><i class="icon-user"></i> Pessoais </a></li>
-        <li><a href="/account/photo"><i class="icon-picture"></i> Foto </a></li>
-        <li><a href="/account/password"><i class="icon-wrench"></i> Senha </a></li>
-      </ul>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="list-group">
+        <a href="/account" class="list-group-item">
+          <h4 class="list-group-item-heading">Conta</h4>
+            <p class="list-group-item-text">Gerencie aqui os dados da sua conta</p>
+        </a>
+        <a href="/account/personal" class="list-group-item active"><span class="glyphicon glyphicon-user"></span> Pessoais</a>
+        <a href="/account/photo" class="list-group-item"><span class="glyphicon glyphicon-picture"></span> Foto</a>
+        <a href="/account/password" class="list-group-item"><span class="glyphicon glyphicon-wrench"></span> Senha</a>
+      </div>
     </div><!--/span-->
-    <div class="span9">
+    <div class="col-md-9">
+      <ol class="breadcrumb">
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="/account">Conta</a></li>
+        <li class="active">Dados Pessoais</li>
+      </ol>  
     	<div class="page-header">
         <h1>Dados Pessoais <small>defina aqui seus dados</small></h1>
         <hr>
         <form class="form-horizontal" action="/account/personal" method="post">
-          <div class="control-group">
-              <label class="control-label" for="name">Nome</label>
-              <div class="controls">
-                  <input type="text" name="name" value="<?=$this->user->name?>" class="input-large" id="name" placeholder="nome completo">
-              </div><!--/.controls -->
-          </div><!--/.control-group -->
-          <div class="control-group">
-              <label class="control-label" for="phone">Telefone</label>
-              <div class="controls">
-                  <input type="text" name="phone" value="<?=$this->user->phone?>" class="input-large" id="phone" placeholder="telefone">
-              </div><!--/.controls -->
-          </div><!--/.control-group -->
-          <div class="control-group">
-              <label class="control-label" for="email">Email</label>
-              <div class="controls">
-                  <input type="email" name="email" value="<?=$this->user->email?>" class="input-large" id="email" placeholder="email">
-              </div><!--/.controls -->
-          </div><!--/.control-group -->
-          <div class="form-actions">
-              <button type="submit" class="btn btn-primary">Salvar alterações</button>
+          <div class="form-group">
+              <label class="col-lg-2 control-label" for="name">Nome</label>
+              <div class="col-lg-5">
+                  <input type="text" name="name" value="<?=$this->user->name?>" class="form-control" id="name" placeholder="nome completo">
+              </div><!--/.col-lg-5 -->
+          </div><!--/.form-group -->
+          <div class="form-group">
+              <label class="col-lg-2 control-label" for="phone">Telefone</label>
+              <div class="col-lg-5">
+                  <input type="text" name="phone" value="<?=$this->user->phone?>" class="form-control" id="phone" placeholder="telefone">
+              </div><!--/.col-lg-5 -->
+          </div><!--/.form-group -->
+          <div class="form-group">
+              <label class="col-lg-2 control-label" for="email">Email</label>
+              <div class="col-lg-5">
+                  <input type="email" name="email" value="<?=$this->user->email?>" class="form-control" id="email" placeholder="email">
+              </div><!--/.col-lg-5 -->
+          </div><!--/.form-group -->
+          <div class="col-lg-5">
+              <button type="submit" class="col-lg-offset-5 btn btn-primary">Salvar alterações</button>
           </div>
         </form>
       </div>

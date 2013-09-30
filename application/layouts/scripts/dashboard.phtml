@@ -11,43 +11,19 @@
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <style type="text/css">
       body {
-        padding-top: 60px;
-        padding-bottom: 40px;
-      }
-      .sidebar-nav {
-        padding: 9px 0;
+        padding-top: 80px;
       }
 
-      @media (max-width: 980px) {
-        /* Enable use of floated navbar text */
-        .navbar-text.pull-right {
-          float: none;
-          padding-left: 5px;
-          padding-right: 5px;
-        }
-      }
     </style>
     <link href="/css/bootstrap-responsive.min.css" rel="stylesheet">
-    <link href="/css/font-awesome.min.css" rel="stylesheet" >
-    <link href="/css/calendar.min.css" rel="stylesheet" >
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
     <link href="/css/datepicker.css" rel="stylesheet">
-    <link href="/css/general.css" rel="stylesheet">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="/js/html5shiv.js"></script>
+      <script src="/js/respond.min.js"></script>
     <![endif]-->
-
-    <!--[if IE 7]>
-      <link rel="stylesheet" href="/css/font-awesome-ie7.min.css">
-    <![endif]-->
-
-    <!-- Fav and touch icons -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/apple-touch-icon-114-precomposed.png">
-      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/apple-touch-icon-72-precomposed.png">
-                    <link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon-57-precomposed.png">
-                                   <link rel="shortcut icon" href="/img/favicon.png">
   </head>
   <body>
 
@@ -58,55 +34,35 @@
     ?>
 
     <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="/dashboard">SETOP | Táxi</a>
-          <div class="nav-collapse collapse">
+          <a class="navbar-brand" href="/dashboard">SETOP | Ônibus Metropolitano</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
             <?if($institution == 1){?>
-            <ul class="nav">
               <li><a href="/grantee/view">Permissionários</a></li>
               <li><a href="/auxiliar/view">Auxiliares</a></li>
-            </ul>
             <?}?>
-            <?if($institution == 2){?>
-            <ul class="nav">
-              <li><a href="/inspection">Fiscalização</a></li>
-              <li><a href="/survey">Vistoria</a></li>
-              <li><a href="/assessment">Autuações</a></li>
-            </ul>
-            <?}?>
-            <div class="btn-group pull-right">
-              <a class="btn btn-inverse dropdown-toggle" data-toggle="dropdown" href="#">
-                  <i class="icon-user icon-white"></i>
-                  <span class="caret"></span>
-              </a>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i><b class="caret"></b></a>
               <ul class="dropdown-menu">
-              <li>
-                  <a href="/account">
-                      <i class="icon-wrench"></i> Minha conta
-                  </a>
-              </li>
-              <?if($userId == 1 || $userId == 5 || $userId == 9 || $userId == 6 || $userId == 11 || $userId == 12){?>
-              <li>
-                  <a href="/administration">
-                      <i class="icon-eye-close"></i> Administração
-                  </a>
-              </li>
-              <?}?>
-              <li class="divider"></li>
-              <li>
-                  <a href="/auth/logout">
-                      <i class="icon-signout"></i> Sair
-                  </a>
-              </li>
+                <li><a href="/account"><i class="icon-wrench"></i> Minha conta</a></li>
+                <?if($userId == 1 || $userId == 5 || $userId == 9 || $userId == 6 || $userId == 11 || $userId == 12){?>
+                <li> <a href="/administration"><i class="icon-eye-close"></i> Administração</a></li>
+                <?}?>
+                <li class="divider"></li>
+                <li> <a href="/auth/logout"><i class="icon-signout"></i> Sair</a></li>
               </ul>
-            </div>
-          </div><!--/.nav-collapse -->
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -152,6 +108,7 @@
     <script src="/js/calendar.min.js"></script>
     <script src="/js/d3.v3.min.js"></script>
     <script src="/js/jquery.livequery.js"></script>
+    <script src="/js/bootstrap3-typeahead.min.js"></script>
     <script src="/js/general.js"></script>
     <?if($institution == 1){?>
     <script src="/js/grantee.js"></script>

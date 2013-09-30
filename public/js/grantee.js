@@ -27,7 +27,11 @@ $('#aux1').typeahead({
             return false;
       return ~item.toLowerCase().indexOf(this.query.toLowerCase())
     }
-});
+}).on('typeahead:opened', function() {
+    $(this).closest('.accordion-body').css('overflow','visible');
+}).on('typeahead:closed', function() {
+    $(this).closest('.accordion-body').css('overflow','hidden');
+}); 
 
 $('#removeAux1').click(function(){
   $('#aux1_id').val('');
@@ -64,7 +68,7 @@ $('#aux2').typeahead({
     $(this).closest('.accordion-body').css('overflow','visible');
 }).on('typeahead:closed', function() {
     $(this).closest('.accordion-body').css('overflow','hidden');
-});
+}); 
 
 $('#removeAux2').click(function(){
   $('#aux2_id').val('');

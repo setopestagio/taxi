@@ -1,6 +1,6 @@
-<div class="container-fluid">
-  <div class="row-fluid">
-    <img src='/img/taxi.jpg'><br><br>
+<div class="container">
+  <div class="row">
+    <img class="img-responsive img-thumbnail" src='/img/taxi.jpg'><br><br>
   </div>
     <? 
       $authNamespace = new Zend_Session_Namespace('userInformation');
@@ -8,34 +8,34 @@
       $userId = $authNamespace->user_id; 
     ?>
   <?if($institution == 1){?>
-  <div class="row-fluid">
+  <div class="row">
     <div class="span4 well">
       <h2>Permissionários</h2>
       <p>O serviço público de transporte individual de passageiros por táxi especial metropolitano poderá ser prestado por terceiros mediante permissão, obtida por meio de licitação, respeitada a legislação vigente.</p>
-      <p><a href="/grantee" class="btn">gerenciar >></a></p>
+      <p><a href="/grantee" class="btn btn-default">gerenciar >></a></p>
     </div>
     <div class="span4 well">
       <h2>Auxiliares</h2>
       <p>O táxi somente poderá ser conduzido por condutor permissionário ou condutor auxiliar.</p>
-      <p><a href="/auxiliar" class="btn">gerenciar >></a></p>
+      <p><a href="/auxiliar" class="btn btn-default">gerenciar >></a></p>
     </div>
   </div>
   <?}else if($institution == 2){?>
-  <div class="row-fluid">
+  <div class="row">
     <div class="span4 well">
       <h2>Fiscalização</h2>
       <p>A fiscalização do cumprimento do disposto nesta Lei será exercida pelo DER-MG, que terá competência para apurar as infrações e aplicar as penas.</p>
-      <p><a href="/inspection" class="btn">entrar >></a></p>
+      <p><a href="/inspection" class="btn btn-default">entrar >></a></p>
     </div>
     <div class="span4 well">
       <h2>Vistoria</h2>
       <p>Relatórios de auxílio a fiscalização, como permissionários, auxiliares, veículos, fiscalizações anteriomente realizadas, entre outros.</p>
-      <p><a href="/survey" class="btn">entrar >></a></p>
+      <p><a href="/survey" class="btn btn-default">entrar >></a></p>
     </div>
     <div class="span4 well">
       <h2>Autuação</h2>
       <p>Relatórios de auxílio a fiscalização, como permissionários, auxiliares, veículos, fiscalizações anteriomente realizadas, entre outros.</p>
-      <p><a href="/assessment" class="btn">entrar >></a></p>
+      <p><a href="/assessment" class="btn btn-default">entrar >></a></p>
     </div>
   </div>
   <?}?>

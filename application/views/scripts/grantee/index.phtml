@@ -1,15 +1,23 @@
-<div class="container-fluid">
-  <div class="row-fluid">
-    <div class="span3">
-      <ul class="nav nav-list well">
-        <li><a href="/grantee/new"><i class="icon-user"></i> Novo Permissionário </a></li>
-        <li><a href="/grantee/view"><i class="icon-bullhorn"></i> Pesquisar Permissionário </a></li>
-        <li><a href="/grantee/report"><i class="icon-map-marker"></i> Relatórios </a></li> 
-      </ul>
-    </div><!--/span-->
-    <div class="span9">
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="list-group">
+        <a href="/grantee" class="list-group-item">
+          <h4 class="list-group-item-heading">Permissionários</h4>
+            <p class="list-group-item-text">Gerencie aqui os dados dos permissionários</p>
+        </a>
+        <a href="/grantee/new" class="list-group-item"><span class="glyphicon glyphicon-user"></span> Novo</a>
+        <a href="/grantee/view" class="list-group-item"><span class="glyphicon glyphicon-bullhorn"></span> Pesquisa</a>
+        <a href="/grantee/report" class="list-group-item"><span class="glyphicon glyphicon-map-marker"></span> Relatórios</a>
+      </div>
+    </div><!--/col-md-->
+    <div class="col-md-9">
+      <ol class="breadcrumb">
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li class="active">Permissionário</li>
+      </ol>  
       <div class="well">
-        <img class="img-polaroid" src="/img/taxi_top.jpg"><br><br>
+        <img class="img-responsive img-thumbnail" src="/img/taxi_top.jpg"><br><br>
         <h1>Permissionário</h1>
         <p>O serviço público de transporte individual de passageiros por táxi especial metropolitano poderá ser prestado por terceiros mediante permissão, obtida por meio de licitação, respeitada a legislação vigente. </p>
       </div>

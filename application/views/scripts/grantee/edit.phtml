@@ -1,494 +1,521 @@
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="span3">
-      <ul class="nav nav-list well">
-        <li><a href="/grantee/new"><i class="icon-user"></i> Novo Permissionário </a></li>
-        <li class="active"><a href="/grantee/new"> Edição de Permissionário </a></li>
-        <li><a href="/grantee/view"><i class="icon-bullhorn"></i> Pesquisar Permissionário </a></li>
-        <li><a href="/grantee/report"><i class="icon-map-marker"></i> Relatórios </a></li>
-      </ul>
+      <div class="list-group">
+        <a href="/grantee" class="list-group-item">
+          <h4 class="list-group-item-heading">Permissionários</h4>
+            <p class="list-group-item-text">Gerencie aqui os dados dos permissionários</p>
+        </a>
+        <a href="/grantee/new" class="list-group-item"><span class="glyphicon glyphicon-user"></span> Novo</a>
+        <a href="#" class="list-group-item active"> Edição</a>
+        <a href="/grantee/view" class="list-group-item"><span class="glyphicon glyphicon-bullhorn"></span> Pesquisa</a>
+        <a href="/grantee/report" class="list-group-item"><span class="glyphicon glyphicon-map-marker"></span> Relatórios</a>
+      </div>
     </div><!--/span-->
     <div class="span9">
+      <ol class="breadcrumb">
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="/grantee">Permissionário</a></li>
+        <li class="active">Edição</li>
+      </ol>  
       <div class="page-header">
       	<h1><?=$this->grantee->name?> <small>dados do permissionário</small></h1>
         <hr>
 				<div>
           <p>
-            <a href="/grantee/print-data/id/<?=$this->grantee->grantee_id?>" class="btn help" data-toggle="tooltip" title="Imprimir dados"><i class="icon-file"></i></a>
-          	<a href="/grantee/extract-pendencies/id/<?=$this->grantee->grantee_id?>" class="btn help" data-toggle="modal" title="Extrato de pendências"><i class="icon-book"></i></a>
-          	<a href="#license_<?=$this->grantee->grantee_id?>" class="btn help" data-toggle="modal" title="Imprimir a carteira"><i class="icon-print"></i></a>
-            <a href="#communication_<?=$this->grantee->grantee_id?>" class="btn help" data-toggle="modal" title="Comunicação ao orgão de trânsito"><i class="icon-road"></i></a>
+            <a href="/grantee/print-data/id/<?=$this->grantee->grantee_id?>" class="btn btn-default help" data-toggle="tooltip" title="Imprimir dados"><i class="icon-file"></i></a>
+          	<a href="/grantee/extract-pendencies/id/<?=$this->grantee->grantee_id?>" class="btn btn-default help" data-toggle="modal" title="Extrato de pendências"><i class="icon-book"></i></a>
+          	<a href="#license_<?=$this->grantee->grantee_id?>" class="btn btn-default help" data-toggle="modal" title="Imprimir a carteira"><i class="icon-print"></i></a>
+            <a href="#communication_<?=$this->grantee->grantee_id?>" class="btn btn-default help" data-toggle="modal" title="Comunicação ao orgão de trânsito"><i class="icon-road"></i></a>
           </p>
         </div>
         <hr>
         <ul class="nav nav-tabs" id="myTab">
-				  <li class="active"><a href="#data">Dados</a></li>
+				  <li class="active"><a class="btn btn-default" href="#data">Dados</a></li>
 				  <li><a href="#auxiliars">Auxiliares</a></li>
 				  <li><a href="#reservation">Reserva</a></li>
 				  <li><a href="#historic">Histórico</a></li>
 				</ul>
 		<div class="tab-content">
-			<div class="tab-pane active" id="data">
+			<div class="tab-pane active" id="data"><br>
         <form class="form-horizontal" action="/grantee/edit/id/<?=$this->grantee->grantee_id?>" method="post">
-        	<div class="control-group">
-	          <div class="accordion" id="accordionHistory">
-	          	<div class="accordion-group">
-	          		<div class="accordion-heading">
-	          			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseMain">Dados Principais</a>
-	          		</div>
-	          		<div id="collapseMain" class="accordion-body collapse">
-	          			<div class="accordion-inner">
-					          <div class="control-group">
-					              <label class="control-label" for="name">Nome</label>
-					              <div class="controls">
-					                  <input type="text" name="name" value="<?=$this->grantee->name?>" class="input-xlarge" id="name" placeholder="nome completo">
-					              </div><!--/.controls -->
-					          </div><!--/.control-group -->
-					          <div class="control-group">
-					              <label class="control-label" for="permission">Permissão</label>
-					              <div class="controls">
-					                  <input type="text" name="permission" value="<?=$this->grantee->permission?>" class="input-xlarge" id="permission" placeholder="número da permissão">
-					              </div><!--/.controls -->
-					          </div><!--/.control-group -->
-					          <div class="control-group">
-					              <label class="control-label" for="authorization">Autorização</label>
-					              <div class="controls">
-					                  <select name="authorization" id="authorization" class="input-xlarge">
-					                  	<option value="0" <?if($this->grantee->authorization == 0) echo 'selected="selected"'; ?>>-- Escolha o tipo de autorização --</option>
-					                  	<option value="1" <?if($this->grantee->authorization == 1) echo 'selected="selected"'; ?>>Táxi Especial</option>
-					                  </select>
-					              </div><!--/.controls -->
-					            </div><!--/.control-group -->
-					          <div class="control-group">
-					              <label class="control-label" for="city">Cidade</label>
-					              <div class="controls">
-				                  <select name="city" id="city" class="input-xlarge">
-				                  	<option value="0" <?if($this->grantee->city == 0) echo 'selected="selected"'; ?>>-- Escolha o município --</option>
+        	<div class="panel-group" id="accordionMain">
+        		<div class="panel panel-default">
+          		<div class="panel-heading">
+          			<h4 class="panel-title">
+          				<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionMain" href="#collapseMain">Dados Principais</a>
+          			</h4>
+          		</div>
+          		<div id="collapseMain" class="panel-collapse collapse">
+          			<div class="panel-body">
+				          <div class="form-group">
+				              <label class="col-lg-2 control-label" for="name">Nome</label>
+				              <div class="col-lg-5">
+				                  <input type="text" name="name" value="<?=$this->grantee->name?>" class="form-control" id="name" placeholder="nome completo">
+				              </div><!--/.controls -->
+				          </div><!--/.form-group -->
+				          <div class="form-group">
+				              <label class="col-lg-2 control-label" for="permission">Permissão</label>
+				              <div class="col-lg-5">
+				                  <input type="text" name="permission" value="<?=$this->grantee->permission?>" class="form-control" id="permission" placeholder="número da permissão">
+				              </div><!--/.controls -->
+				          </div><!--/.form-group -->
+				          <div class="form-group">
+				              <label class="col-lg-2 control-label" for="authorization">Autorização</label>
+				              <div class="col-lg-5">
+				                  <select name="authorization" id="authorization" class="form-control">
+				                  	<option value="0" <?if($this->grantee->authorization == 0) echo 'selected="selected"'; ?>>-- Escolha o tipo de autorização --</option>
+				                  	<option value="1" <?if($this->grantee->authorization == 1) echo 'selected="selected"'; ?>>Táxi Especial</option>
+				                  </select>
+				              </div><!--/.controls -->
+				            </div><!--/.form-group -->
+				          <div class="form-group">
+				              <label class="col-lg-2 control-label" for="city">Cidade</label>
+				              <div class="col-lg-5">
+			                  <select name="city" id="city" class="form-control">
+			                  	<option value="0" <?if($this->grantee->city == 0) echo 'selected="selected"'; ?>>-- Escolha o município --</option>
+			                  	<?foreach ($this->cities as $city){ ?>
+			                  	<option <?if($this->grantee->city == $city->id) echo 'selected="selected"'; ?> value="<?=$city->id?>"><?=$city->name?></option>
+			                  	<?}?>
+			                  </select>
+				              </div><!--/.controls -->
+				          </div><!--/.form-group -->
+				          <div class="form-group">
+				              <label class="col-lg-2 control-label" for="start_permission">Início da permissão</label>
+				              <div class="col-lg-5">
+				                  <input type="text" name="start_permission" value="<?=Application_Model_General::dateToBr($this->grantee->start_permission)?>" class="form-control dateMask" id="start_permission" placeholder="data de início da permissão" data-date="<?=date('d/m/Y')?>" data-date-format="dd/mm/yyyy">
+				              </div><!--/.controls -->
+				          </div><!--/.form-group -->
+				          <div class="form-group">
+				              <label class="col-lg-2 control-label" for="end_permission">Término da permissão</label>
+				              <div class="col-lg-5">
+				                  <input type="text" name="end_permission" value="<?=Application_Model_General::dateToBr($this->grantee->end_permission)?>" class="form-control dateMask" id="end_permission" placeholder="data de término da permissão" data-date="<?=date('d/m/Y')?>" data-date-format="dd/mm/yyyy">
+				              </div><!--/.controls -->
+				          </div><!--/.form-group -->
+				          <div class="form-group">
+				              <label class="col-lg-2 control-label" for="info">Observações</label>
+				              <div class="col-lg-5">
+				                  <textarea type="text" name="info" rows="5" class="form-control" id="info" placeholder="observações"><?=$this->grantee->info_grantee?></textarea>
+				              </div><!--/.controls -->
+				          </div><!--/.form-group -->
+				          <div class="form-group">
+				              <label class="col-lg-2 control-label" for="pendencies">Pendências</label>
+				              <div class="col-lg-5">
+				                  <textarea type="text" name="pendencies" rows="5" class="form-control" id="pendencies" placeholder="pendências"><?=$this->grantee->pendencies?></textarea>
+				              </div><!--/.controls -->
+				          </div><!--/.form-group -->
+				        </div>
+				      </div>
+				    </div>
+        		<div class="panel panel-default">
+          		<div class="panel-heading">
+          			<h4 class="panel-title">
+          				<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionMain" href="#collapseAddress">Endereço</a>
+        				</h4>
+          		</div>
+          		<div id="collapseAddress" class="panel-collapse collapse">
+          			<div class="panel-body">
+          				<div class="form-group">
+				              <label class="col-lg-2 control-label" for="address">Endereço</label>
+				              <div class="col-lg-5">
+				                  <input type="text" name="address" value="<?=$this->grantee->address?>" class="form-control" id="address" placeholder="logradouro">
+				              </div><!--/.controls -->
+				          </div><!--/.control-group -->
+				          <div class="form-group">
+				              <label class="col-lg-2 control-label" for="number">Número</label>
+				              <div class="col-lg-5">
+				                  <input type="text" name="number" value="<?=$this->grantee->number?>" class="form-control" id="number" placeholder="número">
+				              </div><!--/.controls -->
+				          </div><!--/.control-group -->
+				          <div class="form-group">
+				              <label class="col-lg-2 control-label" for="apartament">Complemento</label>
+				              <div class="col-lg-5">
+				                  <input type="text" name="apartament" value="<?=$this->grantee->apartament?>" class="form-control" id="apartament" placeholder="complemento">
+				              </div><!--/.controls -->
+				          </div><!--/.control-group -->
+				          <div class="form-group">
+				              <label class="col-lg-2 control-label" for="neighborhood">Bairro</label>
+				              <div class="col-lg-5">
+				                  <input type="text" name="neighborhood" value="<?=$this->grantee->neighborhood?>" class="form-control" id="neighborhood" placeholder="bairro">
+				              </div><!--/.controls -->
+				          </div><!--/.control-group -->
+				          <div class="form-group">
+				              <label class="col-lg-2 control-label" for="address_city">Cidade</label>
+				              <div class="col-lg-5">
+				                  <select name="address_city" id="address_city" class="form-control">
+				                  	<option value="0" <?if($this->grantee->address_city == 0) echo 'selected="selected"'; ?>>-- Escolha o município --</option>
 				                  	<?foreach ($this->cities as $city){ ?>
-				                  	<option <?if($this->grantee->city == $city->id) echo 'selected="selected"'; ?> value="<?=$city->id?>"><?=$city->name?></option>
+				                  	<option <?if($this->grantee->address_city == $city->id) echo 'selected="selected"'; ?> value="<?=$city->id?>"><?=$city->name?></option>
 				                  	<?}?>
 				                  </select>
-					              </div><!--/.controls -->
-					          </div><!--/.control-group -->
-					          <div class="control-group">
-					              <label class="control-label" for="start_permission">Início da permissão</label>
-					              <div class="controls">
-					                  <input type="text" name="start_permission" value="<?=Application_Model_General::dateToBr($this->grantee->start_permission)?>" class="input-xlarge dateMask" id="start_permission" placeholder="data de início da permissão" data-date="<?=date('d/m/Y')?>" data-date-format="dd/mm/yyyy">
-					              </div><!--/.controls -->
-					          </div><!--/.control-group -->
-					          <div class="control-group">
-					              <label class="control-label" for="end_permission">Término da permissão</label>
-					              <div class="controls">
-					                  <input type="text" name="end_permission" value="<?=Application_Model_General::dateToBr($this->grantee->end_permission)?>" class="input-xlarge dateMask" id="end_permission" placeholder="data de término da permissão" data-date="<?=date('d/m/Y')?>" data-date-format="dd/mm/yyyy">
-					              </div><!--/.controls -->
-					          </div><!--/.control-group -->
-					          <div class="control-group">
-					              <label class="control-label" for="info">Observações</label>
-					              <div class="controls">
-					                  <textarea type="text" name="info" rows="5" class="input-xlarge" id="info" placeholder="observações"><?=$this->grantee->info_grantee?></textarea>
-					              </div><!--/.controls -->
-					          </div><!--/.control-group -->
-					          <div class="control-group">
-					              <label class="control-label" for="pendencies">Pendências</label>
-					              <div class="controls">
-					                  <textarea type="text" name="pendencies" rows="5" class="input-xlarge" id="pendencies" placeholder="pendências"><?=$this->grantee->pendencies?></textarea>
-					              </div><!--/.controls -->
-					          </div><!--/.control-group -->
-					        </div>
-					      </div>
-					    </div>
-	          	<div class="accordion-group">
-	          		<div class="accordion-heading">
-	          			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseAddress">Endereço</a>
-	          		</div>
-	          		<div id="collapseAddress" class="accordion-body collapse">
-	          			<div class="accordion-inner">
-	          				<div class="control-group">
-					              <label class="control-label" for="address">Endereço</label>
-					              <div class="controls">
-					                  <input type="text" name="address" value="<?=$this->grantee->address?>" class="input-xlarge" id="address" placeholder="logradouro">
-					              </div><!--/.controls -->
-					          </div><!--/.control-group -->
-					          <div class="control-group">
-					              <label class="control-label" for="number">Número</label>
-					              <div class="controls">
-					                  <input type="text" name="number" value="<?=$this->grantee->number?>" class="input-xlarge" id="number" placeholder="número">
-					              </div><!--/.controls -->
-					          </div><!--/.control-group -->
-					          <div class="control-group">
-					              <label class="control-label" for="apartament">Complemento</label>
-					              <div class="controls">
-					                  <input type="text" name="apartament" value="<?=$this->grantee->apartament?>" class="input-xlarge" id="apartament" placeholder="complemento">
-					              </div><!--/.controls -->
-					          </div><!--/.control-group -->
-					          <div class="control-group">
-					              <label class="control-label" for="neighborhood">Bairro</label>
-					              <div class="controls">
-					                  <input type="text" name="neighborhood" value="<?=$this->grantee->neighborhood?>" class="input-xlarge" id="neighborhood" placeholder="bairro">
-					              </div><!--/.controls -->
-					          </div><!--/.control-group -->
-					          <div class="control-group">
-					              <label class="control-label" for="address_city">Cidade</label>
-					              <div class="controls">
-					                  <select name="address_city" id="address_city" class="input-xlarge">
-					                  	<option value="0" <?if($this->grantee->address_city == 0) echo 'selected="selected"'; ?>>-- Escolha o município --</option>
-					                  	<?foreach ($this->cities as $city){ ?>
-					                  	<option <?if($this->grantee->address_city == $city->id) echo 'selected="selected"'; ?> value="<?=$city->id?>"><?=$city->name?></option>
-					                  	<?}?>
-					                  </select>
-					              </div><!--/.controls -->
-					          </div><!--/.control-group -->
-					          <div class="control-group">
-					              <label class="control-label" for="zipcode">CEP</label>
-					              <div class="controls">
-					                  <input type="text" name="zipcode" value="<?=$this->grantee->zipcode?>" class="input-xlarge zipcode" id="zipcode" placeholder="cep">
-					              </div><!--/.controls -->
-					          </div><!--/.control-group -->
-	          			</div>
-	          		</div>
-	          	</div>
-	          	<div class="accordion-group">
-	          		<div class="accordion-heading">
-	          			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseContact">Contato</a>
-	          		</div>
-	          		<div id="collapseContact" class="accordion-body collapse">
-	          			<div class="accordion-inner">
-	          				<div class="control-group">
-					              <label class="control-label" for="phone">Telefone fixo</label>
-					              <div class="controls">
-					                  <input type="text" name="phone" value="<?=$this->grantee->phone?>" class="input-xlarge phone" id="phone" placeholder="telefone fixo">
-					              </div><!--/.controls -->
-					          </div><!--/.control-group -->
-					          <div class="control-group">
-					              <label class="control-label" for="mobile">Celular</label>
-					              <div class="controls">
-					                  <input type="text" name="mobile" value="<?=$this->grantee->mobile?>" class="input-xlarge phone" id="mobile" placeholder="celular">
-					              </div><!--/.controls -->
-					          </div><!--/.control-group -->
-					          <div class="control-group">
-					              <label class="control-label" for="email">Email</label>
-					              <div class="controls">
-					                  <input type="text" name="email" value="<?=$this->grantee->email?>" class="input-xlarge" id="email" placeholder="email">
-					              </div><!--/.controls -->
-					          </div><!--/.control-group -->
-	          			</div>
-	          		</div>
-	          	</div>
-		          <div class="accordion-group">
-		        		<div class="accordion-heading">
-		        			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseDocument">Documentos</a>
-		        		</div>
-		        		<div id="collapseDocument" class="accordion-body collapse">
-		        			<div class="accordion-inner">
-					          <div class="control-group">
-					              <label class="control-label" for="rg">Identidade</label>
-					              <div class="controls">
-					                  <input type="text" name="rg" value="<?=$this->grantee->rg?>" class="input-xlarge" id="rg" placeholder="identidade">
-					              </div><!--/.controls -->
-					          </div><!--/.control-group -->
-					          <div class="control-group">
-					              <label class="control-label" for="rg_issuer">Orgão Emissor da Identidade</label>
-					              <div class="controls">
-					                  <input type="text" name="rg_issuer" value="<?=$this->grantee->rg_issuer?>" class="input-xlarge" id="rg_issuer" placeholder="orgão emissor da identidade">
-					              </div><!--/.controls -->
-					          </div><!--/.control-group -->
-					          <div class="control-group">
-					              <label class="control-label" for="cpf">CPF</label>
-					              <div class="controls">
-					                  <input type="text" name="cpf" value="<?=$this->grantee->cpf?>" class="input-xlarge cpf" id="cpf" placeholder="cpf">
-					              </div><!--/.controls -->
-					          </div><!--/.control-group -->
-					          <div class="control-group">
-					              <label class="control-label" for="cnh">Habilitação</label>
-					              <div class="controls">
-					                  <input type="text" name="cnh" value="<?=$this->grantee->cnh?>" class="input-xlarge" id="cnh" placeholder="habilitação">
-					              </div><!--/.controls -->
-					          </div><!--/.control-group -->
-					          <div class="control-group">
-					              <label class="control-label" for="cnh_issuer">Orgão Emissor da Habilitação</label>
-					              <div class="controls">
-					                  <input type="text" name="cnh_issuer" value="<?=$this->grantee->cnh_issuer?>" class="input-xlarge" id="cnh_issuer" placeholder="orgão emissor da habilitação">
-					              </div><!--/.controls -->
-					          </div><!--/.control-group -->
-					          <div class="control-group">
-					              <label class="control-label" for="iapas">IAPAS</label>
-					              <div class="controls">
-					                  <input type="text" name="iapas" value="<?=$this->grantee->iapas?>" class="input-xlarge" id="iapas" placeholder="iapas">
-					              </div><!--/.controls -->
-					          </div><!--/.control-group -->
-					          <div class="control-group">
-					              <label class="control-label" for="voter">Título de Eleitor</label>
-					              <div class="controls">
-					                  <input type="text" name="voter" value="<?=$this->grantee->voter?>" class="input-xlarge" id="voter" placeholder="título de eleitor">
-					              </div><!--/.controls -->
-					          </div><!--/.control-group -->
-					          <div class="control-group">
-					              <label class="control-label" for="voter_zone">Zona Eleitoral</label>
-					              <div class="controls">
-					                  <input type="text" name="voter_zone" value="<?=$this->grantee->voter_zone?>" class="input-xlarge" id="voter_zone" placeholder="zona eleitoral">
-					              </div><!--/.controls -->
-					          </div><!--/.control-group -->
-					          <div class="control-group">
-					              <label class="control-label" for="army">Militar</label>
-					              <div class="controls">
-					                  <input type="text" name="army" value="<?=$this->grantee->army?>" class="input-xlarge" id="army" placeholder="documento militar">
-					              </div><!--/.controls -->
-					          </div><!--/.control-group -->
-					          <div class="control-group">
-					              <label class="control-label" for="army_issuer">Orgão Emissor Militar</label>
-					              <div class="controls">
-					                  <input type="text" name="army_issuer" value="<?=$this->grantee->army_issuer?>" class="input-xlarge" id="army_issuer" placeholder="orgão emissor do documento militar">
-					              </div><!--/.controls -->
-					          </div><!--/.control-group -->
-		        			</div>
-		        		</div>
-		        	</div>
-		        	<div class="accordion-group">
-	          		<div class="accordion-heading">
-	          			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseVehicle">Veículo</a>
-	          		</div>
-	          		<div id="collapseVehicle" class="accordion-body collapse">
-	          			<div class="accordion-inner">
-	          				<div class="control-group">
-					              <label class="control-label" for="plate">Placa</label>
-					              <div class="controls">
-					                  <input type="text" name="plate" value="<?=$this->grantee->plate?>" class="input-xlarge plate" id="plate" placeholder="placa">
-					              </div><!--/.controls -->
-					          </div><!--/.control-group -->
-	          				<div class="control-group">
-					              <label class="control-label" for="brand">Marca</label>
-					              <div class="controls">
-				                   <select name="brand">
-					                 	 <option value="0" <?if($this->grantee->brand == 0) echo 'selected="selected"'; ?>>-- Selecione uma marca --</option>
-						                 	<?foreach($this->vehicleBrand as $vehicleBrand){?>
-						                 		<option value="<?=$vehicleBrand->id?>" <?if($this->grantee->brand == $vehicleBrand->id) echo 'selected="selected"';?>><?=$vehicleBrand->name?></option>
-						                 	<?}?>
-					                 </select>
-					              </div><!--/.controls -->
-					          </div><!--/.control-group -->
-	          				<div class="control-group">
-					              <label class="control-label" for="model">Modelo</label>
-					              <div class="controls">
-					                 <select name="model">
-					                 		<option value="0">-- Selecione um modelo --</option>
-					                 	<?foreach($this->vehicleModel as $vehicleModel){?>
-					                 		<option value="<?=$vehicleModel->id?>" <?if($this->grantee->model == $vehicleModel->id) echo 'selected="selected"';?>><?=$vehicleModel->name?></option>
+				              </div><!--/.controls -->
+				          </div><!--/.control-group -->
+				          <div class="form-group">
+				              <label class="col-lg-2 control-label" for="zipcode">CEP</label>
+				              <div class="col-lg-5">
+				                  <input type="text" name="zipcode" value="<?=$this->grantee->zipcode?>" class="form-control zipcode" id="zipcode" placeholder="cep">
+				              </div><!--/.controls -->
+				          </div><!--/.control-group -->
+          			</div>
+          		</div>
+          	</div>
+        		<div class="panel panel-default">
+          		<div class="panel-heading">
+          			<h4 class="panel-title">
+          				<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionMain" href="#collapseContact">Contato</a>
+          			</h4>
+          		</div>
+          		<div id="collapseContact" class="panel-collapse collapse">
+          			<div class="panel-body">
+          				<div class="form-group">
+				              <label class="col-lg-2 control-label" for="phone">Telefone fixo</label>
+				              <div class="col-lg-5">
+				                  <input type="text" name="phone" value="<?=$this->grantee->phone?>" class="form-control phone" id="phone" placeholder="telefone fixo">
+				              </div><!--/.controls -->
+				          </div><!--/.control-group -->
+				          <div class="form-group">
+				              <label class="col-lg-2 control-label" for="mobile">Celular</label>
+				              <div class="col-lg-5">
+				                  <input type="text" name="mobile" value="<?=$this->grantee->mobile?>" class="form-control phone" id="mobile" placeholder="celular">
+				              </div><!--/.controls -->
+				          </div><!--/.control-group -->
+				          <div class="form-group">
+				              <label class="col-lg-2 control-label" for="email">Email</label>
+				              <div class="col-lg-5">
+				                  <input type="text" name="email" value="<?=$this->grantee->email?>" class="form-control" id="email" placeholder="email">
+				              </div><!--/.controls -->
+				          </div><!--/.control-group -->
+          			</div>
+          		</div>
+          	</div>
+        		<div class="panel panel-default">
+	        		<div class="panel-heading">
+          			<h4 class="panel-title">
+	        				<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionMain" href="#collapseDocument">Documentos</a>
+	        			</h4>
+	        		</div>
+	        		<div id="collapseDocument" class="panel-collapse collapse">
+	        			<div class="panel-body">
+				          <div class="form-group">
+				              <label class="col-lg-2 control-label" for="rg">Identidade</label>
+				              <div class="col-lg-5">
+				                  <input type="text" name="rg" value="<?=$this->grantee->rg?>" class="form-control" id="rg" placeholder="identidade">
+				              </div><!--/.controls -->
+				          </div><!--/.control-group -->
+				          <div class="form-group">
+				              <label class="col-lg-2 control-label" for="rg_issuer">Orgão Emissor da Identidade</label>
+				              <div class="col-lg-5">
+				                  <input type="text" name="rg_issuer" value="<?=$this->grantee->rg_issuer?>" class="form-control" id="rg_issuer" placeholder="orgão emissor da identidade">
+				              </div><!--/.controls -->
+				          </div><!--/.control-group -->
+				          <div class="form-group">
+				              <label class="col-lg-2 control-label" for="cpf">CPF</label>
+				              <div class="col-lg-5">
+				                  <input type="text" name="cpf" value="<?=$this->grantee->cpf?>" class="form-control cpf" id="cpf" placeholder="cpf">
+				              </div><!--/.controls -->
+				          </div><!--/.control-group -->
+				          <div class="form-group">
+				              <label class="col-lg-2 control-label" for="cnh">Habilitação</label>
+				              <div class="col-lg-5">
+				                  <input type="text" name="cnh" value="<?=$this->grantee->cnh?>" class="form-control" id="cnh" placeholder="habilitação">
+				              </div><!--/.controls -->
+				          </div><!--/.control-group -->
+				          <div class="form-group">
+				              <label class="col-lg-2 control-label" for="cnh_issuer">Orgão Emissor da Habilitação</label>
+				              <div class="col-lg-5">
+				                  <input type="text" name="cnh_issuer" value="<?=$this->grantee->cnh_issuer?>" class="form-control" id="cnh_issuer" placeholder="orgão emissor da habilitação">
+				              </div><!--/.controls -->
+				          </div><!--/.control-group -->
+				          <div class="form-group">
+				              <label class="col-lg-2 control-label" for="iapas">IAPAS</label>
+				              <div class="col-lg-5">
+				                  <input type="text" name="iapas" value="<?=$this->grantee->iapas?>" class="form-control" id="iapas" placeholder="iapas">
+				              </div><!--/.controls -->
+				          </div><!--/.control-group -->
+				          <div class="form-group">
+				              <label class="col-lg-2 control-label" for="voter">Título de Eleitor</label>
+				              <div class="col-lg-5">
+				                  <input type="text" name="voter" value="<?=$this->grantee->voter?>" class="form-control" id="voter" placeholder="título de eleitor">
+				              </div><!--/.controls -->
+				          </div><!--/.control-group -->
+				          <div class="form-group">
+				              <label class="col-lg-2 control-label" for="voter_zone">Zona Eleitoral</label>
+				              <div class="col-lg-5">
+				                  <input type="text" name="voter_zone" value="<?=$this->grantee->voter_zone?>" class="form-control" id="voter_zone" placeholder="zona eleitoral">
+				              </div><!--/.controls -->
+				          </div><!--/.control-group -->
+				          <div class="form-group">
+				              <label class="col-lg-2 control-label" for="army">Militar</label>
+				              <div class="col-lg-5">
+				                  <input type="text" name="army" value="<?=$this->grantee->army?>" class="form-control" id="army" placeholder="documento militar">
+				              </div><!--/.controls -->
+				          </div><!--/.control-group -->
+				          <div class="form-group">
+				              <label class="col-lg-2 control-label" for="army_issuer">Orgão Emissor Militar</label>
+				              <div class="col-lg-5">
+				                  <input type="text" name="army_issuer" value="<?=$this->grantee->army_issuer?>" class="form-control" id="army_issuer" placeholder="orgão emissor do documento militar">
+				              </div><!--/.controls -->
+				          </div><!--/.control-group -->
+	        			</div>
+	        		</div>
+	        	</div>
+        		<div class="panel panel-default">
+          		<div class="panel-heading">
+          			<h4 class="panel-title">
+          				<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionMain" href="#collapseVehicle">Veículo</a>
+          			</h4>
+          		</div>
+          		<div id="collapseVehicle" class="panel-collapse collapse">
+          			<div class="panel-body">
+          				<div class="form-group">
+				              <label class="col-lg-2 control-label" for="plate">Placa</label>
+				              <div class="col-lg-5">
+				                  <input type="text" name="plate" value="<?=$this->grantee->plate?>" class="form-control plate" id="plate" placeholder="placa">
+				              </div><!--/.controls -->
+				          </div><!--/.control-group -->
+          				<div class="form-group">
+				              <label class="col-lg-2 control-label" for="brand">Marca</label>
+				              <div class="col-lg-5">
+			                   <select name="brand" class="form-control">
+				                 	 <option value="0" <?if($this->grantee->brand == 0) echo 'selected="selected"'; ?>>-- Selecione uma marca --</option>
+					                 	<?foreach($this->vehicleBrand as $vehicleBrand){?>
+					                 		<option value="<?=$vehicleBrand->id?>" <?if($this->grantee->brand == $vehicleBrand->id) echo 'selected="selected"';?>><?=$vehicleBrand->name?></option>
 					                 	<?}?>
-					                 </select>
-					              </div><!--/.controls -->
-					          </div><!--/.control-group -->
-	          				<div class="control-group">
-					              <label class="control-label" for="year_fabrication">Ano Fabricação</label>
-					              <div class="controls">
-					                  <input type="text" name="year_fabrication" value="<?=$this->grantee->year_fabrication?>" class="input-xlarge" id="year_fabrication" placeholder="ano de fabricação">
-					              </div><!--/.controls -->
-					          </div><!--/.control-group -->
-	          				<div class="control-group">
-					              <label class="control-label" for="year_model">Ano Modelo</label>
-					              <div class="controls">
-					                  <input type="text" name="year_model" value="<?=$this->grantee->year_model?>" class="input-xlarge" id="year_model" placeholder="ano do modelo" data-mask="9999">
-					              </div><!--/.controls -->
-					          </div><!--/.control-group -->
-	          				<div class="control-group">
-					              <label class="control-label" for="color">Cor</label>
-					              <div class="controls">
-					                  <input type="text" name="color" value="<?=$this->grantee->color?>" class="input-xlarge" id="color" placeholder="cor" data-mask="9999">
-					              </div><!--/.controls -->
-					          </div><!--/.control-group -->
-	          				<div class="control-group">
-					              <label class="control-label" for="chassi">Chassi</label>
-					              <div class="controls">
-					                  <input type="text" name="chassi" value="<?=$this->grantee->chassi?>" class="input-xlarge" id="chassi" placeholder="chassi">
-					              </div><!--/.controls -->
-					          </div><!--/.control-group -->
-	          				<div class="control-group">
-					              <label class="control-label" for="fuel">Tipo de Combustivel</label>
-					              <div class="controls">
-				                   <select name="fuel">
-					                 	<option value="0" <?if($this->grantee->fuel == 0) echo 'selected="selected"'; ?>>-- Selecione um combustivel --</option>
-					                 	<option value="1" <?if($this->grantee->fuel == 1) echo 'selected="selected"'; ?>>Alcool/Gnv</option>
-					                 	<option value="2" <?if($this->grantee->fuel == 2) echo 'selected="selected"'; ?>>Gasolina/Alcool</option>
-					                 	<option value="3" <?if($this->grantee->fuel == 3) echo 'selected="selected"'; ?>>Gasolina/Gnv</option>
-					                 	<option value="4" <?if($this->grantee->fuel == 4) echo 'selected="selected"'; ?>>Alcool</option>
-					                 	<option value="5" <?if($this->grantee->fuel == 5) echo 'selected="selected"'; ?>>Gasolina/Alcool/Gnv</option>
-					                 	<option value="6" <?if($this->grantee->fuel == 6) echo 'selected="selected"'; ?>>Gasolina</option>
-					                 </select>
-					              </div><!--/.controls -->
-					          </div><!--/.control-group -->
-	          				<div class="control-group">
-					              <label class="control-label" for="taximeter_brand">Taxímetro Marca</label>
-					              <div class="controls">
-				                   <select name="taximeter_brand">
-					                 	<option value="0" <?if($this->grantee->taximeter_brand_id == 0) echo 'selected="selected"'; ?>>-- Selecione uma marca --</option>
-					                 	<?foreach($this->brandTaximeter as $brandTaximeter){?>
-					                 		<option <?if($this->grantee->taximeter_brand_id == $brandTaximeter->id) echo 'selected="selected"'; ?> value="<?=$brandTaximeter->id?>"><?=$brandTaximeter->name?></option>
-					                 	<?}?>
-					                 </select>
-					              </div><!--/.controls -->
-					          </div><!--/.control-group -->
-	          				<div class="control-group">
-					              <label class="control-label" for="taximeter_model">Taxímetro Modelo</label>
-					              <div class="controls">
-				                   <select name="taximeter_model">
-					                 	<option value="0" <?if($this->grantee->taximeter_model_id == 0) echo 'selected="selected"'; ?>>-- Selecione um modelo --</option>
-					                 	<?foreach($this->modelTaximeter as $modelTaximeter){?>
-					                 		<option <?if($this->grantee->taximeter_model_id == $modelTaximeter->id) echo 'selected="selected"'; ?> value="<?=$modelTaximeter->id?>"><?=$modelTaximeter->name?></option>
-					                 	<?}?>
-					                 </select>
-					              </div><!--/.controls -->
-					          </div><!--/.control-group -->
-	          			</div>
-	          		</div>
-	          	</div>
-		        </div>
-		      </div>
-          <div class="form-actions">
-              <button type="submit" class="btn btn-primary">Salvar alterações</button>
+				                 </select>
+				              </div><!--/.controls -->
+				          </div><!--/.control-group -->
+          				<div class="form-group">
+				              <label class="col-lg-2 control-label" for="model">Modelo</label>
+				              <div class="col-lg-5">
+				                 <select name="model" class="form-control">
+				                 		<option value="0">-- Selecione um modelo --</option>
+				                 	<?foreach($this->vehicleModel as $vehicleModel){?>
+				                 		<option value="<?=$vehicleModel->id?>" <?if($this->grantee->model == $vehicleModel->id) echo 'selected="selected"';?>><?=$vehicleModel->name?></option>
+				                 	<?}?>
+				                 </select>
+				              </div><!--/.controls -->
+				          </div><!--/.control-group -->
+          				<div class="form-group">
+				              <label class="col-lg-2 control-label" for="year_fabrication">Ano Fabricação</label>
+				              <div class="col-lg-5">
+				                  <input type="text" name="year_fabrication" value="<?=$this->grantee->year_fabrication?>" class="form-control" id="year_fabrication" placeholder="ano de fabricação">
+				              </div><!--/.controls -->
+				          </div><!--/.control-group -->
+          				<div class="form-group">
+				              <label class="col-lg-2 control-label" for="year_model">Ano Modelo</label>
+				              <div class="col-lg-5">
+				                  <input type="text" name="year_model" value="<?=$this->grantee->year_model?>" class="form-control" id="year_model" placeholder="ano do modelo" data-mask="9999">
+				              </div><!--/.controls -->
+				          </div><!--/.control-group -->
+          				<div class="form-group">
+				              <label class="col-lg-2 control-label" for="color">Cor</label>
+				              <div class="col-lg-5">
+				                  <input type="text" name="color" value="<?=$this->grantee->color?>" class="form-control" id="color" placeholder="cor" data-mask="9999">
+				              </div><!--/.controls -->
+				          </div><!--/.control-group -->
+          				<div class="form-group">
+				              <label class="col-lg-2 control-label" for="chassi">Chassi</label>
+				              <div class="col-lg-5">
+				                  <input type="text" name="chassi" value="<?=$this->grantee->chassi?>" class="form-control" id="chassi" placeholder="chassi">
+				              </div><!--/.controls -->
+				          </div><!--/.control-group -->
+          				<div class="form-group">
+				              <label class="col-lg-2 control-label" for="fuel">Tipo de Combustivel</label>
+				              <div class="col-lg-5">
+			                   <select name="fuel" class="form-control">
+				                 	<option value="0" <?if($this->grantee->fuel == 0) echo 'selected="selected"'; ?>>-- Selecione um combustivel --</option>
+				                 	<option value="1" <?if($this->grantee->fuel == 1) echo 'selected="selected"'; ?>>Alcool/Gnv</option>
+				                 	<option value="2" <?if($this->grantee->fuel == 2) echo 'selected="selected"'; ?>>Gasolina/Alcool</option>
+				                 	<option value="3" <?if($this->grantee->fuel == 3) echo 'selected="selected"'; ?>>Gasolina/Gnv</option>
+				                 	<option value="4" <?if($this->grantee->fuel == 4) echo 'selected="selected"'; ?>>Alcool</option>
+				                 	<option value="5" <?if($this->grantee->fuel == 5) echo 'selected="selected"'; ?>>Gasolina/Alcool/Gnv</option>
+				                 	<option value="6" <?if($this->grantee->fuel == 6) echo 'selected="selected"'; ?>>Gasolina</option>
+				                 </select>
+				              </div><!--/.controls -->
+				          </div><!--/.control-group -->
+          				<div class="form-group">
+				              <label class="col-lg-2 control-label" for="taximeter_brand">Taxímetro Marca</label>
+				              <div class="col-lg-5">
+			                   <select name="taximeter_brand" class="form-control">
+				                 	<option value="0" <?if($this->grantee->taximeter_brand_id == 0) echo 'selected="selected"'; ?>>-- Selecione uma marca --</option>
+				                 	<?foreach($this->brandTaximeter as $brandTaximeter){?>
+				                 		<option <?if($this->grantee->taximeter_brand_id == $brandTaximeter->id) echo 'selected="selected"'; ?> value="<?=$brandTaximeter->id?>"><?=$brandTaximeter->name?></option>
+				                 	<?}?>
+				                 </select>
+				              </div><!--/.controls -->
+				          </div><!--/.control-group -->
+          				<div class="form-group">
+				              <label class="col-lg-2 control-label" for="taximeter_model">Taxímetro Modelo</label>
+				              <div class="col-lg-5">
+			                   <select name="taximeter_model" class="form-control">
+				                 	<option value="0" <?if($this->grantee->taximeter_model_id == 0) echo 'selected="selected"'; ?>>-- Selecione um modelo --</option>
+				                 	<?foreach($this->modelTaximeter as $modelTaximeter){?>
+				                 		<option <?if($this->grantee->taximeter_model_id == $modelTaximeter->id) echo 'selected="selected"'; ?> value="<?=$modelTaximeter->id?>"><?=$modelTaximeter->name?></option>
+				                 	<?}?>
+				                 </select>
+				              </div><!--/.controls -->
+				          </div><!--/.control-group -->
+          			</div>
+          		</div>
+          	</div>
+		      </div><br>
+          <div class="form-group">
+          	<div clas="col-lg-5">
+              <button type="submit" class="col-lg-offset-1 btn btn-primary">Salvar alterações</button>
+            </div>
           </div>
         </form>
       </div>
-		  <div class="tab-pane" id="auxiliars">
+		  <div class="tab-pane" id="auxiliars"><br>
 		  	<form class="form-horizontal" action='/grantee/save-auxiliar/id/<?=$this->grantee->grantee_id?>' method='post'>
-				<div class="control-group">
-              <label class="control-label" for="aux1">Auxiliar 1</label>
-              <div class="controls">
-                  <input type="text" name="aux1" value="<?if(isset($this->auxiliars[0])) echo $this->auxiliars[0]['name']?>" class="input-xxlarge" id="aux1" placeholder="nome do auxiliar" autocomplete="off" <?if(isset($this->auxiliars[0])) echo 'disabled="disabled"'?>> <i style="cursor: pointer; display: none;" class="icon-remove" id="removeAux1"></i>
+				<div class="form-group">
+              <label class="col-lg-2 control-label" for="aux1">Auxiliar 1</label>
+              <div class="col-lg-5">
+                  <input type="text" name="aux1" value="<?if(isset($this->auxiliars[0])) echo $this->auxiliars[0]['name']?>" class="form-control" id="aux1" placeholder="nome do auxiliar" autocomplete="off" <?if(isset($this->auxiliars[0])) echo 'disabled="disabled"'?>> <span style="cursor: pointer; display: none;" class="glyphicon glyphicon-remove" id="removeAux1"></span>
                   <input type="hidden" name="aux1_id" id="aux1_id" value="<?if(isset($this->auxiliars[0])) echo $this->auxiliars[0]['auxiliar']?>">
               </div><!--/.controls -->
           </div><!--/.control-group -->
-				<div class="control-group">
-              <label class="control-label" for="date_aux1">Data de ínicio</label>
-              <div class="controls">
-                  <input type="text" name="date_aux1" value="<?if(isset($this->auxiliars[0])) echo Application_Model_General::dateToBr($this->auxiliars[0]['start_date'])?>" class="input-large dateMask" id="date_aux1" placeholder="data de ínicio do auxiliar" <?if(isset($this->auxiliars[0])) echo 'disabled="disabled"'?>>
+				<div class="form-group">
+              <label class="col-lg-2 control-label" for="date_aux1">Data de ínicio</label>
+              <div class="col-lg-5">
+                  <input type="text" name="date_aux1" value="<?if(isset($this->auxiliars[0])) echo Application_Model_General::dateToBr($this->auxiliars[0]['start_date'])?>" class="form-control dateMask" id="date_aux1" placeholder="data de ínicio do auxiliar" <?if(isset($this->auxiliars[0])) echo 'disabled="disabled"'?>>
               </div><!--/.controls -->
           </div><!--/.control-group -->
 				<?if(!isset($this->auxiliars[0])){?>
-				<div class="control-group">
-              <label class="control-label" for="date_end_aux1">Data de baixa</label>
-              <div class="controls">
-                  <input type="text" name="date_end_aux1" value="" class="input-large dateMask" id="date_end_aux1" placeholder="data de baixa do auxiliar">
+				<div class="form-group">
+              <label class="col-lg-2 control-label" for="date_end_aux1">Data de baixa</label>
+              <div class="col-lg-5">
+                  <input type="text" name="date_end_aux1" value="" class="form-control dateMask" id="date_end_aux1" placeholder="data de baixa do auxiliar">
               </div><!--/.controls -->
         </div>
           <?}?>
 				<?if(isset($this->auxiliars[0])){?>
-					<div class="control-group">
-              <label class="control-label" for="date_aux2"></label>
-              <div class="controls">
+					<div class="form-group">
+              <label class="col-lg-2 control-label" for="date_aux2"></label>
+              <div class="col-lg-5">
               	<input type="hidden" value="1" name="exists_aux_1" id="exists_aux_1">
               	<a href="#aux1_<?=$this->grantee->grantee_id?>" role="button" class="btn btn-danger" data-toggle="modal">Retirar auxiliar</a>
               </div>
           </div><!--/.control-group -->
           <?}?>
           <hr>
-				<div class="control-group">
-              <label class="control-label" for="aux2">Auxiliar 2</label>
-              <div class="controls">
-                  <input type="text" name="aux2" value="<?if(isset($this->auxiliars[1])) echo $this->auxiliars[1]['name']?>" class="input-xxlarge" id="aux2" placeholder="nome do auxiliar" autocomplete="off" <?if(isset($this->auxiliars[1])) echo 'disabled="disabled"'?>> <i style="cursor: pointer; display: none;" class="icon-remove" id="removeAux2"></i>
+				<div class="form-group">
+              <label class="col-lg-2 control-label" for="aux2">Auxiliar 2</label>
+              <div class="col-lg-5">
+                  <input type="text" name="aux2" value="<?if(isset($this->auxiliars[1])) echo $this->auxiliars[1]['name']?>" class="form-control" id="aux2" placeholder="nome do auxiliar" autocomplete="off" <?if(isset($this->auxiliars[1])) echo 'disabled="disabled"'?>> <span style="cursor: pointer; display: none;" class="glyphicon glyphicon-remove" id="removeAux2"></span>
                   <input type="hidden" name="aux2_id" id="aux2_id" value="<?if(isset($this->auxiliars[1])) echo $this->auxiliars[1]['auxiliar']?>">
               </div><!--/.controls -->
           </div><!--/.control-group -->
-				<div class="control-group">
-              <label class="control-label" for="date_aux2">Data de ínicio</label>
-              <div class="controls">
-                  <input type="text" name="date_aux2" value="<?if(isset($this->auxiliars[1])) echo Application_Model_General::dateToBr($this->auxiliars[1]['start_date'])?>" class="input-large dateMask" id="date_aux2" placeholder="data de ínicio do auxiliar" <?if(isset($this->auxiliars[1])) echo 'disabled="disabled"'?>>
+				<div class="form-group">
+              <label class="col-lg-2 control-label" for="date_aux2">Data de ínicio</label>
+              <div class="col-lg-5">
+                  <input type="text" name="date_aux2" value="<?if(isset($this->auxiliars[1])) echo Application_Model_General::dateToBr($this->auxiliars[1]['start_date'])?>" class="form-control dateMask" id="date_aux2" placeholder="data de ínicio do auxiliar" <?if(isset($this->auxiliars[1])) echo 'disabled="disabled"'?>>
               </div><!--/.controls -->
           </div><!--/.control-group -->
 				<?if(!isset($this->auxiliars[1])){?>
-				<div class="control-group">
-              <label class="control-label" for="date_end_aux2">Data de baixa</label>
-              <div class="controls">
-                  <input type="text" name="date_end_aux2" value="" class="input-large dateMask" id="date_end_aux2" placeholder="data de baixa do auxiliar">
+				<div class="form-group">
+              <label class="col-lg-2 control-label" for="date_end_aux2">Data de baixa</label>
+              <div class="col-lg-5">
+                  <input type="text" name="date_end_aux2" value="" class="form-control dateMask" id="date_end_aux2" placeholder="data de baixa do auxiliar">
               </div><!--/.controls -->
           </div><!--/.control-group -->
           <?}?>
 				<?if(isset($this->auxiliars[1])){?>
-				<div class="control-group">
-              <label class="control-label" for="date_aux2"></label>
-              <div class="controls">
+				<div class="form-group">
+              <label class="col-lg-2 control-label" for="date_aux2"></label>
+              <div class="col-lg-5">
               	<input type="hidden" value="1" name="exists_aux_2" id="exists_aux_2">
               	<a href="#aux2_<?=$this->grantee->grantee_id?>" role="button" class="btn btn-danger" data-toggle="modal">Retirar auxiliar</a>
               </div>
           </div><!--/.control-group -->
           <?}else{?>
-					<div class="control-group">
-              <label class="control-label" for="aux1_save"></label>
-              <div class="controls">
+					<div class="form-group">
+              <label class="col-lg-2 control-label" for="aux1_save"></label>
+              <div class="col-lg-5">
               	<input type="submit" class="btn btn-primary" value="Salvar Auxiliares">
               </div>
           </div><!--/.control-group -->
           <?}?>
         </form>
         <hr>
-					<div class="accordion" id="accordionHistory">
-          	<div class="accordion-group">
-          		<div class="accordion-heading">
-          			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionHistory" href="#collapseHistory">Histórico</a>
+					<div class="panel-group" id="accordionHistory">
+          	<div class="panel panel-default">
+          		<div class="panel-heading">
+          			<h4 class="panel-title">
+          				<a class="panel-toggle" data-toggle="collapse" data-parent="#accordionHistory" href="#collapseHistory">Histórico</a>
+        				</h4>
           		</div>
-          		<div id="collapseHistory" class="accordion-body collapse">
-          			<div class="accordion-inner">
-          				<div class="accordion" id="accordionAuxiliar">
-          					<?foreach($this->auxiliarsInactives as $auxiliarsInactives){ ?>
-					          	<div class="accordion-group">
-					          		<div class="accordion-heading">
-					          			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionAuxiliar" href="#collapseAuxiliar_<?=$auxiliarsInactives->_id?>"><?=$auxiliarsInactives->name?> - De <?=Application_Model_General::dateToBr($auxiliarsInactives->start_date)?> a <?=Application_Model_General::dateToBr($auxiliarsInactives->end_date)?></a>
-					          		</div>
-					          		<div id="collapseAuxiliar_<?=$auxiliarsInactives->_id?>" class="accordion-body collapse">
-			          					<form action="/grantee/edit-auxiliar" method="post" class="form-horizontal">
+          		<div id="collapseHistory" class="panel-collapse collapse">
+          			<div class="panel-body">
+        					<?foreach($this->auxiliarsInactives as $auxiliarsInactives){ ?>
+			          		<div class="panel panel-default">
+				          		<div class="panel-heading">
+				          			<h4 class="panel-title">
+				          				<a class="panel-toggle" data-toggle="collapse" data-parent="#accordionAux" href="#collapseAuxiliar_<?=$auxiliarsInactives->_id?>"><?=$auxiliarsInactives->name?> - De <?=Application_Model_General::dateToBr($auxiliarsInactives->start_date)?> a <?=Application_Model_General::dateToBr($auxiliarsInactives->end_date)?></a>
+				          			</h4>
+				          		</div>
+				          		<div id="collapseAuxiliar_<?=$auxiliarsInactives->_id?>" class="panel-collapse collapse">
+		          					<form action="/grantee/edit-auxiliar" method="post" class="form-horizontal">
 		          						<input type="hidden" name="id" value="<?=$auxiliarsInactives->_id?>">
 		          						<input type="hidden" name="grantee_id" value="<?=$this->grantee->grantee_id?>">
-					          			<div class="accordion-inner">
-					          				<div class="control-group">
-									              <label class="control-label" for="color">Data inicial</label>
-									              <div class="controls">
-									                  <input type="text" name="start_date" class="input-xlarge dateMask" value="<?=Application_Model_General::dateToBr($auxiliarsInactives->start_date)?>" maxlength="10">
+					          			<div class="panel-body">
+					          				<div class="form-group">
+									              <label class="col-lg-2 control-label" for="color">Data inicial</label>
+									              <div class="col-lg-5">
+									                  <input type="text" name="start_date" class="form-control dateMask" value="<?=Application_Model_General::dateToBr($auxiliarsInactives->start_date)?>" maxlength="10">
 									              </div><!--/.controls -->
 									          </div><!--/.control-group -->
-					          				<div class="control-group">
-									              <label class="control-label" for="color">Data final</label>
-									              <div class="controls">
-									                  <input type="text" name="end_date" class="input-xlarge dateMask" value="<?=Application_Model_General::dateToBr($auxiliarsInactives->end_date)?>" maxlength="10">
+					          				<div class="form-group">
+									              <label class="col-lg-2 control-label" for="color">Data final</label>
+									              <div class="col-lg-5">
+									                  <input type="text" name="end_date" class="form-control dateMask" value="<?=Application_Model_General::dateToBr($auxiliarsInactives->end_date)?>" maxlength="10">
 									              </div><!--/.controls -->
 									          </div><!--/.control-group -->
-									          <div class="form-actions">
+									          <div class="form-group">
+									          	<div class="col-lg-5">
 									              <button type="submit" class="btn btn-primary">Salvar alterações</button> <a href="#aux_history_<?=$auxiliarsInactives->_id?>" role="button" class="btn btn-danger" data-toggle="modal">Remover do histórico</a>
+									            </div>
 									          </div>
 					          			</div>
-					          			</form>
-					          		</div>
-					          	</div><!--/.control-group -->
-				          	<?}?>
-				          </div>
+				          			</form>
+				          		</div>
+				          	</div>
+			          	<?}?>
           			</div>
           		</div>
           	</div>
           </div>
 		  </div>
-		  <div class="tab-pane" id="reservation">
-		  	<div class="accordion" id="accordionReservation">
-        	<div class="accordion-group">
-        		<div class="accordion-heading">
-        			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionReservation" href="#accordionReservationNew">Nova Reserva</a>
+		  <div class="tab-pane" id="reservation"><br>
+		  	<div class="panel-group" id="accordionReservation">
+        	<div class="panel panel-default">
+        		<div class="panel-heading">
+        			<h4 class="panel-title">
+        				<a class="panel-toggle" data-toggle="collapse" data-parent="#accordionReservation" href="#accordionReservationNew">Nova Reserva</a>
+        			</h4>
         		</div>
-        		<div id="accordionReservationNew" class="accordion-body collapse">
-        			<div class="accordion-inner">
+        		<div id="accordionReservationNew" class="panel-collapse collapse">
+        			<div class="panel-body">
 								<?=$this->reservation->populate($this->aux)?>
 				      </div>
 					  </div>
 					</div>
 	          <?if(isset($this->reservationHistoric) && count($this->reservationHistoric)){?>
       				<?foreach($this->reservationHistoric as $reservationHistoric){?>
-		          	<div class="accordion-group">
-		          		<div class="accordion-heading">
-		          			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionHistory1" href="#collapseHistory_<?=$reservationHistoric->id?>">De <?=$reservationHistoric->start_date?> a <?=$reservationHistoric->end_date?> <?if($reservationHistoric->plate_date){?> - Emplacamento em <?=$reservationHistoric->plate_date?> <?}?></a>
+        				<div class="panel panel-default">
+		          		<div class="panel-heading">
+		          			<h4 class="panel-title">
+		          				<a class="panel-toggle" data-toggle="collapse" data-parent="#accordionReservation" href="#collapseHistory_<?=$reservationHistoric->id?>">De <?=$reservationHistoric->start_date?> a <?=$reservationHistoric->end_date?> <?if($reservationHistoric->plate_date){?> - Emplacamento em <?=$reservationHistoric->plate_date?> <?}?></a>
+	          				</h4>
 		          		</div>
-		          		<div id="collapseHistory_<?=$reservationHistoric->id?>" class="accordion-body collapse">
-		          			<div class="accordion-inner">
+		          		<div id="collapseHistory_<?=$reservationHistoric->id?>" class="panel-collapse collapse">
+		          			<div class="panel-body">
 		          				<form class="form-horizontal">
-			          				<div class="control-group">
-							              <label class="control-label">&nbsp;</label>
-							              <div class="controls">
-	           									<a href="/grantee/reservation-license/id/<?=$reservationHistoric->id?>" class="btn help" data-toggle="modal" title="Certificado de Reserva"><i class="icon-book"></i></a>
-							              </div>
+			          				<div class="form-group">
+						              <label class="col-lg-2 control-label">&nbsp;</label>
+						              <div class="col-lg-5">
+           									<a href="/grantee/reservation-license/id/<?=$reservationHistoric->id?>" class="btn btn-default help" data-toggle="modal" title="Certificado de Reserva"><i class="icon-book"></i></a>
+						              </div>
 							          </div><!--/.control-group -->
 						        	</form>
 		          				<?=$this->reservation->populate($reservationHistoric->toArray())?>
@@ -499,26 +526,28 @@
 	          <?}?>
 		  		</div>
 				</div>
-				<div class="tab-pane" id="historic">
-						<div class="accordion" id="accordionHistoric">
-		        	<div class="accordion-group">
-		        		<div class="accordion-heading">
-		        			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionHistoric" href="#accordionNewHistoric">Novo histórico de permissão</a>
+				<div class="tab-pane" id="historic"><br>
+						<div class="panel-group" id="panelHistoric">
+		        	<div class="panel panel-default">
+		        		<div class="panel-heading">
+		        			<h4 class="panel-title">
+		        				<a class="panel-toggle" data-toggle="collapse" data-parent="#panelHistoric" href="#panelNewHistoric">Novo histórico de permissão</a>
+		        			</h4>
 		        		</div>
-		        		<div id="accordionNewHistoric" class="accordion-body collapse">
-		        			<div class="accordion-inner">
+		        		<div id="panelNewHistoric" class="panel-collapse collapse">
+		        			<div class="panel-body">
 										<form action="/grantee/new-historic" method="post" class="form-horizontal">
           						<input type="hidden" name="owner" value="<?=$this->grantee->owner?>">
-			          				<div class="control-group">
-							              <label class="control-label" for="color">Permissão</label>
-							              <div class="controls">
-							                  <input type="text" name="permission" class="input-xlarge" value="" maxlength="10" placeholder="número da permissão">
+			          				<div class="form-group">
+							              <label class="col-lg-2 control-label" for="color">Permissão</label>
+							              <div class="col-lg-5">
+							                  <input type="text" name="permission" class="form-control" value="" maxlength="10" placeholder="número da permissão">
 							              </div><!--/.controls -->
 							          </div><!--/.control-group -->
-							          <div class="control-group">
-							              <label class="control-label" for="city">Cidade</label>
-							              <div class="controls">
-						                  <select name="city" id="city" class="input-xlarge">
+							          <div class="form-group">
+							              <label class="col-lg-2 control-label" for="city">Cidade</label>
+							              <div class="col-lg-5">
+						                  <select name="city" id="city" class="form-control">
 						                  	<option value="0">-- Escolha o município --</option>
 						                  	<?foreach ($this->cities as $city){ ?>
 						                  	<option value="<?=$city->id?>"><?=$city->name?></option>
@@ -526,27 +555,27 @@
 						                  </select>
 							              </div><!--/.controls -->
 							          </div><!--/.control-group -->
-			          				<div class="control-group">
-							              <label class="control-label" for="start_permission">Data inicial</label>
-							              <div class="controls">
-							                  <input type="text" name="start_permission" class="input-xlarge dateMask" value="" maxlength="10" placeholder="data inicial da permissão">
+			          				<div class="form-group">
+							              <label class="col-lg-2 control-label" for="start_permission">Data inicial</label>
+							              <div class="col-lg-5">
+							                  <input type="text" name="start_permission" class="form-control dateMask" value="" maxlength="10" placeholder="data inicial da permissão">
 							              </div><!--/.controls -->
 							          </div><!--/.control-group -->
-			          				<div class="control-group">
-							              <label class="control-label" for="end_permission">Data final</label>
-							              <div class="controls">
-							                  <input type="text" name="end_permission" class="input-xlarge dateMask" value="" maxlength="10" placeholder="data final da permissão">
+			          				<div class="form-group">
+							              <label class="col-lg-2 control-label" for="end_permission">Data final</label>
+							              <div class="col-lg-5">
+							                  <input type="text" name="end_permission" class="form-control dateMask" value="" maxlength="10" placeholder="data final da permissão">
 							              </div><!--/.controls -->
 							          </div><!--/.control-group -->
-			          				<div class="control-group">
-							              <label class="control-label" for="info">Observações</label>
-							              <div class="controls">
-							                  <textarea type="text" name="info" rows="5" class="input-xlarge" placeholder="observações"></textarea>
+			          				<div class="form-group">
+							              <label class="col-lg-2 control-label" for="info">Observações</label>
+							              <div class="col-lg-5">
+							                  <textarea type="text" name="info" rows="5" class="form-control" placeholder="observações"></textarea>
 							              </div><!--/.controls -->
 							          </div><!--/.control-group -->
-							          <div class="control-group">
-							          	<label class="control-label" for="color">&nbsp;</label>
-						              <div class="controls">
+							          <div class="form-group">
+							          	<label class="col-lg-2 control-label" for="color">&nbsp;</label>
+						              <div class="col-lg-5">
 						              	<button type="submit" class="btn btn-primary">Salvar</button>
 						            	</div>
 							          </div>
@@ -555,31 +584,35 @@
 							  </div>
 							</div>
 							<?foreach($this->permissionsHistoric as $permissionsHistoric){?>
-							<div class="accordion-group">
-		        		<div class="accordion-heading">
-		        			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionHistoric" href="#accordion_<?=$permissionsHistoric->id?>">Permissão - <?=$permissionsHistoric->permission?></a>
+							<div class="panel panel-default">
+		        		<div class="panel-heading">
+		        			<h4 class="panel-title">
+		        				<a class="panel-toggle" data-toggle="collapse" data-parent="#panelHistoric" href="#panel_<?=$permissionsHistoric->id?>">Permissão - <?=$permissionsHistoric->permission?></a>
+		        			</h4>
 		        		</div>
-		        		<div id="accordion_<?=$permissionsHistoric->id?>" class="accordion-body collapse">
-		        			<div class="accordion-inner">
-		        				<div class="accordion-group">
-					        		<div class="accordion-heading">
-					        			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_<?=$permissionsHistoric->permission?>" href="#accordion_data">Dados Principais</a>
+		        		<div id="panel_<?=$permissionsHistoric->id?>" class="panel-collapse collapse">
+		        			<div class="panel-body">
+		        				<div class="panel panel-default">
+					        		<div class="panel-heading">
+					        			<h4 class="panel-title">
+					        				<a class="panel-toggle" data-toggle="collapse" data-parent="#panel_<?=$permissionsHistoric->permission?>" href="#panel_data">Dados Principais</a>
+					        			</h4>
 					        		</div>
-					        		<div id="accordion_data" class="accordion-body collapse">
-					        			<div class="accordion-inner">
+					        		<div id="panel_data" class="panel-collapse collapse">
+					        			<div class="panel-body">
 													<form action="/grantee/edit-historic" method="post" class="form-horizontal">
 			          						<input type="hidden" name="id" value="<?=$permissionsHistoric->id?>">
 			          						<input type="hidden" name="owner" value="<?=$this->grantee->owner?>">
-						          				<div class="control-group">
-										              <label class="control-label" for="color">Permissão</label>
-										              <div class="controls">
-										                  <input type="text" name="permission" class="input-xlarge" value="<?=$permissionsHistoric->permission?>" maxlength="10" placeholder="número da permissão">
+						          				<div class="form-group">
+										              <label class="col-lg-2 control-label" for="color">Permissão</label>
+										              <div class="col-lg-5">
+										                  <input type="text" name="permission" class="form-control" value="<?=$permissionsHistoric->permission?>" maxlength="10" placeholder="número da permissão">
 										              </div><!--/.controls -->
 										          </div><!--/.control-group -->
-										          <div class="control-group">
-										              <label class="control-label" for="city">Cidade</label>
-										              <div class="controls">
-									                  <select name="city" id="city" class="input-xlarge">
+										          <div class="form-group">
+										              <label class="col-lg-2 control-label" for="city">Cidade</label>
+										              <div class="col-lg-5">
+									                  <select name="city" id="city" class="form-control">
 									                  	<option value="0">-- Escolha o município --</option>
 									                  	<?foreach ($this->cities as $city){ ?>
 									                  	<option value="<?=$city->id?>" <?if($permissionsHistoric->city == $city->id) echo 'selected="selected"';?>><?=$city->name?></option>
@@ -587,27 +620,27 @@
 									                  </select>
 										              </div><!--/.controls -->
 										          </div><!--/.control-group -->
-						          				<div class="control-group">
-										              <label class="control-label" for="start_permission">Data inicial</label>
-										              <div class="controls">
-										                  <input type="text" name="start_permission" class="input-xlarge dateMask" value="<?=$permissionsHistoric->start_permission?>" maxlength="10" placeholder="data inicial da permissão">
+						          				<div class="form-group">
+										              <label class="col-lg-2 control-label" for="start_permission">Data inicial</label>
+										              <div class="col-lg-5">
+										                  <input type="text" name="start_permission" class="form-control dateMask" value="<?=$permissionsHistoric->start_permission?>" maxlength="10" placeholder="data inicial da permissão">
 										              </div><!--/.controls -->
 										          </div><!--/.control-group -->
-						          				<div class="control-group">
-										              <label class="control-label" for="end_permission">Data final</label>
-										              <div class="controls">
-										                  <input type="text" name="end_permission" class="input-xlarge dateMask" value="<?=$permissionsHistoric->end_permission?>" maxlength="10" placeholder="data final da permissão">
+						          				<div class="form-group">
+										              <label class="col-lg-2 control-label" for="end_permission">Data final</label>
+										              <div class="col-lg-5">
+										                  <input type="text" name="end_permission" class="form-control dateMask" value="<?=$permissionsHistoric->end_permission?>" maxlength="10" placeholder="data final da permissão">
 										              </div><!--/.controls -->
 										          </div><!--/.control-group -->
-						          				<div class="control-group">
-										              <label class="control-label" for="info">Observações</label>
-										              <div class="controls">
-										                  <textarea type="text" name="info" rows="5" class="input-xlarge" placeholder="observações"><?=$permissionsHistoric->info?></textarea>
+						          				<div class="form-group">
+										              <label class="col-lg-2 control-label" for="info">Observações</label>
+										              <div class="col-lg-5">
+										                  <textarea type="text" name="info" rows="5" class="form-control" placeholder="observações"><?=$permissionsHistoric->info?></textarea>
 										              </div><!--/.controls -->
 										          </div><!--/.control-group -->
-										          <div class="control-group">
-										          	<label class="control-label" for="color">&nbsp;</label>
-									              <div class="controls">
+										          <div class="form-group">
+										          	<label class="col-lg-2 control-label" for="color">&nbsp;</label>
+									              <div class="col-lg-5">
 									              	<button type="submit" class="btn btn-primary">Salvar</button>
 									            	</div>
 										          </div>
@@ -615,44 +648,47 @@
 					          		</div>
 					          	</div>
 					          </div>
-					          <div class="accordion-group">
-					        		<div class="accordion-heading">
-					        			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_<?=$permissionsHistoric->permission?>" href="#accordion_aux_<?=$permissionsHistoric->id?>">Auxiliares</a>
+					          <div class="panel panel-default">
+					        		<div class="panel-heading">
+					        			<h4 class="panel-title">
+					        				<a class="panel-toggle" data-toggle="collapse" data-parent="#panel_<?=$permissionsHistoric->permission?>" href="#panel_aux_<?=$permissionsHistoric->id?>">Auxiliares</a>
+					        			</h4>
 					        		</div>
-					        		<div id="accordion_aux_<?=$permissionsHistoric->id?>" class="accordion-body collapse">
-						        			<div class="accordion-inner">
-
-				        						<div class="accordion-group">
-									        		<div class="accordion-heading">
-									        			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_aux" href="#accordion_aux_new_<?=$permissionsHistoric->id?>">Novo auxiliar</a>
+					        		<div id="panel_aux_<?=$permissionsHistoric->id?>" class="panel-collapse collapse">
+						        			<div class="panel-body">
+				        						<div class="panel panel-default">
+									        		<div class="panel-heading">
+									        			<h4 class="panel-title">
+									        				<a class="panel-toggle" data-toggle="collapse" data-parent="#panel_aux" href="#panel_aux_new_<?=$permissionsHistoric->id?>">Novo auxiliar</a>
+									        			</h4>
 									        		</div>
-									        		<div id="accordion_aux_new_<?=$permissionsHistoric->id?>" class="accordion-body collapse">
-									        			<div class="accordion-inner">
+									        		<div id="panel_aux_new_<?=$permissionsHistoric->id?>" class="panel-collapse collapse">
+									        			<div class="panel-body">
 	        												<form class="form-horizontal" action="/grantee/add-auxiliar-historic" method="post">
-										        				<div class="control-group">
-												              <label class="control-label" for="aux1">Nome auxiliar</label>
-												              <div class="controls">
-												                  <input type="text" name="nameNewAuxiliar" value="" class="input-xxlarge addAuxiliar" placeholder="nome do auxiliar" autocomplete="off"> <i style="cursor: pointer; display: none;" class="icon-remove addAuxiliarRemove"></i>
+										        				<div class="form-group">
+												              <label class="col-lg-2 control-label" for="aux1">Nome auxiliar</label>
+												              <div class="col-lg-5">
+												                  <input type="text" name="nameNewAuxiliar" value="" class="form-control addAuxiliar" placeholder="nome do auxiliar" autocomplete="off"> <i style="cursor: pointer; display: none;" class="icon-remove addAuxiliarRemove"></i>
 												                  <input type="hidden" name="auxiliar_id" class="auxiliar_id" value="">
 												                  <input type="hidden" name="id" value="<?=$permissionsHistoric->id?>">
 																					<input type="hidden" name="grantee_id" value="<?=$this->grantee->grantee_id?>">
 												              </div><!--/.controls -->
 												          	</div><!--/.control-group -->
-																		<div class="control-group">
-												              <label class="control-label" for="start_date_aux">Data de ínicio</label>
-												              <div class="controls">
-												                  <input type="text" name="start_date_aux" value="" class="input-large dateMask" placeholder="data de ínicio do auxiliar">
+																		<div class="form-group">
+												              <label class="col-lg-2 control-label" for="start_date_aux">Data de ínicio</label>
+												              <div class="col-lg-5">
+												                  <input type="text" name="start_date_aux" value="" class="form-control dateMask" placeholder="data de ínicio do auxiliar">
 												              </div><!--/.controls -->
 													          </div><!--/.control-group -->
-																		<div class="control-group">
-												              <label class="control-label" for="end_date_aux">Data de término</label>
-												              <div class="controls">
-												                  <input type="text" name="end_date_aux" value="" class="input-large dateMask" placeholder="data de baixa do auxiliar">
+																		<div class="form-group">
+												              <label class="col-lg-2 control-label" for="end_date_aux">Data de término</label>
+												              <div class="col-lg-5">
+												                  <input type="text" name="end_date_aux" value="" class="form-control dateMask" placeholder="data de baixa do auxiliar">
 												              </div><!--/.controls -->
 													          </div><!--/.control-group -->
-													          <div class="control-group">
-													          	<label class="control-label" for="color">&nbsp;</label>
-												              <div class="controls">
+													          <div class="form-group">
+													          	<label class="col-lg-2 control-label" for="color">&nbsp;</label>
+												              <div class="col-lg-5">
 												              	<button type="submit" class="btn btn-primary">Salvar</button>
 												            	</div><!--/.controls -->
 													          </div><!--/.control-group -->
@@ -677,21 +713,21 @@
 											        		<div id="accordion_aux_edit_<?=$auxiliar->auxiliar?>" class="accordion-body collapse">
 											        			<div class="accordion-inner">
 										        					<form action="/grantee/edit-auxiliar-historic" method="post" class="form-horizontal">
-																				<div class="control-group">
-														              <label class="control-label" for="start_date_aux">Data de ínicio</label>
-														              <div class="controls">
-														                  <input type="text" name="start_date_aux" value="<?=Application_Model_General::dateToBr($auxiliar->start_date)?>" class="input-large dateMask" placeholder="data de ínicio do auxiliar">
+																				<div class="form-group">
+														              <label class="col-lg-2 control-label" for="start_date_aux">Data de ínicio</label>
+														              <div class="col-lg-5">
+														                  <input type="text" name="start_date_aux" value="<?=Application_Model_General::dateToBr($auxiliar->start_date)?>" class="form-control dateMask" placeholder="data de ínicio do auxiliar">
 														              </div><!--/.controls -->
 															          </div><!--/.control-group -->
-																				<div class="control-group">
-														              <label class="control-label" for="end_date_aux">Data de término</label>
-														              <div class="controls">
-														                  <input type="text" name="end_date_aux" value="<?=Application_Model_General::dateToBr($auxiliar->end_date)?>" class="input-large dateMask" placeholder="data de baixa do auxiliar">
+																				<div class="form-group">
+														              <label class="col-lg-2 control-label" for="end_date_aux">Data de término</label>
+														              <div class="col-lg-5">
+														                  <input type="text" name="end_date_aux" value="<?=Application_Model_General::dateToBr($auxiliar->end_date)?>" class="form-control dateMask" placeholder="data de baixa do auxiliar">
 														              </div><!--/.controls -->
 															          </div><!--/.control-group -->
-															          <div class="control-group">
-															          	<label class="control-label" for="color">&nbsp;</label>
-														              <div class="controls">
+															          <div class="form-group">
+															          	<label class="col-lg-2 control-label" for="color">&nbsp;</label>
+														              <div class="col-lg-5">
 														              	<button type="submit" class="btn btn-primary">Salvar</button>
 														              	<a href="#removeAuxiliarHistoric_<?=$auxiliar->auxiliar?>" class="btn btn-danger" data-toggle="modal">Remover</a>
 																			      <input type="hidden" value="<?=$auxiliar->auxiliar?>" name="auxiliar">
@@ -727,10 +763,10 @@
 
 						          		</div>
 					          	</div>
-					          </div>	
-					          <div class="control-group">
-					          	<label class="control-label" for="color">&nbsp;</label>
-				              <div class="controls">
+					          </div>	<br>
+					          <div class="form-group">
+					          	<label class="col-lg-2 control-label" for="color">&nbsp;</label>
+				              <div class="col-lg-5">
 				              	<a href="#removeHistoric_<?=$permissionsHistoric->id?>" class="btn btn-danger" data-toggle="modal"><i class="icon-trash"></i> Remover</a>
 				            	</div>
 					          </div>
@@ -752,10 +788,10 @@
   </div>
   <form class="form-horizontal" action="/grantee/print-license/id/<?=$this->grantee->grantee_id?>" method="post">
     <div class="modal-body">
-        <div class="control-group">
-          <label class="control-label" for="end_date">Data de Vencimento</label>
-          <div class="controls">
-            <input type="text" class="input-xlarge dateMask" id="end_date" name="end_date" placeholder="data de vencimento">
+        <div class="form-group">
+          <label class="col-lg-2 control-label" for="end_date">Data de Vencimento</label>
+          <div class="col-lg-5">
+            <input type="text" class="form-control dateMask" id="end_date" name="end_date" placeholder="data de vencimento">
           </div>
         </div>
     </div>
@@ -773,10 +809,10 @@
   </div>
   <form class="form-horizontal" action="/grantee/print-communication/id/<?=$this->grantee->grantee_id?>" method="post">
     <div class="modal-body">
-        <div class="control-group">
-          <label class="control-label" for="receiver">Destinatário</label>
-          <div class="controls">
-            <select class="input-xlarge" name="receiver" id="receiver">
+        <div class="form-group">
+          <label class="col-lg-2 control-label" for="receiver">Destinatário</label>
+          <div class="col-lg-5">
+            <select class="form-control" name="receiver" id="receiver">
             	<option>-- selecione um orgão --</option>
             	<option value="DETRAN/MG">DETRAN/MG</option>
             	<option value="DELEGACIA DE TRÂNSITO DE CONFINS">DELEGACIA DE TRÂNSITO DE CONFINS</option>
@@ -788,16 +824,16 @@
             </select>
           </div>
         </div>
-        <div class="control-group">
-          <label class="control-label" for="end_date_communication">Data de validade</label>
-          <div class="controls">
-            <input type="text" class="input-xlarge dateMask" id="end_date_communication" name="end_date_communication" placeholder="data de validade" data-date="<?=date('d/m/Y')?>" data-date-format="dd/mm/yyyy">
+        <div class="form-group">
+          <label class="col-lg-2 control-label" for="end_date_communication">Data de validade</label>
+          <div class="col-lg-5">
+            <input type="text" class="form-control dateMask" id="end_date_communication" name="end_date_communication" placeholder="data de validade" data-date="<?=date('d/m/Y')?>" data-date-format="dd/mm/yyyy">
           </div>
         </div>
-        <div class="control-group">
-          <label class="control-label" for="operation">Operação</label>
-          <div class="controls">
-            <select class="input-xlarge" name="operation" id="operation">
+        <div class="form-group">
+          <label class="col-lg-2 control-label" for="operation">Operação</label>
+          <div class="col-lg-5">
+            <select class="form-control" name="operation" id="operation">
             	<option>-- selecione uma operação --</option>
             	<option value="1">TRANSFERÊNCIA DO VEÍCULO</option>
             	<option value="2">SUBSTITUIÇÃO DO VEÍCULO</option>
@@ -808,14 +844,14 @@
           </div>
         </div>
         <div class="control-group hide" id="transferGroup">
-    	  <label class="control-label" for="transfer">Nome</label>
-          <div class="controls">
-            <input type="text" class="input-xlarge" id="transfer" name="transfer" placeholder="nome do permissionário">
+    	  <label class="col-lg-2 control-label" for="transfer">Nome</label>
+          <div class="col-lg-5">
+            <input type="text" class="form-control" id="transfer" name="transfer" placeholder="nome do permissionário">
           </div>
         </div>
         <div class="control-group hide" id="vehicleGroup">
-    	  <label class="control-label" for="brandCar">Modelo</label>
-          <div class="controls">
+    	  <label class="col-lg-2 control-label" for="brandCar">Modelo</label>
+          <div class="col-lg-5">
             <select name="brandCar">
          		<option value="0">-- Selecione um modelo --</option>
              	<?foreach($this->vehicleModel as $vehicleModel){?>
@@ -825,33 +861,33 @@
           </div>
         </div>
         <div class="control-group hide" id="chassiGroup">
-    	  <label class="control-label" for="chassi">Chassi</label>
-          <div class="controls">
-            <input type="text" class="input-xlarge" id="chassi" name="chassi" placeholder="chassi do veículo">
+    	  <label class="col-lg-2 control-label" for="chassi">Chassi</label>
+          <div class="col-lg-5">
+            <input type="text" class="form-control" id="chassi" name="chassi" placeholder="chassi do veículo">
           </div>
         </div>
         <div class="control-group hide" id="reservationGroupStart">
-    	  <label class="control-label" for="start_date_reservation">Data Inicial</label>
-          <div class="controls">
-            <input type="text" class="input-xlarge dateMask" id="start_date_reservation" name="start_date_reservation" placeholder="data de inicio" data-date="<?=date('d/m/Y')?>" data-date-format="dd/mm/yyyy">
+    	  <label class="col-lg-2 control-label" for="start_date_reservation">Data Inicial</label>
+          <div class="col-lg-5">
+            <input type="text" class="form-control dateMask" id="start_date_reservation" name="start_date_reservation" placeholder="data de inicio" data-date="<?=date('d/m/Y')?>" data-date-format="dd/mm/yyyy">
           </div>
         </div>
         <div class="control-group hide" id="reservationGroupEnd">
-    	  <label class="control-label" for="end_date_reservation">Data de Fim</label>
-          <div class="controls">
-            <input type="text" class="input-xlarge dateMask" id="end_date_reservation" name="end_date_reservation" placeholder="data de fim" data-date="<?=date('d/m/Y')?>" data-date-format="dd/mm/yyyy">
+    	  <label class="col-lg-2 control-label" for="end_date_reservation">Data de Fim</label>
+          <div class="col-lg-5">
+            <input type="text" class="form-control dateMask" id="end_date_reservation" name="end_date_reservation" placeholder="data de fim" data-date="<?=date('d/m/Y')?>" data-date-format="dd/mm/yyyy">
           </div>
         </div>
         <div class="control-group hide" id="plateGroup">
-    	  <label class="control-label" for="plate">Placa</label>
-          <div class="controls">
-            <input type="text" class="input-xlarge plate" id="plate" name="plate" placeholder="nova placa">
+    	  <label class="col-lg-2 control-label" for="plate">Placa</label>
+          <div class="col-lg-5">
+            <input type="text" class="form-control plate" id="plate" name="plate" placeholder="nova placa">
           </div>
         </div>
         <div class="control-group hide" id="otherGroup">
-    	  <label class="control-label" for="other">Observações</label>
-          <div class="controls">
-            <textarea class="input-xlarge" rows="5" id="other" name="other" placeholder="observações"></textarea>
+    	  <label class="col-lg-2 control-label" for="other">Observações</label>
+          <div class="col-lg-5">
+            <textarea class="form-control" rows="5" id="other" name="other" placeholder="observações"></textarea>
           </div>
         </div>
     </div>
@@ -862,66 +898,78 @@
   </form>
 </div>
 
-<div id="aux1_<?=$this->grantee->grantee_id?>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Retirar auxiliar deste permissionário</h3>
-  </div>
-  <form class="form-horizontal">
-    <div class="modal-body">
-      <div class="control-group">
-        <label class="control-label" for="end_date_auxiliar1">Data de baixa</label>
-        <div class="controls">
-          <input type="text" class="input-xlarge dateMask" id="end_date_auxiliar1" name="end_date_auxiliar1" placeholder="data de baixa" data-mask="99/99/9999"  data-date="<?=date('d/m/Y')?>" data-date-format="dd/mm/yyyy">
-        </div>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn" data-dismiss="modal" aria-hidden="true">Fechar</button>
-      <input type="button" class="btn btn-danger" value="Retirar" id="removeAuxiliar1">
-    </div>
-  </form>
+<div id="aux1_<?=$this->grantee->grantee_id?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		    <h4 class="modal-title">Retirar auxiliar deste permissionário</h4>
+		  </div>
+		  <form class="form-horizontal">
+		    <div class="modal-body">
+		      <div class="form-group">
+		        <label class="col-lg-3 control-label" for="end_date_auxiliar1">Data de baixa</label>
+		        <div class="col-lg-5">
+		          <input type="text" class="form-control dateMask" id="end_date_auxiliar1" name="end_date_auxiliar1" placeholder="data de baixa">
+		        </div>
+		      </div>
+		    </div>
+		    <div class="modal-footer">
+		      <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+		      <button type="button" class="btn btn-danger" id="removeAuxiliar1">Remover</button>
+		    </div>
+		  </form>
+	  </div>
+	</div>
 </div>
 
-<div id="aux2_<?=$this->grantee->grantee_id?>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Retirar auxiliar deste permissionário</h3>
-  </div>
-  <form class="form-horizontal">
-    <div class="modal-body">
-        <div class="control-group">
-          <label class="control-label" for="end_date_auxiliar2">Data de retirada</label>
-          <div class="controls">
-            <input type="text" class="input-xlarge dateMask" id="end_date_auxiliar2" name="end_date_auxiliar2" placeholder="data de retirada" data-mask="99/99/9999"  data-date="<?=date('d/m/Y')?>" data-date-format="dd/mm/yyyy">
-          </div>
-        </div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn" data-dismiss="modal" aria-hidden="true">Fechar</button>
-      <input type="button" class="btn btn-danger" value="Retirar" id="removeAuxiliar2">
-    </div>
-  </form>
+<div id="aux2_<?=$this->grantee->grantee_id?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		    <h4 class="modal-title">Retirar auxiliar deste permissionário</h4>
+		  </div>
+		  <form class="form-horizontal">
+		    <div class="modal-body">
+		        <div class="form-group">
+		          <label class="col-lg-3 control-label" for="end_date_auxiliar2">Data de retirada</label>
+		          <div class="col-lg-5">
+		            <input type="text" class="form-control dateMask" id="end_date_auxiliar2" name="end_date_auxiliar2" placeholder="data de retirada">
+		          </div>
+		        </div>
+		    </div>
+		    <div class="modal-footer">
+		      <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+		      <button type="button" class="btn btn-danger" id="removeAuxiliar2">Remover</button>
+		    </div>
+		  </form>
+		</div>
+	</div>
 </div>
 
 
 <?foreach($this->auxiliarsInactives as $auxiliarsInactives){ ?>
-	<div id="aux_history_<?=$auxiliarsInactives->_id?>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	  <div class="modal-header">
-	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-	    <h3 id="myModalLabel">Retirar auxiliar deste permissionário</h3>
-	  </div>
-	  <form class="form-horizontal" action="/grantee/exclude-auxiliar" method="post">
-	    <div class="modal-body">
-	        <p>Tem certeza que deseja apagar este auxiliar deste permissionário?</p>
-	        <input type="hidden" name="excludeGranteeAuxiliar" value="<?=$auxiliarsInactives->_id?>">
-	        <input type="hidden" name="excludeGranteeId" value="<?=$this->grantee->grantee_id?>">
-	    </div>
-	    <div class="modal-footer">
-	      <button class="btn" data-dismiss="modal" aria-hidden="true">Fechar</button>
-	      <input type="submit" class="btn btn-danger" value="Remover">
-	    </div>
-	  </form>
+	<div id="aux_history_<?=$auxiliarsInactives->_id?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+		  	<div class="modal-header">
+			    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			    <h4 class="modal-title">Retirar auxiliar deste permissionário</h3>
+			  </div>
+			  <form class="form-horizontal" action="/grantee/exclude-auxiliar" method="post">
+			    <div class="modal-body">
+			        <p>Tem certeza que deseja apagar este auxiliar deste permissionário?</p>
+			        <input type="hidden" name="excludeGranteeAuxiliar" value="<?=$auxiliarsInactives->_id?>">
+			        <input type="hidden" name="excludeGranteeId" value="<?=$this->grantee->grantee_id?>">
+			    </div>
+			    <div class="modal-footer">
+			      <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Fechar</button>
+			      <input type="submit" class="btn btn-danger" value="Remover">
+			    </div>
+			  </form>
+			</div>
+		</div>
 	</div>
 <?}?>
 
@@ -929,22 +977,26 @@
 
 
 <?foreach($this->permissionsHistoric as $permissionsHistoric){ ?>
-	<div id="removeHistoric_<?=$permissionsHistoric->id?>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	  <div class="modal-header">
-	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-	    <h3 id="myModalLabel">Remover o histórico da permissão <?=$permissionsHistoric->permission?></h3>
-	  </div>
-	  <form class="form-horizontal" action="/grantee/remove-historic" method="post">
-	    <div class="modal-body">
-	        <p>Tem certeza que deseja apagar este histórico de permissões?</p>
-	    </div>
-	    <div class="modal-footer">
-	      <button class="btn" data-dismiss="modal" aria-hidden="true">Fechar</button>
-	      <input type="submit" class="btn btn-danger" value="Remover">
-	      <input type="hidden" value="<?=$permissionsHistoric->id?>" name="id">
-	      <input type="hidden" value="<?=$permissionsHistoric->owner?>" name="owner">
-	    </div>
-	  </form>
+	<div id="removeHistoric_<?=$permissionsHistoric->id?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+			  <div class="modal-header">
+			    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			    <h3 id="myModalLabel">Remover o histórico da permissão <?=$permissionsHistoric->permission?></h3>
+			  </div>
+			  <form class="form-horizontal" action="/grantee/remove-historic" method="post">
+			    <div class="modal-body">
+			        <p>Tem certeza que deseja apagar este histórico de permissões?</p>
+			    </div>
+			    <div class="modal-footer">
+			      <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Fechar</button>
+			      <input type="submit" class="btn btn-danger" value="Remover">
+			      <input type="hidden" value="<?=$permissionsHistoric->id?>" name="id">
+			      <input type="hidden" value="<?=$permissionsHistoric->owner?>" name="owner">
+			    </div>
+			  </form>
+			</div>
+		</div>
 	</div>
 <?}?>
   
