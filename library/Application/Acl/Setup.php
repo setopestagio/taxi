@@ -113,7 +113,7 @@ class Application_Acl_Setup
                                                     'edit-auxiliar', 'report-vehicle', 'new-historic', 'edit-historic', 'remove-historic',
                                                     'add-auxiliar-historic', 'edit-auxiliar-historic', 'remove-auxiliar-historic') )
                     ->allow( 'user', 'auxiliar', array('index', 'new', 'edit', 'remove', 'view', 'report',
-                                                    'print-license', 'print-data', 'save-grantee') )
+                                                    'print-license', 'print-data', 'save-grantee', 'return-grantee') )
                     ->allow( 'user', 'vehicle', array('index', 'new', 'edit', 'remove', 'view', 'vis') )
                     ->allow( 'user', 'survey', array('index', 'calendar') )
                     ->allow( 'user', 'assessment', array('index', 'new', 'edit', 'view', 'remove', 'report') );

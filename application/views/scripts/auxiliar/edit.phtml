@@ -44,16 +44,16 @@
                         </div>
                         <div id="collapseMain" class="panel-collapse collapse">
                           <div class="panel-body">
-                            <div class="control-group">
-                                <label class="control-label" for="name">Nome</label>
-                                <div class="controls">
-                                    <input type="text" name="name" value="<?=$this->auxiliar->name?>" class="input-xlarge" id="name" placeholder="nome completo">
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label" for="name">Nome</label>
+                                <div class="col-lg-5">
+                                    <input type="text" name="name" value="<?=$this->auxiliar->name?>" class="form-control" id="name" placeholder="nome completo">
                                 </div><!--/.controls -->
                             </div><!--/.control-group -->
-                            <div class="control-group">
-                                <label class="control-label" for="info">Observações</label>
-                                <div class="controls">
-                                    <textarea type="text" name="info" rows="5" class="input-xlarge" id="info" placeholder="observações"><?=$this->auxiliar->info?></textarea>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label" for="info">Observações</label>
+                                <div class="col-lg-5">
+                                    <textarea type="text" name="info" rows="5" class="form-control" id="info" placeholder="observações"><?=$this->auxiliar->info?></textarea>
                                 </div><!--/.controls -->
                             </div><!--/.control-group -->
                           </div>
@@ -67,34 +67,34 @@
                         </div>
                         <div id="collapseAddress" class="panel-collapse collapse">
                           <div class="panel-body">
-                            <div class="control-group">
-                                <label class="control-label" for="address">Endereço</label>
-                                <div class="controls">
-                                    <input type="text" name="address" value="<?=$this->auxiliar->address?>" class="input-xlarge" id="address" placeholder="logradouro">
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label" for="address">Endereço</label>
+                                <div class="col-lg-5">
+                                    <input type="text" name="address" value="<?=$this->auxiliar->address?>" class="form-control" id="address" placeholder="logradouro">
                                 </div><!--/.controls -->
                             </div><!--/.control-group -->
-                            <div class="control-group">
-                                <label class="control-label" for="number">Número</label>
-                                <div class="controls">
-                                    <input type="text" name="number" value="<?=$this->auxiliar->number?>" class="input-xlarge" id="number" placeholder="número">
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label" for="number">Número</label>
+                                <div class="col-lg-5">
+                                    <input type="text" name="number" value="<?=$this->auxiliar->number?>" class="form-control" id="number" placeholder="número">
                                 </div><!--/.controls -->
                             </div><!--/.control-group -->
-                            <div class="control-group">
-                                <label class="control-label" for="apartament">Complemento</label>
-                                <div class="controls">
-                                    <input type="text" name="apartament" value="<?=$this->auxiliar->apartament?>" class="input-xlarge" id="apartament" placeholder="complemento">
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label" for="apartament">Complemento</label>
+                                <div class="col-lg-5">
+                                    <input type="text" name="apartament" value="<?=$this->auxiliar->apartament?>" class="form-control" id="apartament" placeholder="complemento">
                                 </div><!--/.controls -->
                             </div><!--/.control-group -->
-                            <div class="control-group">
-                                <label class="control-label" for="neighborhood">Bairro</label>
-                                <div class="controls">
-                                    <input type="text" name="neighborhood" value="<?=$this->auxiliar->neighborhood?>" class="input-xlarge" id="neighborhood" placeholder="bairro">
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label" for="neighborhood">Bairro</label>
+                                <div class="col-lg-5">
+                                    <input type="text" name="neighborhood" value="<?=$this->auxiliar->neighborhood?>" class="form-control" id="neighborhood" placeholder="bairro">
                                 </div><!--/.controls -->
                             </div><!--/.control-group -->
-                            <div class="control-group">
-                                <label class="control-label" for="address_city">Cidade</label>
-                                <div class="controls">
-                                  <select name="address_city" id="address_city" class="input-xlarge">
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label" for="address_city">Cidade</label>
+                                <div class="col-lg-5">
+                                  <select name="address_city" id="address_city" class="form-control">
                                     <option value="0" <?if($this->auxiliar->address_city == 0) echo 'selected="selected"'; ?>>-- Escolha o município --</option>
                                     <?foreach ($this->cities as $city){ ?>
                                     <option <?if($this->auxiliar->address_city == $city->id) echo 'selected="selected"'; ?> value="<?=$city->id?>"><?=$city->name?></option>
@@ -102,10 +102,10 @@
                                   </select>
                                 </div><!--/.controls -->
                             </div><!--/.control-group -->
-                            <div class="control-group">
-                                <label class="control-label" for="zipcode">CEP</label>
-                                <div class="controls">
-                                    <input type="text" name="zipcode" value="<?=$this->auxiliar->zipcode?>" class="input-xlarge" id="zipcode" placeholder="cep" data-mask="99999-999">
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label" for="zipcode">CEP</label>
+                                <div class="col-lg-5">
+                                    <input type="text" name="zipcode" value="<?=$this->auxiliar->zipcode?>" class="form-control" id="zipcode" placeholder="cep" data-mask="99999-999">
                                 </div><!--/.controls -->
                             </div><!--/.control-group -->
                           </div>
@@ -119,22 +119,22 @@
                         </div>
                         <div id="collapseContact" class="panel-collapse collapse">
                           <div class="panel-body">
-                            <div class="control-group">
-                                <label class="control-label" for="phone">Telefone fixo</label>
-                                <div class="controls">
-                                    <input type="text" name="phone" value="<?=$this->auxiliar->phone?>" class="input-xlarge" id="phone" placeholder="telefone fixo" data-mask="(99) 9999-9999">
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label" for="phone">Telefone fixo</label>
+                                <div class="col-lg-5">
+                                    <input type="text" name="phone" value="<?=$this->auxiliar->phone?>" class="form-control phone" id="phone" placeholder="telefone fixo">
                                 </div><!--/.controls -->
                             </div><!--/.control-group -->
-                            <div class="control-group">
-                                <label class="control-label" for="mobile">Celular</label>
-                                <div class="controls">
-                                    <input type="text" name="mobile" value="<?=$this->auxiliar->mobile?>" class="input-xlarge" id="mobile" placeholder="celular" data-mask="(99) 9999-9999">
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label" for="mobile">Celular</label>
+                                <div class="col-lg-5">
+                                    <input type="text" name="mobile" value="<?=$this->auxiliar->mobile?>" class="form-control phone" id="mobile" placeholder="celular" data-mask="(99) 9999-9999">
                                 </div><!--/.controls -->
                             </div><!--/.control-group -->
-                            <div class="control-group">
-                                <label class="control-label" for="email">Email</label>
-                                <div class="controls">
-                                    <input type="text" name="email" value="<?=$this->auxiliar->email?>" class="input-xlarge" id="email" placeholder="email">
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label" for="email">Email</label>
+                                <div class="col-lg-5">
+                                    <input type="text" name="email" value="<?=$this->auxiliar->email?>" class="form-control" id="email" placeholder="email">
                                 </div><!--/.controls -->
                             </div><!--/.control-group -->
                           </div>
@@ -148,64 +148,64 @@
                         </div>
                         <div id="collapseDocument" class="panel-collapse collapse">
                           <div class="panel-body">
-                            <div class="control-group">
-                                <label class="control-label" for="rg">Identidade</label>
-                                <div class="controls">
-                                    <input type="text" name="rg" value="<?=$this->auxiliar->rg?>" class="input-xlarge" id="rg" placeholder="identidade">
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label" for="rg">Identidade</label>
+                                <div class="col-lg-5">
+                                    <input type="text" name="rg" value="<?=$this->auxiliar->rg?>" class="form-control" id="rg" placeholder="identidade">
                                 </div><!--/.controls -->
                             </div><!--/.control-group -->
-                            <div class="control-group">
-                                <label class="control-label" for="rg_issuer">Orgão Emissor da Identidade</label>
-                                <div class="controls">
-                                    <input type="text" name="rg_issuer" value="<?=$this->auxiliar->rg_issuer?>" class="input-xlarge" id="rg_issuer" placeholder="orgão emissor da identidade">
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label" for="rg_issuer">Orgão Emissor da Identidade</label>
+                                <div class="col-lg-5">
+                                    <input type="text" name="rg_issuer" value="<?=$this->auxiliar->rg_issuer?>" class="form-control" id="rg_issuer" placeholder="orgão emissor da identidade">
                                 </div><!--/.controls -->
                             </div><!--/.control-group -->
-                            <div class="control-group">
-                                <label class="control-label" for="cpf">CPF</label>
-                                <div class="controls">
-                                    <input type="text" name="cpf" value="<?=$this->auxiliar->cpf?>" class="input-xlarge" id="cpf" placeholder="cpf" data-mask="999.999.999-99">
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label" for="cpf">CPF</label>
+                                <div class="col-lg-5">
+                                    <input type="text" name="cpf" value="<?=$this->auxiliar->cpf?>" class="form-control" id="cpf" placeholder="cpf" data-mask="999.999.999-99">
                                 </div><!--/.controls -->
                             </div><!--/.control-group -->
-                            <div class="control-group">
-                                <label class="control-label" for="cnh">Habilitação</label>
-                                <div class="controls">
-                                    <input type="text" name="cnh" value="<?=$this->auxiliar->cnh?>" class="input-xlarge" id="cnh" placeholder="habilitação">
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label" for="cnh">Habilitação</label>
+                                <div class="col-lg-5">
+                                    <input type="text" name="cnh" value="<?=$this->auxiliar->cnh?>" class="form-control" id="cnh" placeholder="habilitação">
                                 </div><!--/.controls -->
                             </div><!--/.control-group -->
-                            <div class="control-group">
-                                <label class="control-label" for="cnh_issuer">Orgão Emissor da Habilitação</label>
-                                <div class="controls">
-                                    <input type="text" name="cnh_issuer" value="<?=$this->auxiliar->cnh_issuer?>" class="input-xlarge" id="cnh_issuer" placeholder="orgão emissor da habilitação">
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label" for="cnh_issuer">Orgão Emissor da Habilitação</label>
+                                <div class="col-lg-5">
+                                    <input type="text" name="cnh_issuer" value="<?=$this->auxiliar->cnh_issuer?>" class="form-control" id="cnh_issuer" placeholder="orgão emissor da habilitação">
                                 </div><!--/.controls -->
                             </div><!--/.control-group -->
-                            <div class="control-group">
-                                <label class="control-label" for="iapas">IAPAS</label>
-                                <div class="controls">
-                                    <input type="text" name="iapas" value="<?=$this->auxiliar->iapas?>" class="input-xlarge" id="iapas" placeholder="iapas">
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label" for="iapas">IAPAS</label>
+                                <div class="col-lg-5">
+                                    <input type="text" name="iapas" value="<?=$this->auxiliar->iapas?>" class="form-control" id="iapas" placeholder="iapas">
                                 </div><!--/.controls -->
                             </div><!--/.control-group -->
-                            <div class="control-group">
-                                <label class="control-label" for="voter">Título de Eleitor</label>
-                                <div class="controls">
-                                    <input type="text" name="voter" value="<?=$this->auxiliar->voter?>" class="input-xlarge" id="voter" placeholder="título de eleitor">
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label" for="voter">Título de Eleitor</label>
+                                <div class="col-lg-5">
+                                    <input type="text" name="voter" value="<?=$this->auxiliar->voter?>" class="form-control" id="voter" placeholder="título de eleitor">
                                 </div><!--/.controls -->
                             </div><!--/.control-group -->
-                            <div class="control-group">
-                                <label class="control-label" for="voter_zone">Zona Eleitoral</label>
-                                <div class="controls">
-                                    <input type="text" name="voter_zone" value="<?=$this->auxiliar->voter_zone?>" class="input-xlarge" id="voter_zone" placeholder="zona eleitoral">
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label" for="voter_zone">Zona Eleitoral</label>
+                                <div class="col-lg-5">
+                                    <input type="text" name="voter_zone" value="<?=$this->auxiliar->voter_zone?>" class="form-control" id="voter_zone" placeholder="zona eleitoral">
                                 </div><!--/.controls -->
                             </div><!--/.control-group -->
-                            <div class="control-group">
-                                <label class="control-label" for="army">Militar</label>
-                                <div class="controls">
-                                    <input type="text" name="army" value="<?=$this->auxiliar->army?>" class="input-xlarge" id="army" placeholder="documento militar">
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label" for="army">Militar</label>
+                                <div class="col-lg-5">
+                                    <input type="text" name="army" value="<?=$this->auxiliar->army?>" class="form-control" id="army" placeholder="documento militar">
                                 </div><!--/.controls -->
                             </div><!--/.control-group -->
-                            <div class="control-group">
-                                <label class="control-label" for="army_issuer">Orgão Emissor Militar</label>
-                                <div class="controls">
-                                    <input type="text" name="army_issuer" value="<?=$this->auxiliar->army_issuer?>" class="input-xlarge" id="army_issuer" placeholder="orgão emissor do documento militar">
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label" for="army_issuer">Orgão Emissor Militar</label>
+                                <div class="col-lg-5">
+                                    <input type="text" name="army_issuer" value="<?=$this->auxiliar->army_issuer?>" class="form-control" id="army_issuer" placeholder="orgão emissor do documento militar">
                                 </div><!--/.controls -->
                             </div><!--/.control-group -->
                           </div>
@@ -221,37 +221,83 @@
                 </form>
             </div>
             <div class="tab-pane" id="grantee"><br>
-              <form class="form-horizontal" method="post" action="/auxiliar/save-grantee">
-                  <table class="table table-hover table-bordered" id='tableGrantees'>
-                    <thead>
-                        <th>&nbsp;</th>
-                        <th>Nome</th>
-                        <th>Permissão</th>
-                        <th>Início</th>
-                        <th>Fim</th>
-                    </thead>
-                    <tbody>
-                        <?foreach($this->historicGrantees as $historicGrantees){?>
-                        <tr <?if($historicGrantees->end_date == '') echo 'class="success"'; else echo 'class="danger"';?>> 
-                            <td>&nbsp;</td>
-                            <td><?=$historicGrantees->name?></td>
-                            <td><?=$historicGrantees->permission?> <input type="hidden" name="permission[]" value="<?=$historicGrantees->permission?>"> <input type="hidden" name="_id[]" value="<?=$historicGrantees->_id?>"></td>
-                            <td><input type="text" class="form-control dateMask" name="start_date[]" value="<?=Application_Model_General::dateToBr($historicGrantees->start_date)?>"></td>
-                            <td><input type="text" class="form-control dateMask" name="end_date[]" value="<?=Application_Model_General::dateToBr($historicGrantees->end_date)?>"></td>
-                        </tr>
-                        <?}?>
-                        <tr>
-                            <td colspan='5'>
-                                <a style='color: grey;' id='addGranteeInAuxiliar' href='#'><i class="icon-plus-sign-alt icon-large"></i></a>
-                            </td>
-                        </tr>
-                    </tbody>
-                  </table>
-                  <div>
-                    <input type="submit" class="btn btn-primary" value="Salvar">
-                    <input type="hidden" name="auxiliar_add" value="<?=$this->auxiliar->id_auxiliar?>">
-                  <div>
-              </form>
+              <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <a href="#collapseNewAuxiliar" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion">Novo Permissionário</a>
+                    </h4>
+                  </div>
+                  <div class="panel-collapse collapse" id="collapseNewAuxiliar">
+                    <div class="panel-body">
+                      <form class="form-horizontal" action='/auxiliar/save-grantee/id/<?=$this->auxiliar->id_auxiliar?>' method='post'>
+                        <div class="form-group">
+                          <label class="col-lg-2 control-label" for="grantee_new">Nome</label>
+                          <div class="col-lg-5">                       
+                            <input type="text" name="grantee_new" value="" class="form-control" id="grantee_new" placeholder="nome do permissionário" autocomplete="off"> <span style="cursor: pointer; display: none;" class="glyphicon glyphicon-remove" id="removeGranteeNew"></span>
+                            <input type="hidden" name="grantee_new_id" id="grantee_new_id" value="">
+                          </div>
+                        </div><!--/.form-group -->
+                        <div class="form-group">
+                          <label class="col-lg-2 control-label" for="start_date_new_grantee">Data de ínicio</label>
+                          <div class="col-lg-5">
+                              <input type="text" name="start_date_new_grantee" value="" class="form-control dateMask" id="start_date_new_grantee" placeholder="data de ínicio do auxiliar">
+                          </div>
+                        </div><!--/.form-group -->
+                        <div class="form-group">
+                          <label class="col-lg-2 control-label" for="end_date_new_grantee">Data de baixa</label>
+                          <div class="col-lg-5">
+                              <input type="text" name="end_date_new_grantee" value="" class="form-control dateMask" id="end_date_new_grantee" placeholder="data de baixa do auxiliar">
+                          </div>
+                        </div><!--/.form-group -->
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label"></label>
+                            <div class="col-lg-5">
+                              <input type="hidden" name="aux_id" value="<?=$this->auxiliar->id_auxiliar?>">
+                              <input type="submit" class="btn btn-primary" value="Salvar">
+                            </div>
+                        </div><!--/.form-group -->
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                <?foreach($this->historicGrantees as $historicGrantees){?>
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h4 class="panel-title">
+                        <a href="#collapseAuxiliar_<?=$historicGrantees->_id?>" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"><?=$historicGrantees->name?> (<?=$historicGrantees->permission?>) - <?=Application_Model_General::dateToBr($historicGrantees->start_date)?> - <?=Application_Model_General::dateToBr($historicGrantees->end_date)?></a>
+                      </h4>
+                    </div>
+                    <div class="panel-collapse collapse" id="collapseAuxiliar_<?=$historicGrantees->_id?>">
+                      <div class="panel-body">
+                        <form class="form-horizontal" action='/auxiliar/save-grantee/id/<?=$this->auxiliar->id_auxiliar?>' method='post'>
+                          <div class="form-group">
+                            <label class="col-lg-2 control-label" for="start_date_aux">Data de ínicio</label>
+                            <div class="col-lg-5">
+                                <input type="text" name="start_date_aux" value="<?=Application_Model_General::dateToBr($historicGrantees->start_date)?>" class="form-control dateMask" placeholder="data de ínicio do auxiliar">
+                            </div>
+                          </div><!--/.form-group -->
+                          <div class="form-group">
+                            <label class="col-lg-2 control-label" for="end_date_aux">Data de baixa</label>
+                            <div class="col-lg-5">
+                                <input type="text" name="end_date_aux" value="<?=Application_Model_General::dateToBr($historicGrantees->end_date)?>" class="form-control dateMask" placeholder="data de baixa do auxiliar">
+                            </div>
+                          </div><!--/.form-group -->
+                          <div class="form-group">
+                            <label class="col-lg-2 control-label"></label>
+                            <div class="col-lg-5">
+                              <input type="hidden" name="aux_id" value="<?=$this->auxiliar->id_auxiliar?>">
+                              <input type="hidden" name="id" value="<?=$historicGrantees->_id?>">
+                              <input type="submit" class="btn btn-primary" value="Salvar">
+                              <!-- <input type="button" class="btn btn-danger" value="Remover"> -->
+                            </div>
+                          </div><!--/.form-group -->
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                  <?}?>
+                </div>
             </div>
         </div>
       </div>

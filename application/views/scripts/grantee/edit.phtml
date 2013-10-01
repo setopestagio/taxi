@@ -367,76 +367,82 @@
         </form>
       </div>
 		  <div class="tab-pane" id="auxiliars"><br>
-		  	<form class="form-horizontal" action='/grantee/save-auxiliar/id/<?=$this->grantee->grantee_id?>' method='post'>
-				<div class="form-group">
-              <label class="col-lg-2 control-label" for="aux1">Auxiliar 1</label>
-              <div class="col-lg-5">
-                  <input type="text" name="aux1" value="<?if(isset($this->auxiliars[0])) echo $this->auxiliars[0]['name']?>" class="form-control" id="aux1" placeholder="nome do auxiliar" autocomplete="off" <?if(isset($this->auxiliars[0])) echo 'disabled="disabled"'?>> <span style="cursor: pointer; display: none;" class="glyphicon glyphicon-remove" id="removeAux1"></span>
-                  <input type="hidden" name="aux1_id" id="aux1_id" value="<?if(isset($this->auxiliars[0])) echo $this->auxiliars[0]['auxiliar']?>">
-              </div><!--/.controls -->
-          </div><!--/.control-group -->
-				<div class="form-group">
-              <label class="col-lg-2 control-label" for="date_aux1">Data de ínicio</label>
-              <div class="col-lg-5">
-                  <input type="text" name="date_aux1" value="<?if(isset($this->auxiliars[0])) echo Application_Model_General::dateToBr($this->auxiliars[0]['start_date'])?>" class="form-control dateMask" id="date_aux1" placeholder="data de ínicio do auxiliar" <?if(isset($this->auxiliars[0])) echo 'disabled="disabled"'?>>
-              </div><!--/.controls -->
-          </div><!--/.control-group -->
-				<?if(!isset($this->auxiliars[0])){?>
-				<div class="form-group">
-              <label class="col-lg-2 control-label" for="date_end_aux1">Data de baixa</label>
-              <div class="col-lg-5">
-                  <input type="text" name="date_end_aux1" value="" class="form-control dateMask" id="date_end_aux1" placeholder="data de baixa do auxiliar">
-              </div><!--/.controls -->
-        </div>
-          <?}?>
-				<?if(isset($this->auxiliars[0])){?>
-					<div class="form-group">
-              <label class="col-lg-2 control-label" for="date_aux2"></label>
-              <div class="col-lg-5">
-              	<input type="hidden" value="1" name="exists_aux_1" id="exists_aux_1">
-              	<a href="#aux1_<?=$this->grantee->grantee_id?>" role="button" class="btn btn-danger" data-toggle="modal">Retirar auxiliar</a>
-              </div>
-          </div><!--/.control-group -->
-          <?}?>
-          <hr>
-				<div class="form-group">
-              <label class="col-lg-2 control-label" for="aux2">Auxiliar 2</label>
-              <div class="col-lg-5">
-                  <input type="text" name="aux2" value="<?if(isset($this->auxiliars[1])) echo $this->auxiliars[1]['name']?>" class="form-control" id="aux2" placeholder="nome do auxiliar" autocomplete="off" <?if(isset($this->auxiliars[1])) echo 'disabled="disabled"'?>> <span style="cursor: pointer; display: none;" class="glyphicon glyphicon-remove" id="removeAux2"></span>
-                  <input type="hidden" name="aux2_id" id="aux2_id" value="<?if(isset($this->auxiliars[1])) echo $this->auxiliars[1]['auxiliar']?>">
-              </div><!--/.controls -->
-          </div><!--/.control-group -->
-				<div class="form-group">
-              <label class="col-lg-2 control-label" for="date_aux2">Data de ínicio</label>
-              <div class="col-lg-5">
-                  <input type="text" name="date_aux2" value="<?if(isset($this->auxiliars[1])) echo Application_Model_General::dateToBr($this->auxiliars[1]['start_date'])?>" class="form-control dateMask" id="date_aux2" placeholder="data de ínicio do auxiliar" <?if(isset($this->auxiliars[1])) echo 'disabled="disabled"'?>>
-              </div><!--/.controls -->
-          </div><!--/.control-group -->
-				<?if(!isset($this->auxiliars[1])){?>
-				<div class="form-group">
-              <label class="col-lg-2 control-label" for="date_end_aux2">Data de baixa</label>
-              <div class="col-lg-5">
-                  <input type="text" name="date_end_aux2" value="" class="form-control dateMask" id="date_end_aux2" placeholder="data de baixa do auxiliar">
-              </div><!--/.controls -->
-          </div><!--/.control-group -->
-          <?}?>
-				<?if(isset($this->auxiliars[1])){?>
-				<div class="form-group">
-              <label class="col-lg-2 control-label" for="date_aux2"></label>
-              <div class="col-lg-5">
-              	<input type="hidden" value="1" name="exists_aux_2" id="exists_aux_2">
-              	<a href="#aux2_<?=$this->grantee->grantee_id?>" role="button" class="btn btn-danger" data-toggle="modal">Retirar auxiliar</a>
-              </div>
-          </div><!--/.control-group -->
-          <?}else{?>
-					<div class="form-group">
-              <label class="col-lg-2 control-label" for="aux1_save"></label>
-              <div class="col-lg-5">
-              	<input type="submit" class="btn btn-primary" value="Salvar Auxiliares">
-              </div>
-          </div><!--/.control-group -->
-          <?}?>
-        </form>
+
+		  	<div class="panel-group" id="accordion">
+		  		<div class="panel panel-default">
+		  			<div class="panel-heading">
+		  				<h4 class="panel-title">
+		  					<a href="#collapseNewAuxiliar" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion">Novo Auxiliar</a>
+		  				</h4>
+		  			</div>
+		  			<div class="panel-collapse collapse" id="collapseNewAuxiliar">
+		  				<div class="panel-body">
+		  					<form class="form-horizontal" action='/grantee/save-auxiliar/id/<?=$this->grantee->grantee_id?>' method='post'>
+									<div class="form-group">
+			              <label class="col-lg-2 control-label" for="aux_new">Nome</label>
+			              <div class="col-lg-5">			                 
+		                  <input type="text" name="aux_new" value="" class="form-control" id="aux_new" placeholder="nome do auxiliar" autocomplete="off"> <span style="cursor: pointer; display: none;" class="glyphicon glyphicon-remove" id="removeAuxNew"></span>
+		                  <input type="hidden" name="aux_new_id" id="aux_new_id" value="">
+			              </div>
+				        	</div><!--/.form-group -->
+									<div class="form-group">
+			              <label class="col-lg-2 control-label" for="start_date_new_aux">Data de ínicio</label>
+			              <div class="col-lg-5">
+			                  <input type="text" name="start_date_new_aux" value="<?=Application_Model_General::dateToBr($auxiliars->start_date)?>" class="form-control dateMask" id="start_date_new_aux" placeholder="data de ínicio do auxiliar">
+			              </div>
+				        	</div><!--/.form-group -->
+									<div class="form-group">
+			              <label class="col-lg-2 control-label" for="end_date_new_aux">Data de baixa</label>
+			              <div class="col-lg-5">
+			                  <input type="text" name="end_date_new_aux" value="<?=Application_Model_General::dateToBr($auxiliars->end_date)?>" class="form-control dateMask" id="end_date_new_aux" placeholder="data de baixa do auxiliar">
+			              </div>
+				        	</div><!--/.form-group -->
+									<div class="form-group">
+				              <label class="col-lg-2 control-label"></label>
+				              <div class="col-lg-5">
+				              	<input type="submit" class="btn btn-primary" value="Salvar">
+				              </div>
+				          </div><!--/.form-group -->
+		  					</form>
+		  				</div>
+		  			</div>
+		  		</div>
+
+		  	<?foreach($this->auxiliars as $auxiliars){?>
+		  		<div class="panel panel-default">
+		  			<div class="panel-heading">
+		  				<h4 class="panel-title">
+		  					<a href="#collapseAuxiliar_<?=$auxiliars->id?>" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"><?=$auxiliars->name?></a>
+		  				</h4>
+		  			</div>
+		  			<div class="panel-collapse collapse" id="collapseAuxiliar_<?=$auxiliars->id?>">
+		  				<div class="panel-body">
+		  					<form class="form-horizontal" action='/grantee/save-auxiliar/id/<?=$this->grantee->grantee_id?>' method='post'>
+									<div class="form-group">
+			              <label class="col-lg-2 control-label" for="start_date_aux">Data de ínicio</label>
+			              <div class="col-lg-5">
+			                  <input type="text" name="start_date_aux" value="<?=Application_Model_General::dateToBr($auxiliars->start_date)?>" class="form-control dateMask" placeholder="data de ínicio do auxiliar">
+			              </div>
+				        	</div><!--/.form-group -->
+									<div class="form-group">
+			              <label class="col-lg-2 control-label" for="end_date_aux">Data de baixa</label>
+			              <div class="col-lg-5">
+			                  <input type="text" name="end_date_aux" value="<?=Application_Model_General::dateToBr($auxiliars->end_date)?>" class="form-control dateMask" placeholder="data de baixa do auxiliar">
+			              </div>
+				        	</div><!--/.form-group -->
+									<div class="form-group">
+				              <label class="col-lg-2 control-label"></label>
+				              <div class="col-lg-5">
+				              	<input type="hidden" name="aux_id" value="<?=$auxiliars->id?>">
+				              	<input type="submit" class="btn btn-primary" value="Salvar">
+				              </div>
+				          </div><!--/.form-group -->
+		  					</form>
+		  				</div>
+		  			</div>
+		  		</div>
+		  	<?}?>
+		  	</div>
         <hr>
 					<div class="panel-group" id="accordionHistory">
           	<div class="panel panel-default">

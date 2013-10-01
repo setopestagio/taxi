@@ -1,22 +1,37 @@
-$('#addGranteeInAuxiliar').click(function() { 
-	console.log($('#tableGrantees').size());
-  $('#tableGrantees tr:last').before(   '<tr> ' 
-                                      + '<td> '
-                                      + '<a class="removeGranteeAuxiliar" href="Javascript:removeGrantee()"><i style="color: gray" class="icon-remove-sign icon-large"></i></a></td>'
-                                      + '<td colspan="2"><input type="text" name="permission[]" placeholder="número da permissão" maxlength="8" class="form-control"></td>'
-                                      + '<td><input type="text" name="start_date[]" placeholder="data inicial" class="form-control dateMask"></td>'
-                                      + '<td><input type="text" name="end_date[]" placeholder="data de baixa" class="form-control dateMask"></td>'
-                                      + '</tr>');
-});
 
-$('.removeGranteeAuxiliar').click(function() {
-  console.log(this);
-});
+$('#grantee_new').typeahead({
+  source: function(query, process) {
+      $('#removeGranteeNew').css('display','none');
+      objects = [];
+      map = {};
+      $.getJSON('/auxiliar/return-grantee', { query: query }, function(data) {
+        $.each(data, function(i, object) {
+            map[object.label] = object;
+            objects.push(object.label);
+        });
+        process(objects);
+      });
+    },
+    updater: function(item) {
+        $('#grantee_new_id').val(map[item].id);
+        $('#grantee_new').attr('disabled',true);
+        $('#removeGranteeNew').css('display','');
+        return item;
+    }, 
+    matcher: function (item) {
+      if (item == null)
+            return false;
+      return ~item.toLowerCase().indexOf(this.query.toLowerCase())
+    }
+}).on('typeahead:opened', function() {
+    $(this).closest('.panel-body').css('overflow','visible');
+}).on('typeahead:closed', function() {
+    $(this).closest('.panel-body').css('overflow','hidden');
+}); 
 
-$('input[name="start_date[]"]').livequery(function() {
-  $(this).mask("99/99/9999");
-});
-
-$('input[name="end_date[]"]').livequery(function() {
-  $(this).mask("99/99/9999");
+$('#removeGranteeNew').click(function(){
+  $('#grantee_new_id').val('');
+  $('#grantee_new').attr('disabled',false);
+  $('#grantee_new').val('');
+  $('#removeGranteeNew').hide();
 });

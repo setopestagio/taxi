@@ -51,6 +51,7 @@ class AuxiliarController extends Zend_Controller_Action
     {
       try{
         $auxiliarId = $this->getRequest()->getParam('id');
+        $save = $this->getRequest()->getParam('save');
         $auxiliar = new Application_Model_Auxiliar();
         if ( $this->getRequest()->isPost() ) 
         {
@@ -63,6 +64,14 @@ class AuxiliarController extends Zend_Controller_Action
           {
             $this->view->error = true;
           }
+        }
+        if( isset($save) && $save == "success" )
+        {
+          $this->view->success = true;
+        }
+        if( isset($save) && $save == "failure" )
+        {
+          $this->view->error = true;
         }
         $this->view->auxiliar = $auxiliar->returnById($auxiliarId);
         $this->view->historicGrantees = $auxiliar->returnGrantees($auxiliarId);
@@ -174,17 +183,28 @@ class AuxiliarController extends Zend_Controller_Action
         $data = $this->getRequest()->getPost();
         if($auxiliar->saveGranteesToAuxiliar($data))
         {
-          $this->_redirect('/auxiliar/edit/id/'.$data['auxiliar_add'].'/save/success');
+          $this->_redirect('/auxiliar/edit/id/'.$data['aux_id'].'/save/success');
         }
         else
         {
-          $this->_redirect('/auxiliar/edit/id/'.$data['auxiliar_add'].'/save/failure');
+          $this->_redirect('/auxiliar/edit/id/'.$data['aux_id'].'/save/failure');
         }
       }
     }
 
+    public function returnGranteeAction()
+    {
+      $this->_helper->layout()->setLayout('ajax');
+      header('Content-Type: application/json');
+      $auxiliar = new Application_Model_Auxiliar();
+      $result = $auxiliar->findGranteeByName($_GET['query']);
+      echo Zend_Json::encode($result);
+    }
+
 
 }
+
+
 
 
 

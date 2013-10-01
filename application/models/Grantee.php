@@ -63,8 +63,8 @@ class Application_Model_Grantee
 		$granteeAuxiliar = new Application_Model_DbTable_GranteeAuxiliar();
 		$select = $granteeAuxiliar->select()->setIntegrityCheck(false);
 		$select	->from(array('a' => 'grantee_auxiliar') )
-						->joinInner(array('p' => 'person'), 'p.id=a.auxiliar')
-						->joinLeft(array('g' => 'grantee'), 'g.id=a.auxiliar')
+						->joinInner(array('p' => 'person'), 'p.id=a.auxiliar',array('name'))
+						->joinLeft(array('g' => 'grantee'), 'g.id=a.auxiliar',array())
 						->where('a.grantee = ?',$granteeId)
 						->where('a.end_date IS NULL');
 		return $granteeAuxiliar->fetchAll($select);
@@ -113,39 +113,22 @@ class Application_Model_Grantee
 	{
 		try{
 			$granteeAuxiliar = new Application_Model_DbTable_GranteeAuxiliar();
-			if( ( isset($data['aux1_id']) && $data['aux1_id'] != '' ) && !isset($data['exists_aux_1']) )
+			if( isset($data['aux_new_id']) && $data['aux_new_id'] != '' )
 			{
 				$granteeAuxiliarNew = $granteeAuxiliar->createRow();
 				$granteeAuxiliarNew->grantee = $granteeId;
-				$granteeAuxiliarNew->auxiliar = $data['aux1_id'];
-				$granteeAuxiliarNew->start_date = Application_Model_General::dateToUs($data['date_aux1']);
-				if($data['date_end_aux1'] != '')
-				{
-					$granteeAuxiliarNew->end_date = Application_Model_General::dateToUs($data['date_end_aux1']);
-				}
-				else
-				{
-					$granteeAuxiliarNew->end_date = new Zend_Db_Expr('NULL');
-				}
-				$granteeAuxiliarNew->save();
+				$granteeAuxiliarNew->auxiliar = $data['aux_new_id'];
+				$granteeAuxiliarNew->start_date = Application_Model_General::dateToUs($data['start_date_new_aux']);
+				$granteeAuxiliarNew->end_date = Application_Model_General::dateToUs($data['end_date_new_aux']);
+				return $granteeAuxiliarNew->save();
 			}
-			if( ( isset($data['aux2_id']) && $data['aux2_id'] != '' ) && !isset($data['exists_aux_2']) )
+			else
 			{
-				$granteeAuxiliarNew2 = $granteeAuxiliar->createRow();
-				$granteeAuxiliarNew2->grantee = $granteeId;
-				$granteeAuxiliarNew2->auxiliar = $data['aux2_id'];
-				$granteeAuxiliarNew2->start_date = Application_Model_General::dateToUs($data['date_aux2']);
-				if($data['date_end_aux2'] != '')
-				{
-					$granteeAuxiliarNew2->end_date = Application_Model_General::dateToUs($data['date_end_aux2']);
-				}
-				else
-				{
-					$granteeAuxiliarNew2->end_date = new Zend_Db_Expr('NULL');
-				}
-				$granteeAuxiliarNew2->save();
+				$granteeAuxiliarRow = $granteeAuxiliar->fetchRow($granteeAuxiliar->select()->where('id = ?',$data['aux_id']));
+				$granteeAuxiliarRow->start_date = Application_Model_General::dateToUs($data['start_date_aux']);
+				$granteeAuxiliarRow->end_date = Application_Model_General::dateToUs($data['end_date_aux']);
+				return $granteeAuxiliarRow->save();
 			}
-			return true;
 		}catch(Zend_Exception $e){
 			return false;
 		}

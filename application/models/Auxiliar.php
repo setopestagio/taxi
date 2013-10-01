@@ -102,45 +102,34 @@ class Application_Model_Auxiliar
 		$granteeAuxiliar = new Application_Model_DbTable_GranteeAuxiliar();
 		$select = $granteeAuxiliar->select()->setIntegrityCheck(false);
 		$select ->from(array('ga' => 'grantee_auxiliar'), array('_id' => 'id', 'grantee', 'auxiliar', 'start_date', 'end_date') )
-				->joinInner(array('g' => 'grantee'),'g.id=ga.grantee')
-				->joinInner(array('p' => 'person'), 'g.owner=p.id')
+				->joinInner(array('g' => 'grantee'),'g.id=ga.grantee',array('permission'))
+				->joinInner(array('p' => 'person'), 'g.owner=p.id',array('name'))
 				->where('ga.auxiliar = ?',$auxiliarId)
 				->order('ga.end_date');
 		return $granteeAuxiliar->fetchAll($select);
 	}
 
-	public function saveGranteesToAuxiliar($data)
+	public function saveGranteesToAuxiliar($data,$auxiliarId)
 	{
-		if(isset($data['auxiliar_add']) && $data['auxiliar_add'] > 0)
-		{
-			for($i=0;$i<count($data['permission']);$i++)
+		try{
+			$granteeAuxiliar = new Application_Model_DbTable_GranteeAuxiliar();
+			if( isset($data['grantee_new_id']) && $data['grantee_new_id'] != '' )
 			{
-				$granteeAuxiliar = new Application_Model_DbTable_GranteeAuxiliar();
-				$grantee = new Application_Model_Grantee();
-				if(isset($data['_id'][$i]) && $data['_id'][$i])
-				{
-					$granteeAuxiliarNew = $granteeAuxiliar->fetchRow($granteeAuxiliar->select()->where('id = ?',$data['_id'][$i]));
-					$granteeAuxiliarNew->start_date = Application_Model_General::dateToUs($data['start_date'][$i]);
-					if(isset($data['end_date'][$i]) && $data['end_date'][$i] != '') $granteeAuxiliarNew->end_date = Application_Model_General::dateToUs($data['end_date'][$i]);
-					$granteeAuxiliarNew->save();
-					unset($granteeAuxiliarNew);
-				}
-				else
-				{
-					$granteeAuxiliarNew = $granteeAuxiliar->createRow();
-					$granteeRow = $grantee->findActiveGrantee($data['permission'][$i]);
-					$granteeAuxiliarNew->grantee = $granteeRow[0]['grantee_id'];
-					$granteeAuxiliarNew->auxiliar = $data['auxiliar_add'];
-					$granteeAuxiliarNew->start_date = Application_Model_General::dateToUs($data['start_date'][$i]);
-					if(isset($data['end_date'][$i]) && $data['end_date'][$i] != '') $granteeAuxiliarNew->end_date = Application_Model_General::dateToUs($data['end_date'][$i]);
-					$granteeAuxiliarNew->save();
-					unset($granteeAuxiliarNew);
-				}
+				$granteeAuxiliarNew = $granteeAuxiliar->createRow();
+				$granteeAuxiliarNew->grantee = $data['grantee_new_id'];
+				$granteeAuxiliarNew->auxiliar = $data['aux_id'];
+				$granteeAuxiliarNew->start_date = Application_Model_General::dateToUs($data['start_date_new_grantee']);
+				$granteeAuxiliarNew->end_date = Application_Model_General::dateToUs($data['end_date_new_grantee']);
+				return $granteeAuxiliarNew->save();
 			}
-			return true;
-		}
-		else
-		{
+			else
+			{
+				$granteeAuxiliarRow = $granteeAuxiliar->fetchRow($granteeAuxiliar->select()->where('id = ?',$data['id']));
+				$granteeAuxiliarRow->start_date = Application_Model_General::dateToUs($data['start_date_aux']);
+				$granteeAuxiliarRow->end_date = Application_Model_General::dateToUs($data['end_date_aux']);
+				return $granteeAuxiliarRow->save();
+			}
+		}catch(Zend_Exception $e){
 			return false;
 		}
 	}
@@ -156,6 +145,23 @@ class Application_Model_Auxiliar
 		$person = new Application_Model_DbTable_Person();
 		$auxiliarRow = $person->fetchRow($person->select()->where('id = ?', $auxiliarId));
 		return $auxiliarRow->delete();
+	}
+
+	public function findGranteeByName($name)
+	{
+		$person = new Application_Model_DbTable_Person();
+		$select = $person->select()->setIntegrityCheck(false);
+		$select	->from(array('p' => 'person'), array('id') )
+						->joinInner(array('g' => 'grantee'), 'p.id=g.owner' ,array('name' => 'CONCAT(p.name," - ",g.permission)') )
+						->where('p.name LIKE ?','%'.$name.'%');
+		$people = $person->fetchAll($select);
+		$aux = array();
+		foreach($people as $person)
+		{
+			$flag = array('id' => $person->id, 'label' => Application_Model_General::removeAccents($person->name));
+			array_push($aux,$flag);
+		}
+		return $aux;
 	}
 }
 
