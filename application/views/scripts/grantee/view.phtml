@@ -45,7 +45,7 @@
       		<tbody>
       			<?if(is_object($this->list) && !isset($this->list->name)){
       				foreach($this->list as $grantee){?>
-		      			<tr>
+		      			<tr <?if($grantee->end_permission == '0000-00-00') echo 'class="success"'; else echo 'class="danger"';?>>
 		      				<td><a href="/grantee/edit/id/<?=$grantee->grantee_id?>"><?=$grantee->name?></a></td>
 		      				<td><?=$grantee->permission?></td>
 		      				<td><?if(Application_Model_General::dateToBr($grantee->start_permission) != 'NULL') echo Application_Model_General::dateToBr($grantee->start_permission);?></td>
