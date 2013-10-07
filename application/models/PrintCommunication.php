@@ -296,8 +296,19 @@ class Application_Model_PrintCommunication
             ->drawLine(450, 520, 460 , 530);
         $this->page->setLineWidth(0.5)
             ->drawLine(450, 530, 460, 520);
-        $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES_BOLD),11)
-                ->drawText('Placa: '.$data['plate'], 75, 230, 'UTF-8');
+        if($data['plate'] != '')
+        {
+          $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES_BOLD),11)
+              ->drawText('Placa: '.$data['plate'], 75, 230, 'UTF-8');
+        }
+        if($data['reservationDatePlate'] != '')
+        {
+
+          $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),13)
+                ->drawText('RESERVADA', 240, 250, 'UTF-8');
+          $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),13)
+                ->drawText('Em: '.$data['reservationDatePlate'], 420, 250, 'UTF-8');
+        }
 
 
         $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES_BOLD),11)
@@ -361,7 +372,7 @@ class Application_Model_PrintCommunication
     $this->page->setLineWidth(1)
         ->drawLine(50, 280, 545, 280);
     $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
-                ->drawText('4 - Emplacamento - Permissão: ', 75, 250, 'UTF-8');
+                ->drawText('4 - Emplacamento - Permissão ', 75, 250, 'UTF-8');
 
     $this->page->setLineWidth(1)
         ->drawLine(50, 220, 545, 220);

@@ -35,3 +35,14 @@ $('#removeGranteeNew').click(function(){
   $('#grantee_new').val('');
   $('#removeGranteeNew').hide();
 });
+
+$('#existsGrantee').change(function(){
+  console.log(this.value);
+  if(this.value == 2){
+    $('.groupNotExists').show();
+    $('.groupExists').hide();
+  }else{
+    $('.groupExists').show();
+    $('.groupNotExists').hide();
+  }
+});

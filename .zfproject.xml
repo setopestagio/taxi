@@ -66,6 +66,7 @@
           <actionMethod actionName="printData"/>
           <actionMethod actionName="saveGrantee"/>
           <actionMethod actionName="returnGrantee"/>
+          <actionMethod actionName="removeGrantee"/>
         </controllerFile>
         <controllerFile controllerName="Doesntallow">
           <actionMethod actionName="index"/>
@@ -486,6 +487,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Auxiliar">
             <viewScriptFile forActionName="returnGrantee"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Auxiliar">
+            <viewScriptFile forActionName="removeGrantee"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

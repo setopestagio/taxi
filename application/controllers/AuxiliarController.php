@@ -181,7 +181,7 @@ class AuxiliarController extends Zend_Controller_Action
       {
         $auxiliar = new Application_Model_Auxiliar();
         $data = $this->getRequest()->getPost();
-        if($auxiliar->saveGranteesToAuxiliar($data))
+        if($auxiliar->saveGranteesToAuxiliar($data,$data['aux_id']))
         {
           $this->_redirect('/auxiliar/edit/id/'.$data['aux_id'].'/save/success');
         }
@@ -201,8 +201,28 @@ class AuxiliarController extends Zend_Controller_Action
       echo Zend_Json::encode($result);
     }
 
+    public function removeGranteeAction()
+    {
+      $auxId = $this->getRequest()->getParam('id');
+      if ( $this->getRequest()->isPost() ) 
+      {
+        $auxiliar = new Application_Model_Auxiliar();
+        $data = $this->getRequest()->getPost();
+        if($auxiliar->removeGranteesToAuxiliar($data,$auxId))
+        {
+          $this->_redirect('/auxiliar/edit/id/'.$auxId.'/save/success');
+        }
+        else
+        {
+          $this->_redirect('/auxiliar/edit/id/'.$auxId.'/save/failure');
+        }
+      }
+    }
+
 
 }
+
+
 
 
 

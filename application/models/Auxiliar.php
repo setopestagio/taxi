@@ -101,9 +101,10 @@ class Application_Model_Auxiliar
 	{
 		$granteeAuxiliar = new Application_Model_DbTable_GranteeAuxiliar();
 		$select = $granteeAuxiliar->select()->setIntegrityCheck(false);
-		$select ->from(array('ga' => 'grantee_auxiliar'), array('_id' => 'id', 'grantee', 'auxiliar', 'start_date', 'end_date') )
-				->joinInner(array('g' => 'grantee'),'g.id=ga.grantee',array('permission'))
-				->joinInner(array('p' => 'person'), 'g.owner=p.id',array('name'))
+		$select ->from(array('ga' => 'grantee_auxiliar'), array('_id' => 'id', 'grantee', 'auxiliar', 'start_date', 'end_date', 
+															'nameGrantee' => 'name', 'permissionGrantee' => 'permission') )
+				->joinLeft(array('g' => 'grantee'),'g.id=ga.grantee',array('permission'))
+				->joinLeft(array('p' => 'person'), 'g.owner=p.id',array('name'))
 				->where('ga.auxiliar = ?',$auxiliarId)
 				->order('ga.end_date');
 		return $granteeAuxiliar->fetchAll($select);
@@ -124,14 +125,35 @@ class Application_Model_Auxiliar
 			}
 			else
 			{
-				$granteeAuxiliarRow = $granteeAuxiliar->fetchRow($granteeAuxiliar->select()->where('id = ?',$data['id']));
-				$granteeAuxiliarRow->start_date = Application_Model_General::dateToUs($data['start_date_aux']);
-				$granteeAuxiliarRow->end_date = Application_Model_General::dateToUs($data['end_date_aux']);
-				return $granteeAuxiliarRow->save();
+				if($data['existsGrantee'] == 2)
+				{
+					$granteeAuxiliarNew = $granteeAuxiliar->createRow();
+					$granteeAuxiliarNew->auxiliar = $auxiliarId;
+					$granteeAuxiliarNew->start_date = Application_Model_General::dateToUs($data['start_date_new_grantee']);
+					$granteeAuxiliarNew->end_date = Application_Model_General::dateToUs($data['end_date_new_grantee']);
+					$granteeAuxiliarNew->name = $data['grantee_name'];
+					$granteeAuxiliarNew->permission = $data['grantee_permission'];
+					return $granteeAuxiliarNew->save();
+				}
+				else
+				{
+					$granteeAuxiliarRow = $granteeAuxiliar->fetchRow($granteeAuxiliar->select()->where('id = ?',$data['id']));
+					$granteeAuxiliarRow->start_date = Application_Model_General::dateToUs($data['start_date_aux']);
+					$granteeAuxiliarRow->end_date = Application_Model_General::dateToUs($data['end_date_aux']);
+					return $granteeAuxiliarRow->save();
+				}
 			}
 		}catch(Zend_Exception $e){
 			return false;
 		}
+	}
+
+	public function removeGranteesToAuxiliar($data,$auxiliarId)
+	{
+		$granteeAuxiliar = new Application_Model_DbTable_GranteeAuxiliar();
+		$granteeAuxiliarRow = $granteeAuxiliar->fetchRow($granteeAuxiliar->select()->where('id = ?',$data['id'])
+																	->where('auxiliar = ?',$auxiliarId));
+		return $granteeAuxiliarRow->delete();
 	}
 
 	public function remove($auxiliarId)

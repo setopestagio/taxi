@@ -77,6 +77,7 @@ $('#operation').change(function() {
     $('#reservationGroupStart').addClass('hide');
     $('#reservationGroupEnd').addClass('hide');
     $('#plateGroup').addClass('hide');
+    $('#plateGroup2').addClass('hide');
     $('#otherGroup').removeClass('hide');
   }
   if($(this).val() == 2){
@@ -86,6 +87,7 @@ $('#operation').change(function() {
     $('#reservationGroupStart').addClass('hide');
     $('#reservationGroupEnd').addClass('hide');
     $('#plateGroup').addClass('hide');
+    $('#plateGroup2').addClass('hide');
     $('#otherGroup').removeClass('hide');
   }
   if($(this).val() == 3){
@@ -95,6 +97,7 @@ $('#operation').change(function() {
     $('#reservationGroupStart').removeClass('hide');
     $('#reservationGroupEnd').addClass('hide');
     $('#plateGroup').addClass('hide');
+    $('#plateGroup2').addClass('hide');
     $('#otherGroup').removeClass('hide');
   }
   if($(this).val() == 4){
@@ -104,6 +107,7 @@ $('#operation').change(function() {
     $('#reservationGroupStart').addClass('hide');
     $('#reservationGroupEnd').addClass('hide');
     $('#plateGroup').removeClass('hide');
+    $('#plateGroup2').removeClass('hide');
     $('#otherGroup').removeClass('hide');
   }
   if($(this).val() == 5){
@@ -113,6 +117,7 @@ $('#operation').change(function() {
     $('#reservationGroupStart').addClass('hide');
     $('#reservationGroupEnd').addClass('hide');
     $('#plateGroup').addClass('hide');
+    $('#plateGroup2').addClass('hide');
     $('#otherGroup').removeClass('hide');
   }
 });
