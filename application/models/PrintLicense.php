@@ -91,7 +91,7 @@ class Application_Model_PrintLicense
                         ->drawText('Portador', 15, 740, 'UTF-8');
         $this->page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),10)
                         ->drawText('Permissionário', 15, 700, 'UTF-8');
-        if(strlen($data->name) > 25)
+        if(strlen($data->name) > 30)
         {
     	  	$this->page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES_BOLD),10)
     	                    ->drawText(Application_Model_General::cutString($data->name,20), 15, 728, 'UTF-8');
@@ -105,9 +105,9 @@ class Application_Model_PrintLicense
         else
         {
         	$this->page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES_BOLD),10)
-                            ->drawText(Application_Model_General::cutString($data->name,20), 15, 720, 'UTF-8');
+                            ->drawText(Application_Model_General::cutString($data->name,30), 15, 720, 'UTF-8');
     	    $this->page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES_BOLD),10)
-    	                    ->drawText(Application_Model_General::cutString($data->name_grantee,20), 15, 680, 'UTF-8');
+    	                    ->drawText(Application_Model_General::cutString($data->name_grantee,30), 15, 680, 'UTF-8');
         }
         $this->page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),10)
                         ->drawText('Permissão', 15, 660, 'UTF-8');
