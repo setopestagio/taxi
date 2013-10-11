@@ -205,8 +205,8 @@ class GranteeController extends Zend_Controller_Action
       $this->_helper->layout()->setLayout('ajax');
       $grantee = new Application_Model_Grantee();
       $grantees = $grantee->findActives();
-      $report = new Application_Model_ReportGranteeActives('PERMISSIONÁRIOS ATIVOS');
-      $report->create($grantees);
+      $report = new Application_Model_ReportGranteeActives();
+      $report->create($grantees,'PERMISSIONÁRIOS ATIVOS');
     }
 
     public function returnPeopleAction()

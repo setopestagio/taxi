@@ -207,8 +207,8 @@ class Application_Model_Grantee
 		$select	->from(array('g' => 'grantee'), array('grantee_id' => 'id', 'permission','authorization','city',
 																								'start_permission','end_permission', 'info', 'pendencies') )
 						->joinInner(array('p' => 'person'), 'p.id=g.owner')
-						->joinInner(array('a' => 'address'),'a.id = p.address', array('address','number','apartament','neighborhood',
-																																			'address_city' => 'city','zipcode') )
+						->joinInner(array('a' => 'address'),'a.id = p.address', array('address_complete' => 'CONCAT(a.address," ",a.number," ",a.apartament)',
+																																			'neighborhood','address_city' => 'city','zipcode') )
 						->joinInner(array('v' => 'vehicle'), 'v.id=g.vehicle')
 						->joinInner(array('c' => 'city'),'g.city=c.id', array('name_city' => 'name'))
 						->joinInner(array('vb' => 'vehicle_brand'), 'vb.id=v.brand', array('vehicle_brand' => 'name'))
