@@ -47,52 +47,63 @@ class Application_Model_ReportGranteeActives
     	$page		->setLineWidth(0.5)
         							->drawLine(30, $range, 805 , $range);
 
-      $page   ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
+      $page   ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),8)
                       ->drawText($grantee->permission, 30, $range-22,'UTF-8');
 
-      $page   ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
+      $page   ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),8)
                       ->drawText($grantee->name_city, 82, $range-22,'UTF-8');
 
       if($grantee->name > 12)
       {
-        $page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
+        $page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),8)
                   ->drawText($grantee->name, 160, $range-22, 'UTF-8');
       }
       else
       {
-        $page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
+        $page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),8)
                   ->drawText(Application_Model_General::cutString($grantee->name,12), 163, $range-16, 'UTF-8');
-        $page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
+        $page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),8)
                   ->drawText(Application_Model_General::resumeString($grantee->name,12), 160, $range-28, 'UTF-8');
       }
 
-      $page   ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
+      $page   ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),8)
               ->drawText($grantee->cpf, 270, $range-22,'UTF-8');
 
-      $page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
+      $page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),8)
                 ->drawText(Application_Model_General::cutString($grantee->address_complete,10), 342, $range-16, 'UTF-8');
-      $page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
+      $page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),8)
                 ->drawText(Application_Model_General::resumeString($grantee->address_complete,10), 340, $range-28, 'UTF-8');
 
-      $page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
-                ->drawText($grantee->neighborhood, 460, $range-22, 'UTF-8');
+      if($grantee->neighborhood > 6)
+      {
+        $page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),8)
+                  ->drawText($grantee->neighborhood, 460, $range-22, 'UTF-8');
+      }
+      else
+      {
+        $page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),8)
+                  ->drawText(Application_Model_General::cutString($grantee->neighborhood,6), 462, $range-16, 'UTF-8');
+        $page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),8)
+                  ->drawText(Application_Model_General::resumeString($grantee->neighborhood,6), 460, $range-28, 'UTF-8');
+      }
 
-      $page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
+      $page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),8)
                 ->drawText($grantee->zipcode, 540, $range-22, 'UTF-8');
 
-      $page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
+      $page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),8)
                 ->drawText($grantee->plate, 585, $range-22, 'UTF-8');
 
-      $page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
-                ->drawText($grantee->vehicle_brand, 630, $range-22, 'UTF-8');
+      $page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),8)
+                ->drawText($grantee->vehicle_brand, 625, $range-22, 'UTF-8');
 
-      $page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
-                ->drawText($grantee->vehicle_model, 670, $range-22, 'UTF-8');
+      $aux = explode(' ',trim($grantee->vehicle_model));
+      $page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),8)
+                ->drawText($aux[0], 685, $range-22, 'UTF-8');
 
-      $page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
-                ->drawText($grantee->year_fabrication, 720, $range-22, 'UTF-8');
+      $page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),8)
+                ->drawText($grantee->year_fabrication, 727, $range-22, 'UTF-8');
 
-      $page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
+      $page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),8)
                 ->drawText($grantee->vehicle_fuel, 750, $range-22, 'UTF-8');
 
 
@@ -142,13 +153,13 @@ class Application_Model_ReportGranteeActives
             ->drawText('Marca', 630, $height-15,'UTF-8');
 
     $page   ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),10)
-            ->drawText('Modelo', 670, $height-15,'UTF-8');
+            ->drawText('Modelo', 685, $height-15,'UTF-8');
 
     $page   ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),10)
-            ->drawText('Ano Fab.', 710, $height-15,'UTF-8');
+            ->drawText('Ano', 725, $height-15,'UTF-8');
 
     $page   ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),10)
-            ->drawText('Combustível', 755, $height-15,'UTF-8');
+            ->drawText('Combustível', 750, $height-15,'UTF-8');
 
   }
 
