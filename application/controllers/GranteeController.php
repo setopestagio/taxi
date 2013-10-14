@@ -36,6 +36,7 @@ class GranteeController extends Zend_Controller_Action
         }
       }catch(Zend_Exception $e){
         $this->view->error = true;
+        echo $e->getMessage();
       }
       $vehicleModel = new Application_Model_DbTable_VehicleModel();
       $this->view->vehicleModel = $vehicleModel->fetchAll($vehicleModel->select()->order('name'));
