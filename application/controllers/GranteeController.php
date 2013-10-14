@@ -67,7 +67,7 @@ class GranteeController extends Zend_Controller_Action
             $this->view->error = true;
           }
         }
-        $this->view->grantee = $grantee->returnById($granteeId);
+        $this->view->grantee = $grantee->returnByIdPerson($granteeId);
         $this->view->auxiliars = $grantee->returnAuxiliars($granteeId);
         $this->view->auxiliarsInactives = $grantee->returnAuxiliarsInactives($granteeId);
         // $this->view->reservation = $grantee->returnReservation($granteeId);

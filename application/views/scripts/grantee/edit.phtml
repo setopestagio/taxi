@@ -601,10 +601,10 @@
 		        				<div class="panel panel-default">
 					        		<div class="panel-heading">
 					        			<h4 class="panel-title">
-					        				<a class="panel-toggle" data-toggle="collapse" data-parent="#panel_<?=$permissionsHistoric->permission?>" href="#panel_data">Dados Principais</a>
+					        				<a class="panel-toggle" data-toggle="collapse" data-parent="#panel_<?=$permissionsHistoric->permission?>" href="#panel_data_<?=$permissionsHistoric->id?>">Dados Principais</a>
 					        			</h4>
 					        		</div>
-					        		<div id="panel_data" class="panel-collapse collapse">
+					        		<div id="panel_data_<?=$permissionsHistoric->id?>" class="panel-collapse collapse">
 					        			<div class="panel-body">
 													<form action="/grantee/edit-historic" method="post" class="form-horizontal">
 			          						<input type="hidden" name="id" value="<?=$permissionsHistoric->id?>">

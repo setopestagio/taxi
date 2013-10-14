@@ -58,6 +58,29 @@ class Application_Model_Grantee
 		return $grantee->fetchRow($select);
 	}
 
+	public function returnByIdPerson($personId)
+	{
+		$grantee = new Application_Model_DbTable_Grantee();
+		$select = $grantee->select()->setIntegrityCheck(false);
+		$select	->from(array('g' => 'grantee'), array('grantee_id' => 'id', 'permission','authorization','city', 'owner',
+																					'start_permission','end_permission', 'info_grantee' => 'info', 'pendencies') )
+						->joinInner(array('p' => 'person'), 'p.id=g.owner', array('permission', 'name', 'name_grantee' => 'name', 'address',
+																					'phone', 'mobile', 'email', 'rg', 'rg_issuer', 'cpf',
+																					'cnh', 'cnh_issuer', 'iapas', 'voter', 'voter_zone', 'army',
+																					'army_issuer', 'info'))
+						->joinInner(array('a' => 'address'),'a.id = p.address', array('address','number','apartament','neighborhood',
+																					'address_city' => 'city','zipcode') )
+						->joinLeft(array('v' => 'vehicle'), 'v.id=g.vehicle')
+						->joinLeft(array('c' => 'city'),'g.city=c.id', array('name_city' => 'name'))
+						->joinLeft(array('vb' => 'vehicle_brand'), 'vb.id=v.brand', array('vehicle_brand' => 'name'))
+						->joinLeft(array('f' => 'vehicle_fuel'), 'f.id=v.fuel', array('vehicle_fuel' => 'name'))
+						->joinLeft(array('tb' => 'taximeter_brand'), 'tb.id=v.taximeter_brand', array('taximeter_brand' => 'name','taximeter_brand_id' => 'id'))
+						->joinLeft(array('tm' => 'taximeter_model'), 'tm.id=v.taximeter_model', array('taximeter_model' => 'name', 'taximeter_model_id' => 'id'))
+						->joinLeft(array('vm' => 'vehicle_model'), 'vm.id=v.model', array('vehicle_model' => 'name'))
+						->where('p.id = ?', $personId);
+		return $grantee->fetchRow($select);
+	}
+
 	public function returnAuxiliars($granteeId)
 	{
 		$granteeAuxiliar = new Application_Model_DbTable_GranteeAuxiliar();
