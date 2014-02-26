@@ -45,7 +45,7 @@ class GranteeController extends Zend_Controller_Action
       $this->view->cities = $city->fetchAll($city->select()->order('name'));
       $modelTaximeter = new Application_Model_DbTable_TaximeterModel();
       $this->view->modelTaximeter = $modelTaximeter->fetchAll($modelTaximeter->select()->order('name'));
-      $brandTaximeter = new Application_Model_DbTable_TaximeterModel();
+      $brandTaximeter = new Application_Model_DbTable_TaximeterBrand();
       $this->view->brandTaximeter = $brandTaximeter->fetchAll($brandTaximeter->select()->order('name'));
     }
 
@@ -138,7 +138,8 @@ class GranteeController extends Zend_Controller_Action
 
     public function reportAction()
     {
-        // action body
+      $city = new Application_Model_DbTable_City();
+      $this->view->cities = $city->fetchAll($city->select()->order('name'));
     }
 
     public function visAction()
@@ -161,6 +162,7 @@ class GranteeController extends Zend_Controller_Action
         $granteeRow = $grantee->returnById($id);
         $pdf = $print->createPdf($granteeRow,$endDate);
         header('Content-Type: application/pdf');
+        header('Content-Disposition: attachment; filename="Carteira de Permissionario.pdf"');
         echo $pdf->render(); 
       }catch(Zend_Exception $e){
         die ('PDF error: ' . $e->getMessage()); 
@@ -181,6 +183,7 @@ class GranteeController extends Zend_Controller_Action
         $reservation = $grantee->returnReservationActive($id);
         $pdf = $print->createPdf($granteeRow,$auxiliars,$reservation);
         header('Content-Type: application/pdf');
+        header('Content-Disposition: attachment; filename="Dados Permissonario.pdf"');
         echo $pdf->render(); 
       }catch(Zend_Exception $e){
         die ('PDF error: ' . $e->getMessage()); 
@@ -191,23 +194,135 @@ class GranteeController extends Zend_Controller_Action
 
     public function reportGranteeAllAction()
     {
-      header('Content-Type: application/pdf');
-      $this->_helper->layout()->setLayout('ajax');
-      $grantee = new Application_Model_Grantee();
-      $grantees = $grantee->findAll();
-      $report = new Application_Model_ReportGranteeAll('PERMISSIONÁRIOS');
-      $report->create($grantees);
+        if($_GET["perm_all"] == 0) // responsavel pelo "PDF"
+        {
+          $optionCity = $this->getRequest()->getParam('optionCity');
+          if($optionCity == 0)
+          {
+            $this->_helper->layout()->setLayout('report');
+            $grantee = new Application_Model_Grantee();
+            $grantees = $grantee->findAll();
+            $this->view->list = $grantees;
+          }
+          else
+          {
+           $this->_helper->layout()->setLayout('report');
+            $grantee = new Application_Model_Grantee();
+            $grantees = $grantee->findAllCity($optionCity);
+            $this->view->list = $grantees; 
+          }
+        }
+        else // Responsavel pelo Csv
+        {
+         $optionCity = $this->getRequest()->getParam('optionCity');
+          if($optionCity == 0)
+          {
+            header('Content-Encoding: utf-8');
+            header('Content-Type: text/csv; charset=utf-8');
+            header('Content-Disposition: attachment; filename=relatorio_permissionarios_todos.csv');
+            echo "\xEF\xBB\xBF";
+            $this->_helper->layout()->setLayout('ajax');
+            $grantee = new Application_Model_Grantee();
+            $output = fopen('php://output', 'w');
+            $grantees = $grantee->findAll();
+            fputcsv($output, array('Nome','RG','CPF','Nº da Permissão','Data da Permissão','Rua','Bairro','Cidade','CEP','Modelo do Veiculo',
+              'Marca do Veiculo','Placa do Veiculo'),';');
+            foreach ($grantees as $granteees ){
+              fputcsv($output, array($granteees->person_name, $granteees->rg, $granteees->cpf, $granteees->permission, $granteees->start_permission,
+                $granteees->address_complete, $granteees->neighborhood, $granteees->city_address, $granteees->zipcode, 
+                $granteees->vehicle_model, $granteees->vehicle_brand, $granteees->plate),';');
+            }
+              exit;
+          }
+          else
+          {
+            $city = new Application_Model_DbTable_City();
+            $chosenCity = $city->fetchRow($city->select()->from(array('c' => 'city'), array('name'))->where('c.id = ?',$optionCity));
+            header('Content-Encoding: utf-8');
+            header('Content-Type: text/csv; charset=utf-8');
+            header('Content-Disposition: attachment; filename=relatorio_permissionarios_'.$chosenCity->name.'.csv');
+            echo "\xEF\xBB\xBF";
+            $this->_helper->layout()->setLayout('ajax');
+            $grantee = new Application_Model_Grantee();
+            $output = fopen('php://output', 'w');
+            $grantees = $grantee->findAllCity($optionCity);
+            fputcsv($output, array('Nome','RG','CPF','Nº da Permissão','Data da Permissão','Rua','Bairro','Cidade','CEP','Modelo do Veiculo',
+              'Marca do Veiculo','Placa do Veiculo'),';');
+            foreach ($grantees as $granteees ){
+              fputcsv($output, array($granteees->person_name, $granteees->rg, $granteees->cpf, $granteees->permission, $granteees->start_permission,
+                $granteees->address_complete, $granteees->neighborhood, $granteees->city_address, $granteees->zipcode, 
+                $granteees->vehicle_model, $granteees->vehicle_brand, $granteees->plate),';');
+            }
+            exit;
+        }
+      }
     }
 
     public function reportGranteeActivesAction()
-    {
-      header('Content-Type: application/pdf');
-      $this->_helper->layout()->setLayout('ajax');
-      $grantee = new Application_Model_Grantee();
-      $grantees = $grantee->findActives();
-      $report = new Application_Model_ReportGranteeActives();
-      $report->create($grantees,'PERMISSIONÁRIOS ATIVOS');
-    }
+      {
+        if($_GET["perm_all"] == 0) // responsavel pelo "PDF"
+        {
+          $optionCity = $this->getRequest()->getParam('optionCity');
+          if($optionCity == 0)
+          {
+            $this->_helper->layout()->setLayout('report');
+            $grantee = new Application_Model_Grantee();
+            $grantees = $grantee->findActives();
+            $this->view->list = $grantees;
+          }
+          else
+          {
+           $this->_helper->layout()->setLayout('report');
+            $grantee = new Application_Model_Grantee();
+            $grantees = $grantee->findActivesCity($optionCity);
+            $this->view->list = $grantees; 
+          }
+        }
+        else // Responsavel pelo Csv
+        {
+         $optionCity = $this->getRequest()->getParam('optionCity');
+          if($optionCity == 0)
+          {
+            header('Content-Encoding: utf-8');
+            header('Content-Type: text/csv; charset=utf-8');
+            header('Content-Disposition: attachment; filename=relatorio_permissionarios_ativo.csv');
+            echo "\xEF\xBB\xBF";
+            $this->_helper->layout()->setLayout('ajax');
+            $grantee = new Application_Model_Grantee();
+            $output = fopen('php://output', 'w');
+            $grantees = $grantee->findAll();
+            fputcsv($output, array('Nome','RG','CPF','Nº da Permissão','Data da Permissão','Rua','Bairro','Cidade','CEP','Modelo do Veiculo',
+              'Marca do Veiculo','Placa do Veiculo'),';');
+            foreach ($grantees as $granteees ){
+              fputcsv($output, array($granteees->person_name, $granteees->rg, $granteees->cpf, $granteees->permission, $granteees->start_permission,
+                $granteees->address_complete, $granteees->neighborhood, $granteees->city_address, $granteees->zipcode, 
+                $granteees->vehicle_model, $granteees->vehicle_brand, $granteees->plate),';');
+            }
+              exit;
+          }
+          else
+          {
+            $city = new Application_Model_DbTable_City();
+            $chosenCity = $city->fetchRow($city->select()->from(array('c' => 'city'), array('name'))->where('c.id = ?',$optionCity));
+            header('Content-Encoding: utf-8');
+            header('Content-Type: text/csv; charset=utf-8');
+            header('Content-Disposition: attachment; filename=relatorio_permissionarios_ativo_'.$chosenCity->name.'.csv');
+            echo "\xEF\xBB\xBF";
+            $this->_helper->layout()->setLayout('ajax');
+            $grantee = new Application_Model_Grantee();
+            $output = fopen('php://output', 'w');
+            $grantees = $grantee->findAllCity($optionCity);
+            fputcsv($output, array('Nome','RG','CPF','Nº da Permissão','Data da Permissão','Rua','Bairro','Cidade','CEP','Modelo do Veiculo',
+              'Marca do Veiculo','Placa do Veiculo'),';');
+            foreach ($grantees as $granteees ){
+              fputcsv($output, array($granteees->person_name, $granteees->rg, $granteees->cpf, $granteees->permission, $granteees->start_permission,
+                $granteees->address_complete, $granteees->neighborhood, $granteees->city_address, $granteees->zipcode, 
+                $granteees->vehicle_model, $granteees->vehicle_brand, $granteees->plate),';');
+            }
+            exit;
+          }
+        }
+      }
 
     public function returnPeopleAction()
     {
@@ -337,6 +452,7 @@ class GranteeController extends Zend_Controller_Action
         $granteeRow = $grantee->returnById($id);
         $pdf = $print->createPdf($granteeRow,$data);
         header('Content-Type: application/pdf');
+        header('Content-Disposition: attachment; filename="Comunicacao ao Orgao de Transito.pdf"');
         echo $pdf->render(); 
       }catch(Zend_Exception $e){
         die ('PDF error: ' . $e->getMessage()); 
@@ -364,19 +480,33 @@ class GranteeController extends Zend_Controller_Action
 
     public function reportVehicleAction()
     {
-      try{
-        header('Content-Type: application/pdf');
-        $this->_helper->layout()->setLayout('ajax');
-        $id = $this->getRequest()->getParam('id');
-        $print = new Application_Model_PrintVehicle('FROTA');
-        $vehicle = new Application_Model_Vehicle();
-        $fleet = $vehicle->returnAll();
-        $pdf = $print->createPdf($fleet);
-      }catch(Zend_Exception $e){
-        die ('PDF error: ' . $e->getMessage()); 
-      }catch (Exception $e) {
-        die ('Application error: ' . $e->getMessage());    
-      }
+
+        if($_GET["vehicle_all"] == 0) // responsavel pelo "PDF"
+        {
+
+          $this->_helper->layout()->setLayout('report');
+          $vehicle = new Application_Model_Vehicle();
+          $fleet = $vehicle->returnAll();
+          $this->view->list = $fleet;
+       
+        }
+        else // Responsavel pelo Csv
+        {
+            header('Content-Encoding: utf-8');
+            header('Content-Type: text/csv; charset=utf-8');
+            header('Content-Disposition: attachment; filename=relatorio_veiculos.csv');
+            echo "\xEF\xBB\xBF";
+            $this->_helper->layout()->setLayout('ajax');
+            $vehicle = new Application_Model_Vehicle();
+            $output = fopen('php://output', 'w');
+            $fleet = $vehicle->returnAll();
+            fputcsv($output, array('Permissão','Marca','Modelo','Fabricação do Veículo','Ano do Modelo do Veículo','Combustivel','Vida Útil'),';');
+            foreach ($fleet as $fleeet ){
+              fputcsv($output, array($fleeet->permission, $fleeet->vehicle_brand, $fleeet->vehicle_model, $fleeet->year_fabrication, $fleeet->year_model,
+                $fleeet->vehicle_fuel, $fleeet->life_cycle),';');
+            }
+              exit;
+        }
     }
 
     public function newHistoricAction()
@@ -505,8 +635,58 @@ class GranteeController extends Zend_Controller_Action
       }
     }
 
+    public function editPermissionAction()
+    {
+      try{
+        $granteeId = $this->getRequest()->getParam('id');
+        $save = $this->getRequest()->getParam('save');
+        $grantee = new Application_Model_Grantee();
+        if ( $this->getRequest()->isPost() ) 
+        {
+          $data = $this->getRequest()->getPost();
+          if($grantee->editGrantee($data,$granteeId))
+          {
+             $this->view->success = true;
+          }
+          else
+          {
+            $this->view->error = true;
+          }
+        }
+        $this->view->grantee = $grantee->returnById($granteeId);
+        $this->view->auxiliars = $grantee->returnAuxiliars($granteeId);
+        $this->view->auxiliarsInactives = $grantee->returnAuxiliarsInactives($granteeId);
+        $this->view->reservationHistoric = $grantee->returnReservationHistoric($granteeId);
+        $this->view->permissionsHistoric = $grantee->returnPermissionsHistoric($granteeId);
+      }catch(Zend_Exception $e){
+        $this->view->error = true;
+      }
+      if( isset($save) && $save == "success" )
+      {
+        $this->view->success = true;
+      }
+      if( isset($save) && $save == "failure" )
+      {
+        $this->view->error = true;
+      }
+      $vehicleModel = new Application_Model_DbTable_VehicleModel();
+      $this->view->vehicleModel = $vehicleModel->fetchAll($vehicleModel->select()->order('name'));
+      $vehicleBrand = new Application_Model_DbTable_VehicleBrand();
+      $this->view->vehicleBrand = $vehicleBrand->fetchAll($vehicleBrand->select()->order('name'));
+      $city = new Application_Model_DbTable_City();
+      $this->view->cities = $city->fetchAll($city->select()->order('name'));
+      $modelTaximeter = new Application_Model_DbTable_TaximeterModel();
+      $this->view->modelTaximeter = $modelTaximeter->fetchAll($modelTaximeter->select()->order('name'));
+      $brandTaximeter = new Application_Model_DbTable_TaximeterBrand();
+      $this->view->brandTaximeter = $brandTaximeter->fetchAll($brandTaximeter->select()->order('name'));
+      $this->view->aux = array( 'grantee' => $granteeId );
+      $this->view->reservation = new Application_Form_Reservation();
+    }
+
 
 }
+
+
 
 
 

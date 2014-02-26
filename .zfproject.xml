@@ -54,6 +54,7 @@
           <actionMethod actionName="addAuxiliarHistoric"/>
           <actionMethod actionName="editAuxiliarHistoric"/>
           <actionMethod actionName="removeAuxiliarHistoric"/>
+          <actionMethod actionName="editPermission"/>
         </controllerFile>
         <controllerFile controllerName="Auxiliar">
           <actionMethod actionName="index"/>
@@ -62,6 +63,9 @@
           <actionMethod actionName="remove"/>
           <actionMethod actionName="view"/>
           <actionMethod actionName="report"/>
+          <actionMethod actionName="reportAuxiliarAll"/>
+          <actionMethod actionName="reportAuxiliarActiveAll"/>
+          <actionMethod actionName="reportGranteeAuxiliarActiveAll"/>
           <actionMethod actionName="printLicense"/>
           <actionMethod actionName="printData"/>
           <actionMethod actionName="saveGrantee"/>
@@ -130,6 +134,32 @@
           <actionMethod actionName="view"/>
           <actionMethod actionName="remove"/>
         </controllerFile>
+        <controllerFile controllerName="Scheduling">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="treatment"/>
+          <actionMethod actionName="calendar"/>
+          <actionMethod actionName="returnEvents"/>
+          <actionMethod actionName="schedule"/>
+          <actionMethod actionName="returnAllEvents"/>
+          <actionMethod actionName="returnHour"/>
+          <actionMethod actionName="returnSchedulings"/>
+          <actionMethod actionName="hour"/>
+          <actionMethod actionName="report"/>
+          <actionMethod actionName="deleteHour"/>
+          <actionMethod actionName="graphic"/>
+          <actionMethod actionName="returnSchedulingsVis"/>
+          <actionMethod actionName="reportScheduling"/>
+          <actionMethod actionName="remove"/>
+          <actionMethod actionName="reschedule"/>
+        </controllerFile>
+        <controllerFile controllerName="Agendamento">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="completo"/>
+          <actionMethod actionName="documentos"/>
+          <actionMethod actionName="confirmacao"/>
+          <actionMethod actionName="printConfirmation"/>
+          <actionMethod actionName="consulta"/>
+        </controllerFile>
       </controllersDirectory>
       <formsDirectory>
         <formFile formName="Inspector"/>
@@ -143,6 +173,8 @@
         <formFile formName="TaximeterModel"/>
         <formFile formName="TaximeterBrand"/>
         <formFile formName="Reservation"/>
+        <formFile formName="Absence"/>
+        <formFile formName="SchedulingHour"/>
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
@@ -167,6 +199,12 @@
           <dbTableFile dbTableName="VehicleBrand"/>
           <dbTableFile dbTableName="TaximeterBrand"/>
           <dbTableFile dbTableName="TaximeterModel"/>
+          <dbTableFile dbTableName="Scheduling"/>
+          <dbTableFile dbTableName="SchedulingUser"/>
+          <dbTableFile dbTableName="SchedulingHourAllowed"/>
+          <dbTableFile dbTableName="SchedulingType"/>
+          <dbTableFile dbTableName="SchedulingError"/>
+          <dbTableFile dbTableName="SchedulingHoliday"/>
         </dbTableDirectory>
         <modelFile modelName="Address"/>
         <modelFile modelName="Grantee"/>
@@ -195,6 +233,8 @@
         <modelFile modelName="TaximeterBrand"/>
         <modelFile modelName="TaximeterModel"/>
         <modelFile modelName="PrintVehicle"/>
+        <modelFile modelName="Scheduling"/>
+        <modelFile modelName="PrintConfirmation"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <servicesDirectory enabled="false"/>
@@ -295,6 +335,15 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Auxiliar">
             <viewScriptFile forActionName="report"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Auxiliar">
+            <viewScriptFile forActionName="reportAuxiliarAll"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Auxiliar">
+            <viewScriptFile forActionName="reportAuxiliarActiveAll"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Auxiliar">
+            <viewScriptFile forActionName="reportGranteeAuxiliarActiveAll"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Grantee">
             <viewScriptFile forActionName="reportGranteeAll"/>
@@ -491,6 +540,79 @@
           <viewControllerScriptsDirectory forControllerName="Auxiliar">
             <viewScriptFile forActionName="removeGrantee"/>
           </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Scheduling">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Scheduling">
+            <viewScriptFile forActionName="treatment"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Scheduling">
+            <viewScriptFile forActionName="calendar"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Scheduling">
+            <viewScriptFile forActionName="returnEvents"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Scheduling">
+            <viewScriptFile forActionName="schedule"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Scheduling">
+            <viewScriptFile forActionName="returnAllEvents"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Scheduling">
+            <viewScriptFile forActionName="returnHour"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Agendamento">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Agendamento">
+            <viewScriptFile forActionName="completo"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Scheduling">
+            <viewScriptFile forActionName="returnSchedulings"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Scheduling">
+            <viewScriptFile forActionName="hour"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Scheduling">
+            <viewScriptFile forActionName="report"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Scheduling">
+            <viewScriptFile forActionName="deleteHour"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Scheduling">
+            <viewScriptFile forActionName="graphic"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Scheduling">
+            <viewScriptFile forActionName="returnSchedulingsVis"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Scheduling">
+            <viewScriptFile forActionName="reportScheduling"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Grantee">
+            <viewScriptFile forActionName="editPermission"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Agendamento">
+            <viewScriptFile forActionName="documentos"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Agendamento">
+            <viewScriptFile forActionName="confirmacao"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Agendamento">
+            <viewScriptFile forActionName="printConfirmation"/>
+          </viewControllerScriptsDirectory>
+<<<<<<< HEAD
+          <viewControllerScriptsDirectory forControllerName="Index">
+=======
+          <viewControllerScriptsDirectory forControllerName="Agendamento">
+            <viewScriptFile forActionName="consulta"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Scheduling">
+            <viewScriptFile forActionName="remove"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Scheduling">
+            <viewScriptFile forActionName="reschedule"/>
+>>>>>>> aa2c4cc7847e0e8d846cfbf1a54875471a95e8e2
+          </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>
@@ -525,7 +647,8 @@
       <testPHPUnitBootstrapFile filesystemName="bootstrap.php"/>
       <testApplicationDirectory>
         <testApplicationControllerDirectory>
-          <testApplicationControllerFile forControllerName="Index"/>
+          <testApplicationControllerFile forControllerName="Index">
+          </testApplicationControllerFile>
         </testApplicationControllerDirectory>
       </testApplicationDirectory>
       <testLibraryDirectory/>

@@ -8,21 +8,24 @@
     <meta name="author" content="">
 
     <!-- Le styles -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/lib/bootstrap.min.css" rel="stylesheet">
     <style type="text/css">
       body {
         padding-top: 80px;
       }
 
     </style>
-    <link href="/css/bootstrap-responsive.min.css" rel="stylesheet">
-    <link href="/css/font-awesome.min.css" rel="stylesheet">
-    <link href="/css/datepicker.css" rel="stylesheet">
+    <link href="/css/lib/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="/css/lib/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/lib/datepicker.css" rel="stylesheet">
+    <link href="/css/lib/fullcalendar.css" rel="stylesheet">
+    <link href="/css/lib/fullcalendar.print.css" rel="stylesheet">
+    <script src="/js/lib/jquery-1.10.1.min.js"></script>
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
-      <script src="/js/html5shiv.js"></script>
-      <script src="/js/respond.min.js"></script>
+      <script src="/js/lib/html5shiv.js"></script>
+      <script src="/js/lib/respond.min.js"></script>
     <![endif]-->
   </head>
   <body>
@@ -49,8 +52,15 @@
               <li><a href="/grantee/view">Permissionários</a></li>
               <li><a href="/auxiliar/view">Auxiliares</a></li>
             <?}?>
+            <?if($institution == 2){?>
+              <li><a href="/inspection">Fiscalização</a></li>
+              <li><a href="/survey">Vistoria</a></li>
+            <?}?>
           </ul>
           <ul class="nav navbar-nav navbar-right">
+            <?if($institution == 1){?>
+            <li><a href="/scheduling">Agenda</a></li>
+            <?}?>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i><b class="caret"></b></a>
               <ul class="dropdown-menu">
@@ -98,17 +108,16 @@
 
     </div>
     
-    <script src="/js/jquery-1.10.1.min.js"></script>
-    <script src="/js/jquery.maskedinput.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/bootstrap-datepicker.js"></script>
-    <script src="/js/locales/bootstrap-datepicker.pt-BR.js"></script>
-    <script src="/js/underscore-min.js"></script>
+    <script src="/js/lib/jquery-ui.custom.min.js"></script>
+    <script src="/js/lib/jquery.maskedinput.min.js"></script>
+    <script src="/js/lib/bootstrap.min.js"></script>
+    <script src="/js/lib/bootstrap-datepicker.js"></script>
+    <script src="/js/lib/underscore-min.js"></script>
     <script src="/js/language/pt-BR.js"></script>
-    <script src="/js/calendar.min.js"></script>
-    <script src="/js/d3.v3.min.js"></script>
-    <script src="/js/jquery.livequery.js"></script>
-    <script src="/js/bootstrap3-typeahead.min.js"></script>
+    <script src="/js/lib/fullcalendar.js"></script>
+    <script src="/js/lib/gcal.js"></script>
+    <script src="/js/lib/jquery.livequery.js"></script>
+    <script src="/js/lib/bootstrap3-typeahead.min.js"></script>
     <script src="/js/general.js"></script>
     <?if($institution == 1){?>
     <script src="/js/grantee_v2.js"></script>

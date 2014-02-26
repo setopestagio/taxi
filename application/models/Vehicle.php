@@ -22,20 +22,23 @@ class Application_Model_Vehicle
 
 	public function editVehicle($data, $vehicleId)
 	{
-		$vehicle = new Application_Model_DbTable_Vehicle();
-		$editVehicle = $vehicle->fetchRow($vehicle->select()->where('id = ?',$vehicleId));
-		$editVehicle->id = $vehicleId;
-		$editVehicle->plate  = $data['plate'];
-		$editVehicle->brand  = $data['brand'];
-		$editVehicle->model  = $data['model'];
-		$editVehicle->year_fabrication = $data['year_fabrication'];
-		$editVehicle->year_model = $data['year_model'];
-		$editVehicle->color = $data['color'];
-		$editVehicle->chassi  = $data['chassi'];
-		$editVehicle->fuel  = $data['fuel'];
-		$editVehicle->taximeter_brand = $data['taximeter_brand'];
-		$editVehicle->taximeter_model = $data['taximeter_model'];
-		return $editVehicle->save();
+		if($vehicleId)
+		{
+			$vehicle = new Application_Model_DbTable_Vehicle();
+			$editVehicle = $vehicle->fetchRow($vehicle->select()->where('id = ?',$vehicleId));
+			$editVehicle->id = $vehicleId;
+			$editVehicle->plate  = $data['plate'];
+			$editVehicle->brand  = $data['brand'];
+			$editVehicle->model  = $data['model'];
+			$editVehicle->year_fabrication = $data['year_fabrication'];
+			$editVehicle->year_model = $data['year_model'];
+			$editVehicle->color = $data['color'];
+			$editVehicle->chassi  = $data['chassi'];
+			$editVehicle->fuel  = $data['fuel'];
+			$editVehicle->taximeter_brand = $data['taximeter_brand'];
+			$editVehicle->taximeter_model = $data['taximeter_model'];
+			return $editVehicle->save();
+		}
 	}
 
 	public function returnByPlate($plate)
@@ -49,7 +52,8 @@ class Application_Model_Vehicle
 		$grantee = new Application_Model_DbTable_Vehicle();
 		$select = $grantee->select()->setIntegrityCheck(false);
 		$select	->from(array('g' => 'grantee'))
-						->joinInner(array('v' => 'vehicle'), 'v.id=g.vehicle')
+						->joinInner(array('v' => 'vehicle'), 'v.id=g.vehicle',array('life_cycle' => new Zend_Db_Expr(date('Y').' - year_fabrication'), 
+																						'year_fabrication', 'year_model'))
 						->joinLeft(array('m' => 'vehicle_model'),'v.model=m.id',array('vehicle_model' => 'name'))
 						->joinLeft(array('b' => 'vehicle_brand'),'v.brand=b.id',array('vehicle_brand' => 'name'))
 						->joinLeft(array('f' => 'vehicle_fuel'),'v.fuel=f.id',array('vehicle_fuel' => 'name'))

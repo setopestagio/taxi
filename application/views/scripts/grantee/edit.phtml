@@ -31,10 +31,10 @@
         </div>
         <hr>
         <ul class="nav nav-tabs" id="myTab">
-				  <li class="active"><a class="btn btn-default" href="#data">Dados</a></li>
+				  <li class="active"><a href="#data">Dados Pessoais</a></li>
 				  <li><a href="#auxiliars">Auxiliares</a></li>
 				  <li><a href="#reservation">Reserva</a></li>
-				  <li><a href="#historic">Histórico</a></li>
+				  <li><a href="#historic">Histórico de Permissões</a></li>
 				</ul>
 		<div class="tab-content">
 			<div class="tab-pane active" id="data"><br>
@@ -66,6 +66,7 @@
 				                  <select name="authorization" id="authorization" class="form-control">
 				                  	<option value="0" <?if($this->grantee->authorization == 0) echo 'selected="selected"'; ?>>-- Escolha o tipo de autorização --</option>
 				                  	<option value="1" <?if($this->grantee->authorization == 1) echo 'selected="selected"'; ?>>Táxi Especial</option>
+				                  	<option value="2" <?if($this->grantee->authorization == 2) echo 'selected="selected"'; ?>>Táxi Convencional</option>
 				                  </select>
 				              </div><!--/.controls -->
 				            </div><!--/.form-group -->
@@ -412,7 +413,7 @@
 		  		<div class="panel panel-default">
 		  			<div class="panel-heading">
 		  				<h4 class="panel-title">
-		  					<a href="#collapseAuxiliar_<?=$auxiliars->id?>" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"><?=$auxiliars->name?></a>
+		  					<a href="#collapseAuxiliar_<?=$auxiliars->id?>" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"><?=$auxiliars->name?> - <?=Application_Model_General::dateToBr($auxiliars->start_date)?></a>
 		  				</h4>
 		  			</div>
 		  			<div class="panel-collapse collapse" id="collapseAuxiliar_<?=$auxiliars->id?>">
@@ -708,14 +709,15 @@
 															$select = $granteeAuxiliar->select()->setIntegrityCheck(false);
 															$select	->from(array('g' => 'grantee_auxiliar') )
 																			->joinInner(array('p' => 'person'), 'p.id=g.auxiliar')	
-																			->where('grantee = ?',$permissionsHistoric->id);
+																			->where('grantee = ?',$permissionsHistoric->id)
+																			->order('start_date');
 									        		$granteeAuxiliarRow = $granteeAuxiliar->fetchAll($select);
 															foreach($granteeAuxiliarRow as $auxiliar){
 									        	?>
 										        		<div class="panel panel-default">
 											        		<div class="panel-heading">
 											        			<h4 class="panel-title">
-											        				<a class="panel-toggle" data-toggle="collapse" data-parent="#panel_aux_<?=$permissionsHistoric->id?>" href="#panel_aux_edit_<?=$auxiliar->auxiliar?>"><?=$auxiliar->name?></a>
+											        				<a class="panel-toggle" data-toggle="collapse" data-parent="#panel_aux_<?=$permissionsHistoric->id?>" href="#panel_aux_edit_<?=$auxiliar->auxiliar?>"><?=$auxiliar->name?> - <?=Application_Model_General::dateToBr($auxiliar->start_date)?> - <?=Application_Model_General::dateToBr($auxiliar->end_date)?></a>
 											        			</h4>
 											        		</div>
 											        		<div id="panel_aux_edit_<?=$auxiliar->auxiliar?>" class="panel-collapse collapse">
@@ -834,11 +836,11 @@
 		            	<option>-- selecione um orgão --</option>
 		            	<option value="DETRAN/MG">DETRAN/MG</option>
 		            	<option value="DELEGACIA DE TRÂNSITO DE CONFINS">DELEGACIA DE TRÂNSITO DE CONFINS</option>
-		            	<option value="DELEGACIA DE TRÂNSITO DE CONFINS">DELEGACIA DE TRÂNSITO DE CONTAGEM</option>
-		            	<option value="DELEGACIA DE TRÂNSITO DE CONFINS">DELEGACIA DE TRÂNSITO DE LAGOA SANTA</option>
-		            	<option value="DELEGACIA DE TRÂNSITO DE CONFINS">DELEGACIA DE TRÂNSITO DE SANTA LUZIA</option>
-		            	<option value="DELEGACIA DE TRÂNSITO DE CONFINS">DELEGACIA DE TRÂNSITO DE BETIM</option>
-		            	<option value="DELEGACIA DE TRÂNSITO DE CONFINS">DELEGACIA DE TRÂNSITO DE SABARÁ</option>
+		            	<option value="DELEGACIA DE TRÂNSITO DE CONTAGEM">DELEGACIA DE TRÂNSITO DE CONTAGEM</option>
+		            	<option value="DELEGACIA DE TRÂNSITO DE LAGOA SANTA">DELEGACIA DE TRÂNSITO DE LAGOA SANTA</option>
+		            	<option value="DELEGACIA DE TRÂNSITO DE SANTA LUZIA">DELEGACIA DE TRÂNSITO DE SANTA LUZIA</option>
+		            	<option value="DELEGACIA DE TRÂNSITO DE BETIM">DELEGACIA DE TRÂNSITO DE BETIM</option>
+		            	<option value="DELEGACIA DE TRÂNSITO DE SABARÁ">DELEGACIA DE TRÂNSITO DE SABARÁ</option>
 		            </select>
 		          </div>
 		        </div>

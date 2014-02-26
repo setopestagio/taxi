@@ -18,7 +18,7 @@
         <li class="active">Novo</li>
       </ol>  
       <div class="page-header">
-      	<h1>Novo Permissionário <small>defina aqui os dados do permissionário</small></h1>
+      	<h1>Nova Permissão <small>defina aqui os dados da permissão</small></h1>
         <hr>
         <form class="form-horizontal" action="/grantee/new" method="post">
         	<div>
@@ -31,16 +31,32 @@
 	          		</div>
 	          		<div id="collapseMain" class="panel-collapse collapse in">
 	          			<div class="panel-body">
-					          <div class="form-group">
+	          				<div class="form-group">
+                      <label class="col-lg-2 control-label" for="existsPerson">Condutor consta no sistema?</label>
+                      <div class="col-lg-5">
+                          <select class="form-control" id="existsPerson" name="existsPerson">
+                            <option value="1">SIM</option>
+                            <option value="2" selected>NÃO</option>
+                          </select>
+                      </div>
+                    </div>
+					          <div class="form-group" id="namePerson">
 					              <label class="col-lg-2 control-label" for="name">Nome</label>
 					              <div class="col-lg-5">
 					                  <input type="text" name="name" value="" class="form-control" id="name" placeholder="nome completo">
 					              </div><!--/.controls -->
 					          </div><!--/.form-group -->
+					          <div class="form-group" id="nameGrantee" style="display: none">
+				              <label class="col-lg-2 control-label" for="aux_new">Nome</label>
+				              <div class="col-lg-5">			                 
+			                  <input type="text" name="aux_new" value="" class="form-control" id="aux_new" placeholder="nome do condutor" autocomplete="off"> <span style="cursor: pointer; display: none;" class="glyphicon glyphicon-remove" id="removeAuxNew"></span>
+			                  <input type="hidden" name="aux_new_id" id="aux_new_id" value="">
+				              </div>
+					        	</div><!--/.form-group -->
 					          <div class="form-group">
 					              <label class="col-lg-2 control-label" for="permission">Permissão</label>
 					              <div class="col-lg-5">
-					                  <input type="text" name="permission" value="" class="form-control permission" id="permission" placeholder="número da permissão">
+					                  <input type="text" name="permission" value="" class="form-control" id="permission" placeholder="número da permissão">
 					              </div><!--/.controls -->
 					          </div><!--/.form-group -->
 					          <div class="form-group">
@@ -49,6 +65,7 @@
 					                  <select name="authorization" id="authorization" class="form-control">
 					                  	<option value="0">-- Escolha o tipo de autorização --</option>
 					                  	<option value="1">Táxi Especial</option>
+					                  	<option value="1">Táxi Convencional</option>
 					                  </select>
 					              </div><!--/.controls -->
 					            </div><!--/.form-group -->
@@ -90,7 +107,7 @@
 					        </div>
 					      </div>
 					    </div>
-	          	<div class="panel panel-default">
+	          	<div class="panel panel-default" id="addressCollapse">
 	          		<div class="panel-heading">
 	          			<h4 class="panel-title">
 	          				<a class="panel-title" data-toggle="collapse" data-parent="#accordion1" href="#collapseAddress">Endereço</a>
@@ -142,7 +159,7 @@
 	          			</div>
 	          		</div>
 	          	</div>
-	          	<div class="panel panel-default">
+	          	<div class="panel panel-default" id="contactCollapse">
 	          		<div class="panel-heading">
 	          			<h4 class="panel-title">
 	          				<a class="panel-title" data-toggle="collapse" data-parent="#accordion1" href="#collapseContact">Contato</a>
@@ -171,7 +188,7 @@
 	          			</div>
 	          		</div>
 	          	</div>
-		          <div class="panel panel-default">
+		          <div class="panel panel-default" id="documentCollapse">
 		        		<div class="panel-heading">
 		        			<h4 class="panel-title">
 		        				<a class="panel-title" data-toggle="collapse" data-parent="#accordion1" href="#collapseDocument">Documentos</a>

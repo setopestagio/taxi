@@ -16,38 +16,62 @@
         <li><a href="/dashboard">Dashboard</a></li>
         <li><a href="/grantee">Permissionário</a></li>
         <li class="active">Relatórios</li>
-      </ol>  
+      </ol>
       <div class="row">
-        <div class="span4 well">
-          <h2>Lista Completa</h2>
-          <p>Lista completa dos permissionários com seus principais dados.</p>
-          <p><a href="/grantee/report-grantee-all" class="btn btn-default">emitir relatório</a></p>
-        </div>
-        <div class="span4 well">
-          <h2>Lista Ativos</h2>
-          <p>Lista completa de todos os permissionários ativos no sistema.</p>
-          <p><a href="/grantee/report-grantee-actives" class="btn btn-default">emitir relatório</a></p>
-        </div>
-      </div>
+        <div class="col-lg-4"> <!--Lista Completa-->
+        	<h2>Lista Completa</h2>
+            <p>Lista completa dos permissionários com seus principais dados.</p>
+            <form class="form-inline" action="/grantee/report-grantee-all" method="get" role="form">
+                <select name="optionCity" class="form-control">
+                  <?foreach($this->cities as $cityOptions)
+                  {?>
+  	                <option value="<?=$cityOptions['id']?>"><?if($cityOptions['name'] == ""){?>--- TODAS AS CIDADES ---</option>
+  	                	<?}else{
+  	                		echo $cityOptions['name']?></option>
+  	                	<?}
+                  }?>
+                </select><br><br>
+                <button type="submit" id='perm_all_pdf' name='perm_all' class="btn btn-primary" value="0">Gerar Pdf</button>
+                <button type="submit" id='perm_all_csv' name='perm_all' class="btn btn-primary" value="1">Gerar Csv</button>
+            </form>
+         	</div>
+         	<div class="col-lg-4">
+        	<h2>Lista Ativos</h2> <!--Lista Ativos-->
+            <p>Lista completa dos permissionários ativos no sistema.</p>
+            <form class="form-inline" action="/grantee/report-grantee-actives" method="get" role="form">
+                <select name="optionCity" class="form-control">
+                  <?foreach($this->cities as $cityOptions)
+                  {?>
+  	                <option value="<?=$cityOptions['id']?>"><?if($cityOptions['name'] == ""){?>--- TODAS AS CIDADES ---</option>
+  	                	<?}else{
+  	                		echo $cityOptions['name']?></option>
+  	                	<?}
+                  }?>
+                </select><br><br>
+                <button type="submit" id='perm_all_pdf' name='perm_all' class="btn btn-primary" value="0">Gerar Pdf</button>
+                <button type="submit" id='perm_all_csv' name='perm_all' class="btn btn-primary" value="1">Gerar Csv</button>
+            </form>
+         	</div>
+         	<div class="col-lg-4">
+            <h2>Veículos</h2> <!--Veículos-->
+            <p>Lista de todos veículos vinculados aos permissionários. </p>
+            <form class="form-inline" action="/grantee/report-vehicle" method="get" role="form">
+                <button type="submit" id='vehicle_pdf' name='vehicle_all' class="btn btn-primary" value="0">Gerar Pdf</button>
+                <button type="submit" id='vehicle_csv' name='vehicle_all' class="btn btn-primary" value="1">Gerar Csv</button>
+            </form>
+         	</div>
+      </div><hr>
       <div class="row">
-        <div class="span4 well">
-          <h2>Veículos</h2>
-          <p>Lista de todos veículos vinculados aos permissionários. </p>
-          <p><a href="/grantee/report-vehicle" class="btn btn-default">emitir relatório</a></p>
+        <div class="col-lg-4">
+          <h2>Óbitos</h2>
+          <p>Lista de todos os óbitos de permissionários. </p>
+          <p><a href="/grantee/report-vehicle" class="btn btn-primary">gerar pdf</a> <a href="/grantee/report-vehicle" class="btn btn-primary">gerar csv</a></p>
         </div>
-        <div class="span4 well">
-          <h2>Pendências</h2>
-          <p>Lista das pendências dos permissionários.</p>
-          <p><a href="#" class="btn btn-default">emitir relatório</a></p>
+        <div class="col-lg-4">
+          <h2>Tarifa</h2>
+          <p>Relatório de reajuste de tarifa </p>
+          <p><a href="/grantee/report-vehicle" class="btn btn-primary">gerar pdf</a> <a href="/grantee/report-vehicle" class="btn btn-primary">gerar csv</a></p>
         </div>
-      </div>
-      <div class="row">
-        <div class="span4 well">
-          <h2>Pontuação</h2>
-          <p>Lista da pontuação dos permissionários.</p>
-          <p><a href="#" class="btn btn-default">emitir relatório</a></p>
-        </div>
-      </div>
     </div>
   </div>
 </div>

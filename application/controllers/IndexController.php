@@ -17,9 +17,9 @@ class IndexController extends Zend_Controller_Action
       	$this->_redirect('/dashboard');
       }
     }
-
-
 }
+
+
 
 
 

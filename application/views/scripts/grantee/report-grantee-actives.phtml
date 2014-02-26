@@ -1,0 +1,46 @@
+<div class="container">
+  <div id="navbar"><img src="/img/superintendencia.jpg">
+    <div class="row onepage">
+      <table class="table table-bordered table-hover" border='1'>
+        <thead>
+          <tr> 
+            <th> Nome</th>
+            <th> RG</th>
+            <th> CPF </th>
+            <th> Nº da Permissão</th>
+            <th> Data da Permissão</th>
+            <th> Rua</th>
+            <th> Bairro</th>
+            <th> Cidade</th>
+            <th> CEP</th>
+            <th> Modelo do Veiculo</th>
+            <th> Marca do Veiculo</th>
+            <th> Placa do Veiculo</th>
+          </tr>
+        </thead>
+        <tbody>
+            <?if(count($this->list))
+            {
+              foreach($this->list as $grantee)
+                {?>
+                  <tr>
+                    <td><?=$grantee->person_name?></td>
+                    <td><?=$grantee->rg?></td>
+                    <td><?=$grantee->cpf?></td>
+                    <td><?=$grantee->permission?></td>
+                    <td><?=$grantee->start_permission?></td>
+                    <td><?=$grantee->address_complete?></td>
+                    <td><?=$grantee->neighborhood?></td>
+                    <td><?=$grantee->city_address?></td>
+                    <td><?=$grantee->zipcode?></td>
+                    <td><?=$grantee->vehicle_model?></td>
+                    <td><?=$grantee->vehicle_brand?></td>
+                    <td><?=$grantee->plate?></td>
+                    </tr>
+              <?}
+            }?>
+        </tbody>
+      </table>
+    </div>  
+  </div>
+</div>

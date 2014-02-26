@@ -320,6 +320,19 @@ class Application_Model_PrintCommunication
         $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES_BOLD),11)
                 ->drawText('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX', 75, 290, 'UTF-8');
     }
+    if($data['operation'] == 5)
+    {
+        $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES_BOLD),11)
+                ->drawText('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX', 100, 440, 'UTF-8');
+        $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES_BOLD),11)
+                ->drawText('XXXXXXXXXXXXXXXXXXXXXXXXXXXXX', 115, 360, 'UTF-8');
+        $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES_BOLD),11)
+                ->drawText('XXXXXXXXXXXXXXXXXXX', 385, 360, 'UTF-8');
+        $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES_BOLD),11)
+                ->drawText('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX', 75, 290, 'UTF-8');
+        $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES_BOLD),11)
+                ->drawText('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX', 75, 230, 'UTF-8');
+    }
 
     $this->page->setLineWidth(0.5)
         ->drawLine(450, 520, 460 , 520);

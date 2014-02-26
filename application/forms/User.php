@@ -10,42 +10,43 @@ class Application_Form_User extends Twitter_Bootstrap_Form_Horizontal
       $this->addElement('text', 'name', array(
       		'label'					=> 'Nome',
           'placeholder'   => 'nome completo',
-          'class'					=> 'input-xlarge'
+          'class'					=> 'form-control'
       ));
 
       $this->addElement('text', 'phone', array(
       		'label'					=> 'Telefone',
           'placeholder'   => 'telefone',
-          'class'					=> 'input-xlarge phone'
+          'class'					=> 'form-control phone'
       ));
 
       $this->addElement('text', 'email', array(
       		'label'					=> 'E-mail',
           'placeholder'   => 'email',
-          'class'					=> 'input-xlarge'
+          'class'					=> 'form-control'
       ));
 
       $this->addElement('text', 'username', array(
       		'label'					=> 'Usuário no sistema',
           'placeholder'   => 'usuário para logar no sistema',
-          'class'					=> 'input-xlarge'
+          'class'					=> 'form-control'
       ));
 
       $this->addElement('password', 'password', array(
       		'label'					=> 'Senha',
           'placeholder'   => 'senha',
-          'class'					=> 'input-xlarge'
+          'class'					=> 'form-control'
       ));
 
       $this->addElement('password', 'confirm_password', array(
       		'label'					=> 'Confirme a senha',
           'placeholder'   => 'confirme a senha',
-          'class'					=> 'input-xlarge'
+          'class'					=> 'form-control'
       ));
 
       $this->addElement('submit', 'submit', array(
         'buttonType' 			=> Twitter_Bootstrap_Form_Element_Submit::BUTTON_PRIMARY,
-        'label'      			=> 'Salvar'
+        'label'      			=> 'Salvar',
+        'class'           => 'col-lg-offset-5'
       ));
     }
 

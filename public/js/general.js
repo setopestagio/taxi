@@ -11,4 +11,5 @@ $(document).ready(function(){
     format: 'dd/mm/yyyy'
   });
   $(".dateMask").mask("99/99/9999");
+  $(".hourMask").mask("99:99");  
 });

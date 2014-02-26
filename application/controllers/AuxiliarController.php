@@ -21,16 +21,16 @@ class AuxiliarController extends Zend_Controller_Action
     public function newAction()
     {
       try{
-        if ( $this->getRequest()->isPost() ) 
+        if ($this->getRequest()->isPost()) 
         {
           $data = $this->getRequest()->getPost();
           $auxiliar = new Application_Model_Auxiliar();
           $auxiliarId = $auxiliar->newAuxiliar($data);
           if($auxiliarId)
           {
-            if(isset($data['permission']) && $data['permission'] != '')
+            if(isset($data['grantee_new_id']) && $data['grantee_new_id'] != '')
             {
-              $auxiliar->saveToGrantee($data['permission'],$data['initialDateGrantee'],$auxiliarId);
+              $auxiliar->saveToGrantee($data['grantee_new_id'],$data['start_date_new_grantee'],$auxiliarId);
             }
             $this->view->success = true;
             $this->_redirect('/auxiliar/edit/id/'.$auxiliarId);
@@ -44,7 +44,7 @@ class AuxiliarController extends Zend_Controller_Action
         $this->view->error = true;
       }
       $city = new Application_Model_DbTable_City();
-      $this->view->cities = $city->fetchAll();
+      $this->view->cities = $city->fetchAll($city->select()->order('name'));
     }
 
     public function editAction()
@@ -79,7 +79,7 @@ class AuxiliarController extends Zend_Controller_Action
         $this->view->error = true;
       }
       $city = new Application_Model_DbTable_City();
-      $this->view->cities = $city->fetchAll();
+      $this->view->cities = $city->fetchAll($city->select()->order('name'));
     }
 
     public function removeAction()
@@ -131,7 +131,8 @@ class AuxiliarController extends Zend_Controller_Action
 
     public function reportAction()
     {
-        // action body
+      $city = new Application_Model_DbTable_City();
+      $this->view->cities = $city->fetchAll($city->select()->order('name'));
     }
 
     public function printLicenseAction()
@@ -149,6 +150,7 @@ class AuxiliarController extends Zend_Controller_Action
         $auxiliarRow = $auxiliar->returnById($id);
         $pdf = $print->createPdf($auxiliarRow,$endDate);
         header('Content-Type: application/pdf');
+        header('Content-Disposition: attachment; filename="Carteira de Auxiliar.pdf"');
         echo $pdf->render(); 
       }catch(Zend_Exception $e){
         die ('PDF error: ' . $e->getMessage()); 
@@ -167,6 +169,7 @@ class AuxiliarController extends Zend_Controller_Action
         $auxiliarRow = $auxiliar->returnById($id);
         $pdf = $print->createPdf($auxiliarRow);
         header('Content-Type: application/pdf');
+        header('Content-Disposition: attachment; filename="Dados Auxiliar.pdf"');
         echo $pdf->render(); 
       }catch(Zend_Exception $e){
         die ('PDF error: ' . $e->getMessage()); 
@@ -219,24 +222,205 @@ class AuxiliarController extends Zend_Controller_Action
       }
     }
 
+    public function reportAuxiliarAllAction()
+    {
+      try{
+        if($_GET["aux_all"] == 0) // responsavel pelo "PDF"
+        {
+          $optionCity = $this->getRequest()->getParam('optionCity');
+          if($optionCity == 0)
+          {
+            $this->_helper->layout()->setLayout('report');
+            $auxiliar = new Application_Model_Auxiliar();
+            $auxiliares = $auxiliar->findAll();
+            $this->view->list = $auxiliares;
+          }
+          else
+          {
+           $this->_helper->layout()->setLayout('report');
+            $auxiliar = new Application_Model_Auxiliar();
+            $auxiliares = $auxiliar->findAllCity($optionCity);
+            $this->view->list = $auxiliares; 
+          }
+        }
+        else // Responsavel pelo Csv
+        {
+         $optionCity = $this->getRequest()->getParam('optionCity');
+          if($optionCity == 0)
+          {
+            header('Content-Encoding: utf-8');
+            header('Content-Type: text/csv; charset=utf-8');
+            header('Content-Disposition: attachment; filename=relatorio_auxiliar_todos.csv');
+            echo "\xEF\xBB\xBF";
+            $this->_helper->layout()->setLayout('ajax');
+            $auxiliar = new Application_Model_Auxiliar();
+            $output = fopen('php://output', 'w');
+            $auxiliares = $auxiliar->findAll();
+            fputcsv($output, array('Nome', 'CPF','RG','Rua','Bairro','Cidade','CEP','Nº da Licença do Permissionário','Data de Inicio na Permissão'),';');
+            foreach ($auxiliares as $auxiliaress ){
+              fputcsv($output, array($auxiliaress->name, $auxiliaress->cpf, $auxiliaress->rg_completo, $auxiliaress->address_complete, $auxiliaress->neighborhood,
+               $auxiliaress->city_address, $auxiliaress->zipcode, $auxiliaress->grantee_permission, $auxiliaress->start_permission),';');
+            }
+              exit;
+          }
+          else
+          {
+            $city = new Application_Model_DbTable_City();
+            $chosenCity = $city->fetchRow($city->select()->from(array('c' => 'city'), array('name'))->where('c.id = ?',$optionCity));
+            header('Content-Encoding: utf-8');
+            header('Content-Type: text/csv; charset=utf-8');
+            header('Content-Disposition: attachment; filename=relatorio_auxiliares_'.$chosenCity->name.'.csv');
+            echo "\xEF\xBB\xBF";
+            $this->_helper->layout()->setLayout('ajax');
+            $auxiliar = new Application_Model_Auxiliar();
+            $output = fopen('php://output', 'w');
+            $auxiliares = $auxiliar->findAllCity($optionCity);
+            fputcsv($output, array('Nome', 'CPF','RG','Rua','Bairro','Cidade','CEP','Nº da Licença do Permissionário','Data de Inicio na Permissão'),';');
+            foreach ($auxiliares as $auxiliaress ){
+              fputcsv($output, array($auxiliaress->name, $auxiliaress->cpf, $auxiliaress->rg_completo, $auxiliaress->address_complete, 
+                $auxiliaress->neighborhood, $auxiliaress->city_address, $auxiliaress->zipcode, $auxiliaress->grantee_permission,
+                $auxiliaress->start_permission),';');
+            }
+            exit;
+          }
+        }
+      }catch(Zend_Exception $e){
+        echo $e->getMessage();
+      }
+    }
+
+    public function reportAuxiliarActiveAllAction()
+    {
+      try{
+        if($_GET["aux_all"] == 0) // responsavel pelo "PDF"
+        {
+          $optionCity = $this->getRequest()->getParam('optionCity');
+          if($optionCity == 0)
+          {
+            $this->_helper->layout()->setLayout('report');
+            $auxiliar = new Application_Model_Auxiliar();
+            $auxiliares = $auxiliar->findAllActive();
+            $this->view->list = $auxiliares;
+          }
+          else
+          {
+           $this->_helper->layout()->setLayout('report');
+            $auxiliar = new Application_Model_Auxiliar();
+            $auxiliares = $auxiliar->findAllActiveCity($optionCity);
+            $this->view->list = $auxiliares; 
+          }
+        }
+        else // Responsavel pelo Csv
+        {
+         $optionCity = $this->getRequest()->getParam('optionCity');
+          if($optionCity == 0)
+          {
+            header('Content-Encoding: utf-8');
+            header('Content-Type: text/csv; charset=utf-8');
+            header('Content-Disposition: attachment; filename=relatorio_auxiliar_todos_ativos.csv');
+            echo "\xEF\xBB\xBF";
+            $this->_helper->layout()->setLayout('ajax');
+            $auxiliar = new Application_Model_Auxiliar();
+            $output = fopen('php://output', 'w');
+            $auxiliares = $auxiliar->findAllActive();
+            fputcsv($output, array('Nome', 'CPF','RG','Rua','Bairro','Cidade','CEP','Nº da Licença do Permissionário','Data de Inicio na Permissão'),';');
+            foreach ($auxiliares as $auxiliaress ){
+              fputcsv($output, array($auxiliaress->name, $auxiliaress->cpf, $auxiliaress->rg_completo, $auxiliaress->address_complete, $auxiliaress->neighborhood,
+               $auxiliaress->city_address, $auxiliaress->zipcode, $auxiliaress->grantee_permission, $auxiliaress->start_permission),';');
+            }
+              exit;
+          }
+          else
+          {
+            $city = new Application_Model_DbTable_City();
+            $chosenCity = $city->fetchRow($city->select()->from(array('c' => 'city'), array('name'))->where('c.id = ?',$optionCity));
+            header('Content-Encoding: utf-8');
+            header('Content-Type: text/csv; charset=utf-8');
+            header('Content-Disposition: attachment; filename=relatorio_auxiliares_ativos_'.$chosenCity->name.'.csv');
+            echo "\xEF\xBB\xBF";
+            $this->_helper->layout()->setLayout('ajax');
+            $auxiliar = new Application_Model_Auxiliar();
+            $output = fopen('php://output', 'w');
+            $auxiliares = $auxiliar->findAllActiveCity($optionCity);
+            fputcsv($output, array('Nome', 'CPF','RG','Rua','Bairro','Cidade','CEP','Nº da Licença do Permissionário','Data de Inicio na Permissão'),';');
+            foreach ($auxiliares as $auxiliaress ){
+              fputcsv($output, array($auxiliaress->name, $auxiliaress->cpf, $auxiliaress->rg_completo, $auxiliaress->address_complete, 
+                $auxiliaress->neighborhood, $auxiliaress->city_address, $auxiliaress->zipcode, $auxiliaress->grantee_permission,
+                $auxiliaress->start_permission),';');
+            }
+            exit;
+          }
+        }
+      }catch(Zend_Exception $e){
+        echo $e->getMessage();
+      }
+    }
+
+    public function reportGranteeAuxiliarActiveAllAction()
+    {
+        try{
+        if($_GET["aux_all"] == 0) // responsavel pelo "PDF"
+        {
+          $optionCity = $this->getRequest()->getParam('optionCity');
+          if($optionCity == 0)
+          {
+            $this->_helper->layout()->setLayout('report');
+            $auxiliar = new Application_Model_Auxiliar();
+            $auxiliares = $auxiliar->findGranteeAuxiliarActive($_GET["data_crt"]);
+            $this->view->list = $auxiliares;
+          }
+          else
+          {
+           $this->_helper->layout()->setLayout('report');
+            $auxiliar = new Application_Model_Auxiliar();
+            $auxiliares = $auxiliar->findGranteeAuxiliarActiveCity($_GET["data_crt"],$optionCity);
+            $this->view->list = $auxiliares; 
+          }
+        }
+        else // Responsavel pelo Csv
+        {
+         $optionCity = $this->getRequest()->getParam('optionCity');
+          if($optionCity == 0)
+          {
+            header('Content-Encoding: utf-8');
+            header('Content-Type: text/csv; charset=utf-8');
+            header('Content-Disposition: attachment; filename=relatorio_permissionarios_auxiliares_ativos.csv');
+            echo "\xEF\xBB\xBF";
+            $this->_helper->layout()->setLayout('ajax');
+            $auxiliar = new Application_Model_Auxiliar();
+            $output = fopen('php://output', 'w');
+            $auxiliares = $auxiliar->findGranteeAuxiliarActive($_GET["data_crt"]);
+            fputcsv($output, array('Nº de Auxiliares', 'Nº de Permissionários', 'Data da Pesquisa'),';');
+            foreach ($auxiliares as $auxiliaress ){
+              fputcsv($output, array($auxiliaress['num_aux'], $auxiliaress['num_grantee'], $auxiliaress['data_pesquisa']),';');
+            }
+              exit;
+          }
+          else
+          {
+            $city = new Application_Model_DbTable_City();
+            $chosenCity = $city->fetchRow($city->select()->from(array('c' => 'city'), array('name'))->where('c.id = ?',$optionCity));
+            header('Content-Encoding: utf-8');
+            header('Content-Type: text/csv; charset=utf-8');
+            header('Content-Disposition: attachment; filename=relatorio_permissionarios_auxiliares_ativos_'.$chosenCity->name.'.csv');
+            echo "\xEF\xBB\xBF";
+            $this->_helper->layout()->setLayout('ajax');
+            $auxiliar = new Application_Model_Auxiliar();
+            $output = fopen('php://output', 'w');
+            $auxiliares = $auxiliar->findGranteeAuxiliarActiveCity($_GET["data_crt"],$optionCity);
+            fputcsv($output, array('Nº de Auxiliares', 'Nº de Permissionários', 'Data da Pesquisa'),';');
+            foreach ($auxiliares as $auxiliaress ){
+              fputcsv($output, array($auxiliaress['num_aux'], $auxiliaress['num_grantee'], $auxiliaress['data_pesquisa']),';');
+            }
+            exit;
+          }
+        }
+      }catch(Zend_Exception $e){
+        echo $e->getMessage();
+      }
+    }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

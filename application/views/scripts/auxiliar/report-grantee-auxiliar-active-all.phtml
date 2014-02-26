@@ -1,0 +1,28 @@
+<div class="container">
+  <div id="navbar"><img src="/img/superintendencia.jpg">
+    <div class="row">
+      <table class="table table-bordered table-hover" border='1'>
+        <thead>
+          <tr> 
+            <th> Nº de Auxiliares</th>
+            <th> Nº de Permissionários </th>
+            <th> Data da pesquisa</th>
+          </tr>
+        </thead>
+        <tbody>
+            <?if(count($this->list))
+            {
+              foreach($this->list as $aux)
+                {?>
+                  <tr>
+                    <td><?=$aux['num_aux']?></td>
+                    <td><?=$aux['num_grantee']?></td>
+                    <td><?=$aux['data_pesquisa']?></td>
+                    </tr>
+              <?}
+            }?>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

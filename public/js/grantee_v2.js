@@ -159,3 +159,22 @@ $('.addAuxiliarRemove').click(function(){
   $('.addAuxiliar').val('');
   $('.addAuxiliarRemove').hide();
 });
+
+$('#existsPerson').change(function(){
+  if(this.value == 1)
+  {
+    $('#addressCollapse').hide();
+    $('#contactCollapse').hide();
+    $('#documentCollapse').hide();
+    $('#namePerson').hide();
+    $('#nameGrantee').show();
+  }
+  else
+  {
+    $('#addressCollapse').show();
+    $('#contactCollapse').show();
+    $('#documentCollapse').show();
+    $('#namePerson').show();
+    $('#nameGrantee').hide();
+  }
+});

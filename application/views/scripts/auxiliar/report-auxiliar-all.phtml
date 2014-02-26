@@ -1,0 +1,40 @@
+<div class="container">
+  <div id="navbar"><img src="/img/superintendencia.jpg">
+    <div class="row">
+      <table class="table table-bordered table-hover" border='1'>
+        <thead>
+          <tr> 
+            <th> Nome</th>
+            <th> CPF </th>
+            <th> RG</th>
+            <th> Rua</th>
+            <th> Bairro</th>
+            <th> Cidade</th>
+            <th> CEP</th>
+            <th> Nº da Licença do Permissionário</th>
+            <th> Data de Inicio na Permissão</th>
+          </tr>
+        </thead>
+        <tbody>
+            <?if(count($this->list))
+            {
+              foreach($this->list as $aux)
+                {?>
+                  <tr>
+                    <td><?=$aux->name?></td>
+                    <td><?=$aux->cpf?></td>
+                    <td><?=$aux->rg_completo?></td>
+                    <td><?=$aux->address_complete?></td>
+                    <td><?=$aux->neighborhood?></td>
+                    <td><?=$aux->city_address?></td>
+                    <td><?=$aux->zipcode?></td>
+                    <td><?=$aux->grantee_permission?></td>
+                    <td><?=$aux->start_permission?></td>
+                    </tr>
+              <?}
+            }?>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

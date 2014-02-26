@@ -77,6 +77,8 @@ class Application_Acl_Setup
         $this->_acl->addResource( new Zend_Acl_Resource('survey') );
         $this->_acl->addResource( new Zend_Acl_Resource('assessment') );
         $this->_acl->addResource( new Zend_Acl_Resource('clandestine') );
+        $this->_acl->addResource( new Zend_Acl_Resource('scheduling') );
+        $this->_acl->addResource( new Zend_Acl_Resource('agendamento') );
     }
 
     /**
@@ -90,7 +92,11 @@ class Application_Acl_Setup
     protected function _setupPrivileges()
     {
         $this->_acl	->allow( 'guest', 'index', 'index' )
-        			->allow( 'guest', 'auth', array('index', 'login') );
+        			->allow( 'guest', 'auth', array('index', 'login') )
+                    ->allow( 'guest', 'scheduling', array(  'schedule','return-all-events', 'return-hour', 'return-events',
+                                                            'remove', 'reschedule') )
+                    ->allow( 'guest', 'agendamento', array( 'index', 'completo', 'confirmacao', 'documentos', 'print-confirmation',
+                                                            'consulta') );
 
         $this->_acl	->allow( 'user', 'index', 'index' )
         			->allow( 'user', 'auth', array('index', 'login') )
@@ -111,12 +117,19 @@ class Application_Acl_Setup
                                                     'return-people', 'extract-pendencies', 'save-auxiliar', 'remove-auxiliar',
                                                     'reservation', 'reservation-license', 'exclude-auxiliar', 'print-communication',
                                                     'edit-auxiliar', 'report-vehicle', 'new-historic', 'edit-historic', 'remove-historic',
-                                                    'add-auxiliar-historic', 'edit-auxiliar-historic', 'remove-auxiliar-historic') )
+                                                    'add-auxiliar-historic', 'edit-auxiliar-historic', 'remove-auxiliar-historic',
+                                                    'edit-permission') )
                     ->allow( 'user', 'auxiliar', array('index', 'new', 'edit', 'remove', 'view', 'report',
-                                                    'print-license', 'print-data', 'save-grantee', 'return-grantee', 'remove-grantee') )
+                                                    'print-license', 'print-data', 'save-grantee', 'return-grantee', 'remove-grantee',
+                                                    'report-auxiliar-all', 'report-auxiliar-active-all', 'report-grantee-auxiliar-active-all') )
                     ->allow( 'user', 'vehicle', array('index', 'new', 'edit', 'remove', 'view', 'vis') )
                     ->allow( 'user', 'survey', array('index', 'calendar') )
-                    ->allow( 'user', 'assessment', array('index', 'new', 'edit', 'view', 'remove', 'report') );
+                    ->allow( 'user', 'assessment', array('index', 'new', 'edit', 'view', 'remove', 'report') )
+                    ->allow( 'user', 'scheduling', array('index', 'treatment', 'calendar', 'return-events', 'return-all-events', 
+                                                    'return-hour', 'return-schedulings', 'hour', 'report', 'delete-hour', 'graphic',
+                                                    'return-schedulings-vis', 'report-scheduling', 'remove', 'reschedule') )
+                    ->allow( 'user', 'agendamento', array(  'index', 'completo', 'confirmacao', 'documentos', 'print-confirmation',
+                                                            'consulta') );
     }
 
     /**

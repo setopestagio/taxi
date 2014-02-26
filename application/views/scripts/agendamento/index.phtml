@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html lang="pt_BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Um sistema de gestão do transporte metropolitano">
+    <meta name="author" content="SETOP">
+
+    <title>SETOP | Táxi Metropolitano</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/lib/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/lib/datepicker.css" rel="stylesheet">
+    <link href="/css/lib/jquery.realperson.css" rel="stylesheet"> 
+    <link href="/css/scheduling.css" rel="stylesheet"> 
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="/js/lib/html5shiv.js"></script>
+      <script src="/js/lib/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <!-- Wrap all page content here -->
+    <div id="wrap">
+
+      <!-- Begin page content -->
+      <div class="container">
+        <div class="page-header">
+          <?if ($this->captcha == 'failed') {?>
+           <div class="row">
+            <div class="col-md-12 text-center alert alert-danger fade in">
+              <button type="button" class="close" data-dismiss="alert">×</button>
+              <strong>Ops!</strong> Digite corretamente as letras do código.
+            </div>
+          </div>
+          <?}?>
+          <?if ($this->save == 'failed') {?>
+          <div class="row">
+            <div class="col-md-12 text-center alert alert-danger fade in">
+              <button type="button" class="close" data-dismiss="alert">×</button>
+              <strong>Ops!</strong> Preencha corretamente todos os dados, obrigatoriamente o nome, CPF e o tipo de usuário.
+            </div>
+          </div>
+          <?}?>
+          <h1>Táxi Metropolitano | Agendamento Online</h1>
+        </div>
+        <p class="lead">Escolha uma data e horário disponíveis e preencha corretamente os dados.</p>
+        <p><b>Reagendar, consultar ou cancelar o agendamento?</b> Clique <a href="/agendamento/consulta">aqui</a></p><hr>
+        <div class="row">
+        	<div class="col-md-4">
+        		<div id="calendar">
+	            <div></div>
+	          </div>
+        	</div>
+        	<div class="col-md-8">
+        		<form class="form-horizontal hide" role="form" id="formSchedule" method="post">
+        			<div class="form-group">
+        				<label class="col-sm-2 control-label">Horário</label>
+      					<div class="col-sm-10">
+	        				<select class="form-control text-center" name="hour" id="hour">
+	        					<option value="0">-- Escolha um horário --</option>
+	        					<?foreach($this->hour as $hour){?>
+	        					<option value="<?=$hour->id?>"><?=$hour->hour?></option>
+	        					<?}?>
+	        				</select>
+        				</div>
+        			</div>
+      				<div class="form-group">
+        				<label class="col-sm-2 control-label">Nome</label>
+      					<div class="col-sm-10">
+      						<input type="text" name="name" id="name" class="form-control" placeholder="nome completo">
+      					</div>
+      				</div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">CPF</label>
+                <div class="col-sm-10">
+                  <input type="text" name="cpf" id="cpf" class="form-control cpf" placeholder="cpf">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">E-mail</label>
+                <div class="col-sm-10">
+                  <input type="email" name="email" class="form-control" placeholder="e-mail">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Telefone</label>
+                <div class="col-sm-10">
+                  <input type="text" name="phone" class="form-control phone" placeholder="telefone">
+                </div>
+              </div>
+      				<div class="form-group">
+        				<label class="col-sm-2 control-label">Tipo</label>
+      					<div class="col-sm-10">
+                  <select class="form-control" name="type_user">
+                    <option value="0">-- Escolha o tipo de usuário --</option>
+                    <option value="1">Permissionário</option>
+                    <option value="2">Auxiliar</option>
+                    <option value="3">Procurador</option>
+                    <option value="4">Outro</option>
+                  </select>
+      					</div>
+      				</div>
+              <div class="form-group">
+                <p>
+                  <div class="col-sm-offset-4 col-sm-6">
+                    <input type="text" id="defaultReal" name="defaultReal" class="form-control">
+                  </div>
+                </p>
+              </div>
+    				 	<div class="form-group">
+						    <div class="col-sm-offset-2 col-sm-10">
+						      <button type="submit" id='btnSchedule' class="btn btn-default btn-primary">Agendar</button>
+                  <input type="hidden" name="date" id="date" value="<?=date('Y-m-d')?>">
+						    </div>
+						  </div>
+        		</form>
+        	</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="footer">
+      <div class="container">
+        <p class="text-muted">Secretaria de Transportes e Obras Públicas | Governo de Minas</p>
+      </div>
+    </div>
+
+
+    <script src="/js/lib/jquery-1.10.1.min.js" type="text/javascript"></script>
+    <script src="/js/lib/jquery-ui.custom.min.js" type="text/javascript"></script>
+    <script src="/js/lib/jquery.maskedinput.min.js" type="text/javascript"></script>
+    <script src="/js/lib/bootstrap.min.js" type="text/javascript"></script>
+    <script src="/js/lib/bootstrap-datepicker.js" type="text/javascript"></script>
+    <script src="/js/lib/jquery.realperson.min.js" type="text/javascript"></script>
+    <script src="/js/schedule.js" type="text/javascript"></script>
+  </body>
+</html>

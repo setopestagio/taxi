@@ -50,7 +50,7 @@
                   <div class="form-group">
                       <label class=" col-lg-2 control-label" for="info">Observações</label>
                       <div class="col-lg-5">
-                          <textarea type="text" name="info" rows="5" class="form-control" id="info" placeholder="observações"></textarea>
+                          <textarea type="text" name="info_auxiliar" rows="5" class="form-control" id="info" placeholder="observações"></textarea>
                       </div><!--/.controls -->
                   </div><!--/.control-group -->
                 </div>
@@ -216,18 +216,31 @@
                 </div>
                 <div id="collapseGrantee" class="panel-collapse collapse">
                   <div class="panel-body">
+                    <div class="form-group groupExists">
+                      <label class="col-lg-2 control-label" for="grantee_new">Nome</label>
+                      <div class="col-lg-5">                       
+                        <input type="text" name="grantee_new" value="" class="form-control" id="grantee_new" placeholder="nome do permissionário" autocomplete="off"> <span style="cursor: pointer; display: none;" class="glyphicon glyphicon-remove" id="removeGranteeNew"></span>
+                        <input type="hidden" name="grantee_new_id" id="grantee_new_id" value="">
+                      </div>
+                    </div><!--/.form-group -->
+                    <div class="form-group groupNotExists" style="display: none;">
+                      <label class="col-lg-2 control-label" for="grantee_name">Nome</label>
+                      <div class="col-lg-5">                       
+                        <input type="text" name="grantee_name" value="" class="form-control" id="grantee_name" placeholder="nome do permissionário"> 
+                      </div>
+                    </div><!--/.form-group -->
+                    <div class="form-group groupNotExists" style="display: none;">
+                      <label class="col-lg-2 control-label" for="grantee_permission">Permissão</label>
+                      <div class="col-lg-5">                       
+                        <input type="text" name="grantee_permission" value="" class="form-control" placeholder="permissão">
+                      </div>
+                    </div><!--/.form-group -->
                     <div class="form-group">
-                        <label class=" col-lg-2 control-label" for="permission">Permissão</label>
-                        <div class="col-lg-5">
-                            <input type="text" name="permission" value="" class="form-control" id="permission" placeholder="permissão">
-                        </div><!--/.controls -->
-                    </div><!--/.control-group -->
-                    <div class="form-group">
-                        <label class=" col-lg-2 control-label" for="initialDateGrantee">Data inicial</label>
-                        <div class="col-lg-5">
-                            <input type="text" name="initialDateGrantee" value="" class="form-control dateMask" id="initialDateGrantee" placeholder="data inicial">
-                        </div><!--/.controls -->
-                    </div><!--/.control-group -->
+                      <label class="col-lg-2 control-label" for="start_date_new_grantee">Data de ínicio</label>
+                      <div class="col-lg-5">
+                          <input type="text" name="start_date_new_grantee" value="" class="form-control dateMask" id="start_date_new_grantee" placeholder="data de ínicio do auxiliar">
+                      </div>
+                    </div><!--/.form-group -->
                   </div>
                 </div>
               </div>

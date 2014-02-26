@@ -22,6 +22,8 @@ class Application_Model_Person
 		$newPerson->voter_zone = $data['voter_zone'];
 		$newPerson->army = $data['army'];
 		$newPerson->army_issuer = $data['army_issuer'];
+		$newPerson->info = $data['info'];
+		$newPerson->info_auxiliar = $data['info_auxiliar'];
 		return $newPerson->save();
 	}
 
@@ -46,7 +48,8 @@ class Application_Model_Person
 		$editPerson->voter_zone = $data['voter_zone'];
 		$editPerson->army = $data['army'];
 		$editPerson->army_issuer = $data['army_issuer'];
-		$editPerson->info = $data['info'];
+		if(isset($data['info'])) $editPerson->info = $data['info'];
+		if(isset($data['info_auxiliar'])) $editPerson->info_auxiliar = $data['info_auxiliar'];
 		return $editPerson->save();
 	}
 }

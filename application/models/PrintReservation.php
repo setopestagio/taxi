@@ -131,15 +131,16 @@ class Application_Model_PrintReservation
 
     $this->page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),10)
                     ->drawText('Marca', 192, 670, 'UTF-8');
-
+    $vehicleModel = explode(" ",$data->vehicle_model);
     $this->page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),12)
-                    ->drawText($data->vehicle_model, 190, 652, 'UTF-8');
+                    ->drawText($vehicleModel[0], 190, 652, 'UTF-8');
 
     $this->page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),10)
                     ->drawText('Modelo', 360, 670, 'UTF-8');
 
+    $vehicleBrand = explode(" ",$data->vehicle_brand);
     $this->page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),12)
-                    ->drawText($data->vehicle_brand, 360, 652, 'UTF-8');
+                    ->drawText($vehicleBrand[0], 360, 652, 'UTF-8');
 
     $this->page     ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),10)
                     ->drawText('Ano Modelo', 454, 670, 'UTF-8');

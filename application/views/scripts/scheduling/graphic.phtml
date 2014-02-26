@@ -1,0 +1,106 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="list-group">
+        <a href="/scheduling" class="list-group-item">
+          <h4 class="list-group-item-heading">Agendamento</h4>
+            <p class="list-group-item-text">Gerencie aqui os dados dos atendimentos</p>
+        </a>
+        <a href="/scheduling/treatment" class="list-group-item"><span class="glyphicon glyphicon-book"></span> Atendimentos</a>
+        <a href="/scheduling/calendar" class="list-group-item"><span class="glyphicon glyphicon-calendar"></span> Recessos</a>
+        <a href="/scheduling/hour" class="list-group-item"><span class="glyphicon glyphicon-saved"></span> Horários</a>
+        <a href="/scheduling/report" class="list-group-item"><span class="glyphicon glyphicon-list-alt"></span> Relatórios</a>
+        <a href="/scheduling/graphic" class="list-group-item active"><span class="glyphicon glyphicon-picture"></span> Gráfico</a>
+      </div>
+    </div><!--/col-md-->
+    <div class="col-md-9">
+      <ol class="breadcrumb">
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="/scheduling">Agendamento</a></li>
+        <li class="active">Gráfico</li>
+      </ol>  
+      <div class="page-header">
+        <h1>Agendamentos <small>gráfico dos agendamentos</small></h1>
+        <hr>
+        <div id="vis"></div>
+        <style>
+
+				  .chart {
+				    font-family: Arial, sans-serif;
+				    font-size: 10px;
+				  }
+
+				  .axis path, .axis line {
+				    fill: none;
+				    stroke: #000;
+				    shape-rendering: crispEdges;
+				  }
+
+				  .line {
+				    fill: none;
+				    stroke: steelblue;
+				    stroke-width: 1.5px;
+				  }
+
+
+				</style>
+    		<script src="/js/lib/d3.v3.min.js"></script>
+    		<script>
+
+				d3.json("/scheduling/return-schedulings-vis", function(error, data) {
+
+					data.forEach(function(d) {
+						d.date = d.date;
+						d.total = +d.total;
+					});
+				
+				var margin = {top: 40, right: 40, bottom: 40, left:40},
+				    width = 600,
+				    height = 500;
+
+				var x = d3.time.scale()
+				    .domain([new Date(d3.min(data,function(d){return d.date;})), new Date(d3.max(data,function(d){return d.date;}))])
+				    .rangeRound([0, width - margin.left - margin.right]);
+
+				var y = d3.scale.linear()
+				    .domain([0, d3.max(data, function(d) { return d.total; })])
+				    .range([height - margin.top - margin.bottom, 0]);
+
+				var xAxis = d3.svg.axis()
+				    .scale(x)
+				    .orient('bottom')
+				    .ticks(d3.time.days, 1)
+				    .tickFormat(d3.time.format('%a %d'))
+				    .tickSize(0)
+				    .tickPadding(8);
+
+				var yAxis = d3.svg.axis()
+				    .scale(y)
+				    .orient('left')
+				    .tickPadding(8);
+
+				var svg = d3.select('#vis').append('svg')
+				    .attr('class', 'chart')
+				    .attr('width', width)
+				    .attr('height', height)
+				  .append('g')
+				    .attr('transform', 'translate(' + margin.left + ', ' + margin.top + ')');
+
+				var line = d3.svg.line()
+						.x(function(d) { return y(d.total); })
+						.y(function(d) { return y(d.total); });
+
+				svg.append('path')
+						.datum(data)
+						.attr('class', 'line')
+						.attr('d', line);
+
+
+				});
+					
+
+					</script>
+     	</div>
+    </div>
+  </div>
+</div>

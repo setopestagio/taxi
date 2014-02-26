@@ -1,20 +1,28 @@
-<div class="container-fluid">
-  <div class="row-fluid">
-    <div class="span3">
-      <div class="well sidebar-nav">
-        <ul class="nav nav-list">
-          <li class="nav-header">Fiscalização Rotineira</li>
-          <li><a href="/inspection/new">Cadastro</a></li>
-          <li><a href="/inspection/view">Pesquisa</a></li>
-          <li class="nav-header">Transporte Clandestino</li>
-          <li><a href="/clandestine/new">Cadastro</a></li>
-          <li><a href="/clandestine/view">Pesquisa</a></li>
-        </ul>
-      </div><!--/.well -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="list-group">
+        <a href="/inspection" class="list-group-item">
+          <h4 class="list-group-item-heading">Fiscalização Rotineira</h4>
+        </a>
+        <a href="/inspection/new" class="list-group-item">Cadastro</a>
+        <a href="/inspection/view" class="list-group-item">Pesquisa</a>
+      </div>
+      <div class="list-group">
+        <a href="/clandestine" class="list-group-item">
+          <h4 class="list-group-item-heading">Transporte Clandestino</h4>
+        </a>
+        <a href="/clandestine/new" class="list-group-item">Cadastro</a>
+        <a href="/clandestine/view" class="list-group-item">Pesquisa</a>
+      </div>
     </div><!--/span-->
-    <div class="span9">
+    <div class="col-md-9">
+      <ol class="breadcrumb">
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li class="active">Clandestino</li>
+      </ol>
       <div class="well">
-        <img class="img-polaroid" src="/img/fiscalizacao.jpg"><br><br>
+        <img class="img-responsive img-thumbnail" src="/img/fiscalizacao.jpg"><br><br>
         <h1>Fiscalização</h1>
         <p>Descrição de Fiscalização </p>
       </div>

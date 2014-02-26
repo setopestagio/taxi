@@ -1,30 +1,42 @@
-<div class="container-fluid">
-  <div class="row-fluid">
-    <div class="span3">
-      <div class="well sidebar-nav">
-        <ul class="nav nav-list">
-          <li class="nav-header">Fiscalização Rotineira</li>
-          <li><a href="/inspection/new">Cadastro</a></li>
-          <li class="active"><a href="/inspection/view">Pesquisa</a></li>
-          <li class="nav-header">Transporte Clandestino</li>
-          <li><a href="/clandestine/new">Cadastro</a></li>
-          <li><a href="/clandestine/view">Pesquisa</a></li>
-        </ul>
-      </div><!--/.well -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="list-group">
+        <a href="/inspection" class="list-group-item">
+          <h4 class="list-group-item-heading">Fiscalização Rotineira</h4>
+        </a>
+        <a href="/inspection/new" class="list-group-item">Cadastro</a>
+        <a href="/inspection/view" class="list-group-item active">Pesquisa</a>
+      </div>
+      <div class="list-group">
+        <a href="/clandestine" class="list-group-item">
+          <h4 class="list-group-item-heading">Transporte Clandestino</h4>
+        </a>
+        <a href="/clandestine/new" class="list-group-item">Cadastro</a>
+        <a href="/clandestine/view" class="list-group-item">Pesquisa</a>
+      </div>
     </div><!--/span-->
-    <div class="span9">
+    <div class="col-md-9">
+      <ol class="breadcrumb">
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="/inspection">Fiscalização</a></li>
+        <li class="active">Pesquisar</li>
+      </ol>  
       <div class="page-header">
         <h1>Pesquisa <small>gerencie aqui os dados das fiscalizações</small></h1>
+        <hr>
         <form class="form-search" action="/inspection/view" method="get">
-          <input type="text" class="input-xlarge search-query" placeholder="pesquisa" name="field" value="<?=$this->field?>">
-          <select name="optionSearch">
-            <option value="0">Pesquisar por:</option>
-            <option value="1" <?if($this->optionSearch == 1) echo "selected='selected'"; ?>>Local</option>
-            <option value="2" <?if($this->optionSearch == 2) echo "selected='selected'"; ?>>Permissão</option>
-            <option value="3" <?if($this->optionSearch == 3) echo "selected='selected'"; ?>>Data</option>
-          </select>
-          <button type="submit" class="btn">Pesquisar</button>
+          <div class="form-group col-md-4">
+            <input type="text" class="form-control search-query" placeholder="pesquisa" name="field" value="<?=$this->field?>">
+          </div>
+          <div class="form-group col-md-3">
+            <select name="optionSearch" class="form-control">
+              <option value="0">Pesquisar por:</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Pesquisar</button>
         </form>
+        <hr>
         <table class="table table-hover table-bordered">
           <thead>
             <th>Local</th>

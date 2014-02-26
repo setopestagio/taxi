@@ -10,19 +10,14 @@ class Application_Model_Auxiliar
 		return $person->newPerson($data, $addressId);
 	}
 
-	public function saveToGrantee($permission,$startDate,$auxiliarId)
+	public function saveToGrantee($granteeId,$startDate,$auxiliarId)
 	{
-		$grantee = new Application_Model_DbTable_Grantee();
-		$granteeRow = $grantee->fetchRow($grantee->select()->where('permission = ?',$permission));
-		if($granteeRow)
-		{
-			$granteeAuxiliar = new Application_Model_DbTable_GranteeAuxiliar();
-			$granteeAuxiliarRow = $granteeAuxiliar->createRow();
-			$granteeAuxiliarRow->grantee = $granteeRow->id;
-			$granteeAuxiliarRow->auxiliar = $auxiliarId;
-			$granteeAuxiliarRow->start_date = Application_Model_General::dateToUs($startDate);
-			$granteeAuxiliarRow->save();
-		}
+		$granteeAuxiliar = new Application_Model_DbTable_GranteeAuxiliar();
+		$granteeAuxiliarRow = $granteeAuxiliar->createRow();
+		$granteeAuxiliarRow->grantee = $granteeId;
+		$granteeAuxiliarRow->auxiliar = $auxiliarId;
+		$granteeAuxiliarRow->start_date = Application_Model_General::dateToUs($startDate);
+		$granteeAuxiliarRow->save();
 	}
 
 	public function lists()
@@ -30,20 +25,127 @@ class Application_Model_Auxiliar
 		$person = new Application_Model_DbTable_Person();
 		$select = $person->select()->setIntegrityCheck(false);
 		$select	->from( array('p' => 'person') )
-						->where('p.id NOT IN (SELECT id FROM grantee WHERE end_permission IS NOT NULL)')
-						->where('p.id IN (SELECT auxiliar FROM grantee_auxiliar GROUP BY auxiliar)');
+						->order('name');
 		return $person->fetchAll($select);
 	}
 
+	public function findAll()
+	{
+		$person = new Application_Model_DbTable_Person();
+		$select = $person->select()->setIntegrityCheck(false);
+		$select	->from(array('p' => 'person'),array('id_auxiliar' => 'id','name','rg_completo' => 'CONCAT(p.rg," ",p.rg_issuer)','p.cpf'))
+						->joinInner(array('a' => 'address'),'a.id = p.address', array('address_complete' => 'CONCAT(a.address," ",a.number," ",a.apartament)',
+																																			'neighborhood','address_city' => 'city','zipcode') )
+						->joinLeft(array('c' => 'city'),'a.city=c.id', array('city_address' => 'name'))
+						->joinLeft(array('aux' => 'grantee_auxiliar'),'aux.auxiliar=p.id',array('start_permission' => 'start_date', 'end_permission' => 'end_date'))
+						->joinLeft(array('g' => 'grantee'),'g.id=aux.grantee',array('grantee_permission' => 'permission', 'pendencies')) 
+						->joinleft(array('pg' => 'person'),'g.owner=pg.id',array('name_grantee' => 'name'))
+						->joinLeft(array('cd' => 'city'),'g.city=cd.id', array('grantee_city' => 'name'))
+						->order('p.name');
+		return $person->fetchAll($select);	
+	}
+
+	public function findAllCity($city) // recebe a cidade
+	{
+		$person = new Application_Model_DbTable_Person();
+		$select = $person->select()->setIntegrityCheck(false);
+		$select	->from(array('p' => 'person'),array('id_auxiliar' => 'id','name','rg_completo' => 'CONCAT(p.rg," ",p.rg_issuer)','p.cpf'))
+						->joinInner(array('a' => 'address'),'a.id = p.address', array('address_complete' => 'CONCAT(a.address," ",a.number," ",a.apartament)',
+																																			'neighborhood','address_city' => 'city','zipcode') )
+						->joinLeft(array('c' => 'city'),'a.city=c.id', array('city_address' => 'name'))
+						->joinLeft(array('aux' => 'grantee_auxiliar'),'aux.auxiliar=p.id',array('start_permission' => 'start_date', 'end_permission' => 'end_date'))
+						->joinLeft(array('g' => 'grantee'),'g.id=aux.grantee',array('grantee_permission' => 'permission', 'pendencies')) 
+						->joinleft(array('pg' => 'person'),'g.owner=pg.id',array('name_grantee' => 'name'))
+						->joinLeft(array('cd' => 'city'),'g.city=cd.id', array('grantee_city' => 'name'))
+						->where('cd.id = ?', $city)
+						->order('p.name');
+		return $person->fetchAll($select);	
+	}
+
+	public function findAllActive()
+	{
+		$person = new Application_Model_DbTable_Person();
+		$select = $person->select()->setIntegrityCheck(false);
+		$select	->from(array('p' => 'person'),array('id_auxiliar' => 'id','name','rg_completo' => 'CONCAT(p.rg," ",p.rg_issuer)','p.cpf'))
+						->joinInner(array('a' => 'address'),'a.id = p.address', array('address_complete' => 'CONCAT(a.address," ",a.number," ",a.apartament)',
+																																			'neighborhood','address_city' => 'city','zipcode') )
+						->joinLeft(array('c' => 'city'),'a.city=c.id', array('city_address' => 'name'))
+						->joinLeft(array('aux' => 'grantee_auxiliar'),'aux.auxiliar=p.id',array('start_permission' => 'start_date', 'end_permission' => 'end_date'))
+						->joinLeft(array('g' => 'grantee'),'g.id=aux.grantee',array('grantee_permission' => 'permission', 'pendencies')) 
+						->joinleft(array('pg' => 'person'),'g.owner=pg.id',array('name_grantee' => 'name'))
+						->joinLeft(array('cd' => 'city'),'g.city=cd.id', array('grantee_city' => 'name'))
+						->where('aux.end_date IS NULL')
+						->order('p.name');
+		return $person->fetchAll($select);	
+	}
+
+	public function findAllActiveCity($city) // recebe a cidade
+	{
+		$person = new Application_Model_DbTable_Person();
+		$select = $person->select()->setIntegrityCheck(false);
+		$select	->from(array('p' => 'person'),array('id_auxiliar' => 'id','name','rg_completo' => 'CONCAT(p.rg," ",p.rg_issuer)','p.cpf'))
+						->joinInner(array('a' => 'address'),'a.id = p.address', array('address_complete' => 'CONCAT(a.address," ",a.number," ",a.apartament)',
+																																			'neighborhood','address_city' => 'city','zipcode') )
+						->joinLeft(array('c' => 'city'),'a.city=c.id', array('city_address' => 'name'))
+						->joinLeft(array('aux' => 'grantee_auxiliar'),'aux.auxiliar=p.id',array('start_permission' => 'start_date', 'end_permission' => 'end_date'))
+						->joinLeft(array('g' => 'grantee'),'g.id=aux.grantee',array('grantee_permission' => 'permission', 'pendencies')) 
+						->joinleft(array('pg' => 'person'),'g.owner=pg.id',array('name_grantee' => 'name'))
+						->joinLeft(array('cd' => 'city'),'g.city=cd.id', array('grantee_city' => 'name'))
+						->where('cd.id = ?', $city)
+						->where('aux.end_date IS NULL')
+						->order('p.name');
+		return $person->fetchAll($select);	
+	}
+	
+	public function findGranteeAuxiliarActive($date) // recebe o periodo de corte
+	{
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		$grantee_auxiliar = $db->query("
+			SELECT count(DISTINCT(p.name)) as num_aux,
+			(
+    		SELECT count(DISTINCT(p.name)) as num_grantee
+			FROM `person` as p
+			INNER JOIN grantee as g ON g.owner = p.id
+			WHERE g.end_permission <='".Application_Model_General::dateToUs($date)."') as num_grantee,
+			('".$date."') as data_pesquisa
+			FROM `person` as p
+			INNER JOIN grantee_auxiliar as aux ON aux.auxiliar = p.id
+			INNER JOIN grantee as g ON g.owner = aux.grantee
+			WHERE aux.end_date <='".Application_Model_General::dateToUs($date)."'");
+		return $grantee_auxiliar->fetchAll();
+	}
+
+	public function findGranteeAuxiliarActiveCity($date, $city) // recebe a cidade e o periodo de corte
+	{
+	
+		$registry = Zend_Registry::getInstance();
+		$db = $registry->get('db');
+		$grantee_auxiliar = $db->query("
+		SELECT count(DISTINCT(p.name)) as num_aux,
+		(
+    		SELECT count(DISTINCT(p.name)) as num_grantee
+			FROM `person` as p
+			INNER JOIN grantee as g ON g.owner = p.id
+    		INNER JOIN city as c ON c.id = g.city
+			WHERE c.id =".$city." AND g.end_permission <=".Application_Model_General::dateToUs($date).") as num_grantee,
+			('".$date."') as data_pesquisa
+		FROM `person` as p
+		INNER JOIN grantee_auxiliar as ga ON ga.auxiliar = p.id
+		INNER JOIN grantee as g ON g.owner = ga.grantee
+		INNER JOIN city as c ON c.id = g.city
+		WHERE c.id =".$city." AND ga.end_date <='".Application_Model_General::dateToUs($date)."'");
+		return $grantee_auxiliar->fetchAll();
+	}
 	public function returnById($id)
 	{
 		$person = new Application_Model_DbTable_Person();
 		$select = $person->select()->setIntegrityCheck(false);
 		$select	->from(array('p' => 'person'),array('id_auxiliar' => 'id','name','phone','mobile','email','rg','rg_issuer','cpf','cnh',
-																	'cnh_issuer', 'iapas', 'voter', 'voter_zone', 'army', 'army_issuer','info') )
+																	'cnh_issuer', 'iapas', 'voter', 'voter_zone', 'army', 'army_issuer','info', 'info_auxiliar') )
 						->joinInner(array('a' => 'address'),'a.id = p.address', array('address','number','apartament','neighborhood',
 																	'address_city' => 'city','zipcode') )
-						->joinInner(array('c' => 'city'),'a.city=c.id', array('name_city' => 'name'))
+						->joinLeft(array('c' => 'city'),'a.city=c.id', array('name_city' => 'name'))
 						->joinLeft(array('aux' => 'grantee_auxiliar'),'aux.auxiliar=p.id AND aux.end_date IS NULL',array('start_permission' => 'start_date', 'end_permission' => 'end_date'))
 						->joinLeft(array('g' => 'grantee'),'g.id=aux.grantee',array('permission', 'pendencies')) 
 						->joinleft(array('pg' => 'person'),'g.owner=pg.id',array('name_grantee' => 'name'))
@@ -78,9 +180,9 @@ class Application_Model_Auxiliar
 		$select	->from(array('p' => 'person') )
 						->joinInner(array('a' => 'address'),'a.id = p.address', array('address','number','apartament','neighborhood',
 															'address_city' => 'city','zipcode') )
-						->joinInner(array('c' => 'city'),'a.city=c.id', array('name_city' => 'name'))
+						->joinLeft(array('c' => 'city'),'a.city=c.id', array('name_city' => 'name'))
 						->where('p.cpf = ?',$cpf)
-						->where('p.id IN (SELECT auxiliar FROM grantee_auxiliar GROUP BY auxiliar)');
+						->order('name');
 		return $person->fetchAll($select);
 	}
 
@@ -91,9 +193,9 @@ class Application_Model_Auxiliar
 		$select	->from(array('p' => 'person') )
 						->joinInner(array('a' => 'address'),'a.id = p.address', array('address','number','apartament','neighborhood',
 															'address_city' => 'city','zipcode') )
-						->joinInner(array('c' => 'city'),'a.city=c.id', array('name_city' => 'name'))
+						->joinLeft(array('c' => 'city'),'a.city=c.id', array('name_city' => 'name'))
 						->where('p.name LIKE ?','%'.$name.'%')
-						->where('p.id IN (SELECT auxiliar FROM grantee_auxiliar GROUP BY auxiliar)');
+						->order('name');
 		return $person->fetchAll($select);
 	}
 
@@ -173,8 +275,8 @@ class Application_Model_Auxiliar
 	{
 		$person = new Application_Model_DbTable_Person();
 		$select = $person->select()->setIntegrityCheck(false);
-		$select	->from(array('p' => 'person'), array('id') )
-						->joinInner(array('g' => 'grantee'), 'p.id=g.owner' ,array('name' => 'CONCAT(p.name," - ",g.permission)') )
+		$select	->from(array('p' => 'person') )
+						->joinInner(array('g' => 'grantee'), 'p.id=g.owner' ,array('id', 'name' => 'CONCAT(p.name," - ",g.permission)') )
 						->where('p.name LIKE ?','%'.$name.'%');
 		$people = $person->fetchAll($select);
 		$aux = array();

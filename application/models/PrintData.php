@@ -151,16 +151,19 @@ class Application_Model_PrintData
         ->drawLine(320, 655, 320, 690);
 
     $this->page->setLineWidth(1)
-        ->drawLine(385, 655, 385, 690);
+        ->drawLine(402, 655, 402, 690);
 
     $this->page->setLineWidth(1)
-        ->drawLine(160, 620, 160, 655);
+        ->drawLine(180, 620, 180, 655);
 
     $this->page->setLineWidth(1)
-        ->drawLine(385, 620, 385, 655);
+        ->drawLine(320, 620, 320, 655);
 
     $this->page->setLineWidth(1)
-        ->drawLine(120, 583, 120, 620);
+        ->drawLine(485, 620, 485, 655);
+
+    $this->page->setLineWidth(1)
+        ->drawLine(137, 583, 137, 620);
 
     $this->page->setLineWidth(1)
         ->drawLine(200, 583, 200, 620);
@@ -181,7 +184,7 @@ class Application_Model_PrintData
         ->drawLine(345, 544, 345, 583);
 
     $this->page->setLineWidth(1)
-        ->drawLine(385, 544, 385, 583);
+        ->drawLine(450, 544, 450, 583);
 
     // Words
     $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
@@ -191,16 +194,26 @@ class Application_Model_PrintData
                 ->drawText($data->address, 55, 662, 'UTF-8');
 
     $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
-                ->drawText('Número', 323, 680, 'UTF-8');
+                ->drawText('Número / Compl.', 323, 680, 'UTF-8');
 
-    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
+    if(isset($data->apartament))
+    {
+        $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
+                ->drawText($data->number.' / '.$data->apartament, 323, 662, 'UTF-8');
+
+    }
+    else
+    {
+        $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
                 ->drawText($data->number, 323, 662, 'UTF-8');
 
+    }
+
     $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
-                ->drawText('Bairro', 390, 680, 'UTF-8');
+                ->drawText('Bairro', 405, 680, 'UTF-8');
 
     $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
-                ->drawText($data->neighborhood, 390, 662, 'UTF-8');
+                ->drawText($data->neighborhood, 405, 662, 'UTF-8');
 
     $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
                 ->drawText('Telefone', 55, 645, 'UTF-8');
@@ -209,16 +222,22 @@ class Application_Model_PrintData
                 ->drawText($data->phone, 55, 628, 'UTF-8');
 
     $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
-                ->drawText('Município', 163, 645, 'UTF-8');
+                ->drawText('Celular', 185, 645, 'UTF-8');
 
     $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
-                ->drawText($data->name_city, 163, 628, 'UTF-8');
+                ->drawText($data->mobile, 185, 628, 'UTF-8');
 
     $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
-                ->drawText('CEP', 390, 644, 'UTF-8');
+                ->drawText('Município', 323, 645, 'UTF-8');
 
     $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
-                ->drawText($data->zipcode, 390, 628, 'UTF-8');
+                ->drawText($data->name_city, 323, 628, 'UTF-8');
+
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
+                ->drawText('CEP', 490, 644, 'UTF-8');
+
+    $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
+                ->drawText($data->zipcode, 490, 628, 'UTF-8');
 
     $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
                 ->drawText('Identidade', 55, 610, 'UTF-8');
@@ -227,10 +246,10 @@ class Application_Model_PrintData
                 ->drawText($data->rg, 55, 590, 'UTF-8');
 
     $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
-                ->drawText('Orgão Emissor', 123, 610, 'UTF-8');
+                ->drawText('Orgão Emissor', 140, 610, 'UTF-8');
 
     $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
-                ->drawText($data->rg_issuer, 124, 590, 'UTF-8');
+                ->drawText($data->rg_issuer, 140, 590, 'UTF-8');
 
     $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
                 ->drawText('Habilitação', 203, 610, 'UTF-8');
@@ -275,10 +294,10 @@ class Application_Model_PrintData
                 ->drawText($data->voter_zone, 349, 553, 'UTF-8');
 
     $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),9)
-                ->drawText('IAPAS', 388, 573, 'UTF-8');
+                ->drawText('IAPAS', 455, 573, 'UTF-8');
 
     $this->page ->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES),11)
-                ->drawText($data->iapas, 389, 553, 'UTF-8');
+                ->drawText($data->iapas, 455, 553, 'UTF-8');
 	}
 
   protected function registered($data,$reservation='')

@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="pt_BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Um sistema de gestão do transporte metropolitano">
+    <meta name="author" content="SETOP">
+
+    <title>SETOP | Táxi Metropolitano</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/lib/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/scheduling.css" rel="stylesheet"> 
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="/js/lib/html5shiv.js"></script>
+      <script src="/js/lib/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <!-- Wrap all page content here -->
+    <div id="wrap">
+
+      <!-- Begin page content -->
+      <div class="container">
+        <div class="page-header">
+          <h1>Agendamento realizado com sucesso</h1>
+        </div>
+        <p class="lead"><strong><?=$this->info->name?></strong>, seu agendamento foi realizado para <strong><?=Application_Model_General::dateToBr($this->info->date)?></strong> às <strong><?=$this->info->hour?></strong>. </p><br>
+        <p> <a class="btn btn-success btn-lg" href="/agendamento/print-confirmation/id/<?=$this->id?>">Imprimir confirmação</a>  </p><br><br>
+        <p> <h4><a href="/agendamento/documentos" target="_blank">Clique aqui</a> para ver a relação de documentos necessários.</h4></p><br>
+        <h4>Para enviar por email, <a href="mailto:">clique aqui</a>. </h4></p><br><hr>
+        <p>Qualquer dúvida e/ou cancelamento, ligue para <a href="#">(31) 3915-8284</a> ou <a href="#">(31) 3915-8279</a></p>
+      </div>
+    </div>
+
+    <div id="footer">
+      <div class="container">
+        <p class="text-muted">Secretaria de Transportes e Obras Públicas | Governo de Minas</p>
+      </div>
+    </div>
+
+
+    <script src="/js/lib/jquery-1.10.1.min.js" type="text/javascript"></script>
+  </body>
+</html>
