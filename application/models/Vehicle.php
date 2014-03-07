@@ -52,8 +52,26 @@ class Application_Model_Vehicle
 		$grantee = new Application_Model_DbTable_Vehicle();
 		$select = $grantee->select()->setIntegrityCheck(false);
 		$select	->from(array('g' => 'grantee'))
-						->joinInner(array('v' => 'vehicle'), 'v.id=g.vehicle',array('life_cycle' => new Zend_Db_Expr(date('Y').' - year_fabrication'), 
+						->joinInner(array('v' => 'vehicle'), 'v.id=g.vehicle',array('life_cycle' => "AVG"(new Zend_Db_Expr(date('Y').' - year_fabrication'), 
 																						'year_fabrication', 'year_model'))
+						->joinLeft(array('m' => 'vehicle_model'),'v.model=m.id',array('vehicle_model' => 'name'))
+						->joinLeft(array('b' => 'vehicle_brand'),'v.brand=b.id',array('vehicle_brand' => 'name'))
+						->joinLeft(array('f' => 'vehicle_fuel'),'v.fuel=f.id',array('vehicle_fuel' => 'name'))
+						->where('g.end_permission IS NOT NULL')
+						->where('g.info NOT LIKE "%transf%"')
+						->where('g.end_permission="0000-00-00"')
+						->where('v.plate IS NOT NULL')
+						->where('v.plate!=""');
+		return $grantee->fetchAll($select);
+	}
+
+	public function returnFleetAge()
+	{
+		$grantee = new Application_Model_DbTable_Vehicle();
+		$select = $grantee->select()->setIntegrityCheck(false);
+		$select	->from(array('g' => 'grantee'))
+						->joinInner(array('v' => 'vehicle'), 'v.id=g.vehicle',array('life_cycle' => new Zend_Db_Expr(date('Y').' - year_fabrication'), 
+																						'year_fabrication', 'year_model', ))
 						->joinLeft(array('m' => 'vehicle_model'),'v.model=m.id',array('vehicle_model' => 'name'))
 						->joinLeft(array('b' => 'vehicle_brand'),'v.brand=b.id',array('vehicle_brand' => 'name'))
 						->joinLeft(array('f' => 'vehicle_fuel'),'v.fuel=f.id',array('vehicle_fuel' => 'name'))
