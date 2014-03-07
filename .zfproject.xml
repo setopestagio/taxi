@@ -48,6 +48,7 @@
           <actionMethod actionName="printCommunication"/>
           <actionMethod actionName="editAuxiliar"/>
           <actionMethod actionName="reportVehicle"/>
+          <actionMethod actionName="reportVehicleAge"/>
           <actionMethod actionName="newHistoric"/>
           <actionMethod actionName="editHistoric"/>
           <actionMethod actionName="removeHistoric"/>
@@ -515,6 +516,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Grantee">
             <viewScriptFile forActionName="reportVehicle"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Grantee">
+            <viewScriptFile forActionName="reportVehicleAge"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Grantee">
             <viewScriptFile forActionName="newHistoric"/>

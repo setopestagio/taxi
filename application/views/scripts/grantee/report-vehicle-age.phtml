@@ -1,0 +1,52 @@
+<div class="container">
+  <div id="navbar"><img src="/img/superintendencia.jpg">
+    <div class="row">
+      <table class="table table-bordered table-hover" border='1'>
+        <thead>
+          <tr> 
+            <th> Modelo</th>
+            <th> Nº de veiculos</th>
+            <th> Vida útil média</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?if(count($this->list))
+            {?>
+              <?foreach($this->list as $vehicle)
+                {?>
+                    <tr>
+                      <td><?=$vehicle->permission?></td>
+                      <td><?=$vehicle->vehicle_brand?></td>
+                      <td><?=$vehicle->vehicle_model?></td>
+                    </tr> 
+                    <?}
+            }?>
+        </tbody>
+      </table>
+      <hr>
+      <table class="table table-bordered table-hover" border='1'>
+        <thead>
+          <tr> 
+            <th> Marca </th>
+            <th> Nº de veiculos</th>
+            <th> Vida útil média</th>
+            <th> Modelo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?if(count($this->list2))
+            {?>
+              <?foreach($this->list2 as $vehicle2)
+                {?>
+                    <tr>
+                      <td><?=$vehicle2->permission?></td>
+                      <td><?=$vehicle2->vehicle_brand?></td>
+                      <td><?=$vehicle2->vehicle_model?></td>
+                    </tr> 
+                    <?}
+            }?>
+        </tbody>
+      </table>
+    </div>  
+  </div>  
+</div>

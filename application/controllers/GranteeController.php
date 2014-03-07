@@ -509,6 +509,43 @@ class GranteeController extends Zend_Controller_Action
         }
     }
 
+    public function reportVehicleAgeAction()
+    {
+
+        if($_GET["vehicle_all"] == 0) // responsavel pelo "PDF"
+        {
+
+          $this->_helper->layout()->setLayout('report');
+          $vehicle = new Application_Model_Vehicle();
+          $brand = $vehicle->returnFleetModelAge();
+          $model = $vehicle->returnFleetBrandAge();
+          $this->view->list = $brand;
+          $this->view->list2 = $model;
+          print_r($this->view->list);
+          print_r($this->view->list2);
+          exit;
+       
+        }
+        else // Responsavel pelo Csv
+        {
+            header('Content-Encoding: utf-8');
+            header('Content-Type: text/csv; charset=utf-8');
+            header('Content-Disposition: attachment; filename=relatorio_veiculos.csv');
+            echo "\xEF\xBB\xBF";
+            $this->_helper->layout()->setLayout('ajax');
+            $vehicle = new Application_Model_Vehicle();
+            $output = fopen('php://output', 'w');
+            $brand = $vehicle->returnFleetModelAge();
+            $model = $vehicle->returnFleetBrandAge();
+            fputcsv($output, array('Permissão','Marca','Modelo','Fabricação do Veículo','Ano do Modelo do Veículo','Combustivel','Vida Útil'),';');
+            foreach ($fleet as $fleeet ){
+              fputcsv($output, array($fleeet->permission, $fleeet->vehicle_brand, $fleeet->vehicle_model, $fleeet->year_fabrication, $fleeet->year_model,
+                $fleeet->vehicle_fuel, $fleeet->life_cycle),';');
+            }
+              exit;
+        }
+    }
+
     public function newHistoricAction()
     {
       try{

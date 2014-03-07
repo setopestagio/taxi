@@ -116,7 +116,7 @@ class Application_Acl_Setup
                                                     'print-data', 'print-license', 'report-grantee-all', 'report-grantee-actives',
                                                     'return-people', 'extract-pendencies', 'save-auxiliar', 'remove-auxiliar',
                                                     'reservation', 'reservation-license', 'exclude-auxiliar', 'print-communication',
-                                                    'edit-auxiliar', 'report-vehicle', 'new-historic', 'edit-historic', 'remove-historic',
+                                                    'edit-auxiliar', 'report-vehicle','report-vehicle-age', 'new-historic', 'edit-historic', 'remove-historic',
                                                     'add-auxiliar-historic', 'edit-auxiliar-historic', 'remove-auxiliar-historic',
                                                     'edit-permission') )
                     ->allow( 'user', 'auxiliar', array('index', 'new', 'edit', 'remove', 'view', 'report',
