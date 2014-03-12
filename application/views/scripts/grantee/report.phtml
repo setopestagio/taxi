@@ -30,7 +30,7 @@
   	                		echo $cityOptions['name']?></option>
   	                	<?}
                   }?>
-                </select><br><br>
+                </select>
                 <button type="submit" id='perm_all_pdf' name='perm_all' class="btn btn-primary" value="0">Gerar Pdf</button>
                 <button type="submit" id='perm_all_csv' name='perm_all' class="btn btn-primary" value="1">Gerar Csv</button>
             </form>
@@ -52,27 +52,7 @@
                 <button type="submit" id='perm_all_csv' name='perm_all' class="btn btn-primary" value="1">Gerar Csv</button>
             </form>
          	</div>
-         	<div class="col-lg-4">
-            <h2>Veículos</h2> <!--Veículos-->
-            <p>Lista de todos veículos vinculados aos permissionários. </p>
-            <form class="form-inline" action="/grantee/report-vehicle" method="get" role="form">
-                <button type="submit" id='vehicle_pdf' name='vehicle_all' class="btn btn-primary" value="0">Gerar Pdf</button>
-                <button type="submit" id='vehicle_csv' name='vehicle_all' class="btn btn-primary" value="1">Gerar Csv</button>
-            </form>
-         	</div>
-      </div><hr>
-      <div class="row">
-        <div class="col-lg-4">
-          <h2>Óbitos</h2>
-          <p>Lista de todos os óbitos de permissionários. </p>
-          <p><a href="/grantee/report-vehicle" class="btn btn-primary">gerar pdf</a> <a href="/grantee/report-vehicle" class="btn btn-primary">gerar csv</a></p>
-        </div>
-        <div class="col-lg-4">
-          <h2>Tarifa</h2>
-          <p>Relatório de reajuste de tarifa </p>
-          <p><a href="/grantee/report-vehicle" class="btn btn-primary">gerar pdf</a> <a href="/grantee/report-vehicle" class="btn btn-primary">gerar csv</a></p>
-        </div>
-        <div class="col-lg-4">
+          <div class="col-lg-4">
           <h2>Permissionarios e Auxiliares Ativos</h2> <!--Lista de Permissionariois e Auxiliars Ativos-->
           <p>Número de Permissionarios e Auxiliares ativos no sistema.</p>
           <form class="form-inline" action="/auxiliar/report-grantee-auxiliar-active-all" method="get" role="form">
@@ -94,8 +74,28 @@
       </div><hr>
       <div class="row">
         <div class="col-lg-4">
+          <h2>Óbitos</h2>
+          <p>Lista de todos os óbitos de permissionários. </p>
+          <p><a href="/grantee/report-vehicle" class="btn btn-primary">gerar pdf</a> <a href="/grantee/report-vehicle" class="btn btn-primary">gerar csv</a></p>
+        </div>
+        <div class="col-lg-4">
+          <h2>Tarifa</h2>
+          <p>Relatório de reajuste de tarifa </p>
+          <p><a href="/grantee/report-vehicle" class="btn btn-primary">gerar pdf</a> <a href="/grantee/report-vehicle" class="btn btn-primary">gerar csv</a></p>
+        </div>
+        <div class="col-lg-4">
             <h2>Veículos</h2> <!--Veículos-->
             <p>Lista de todos veículos vinculados aos permissionários. </p>
+            <form class="form-inline" action="/grantee/report-vehicle" method="get" role="form">
+                <button type="submit" id='vehicle_pdf' name='vehicle_all' class="btn btn-primary" value="0">Gerar Pdf</button>
+                <button type="submit" id='vehicle_csv' name='vehicle_all' class="btn btn-primary" value="1">Gerar Csv</button>
+            </form>
+          </div>
+      </div><hr>
+      <div class="row">
+        <div class="col-lg-4">
+            <h2>Idade da Frota</h2> <!--Veículos-->
+            <p>Relatório que demostra a idade da frota. </p>
             <form class="form-inline" action="/grantee/report-vehicle-age" method="get" role="form">
                 <button type="submit" id='vehicle_pdf' name='vehicle_all' class="btn btn-primary" value="0">Gerar Pdf</button>
                 <button type="submit" id='vehicle_csv' name='vehicle_all' class="btn btn-primary" value="1">Gerar Csv</button>

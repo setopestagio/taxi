@@ -517,14 +517,10 @@ class GranteeController extends Zend_Controller_Action
 
           $this->_helper->layout()->setLayout('report');
           $vehicle = new Application_Model_Vehicle();
-          $brand = $vehicle->returnFleetModelAge();
-          $model = $vehicle->returnFleetBrandAge();
+          $brand = $vehicle->returnFleetBrandAge();
+          $model = $vehicle->returnFleetModelAge();
           $this->view->list = $brand;
-          $this->view->list2 = $model;
-          print_r($this->view->list);
-          print_r($this->view->list2);
-          exit;
-       
+          $this->view->list2 = $model;       
         }
         else // Responsavel pelo Csv
         {
@@ -719,61 +715,4 @@ class GranteeController extends Zend_Controller_Action
       $this->view->aux = array( 'grantee' => $granteeId );
       $this->view->reservation = new Application_Form_Reservation();
     }
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

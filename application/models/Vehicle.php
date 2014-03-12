@@ -70,16 +70,15 @@ class Application_Model_Vehicle
 		$vehicle = new Application_Model_DbTable_Vehicle();
 		$select = $vehicle->select()->setIntegrityCheck(false);
 		$select	->from(array('g' => 'grantee'))
-						->joinInner(array('v' => 'vehicle'), 'v.id=g.vehicle',array('life_cycle' => new Zend_Db_Expr(date('Y').' - year_fabrication'), 
-																						'year_fabrication', 'year_model', ))
+						->joinInner(array('v' => 'vehicle'), 'v.id=g.vehicle',array('life_cycle' => new Zend_Db_Expr(date('Y').' - year_fabrication')))
 						->joinLeft(array('m' => 'vehicle_model'),'v.model=m.id',array('vehicle_model' => 'name'))
-						->joinLeft(array('b' => 'vehicle_brand'),'v.brand=b.id',array('vehicle_brand' => 'name'))
-						->joinLeft(array('f' => 'vehicle_fuel'),'v.fuel=f.id',array('vehicle_fuel' => 'name'))
+						->joinLeft(array('b' => 'vehicle_brand'),'v.brand=b.id',array('vehicle_brand' => 'name','vehicle_brand_num' => "Count('name')"))
 						->where('g.end_permission IS NOT NULL')
 						->where('g.info NOT LIKE "%transf%"')
 						->where('g.end_permission="0000-00-00"')
 						->where('v.plate IS NOT NULL')
-						->where('v.plate!=""');
+						->where('v.plate!=""')
+						->group('b.name');
 		return $vehicle->fetchAll($select);
 	}
 
@@ -88,16 +87,15 @@ class Application_Model_Vehicle
 		$vehicle = new Application_Model_DbTable_Vehicle();
 		$select = $vehicle->select()->setIntegrityCheck(false);
 		$select	->from(array('g' => 'grantee'))
-						->joinInner(array('v' => 'vehicle'), 'v.id=g.vehicle',array('life_cycle' => new Zend_Db_Expr(date('Y').' - year_fabrication'), 
-																						'year_fabrication', 'year_model', ))
-						->joinLeft(array('m' => 'vehicle_model'),'v.model=m.id',array('vehicle_model' => 'name'))
+						->joinInner(array('v' => 'vehicle'), 'v.id=g.vehicle',array('life_cycle' => new Zend_Db_Expr(date('Y').' - year_fabrication')))
+						->joinLeft(array('m' => 'vehicle_model'),'v.model=m.id',array('vehicle_model' => 'name', 'vehicle_model_num' => "Count('name')"))
 						->joinLeft(array('b' => 'vehicle_brand'),'v.brand=b.id',array('vehicle_brand' => 'name'))
-						->joinLeft(array('f' => 'vehicle_fuel'),'v.fuel=f.id',array('vehicle_fuel' => 'name'))
 						->where('g.end_permission IS NOT NULL')
 						->where('g.info NOT LIKE "%transf%"')
 						->where('g.end_permission="0000-00-00"')
 						->where('v.plate IS NOT NULL')
-						->where('v.plate!=""');
+						->where('v.plate!=""')
+						->group('m.name');
 		return $vehicle->fetchAll($select);
 	}
 }
